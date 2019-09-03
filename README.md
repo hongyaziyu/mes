@@ -1,0 +1,4 @@
+# mes
+安徽红桥金属mes系统
+系统使用SSM框架搭建的。做项目时分为网页前端和网页后端。前端是用bootstrap框架搭建的。用javascript和css选择器等写的动态jsp页面。后端是用SSM框架
+搭建的。
