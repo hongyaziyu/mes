@@ -1,0 +1,1503 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.SaSaleorderMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.SaSaleorder" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="discountRate" property="discountrate" jdbcType="DECIMAL" />
+    <result column="discountAmount" property="discountamount" jdbcType="DECIMAL" />
+    <result column="origDiscountAmount" property="origdiscountamount" jdbcType="DECIMAL" />
+    <result column="exchangeRate" property="exchangerate" jdbcType="DECIMAL" />
+    <result column="address" property="address" jdbcType="NVARCHAR" />
+    <result column="linkMan" property="linkman" jdbcType="NVARCHAR" />
+    <result column="contractCode" property="contractcode" jdbcType="NVARCHAR" />
+    <result column="origEarnestMoney" property="origearnestmoney" jdbcType="DECIMAL" />
+    <result column="earnestMoney" property="earnestmoney" jdbcType="DECIMAL" />
+    <result column="memo" property="memo" jdbcType="NVARCHAR" />
+    <result column="origAmount" property="origamount" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="origTaxAmount" property="origtaxamount" jdbcType="DECIMAL" />
+    <result column="taxAmount" property="taxamount" jdbcType="DECIMAL" />
+    <result column="contactPhone" property="contactphone" jdbcType="NVARCHAR" />
+    <result column="maker" property="maker" jdbcType="NVARCHAR" />
+    <result column="auditor" property="auditor" jdbcType="NVARCHAR" />
+    <result column="reviser" property="reviser" jdbcType="NVARCHAR" />
+    <result column="iscarriedforwardout" property="iscarriedforwardout" jdbcType="TINYINT" />
+    <result column="iscarriedforwardin" property="iscarriedforwardin" jdbcType="TINYINT" />
+    <result column="ismodifiedcode" property="ismodifiedcode" jdbcType="TINYINT" />
+    <result column="docid" property="docid" jdbcType="NVARCHAR" />
+    <result column="updatedBy" property="updatedby" jdbcType="NVARCHAR" />
+    <result column="priuserdefnvc1" property="priuserdefnvc1" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm1" property="priuserdefdecm1" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc2" property="priuserdefnvc2" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm2" property="priuserdefdecm2" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc3" property="priuserdefnvc3" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm3" property="priuserdefdecm3" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc4" property="priuserdefnvc4" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm4" property="priuserdefdecm4" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc5" property="priuserdefnvc5" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm5" property="priuserdefdecm5" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc6" property="priuserdefnvc6" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm6" property="priuserdefdecm6" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc1" property="pubuserdefnvc1" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm1" property="pubuserdefdecm1" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc2" property="pubuserdefnvc2" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm2" property="pubuserdefdecm2" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc3" property="pubuserdefnvc3" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm3" property="pubuserdefdecm3" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc4" property="pubuserdefnvc4" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm4" property="pubuserdefdecm4" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc5" property="pubuserdefnvc5" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm5" property="pubuserdefdecm5" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc6" property="pubuserdefnvc6" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm6" property="pubuserdefdecm6" jdbcType="DECIMAL" />
+    <result column="IsAutoGenerateSaleOrderBOM" property="isautogeneratesaleorderbom" jdbcType="TINYINT" />
+    <result column="IsAutoGenerateRouting" property="isautogeneraterouting" jdbcType="TINYINT" />
+    <result column="SourceVoucherCode" property="sourcevouchercode" jdbcType="NVARCHAR" />
+    <result column="isnomodify" property="isnomodify" jdbcType="NVARCHAR" />
+    <result column="changer" property="changer" jdbcType="NVARCHAR" />
+    <result column="Mobilephone" property="mobilephone" jdbcType="NVARCHAR" />
+    <result column="MemberAddress" property="memberaddress" jdbcType="NVARCHAR" />
+    <result column="PrintCount" property="printcount" jdbcType="INTEGER" />
+    <result column="IsSeparateByWareHouse" property="isseparatebywarehouse" jdbcType="TINYINT" />
+    <result column="OrigReceiveAmount" property="origreceiveamount" jdbcType="DECIMAL" />
+    <result column="ReceiveAmount" property="receiveamount" jdbcType="DECIMAL" />
+    <result column="collaborateVoucherCode" property="collaboratevouchercode" jdbcType="NVARCHAR" />
+    <result column="ExternalCode" property="externalcode" jdbcType="NVARCHAR" />
+    <result column="idbusinesstype" property="idbusinesstype" jdbcType="INTEGER" />
+    <result column="idcurrency" property="idcurrency" jdbcType="INTEGER" />
+    <result column="iddepartment" property="iddepartment" jdbcType="INTEGER" />
+    <result column="IdMember" property="idmember" jdbcType="INTEGER" />
+    <result column="idmarketingOrgan" property="idmarketingorgan" jdbcType="INTEGER" />
+    <result column="idcustomer" property="idcustomer" jdbcType="INTEGER" />
+    <result column="idsettlecustomer" property="idsettlecustomer" jdbcType="INTEGER" />
+    <result column="idclerk" property="idclerk" jdbcType="INTEGER" />
+    <result column="idproject" property="idproject" jdbcType="INTEGER" />
+    <result column="idwarehouse" property="idwarehouse" jdbcType="INTEGER" />
+    <result column="idCollaborateUpVoucherType" property="idcollaborateupvouchertype" jdbcType="INTEGER" />
+    <result column="idCollaborateUpVoucher" property="idcollaborateupvoucher" jdbcType="INTEGER" />
+    <result column="DataSource" property="datasource" jdbcType="INTEGER" />
+    <result column="deliveryMode" property="deliverymode" jdbcType="INTEGER" />
+    <result column="isCancel" property="iscancel" jdbcType="INTEGER" />
+    <result column="isSaleDelivery" property="issaledelivery" jdbcType="INTEGER" />
+    <result column="isSaleOut" property="issaleout" jdbcType="INTEGER" />
+    <result column="reciveType" property="recivetype" jdbcType="INTEGER" />
+    <result column="voucherState" property="voucherstate" jdbcType="INTEGER" />
+    <result column="auditorid" property="auditorid" jdbcType="INTEGER" />
+    <result column="makerid" property="makerid" jdbcType="INTEGER" />
+    <result column="changerid" property="changerid" jdbcType="INTEGER" />
+    <result column="idCollaborateDownVoucherType" property="idcollaboratedownvouchertype" jdbcType="INTEGER" />
+    <result column="CollaborateState" property="collaboratestate" jdbcType="INTEGER" />
+    <result column="idCollaborateDownDraftVoucher" property="idcollaboratedowndraftvoucher" jdbcType="INTEGER" />
+    <result column="SourceVoucherID" property="sourcevoucherid" jdbcType="INTEGER" />
+    <result column="idsourcevouchertype" property="idsourcevouchertype" jdbcType="INTEGER" />
+    <result column="deliveryDate" property="deliverydate" jdbcType="TIMESTAMP" />
+    <result column="voucherdate" property="voucherdate" jdbcType="TIMESTAMP" />
+    <result column="madedate" property="madedate" jdbcType="TIMESTAMP" />
+    <result column="auditeddate" property="auditeddate" jdbcType="TIMESTAMP" />
+    <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="changedate" property="changedate" jdbcType="TIMESTAMP" />
+    <result column="ExternalVoucherCode" property="externalvouchercode" jdbcType="NVARCHAR" />
+    <result column="CustomerPhone" property="customerphone" jdbcType="NVARCHAR" />
+    <result column="HasRecordCredit" property="hasrecordcredit" jdbcType="BIT" />
+    <result column="IsAutoWarehouse" property="isautowarehouse" jdbcType="BIT" />
+    <result column="InputDataSource" property="inputdatasource" jdbcType="INTEGER" />
+    <result column="Closer" property="closer" jdbcType="NVARCHAR" />
+    <result column="CloseDate" property="closedate" jdbcType="TIMESTAMP" />
+    <!-- 新加子表映射-->
+    <result column="idinventory" property="idinventory" jdbcType="INTEGER" />
+    <result column="idbaseunit" property="idbaseunit" jdbcType="INTEGER" />
+    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+    <result column="compositionQuantity" property="compositionquantity" jdbcType="NVARCHAR" />
+  </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBs" type="cn.ssm.po.SaSaleorder" extends="BaseResultMap" >
+    <result column="ts" property="ts" jdbcType="BINARY" />
+  </resultMap>
+  
+  <!-- 显示订单信息页面显示类 -->
+  <resultMap id="BaseResultMap1" type="cn.ssm.vo.SaleOrder" >
+    <result column="code" property="code" jdbcType="NVARCHAR" />
+    <result column="idcustomer" property="idcustomer" jdbcType="INTEGER" />
+    <result column="madedate" property="madedate" jdbcType="TIMESTAMP" />
+    <result column="auditeddate" property="auditeddate" jdbcType="TIMESTAMP" />
+    <result column="maker" property="maker" jdbcType="NVARCHAR" />
+    <result column="auditor" property="auditor" jdbcType="NVARCHAR" />
+    <result column="auditeddate1" property="auditeddate1" jdbcType="TIMESTAMP" />
+    <result column="madedate1" property="madedate1" jdbcType="TIMESTAMP" />
+    <result column="Closer" property="closer" jdbcType="NVARCHAR" />
+    <result column="ID" property="id" jdbcType="INTEGER" />
+  </resultMap>
+
+ 
+  
+  <!-- convert(varchar(50),s.madedate,120)将datetime类型转化为string类型 -->
+  <!-- s.auditor is not null and s.auditeddate is not null and  (s.closer is null and s.closedate is null)
+  表示审批过，但还未完成的订单-->
+  <!-- 订单信息sql片段 -->
+  <sql id="query_SaleOrder_where">
+            <if test="code!=null and code!=''">
+				and  s.code like '%${code}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  convert(varchar(50),s.madedate,120) BETWEEN #{start_date} AND #{end_date}
+			</if>
+                and  (s.auditor is not null and s.auditeddate is not null)    
+  </sql>
+  
+  
+  <sql id="Base_Column_List" >
+    ID, code, name, discountRate, discountAmount, origDiscountAmount, exchangeRate, address, 
+    linkMan, contractCode, origEarnestMoney, earnestMoney, memo, origAmount, amount, 
+    origTaxAmount, taxAmount, contactPhone, maker, auditor, reviser, iscarriedforwardout, 
+    iscarriedforwardin, ismodifiedcode, docid, updatedBy, priuserdefnvc1, priuserdefdecm1, 
+    priuserdefnvc2, priuserdefdecm2, priuserdefnvc3, priuserdefdecm3, priuserdefnvc4, 
+    priuserdefdecm4, priuserdefnvc5, priuserdefdecm5, priuserdefnvc6, priuserdefdecm6, 
+    pubuserdefnvc1, pubuserdefdecm1, pubuserdefnvc2, pubuserdefdecm2, pubuserdefnvc3, 
+    pubuserdefdecm3, pubuserdefnvc4, pubuserdefdecm4, pubuserdefnvc5, pubuserdefdecm5, 
+    pubuserdefnvc6, pubuserdefdecm6, IsAutoGenerateSaleOrderBOM, IsAutoGenerateRouting, 
+    SourceVoucherCode, isnomodify, changer, Mobilephone, MemberAddress, PrintCount, IsSeparateByWareHouse, 
+    OrigReceiveAmount, ReceiveAmount, collaborateVoucherCode, ExternalCode, idbusinesstype, 
+    idcurrency, iddepartment, IdMember, idmarketingOrgan, idcustomer, idsettlecustomer, 
+    idclerk, idproject, idwarehouse, idCollaborateUpVoucherType, idCollaborateUpVoucher, 
+    DataSource, deliveryMode, isCancel, isSaleDelivery, isSaleOut, reciveType, voucherState, 
+    auditorid, makerid, changerid, idCollaborateDownVoucherType, CollaborateState, idCollaborateDownDraftVoucher, 
+    SourceVoucherID, idsourcevouchertype, deliveryDate, voucherdate, madedate, auditeddate, 
+    createdtime, updated, changedate, ExternalVoucherCode, CustomerPhone, HasRecordCredit, 
+    IsAutoWarehouse, InputDataSource, Closer, CloseDate
+  </sql>
+  <sql id="Blob_Column_List" >
+    ts
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from SA_SaleOrder
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from SA_SaleOrder
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.SaSaleorder" >
+    insert into SA_SaleOrder (ID, code, name, 
+      discountRate, discountAmount, origDiscountAmount, 
+      exchangeRate, address, linkMan, 
+      contractCode, origEarnestMoney, earnestMoney, 
+      memo, origAmount, amount, 
+      origTaxAmount, taxAmount, contactPhone, 
+      maker, auditor, reviser, 
+      iscarriedforwardout, iscarriedforwardin, 
+      ismodifiedcode, docid, updatedBy, 
+      priuserdefnvc1, priuserdefdecm1, priuserdefnvc2, 
+      priuserdefdecm2, priuserdefnvc3, priuserdefdecm3, 
+      priuserdefnvc4, priuserdefdecm4, priuserdefnvc5, 
+      priuserdefdecm5, priuserdefnvc6, priuserdefdecm6, 
+      pubuserdefnvc1, pubuserdefdecm1, pubuserdefnvc2, 
+      pubuserdefdecm2, pubuserdefnvc3, pubuserdefdecm3, 
+      pubuserdefnvc4, pubuserdefdecm4, pubuserdefnvc5, 
+      pubuserdefdecm5, pubuserdefnvc6, pubuserdefdecm6, 
+      IsAutoGenerateSaleOrderBOM, IsAutoGenerateRouting, 
+      SourceVoucherCode, isnomodify, changer, 
+      Mobilephone, MemberAddress, PrintCount, 
+      IsSeparateByWareHouse, OrigReceiveAmount, 
+      ReceiveAmount, collaborateVoucherCode, 
+      ExternalCode, idbusinesstype, idcurrency, 
+      iddepartment, IdMember, idmarketingOrgan, 
+      idcustomer, idsettlecustomer, idclerk, 
+      idproject, idwarehouse, idCollaborateUpVoucherType, 
+      idCollaborateUpVoucher, DataSource, deliveryMode, 
+      isCancel, isSaleDelivery, isSaleOut, 
+      reciveType, voucherState, auditorid, 
+      makerid, changerid, idCollaborateDownVoucherType, 
+      CollaborateState, idCollaborateDownDraftVoucher, 
+      SourceVoucherID, idsourcevouchertype, deliveryDate, 
+      voucherdate, madedate, auditeddate, 
+      createdtime, updated, changedate, 
+      ExternalVoucherCode, CustomerPhone, HasRecordCredit, 
+      IsAutoWarehouse, InputDataSource, Closer, 
+      CloseDate, ts)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{discountrate,jdbcType=DECIMAL}, #{discountamount,jdbcType=DECIMAL}, #{origdiscountamount,jdbcType=DECIMAL}, 
+      #{exchangerate,jdbcType=DECIMAL}, #{address,jdbcType=NVARCHAR}, #{linkman,jdbcType=NVARCHAR}, 
+      #{contractcode,jdbcType=NVARCHAR}, #{origearnestmoney,jdbcType=DECIMAL}, #{earnestmoney,jdbcType=DECIMAL}, 
+      #{memo,jdbcType=NVARCHAR}, #{origamount,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, 
+      #{origtaxamount,jdbcType=DECIMAL}, #{taxamount,jdbcType=DECIMAL}, #{contactphone,jdbcType=NVARCHAR}, 
+      #{maker,jdbcType=NVARCHAR}, #{auditor,jdbcType=NVARCHAR}, #{reviser,jdbcType=NVARCHAR}, 
+      #{iscarriedforwardout,jdbcType=TINYINT}, #{iscarriedforwardin,jdbcType=TINYINT}, 
+      #{ismodifiedcode,jdbcType=TINYINT}, #{docid,jdbcType=NVARCHAR}, #{updatedby,jdbcType=NVARCHAR}, 
+      #{priuserdefnvc1,jdbcType=NVARCHAR}, #{priuserdefdecm1,jdbcType=DECIMAL}, #{priuserdefnvc2,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm2,jdbcType=DECIMAL}, #{priuserdefnvc3,jdbcType=NVARCHAR}, #{priuserdefdecm3,jdbcType=DECIMAL}, 
+      #{priuserdefnvc4,jdbcType=NVARCHAR}, #{priuserdefdecm4,jdbcType=DECIMAL}, #{priuserdefnvc5,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm5,jdbcType=DECIMAL}, #{priuserdefnvc6,jdbcType=NVARCHAR}, #{priuserdefdecm6,jdbcType=DECIMAL}, 
+      #{pubuserdefnvc1,jdbcType=NVARCHAR}, #{pubuserdefdecm1,jdbcType=DECIMAL}, #{pubuserdefnvc2,jdbcType=NVARCHAR}, 
+      #{pubuserdefdecm2,jdbcType=DECIMAL}, #{pubuserdefnvc3,jdbcType=NVARCHAR}, #{pubuserdefdecm3,jdbcType=DECIMAL}, 
+      #{pubuserdefnvc4,jdbcType=NVARCHAR}, #{pubuserdefdecm4,jdbcType=DECIMAL}, #{pubuserdefnvc5,jdbcType=NVARCHAR}, 
+      #{pubuserdefdecm5,jdbcType=DECIMAL}, #{pubuserdefnvc6,jdbcType=NVARCHAR}, #{pubuserdefdecm6,jdbcType=DECIMAL}, 
+      #{isautogeneratesaleorderbom,jdbcType=TINYINT}, #{isautogeneraterouting,jdbcType=TINYINT}, 
+      #{sourcevouchercode,jdbcType=NVARCHAR}, #{isnomodify,jdbcType=NVARCHAR}, #{changer,jdbcType=NVARCHAR}, 
+      #{mobilephone,jdbcType=NVARCHAR}, #{memberaddress,jdbcType=NVARCHAR}, #{printcount,jdbcType=INTEGER}, 
+      #{isseparatebywarehouse,jdbcType=TINYINT}, #{origreceiveamount,jdbcType=DECIMAL}, 
+      #{receiveamount,jdbcType=DECIMAL}, #{collaboratevouchercode,jdbcType=NVARCHAR}, 
+      #{externalcode,jdbcType=NVARCHAR}, #{idbusinesstype,jdbcType=INTEGER}, #{idcurrency,jdbcType=INTEGER}, 
+      #{iddepartment,jdbcType=INTEGER}, #{idmember,jdbcType=INTEGER}, #{idmarketingorgan,jdbcType=INTEGER}, 
+      #{idcustomer,jdbcType=INTEGER}, #{idsettlecustomer,jdbcType=INTEGER}, #{idclerk,jdbcType=INTEGER}, 
+      #{idproject,jdbcType=INTEGER}, #{idwarehouse,jdbcType=INTEGER}, #{idcollaborateupvouchertype,jdbcType=INTEGER}, 
+      #{idcollaborateupvoucher,jdbcType=INTEGER}, #{datasource,jdbcType=INTEGER}, #{deliverymode,jdbcType=INTEGER}, 
+      #{iscancel,jdbcType=INTEGER}, #{issaledelivery,jdbcType=INTEGER}, #{issaleout,jdbcType=INTEGER}, 
+      #{recivetype,jdbcType=INTEGER}, #{voucherstate,jdbcType=INTEGER}, #{auditorid,jdbcType=INTEGER}, 
+      #{makerid,jdbcType=INTEGER}, #{changerid,jdbcType=INTEGER}, #{idcollaboratedownvouchertype,jdbcType=INTEGER}, 
+      #{collaboratestate,jdbcType=INTEGER}, #{idcollaboratedowndraftvoucher,jdbcType=INTEGER}, 
+      #{sourcevoucherid,jdbcType=INTEGER}, #{idsourcevouchertype,jdbcType=INTEGER}, #{deliverydate,jdbcType=TIMESTAMP}, 
+      #{voucherdate,jdbcType=TIMESTAMP}, #{madedate,jdbcType=TIMESTAMP}, #{auditeddate,jdbcType=TIMESTAMP}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{changedate,jdbcType=TIMESTAMP}, 
+      #{externalvouchercode,jdbcType=NVARCHAR}, #{customerphone,jdbcType=NVARCHAR}, #{hasrecordcredit,jdbcType=BIT}, 
+      #{isautowarehouse,jdbcType=BIT}, #{inputdatasource,jdbcType=INTEGER}, #{closer,jdbcType=NVARCHAR}, 
+      #{closedate,jdbcType=TIMESTAMP}, #{ts,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.SaSaleorder" >
+    insert into SA_SaleOrder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="discountrate != null" >
+        discountRate,
+      </if>
+      <if test="discountamount != null" >
+        discountAmount,
+      </if>
+      <if test="origdiscountamount != null" >
+        origDiscountAmount,
+      </if>
+      <if test="exchangerate != null" >
+        exchangeRate,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="linkman != null" >
+        linkMan,
+      </if>
+      <if test="contractcode != null" >
+        contractCode,
+      </if>
+      <if test="origearnestmoney != null" >
+        origEarnestMoney,
+      </if>
+      <if test="earnestmoney != null" >
+        earnestMoney,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="origamount != null" >
+        origAmount,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="origtaxamount != null" >
+        origTaxAmount,
+      </if>
+      <if test="taxamount != null" >
+        taxAmount,
+      </if>
+      <if test="contactphone != null" >
+        contactPhone,
+      </if>
+      <if test="maker != null" >
+        maker,
+      </if>
+      <if test="auditor != null" >
+        auditor,
+      </if>
+      <if test="reviser != null" >
+        reviser,
+      </if>
+      <if test="iscarriedforwardout != null" >
+        iscarriedforwardout,
+      </if>
+      <if test="iscarriedforwardin != null" >
+        iscarriedforwardin,
+      </if>
+      <if test="ismodifiedcode != null" >
+        ismodifiedcode,
+      </if>
+      <if test="docid != null" >
+        docid,
+      </if>
+      <if test="updatedby != null" >
+        updatedBy,
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        priuserdefnvc1,
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        priuserdefdecm1,
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        priuserdefnvc2,
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        priuserdefdecm2,
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        priuserdefnvc3,
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        priuserdefdecm3,
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        priuserdefnvc4,
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        priuserdefdecm4,
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        priuserdefnvc5,
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        priuserdefdecm5,
+      </if>
+      <if test="priuserdefnvc6 != null" >
+        priuserdefnvc6,
+      </if>
+      <if test="priuserdefdecm6 != null" >
+        priuserdefdecm6,
+      </if>
+      <if test="pubuserdefnvc1 != null" >
+        pubuserdefnvc1,
+      </if>
+      <if test="pubuserdefdecm1 != null" >
+        pubuserdefdecm1,
+      </if>
+      <if test="pubuserdefnvc2 != null" >
+        pubuserdefnvc2,
+      </if>
+      <if test="pubuserdefdecm2 != null" >
+        pubuserdefdecm2,
+      </if>
+      <if test="pubuserdefnvc3 != null" >
+        pubuserdefnvc3,
+      </if>
+      <if test="pubuserdefdecm3 != null" >
+        pubuserdefdecm3,
+      </if>
+      <if test="pubuserdefnvc4 != null" >
+        pubuserdefnvc4,
+      </if>
+      <if test="pubuserdefdecm4 != null" >
+        pubuserdefdecm4,
+      </if>
+      <if test="pubuserdefnvc5 != null" >
+        pubuserdefnvc5,
+      </if>
+      <if test="pubuserdefdecm5 != null" >
+        pubuserdefdecm5,
+      </if>
+      <if test="pubuserdefnvc6 != null" >
+        pubuserdefnvc6,
+      </if>
+      <if test="pubuserdefdecm6 != null" >
+        pubuserdefdecm6,
+      </if>
+      <if test="isautogeneratesaleorderbom != null" >
+        IsAutoGenerateSaleOrderBOM,
+      </if>
+      <if test="isautogeneraterouting != null" >
+        IsAutoGenerateRouting,
+      </if>
+      <if test="sourcevouchercode != null" >
+        SourceVoucherCode,
+      </if>
+      <if test="isnomodify != null" >
+        isnomodify,
+      </if>
+      <if test="changer != null" >
+        changer,
+      </if>
+      <if test="mobilephone != null" >
+        Mobilephone,
+      </if>
+      <if test="memberaddress != null" >
+        MemberAddress,
+      </if>
+      <if test="printcount != null" >
+        PrintCount,
+      </if>
+      <if test="isseparatebywarehouse != null" >
+        IsSeparateByWareHouse,
+      </if>
+      <if test="origreceiveamount != null" >
+        OrigReceiveAmount,
+      </if>
+      <if test="receiveamount != null" >
+        ReceiveAmount,
+      </if>
+      <if test="collaboratevouchercode != null" >
+        collaborateVoucherCode,
+      </if>
+      <if test="externalcode != null" >
+        ExternalCode,
+      </if>
+      <if test="idbusinesstype != null" >
+        idbusinesstype,
+      </if>
+      <if test="idcurrency != null" >
+        idcurrency,
+      </if>
+      <if test="iddepartment != null" >
+        iddepartment,
+      </if>
+      <if test="idmember != null" >
+        IdMember,
+      </if>
+      <if test="idmarketingorgan != null" >
+        idmarketingOrgan,
+      </if>
+      <if test="idcustomer != null" >
+        idcustomer,
+      </if>
+      <if test="idsettlecustomer != null" >
+        idsettlecustomer,
+      </if>
+      <if test="idclerk != null" >
+        idclerk,
+      </if>
+      <if test="idproject != null" >
+        idproject,
+      </if>
+      <if test="idwarehouse != null" >
+        idwarehouse,
+      </if>
+      <if test="idcollaborateupvouchertype != null" >
+        idCollaborateUpVoucherType,
+      </if>
+      <if test="idcollaborateupvoucher != null" >
+        idCollaborateUpVoucher,
+      </if>
+      <if test="datasource != null" >
+        DataSource,
+      </if>
+      <if test="deliverymode != null" >
+        deliveryMode,
+      </if>
+      <if test="iscancel != null" >
+        isCancel,
+      </if>
+      <if test="issaledelivery != null" >
+        isSaleDelivery,
+      </if>
+      <if test="issaleout != null" >
+        isSaleOut,
+      </if>
+      <if test="recivetype != null" >
+        reciveType,
+      </if>
+      <if test="voucherstate != null" >
+        voucherState,
+      </if>
+      <if test="auditorid != null" >
+        auditorid,
+      </if>
+      <if test="makerid != null" >
+        makerid,
+      </if>
+      <if test="changerid != null" >
+        changerid,
+      </if>
+      <if test="idcollaboratedownvouchertype != null" >
+        idCollaborateDownVoucherType,
+      </if>
+      <if test="collaboratestate != null" >
+        CollaborateState,
+      </if>
+      <if test="idcollaboratedowndraftvoucher != null" >
+        idCollaborateDownDraftVoucher,
+      </if>
+      <if test="sourcevoucherid != null" >
+        SourceVoucherID,
+      </if>
+      <if test="idsourcevouchertype != null" >
+        idsourcevouchertype,
+      </if>
+      <if test="deliverydate != null" >
+        deliveryDate,
+      </if>
+      <if test="voucherdate != null" >
+        voucherdate,
+      </if>
+      <if test="madedate != null" >
+        madedate,
+      </if>
+      <if test="auditeddate != null" >
+        auditeddate,
+      </if>
+      <if test="createdtime != null" >
+        createdtime,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="changedate != null" >
+        changedate,
+      </if>
+      <if test="externalvouchercode != null" >
+        ExternalVoucherCode,
+      </if>
+      <if test="customerphone != null" >
+        CustomerPhone,
+      </if>
+      <if test="hasrecordcredit != null" >
+        HasRecordCredit,
+      </if>
+      <if test="isautowarehouse != null" >
+        IsAutoWarehouse,
+      </if>
+      <if test="inputdatasource != null" >
+        InputDataSource,
+      </if>
+      <if test="closer != null" >
+        Closer,
+      </if>
+      <if test="closedate != null" >
+        CloseDate,
+      </if>
+      <if test="ts != null" >
+        ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="discountrate != null" >
+        #{discountrate,jdbcType=DECIMAL},
+      </if>
+      <if test="discountamount != null" >
+        #{discountamount,jdbcType=DECIMAL},
+      </if>
+      <if test="origdiscountamount != null" >
+        #{origdiscountamount,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangerate != null" >
+        #{exchangerate,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=NVARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=NVARCHAR},
+      </if>
+      <if test="contractcode != null" >
+        #{contractcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="origearnestmoney != null" >
+        #{origearnestmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="earnestmoney != null" >
+        #{earnestmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=NVARCHAR},
+      </if>
+      <if test="origamount != null" >
+        #{origamount,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="origtaxamount != null" >
+        #{origtaxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxamount != null" >
+        #{taxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="contactphone != null" >
+        #{contactphone,jdbcType=NVARCHAR},
+      </if>
+      <if test="maker != null" >
+        #{maker,jdbcType=NVARCHAR},
+      </if>
+      <if test="auditor != null" >
+        #{auditor,jdbcType=NVARCHAR},
+      </if>
+      <if test="reviser != null" >
+        #{reviser,jdbcType=NVARCHAR},
+      </if>
+      <if test="iscarriedforwardout != null" >
+        #{iscarriedforwardout,jdbcType=TINYINT},
+      </if>
+      <if test="iscarriedforwardin != null" >
+        #{iscarriedforwardin,jdbcType=TINYINT},
+      </if>
+      <if test="ismodifiedcode != null" >
+        #{ismodifiedcode,jdbcType=TINYINT},
+      </if>
+      <if test="docid != null" >
+        #{docid,jdbcType=NVARCHAR},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        #{priuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        #{priuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        #{priuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        #{priuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        #{priuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        #{priuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        #{priuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        #{priuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        #{priuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        #{priuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc6 != null" >
+        #{priuserdefnvc6,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm6 != null" >
+        #{priuserdefdecm6,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc1 != null" >
+        #{pubuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm1 != null" >
+        #{pubuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc2 != null" >
+        #{pubuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm2 != null" >
+        #{pubuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc3 != null" >
+        #{pubuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm3 != null" >
+        #{pubuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc4 != null" >
+        #{pubuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm4 != null" >
+        #{pubuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc5 != null" >
+        #{pubuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm5 != null" >
+        #{pubuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc6 != null" >
+        #{pubuserdefnvc6,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm6 != null" >
+        #{pubuserdefdecm6,jdbcType=DECIMAL},
+      </if>
+      <if test="isautogeneratesaleorderbom != null" >
+        #{isautogeneratesaleorderbom,jdbcType=TINYINT},
+      </if>
+      <if test="isautogeneraterouting != null" >
+        #{isautogeneraterouting,jdbcType=TINYINT},
+      </if>
+      <if test="sourcevouchercode != null" >
+        #{sourcevouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="isnomodify != null" >
+        #{isnomodify,jdbcType=NVARCHAR},
+      </if>
+      <if test="changer != null" >
+        #{changer,jdbcType=NVARCHAR},
+      </if>
+      <if test="mobilephone != null" >
+        #{mobilephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="memberaddress != null" >
+        #{memberaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="printcount != null" >
+        #{printcount,jdbcType=INTEGER},
+      </if>
+      <if test="isseparatebywarehouse != null" >
+        #{isseparatebywarehouse,jdbcType=TINYINT},
+      </if>
+      <if test="origreceiveamount != null" >
+        #{origreceiveamount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveamount != null" >
+        #{receiveamount,jdbcType=DECIMAL},
+      </if>
+      <if test="collaboratevouchercode != null" >
+        #{collaboratevouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="externalcode != null" >
+        #{externalcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="idbusinesstype != null" >
+        #{idbusinesstype,jdbcType=INTEGER},
+      </if>
+      <if test="idcurrency != null" >
+        #{idcurrency,jdbcType=INTEGER},
+      </if>
+      <if test="iddepartment != null" >
+        #{iddepartment,jdbcType=INTEGER},
+      </if>
+      <if test="idmember != null" >
+        #{idmember,jdbcType=INTEGER},
+      </if>
+      <if test="idmarketingorgan != null" >
+        #{idmarketingorgan,jdbcType=INTEGER},
+      </if>
+      <if test="idcustomer != null" >
+        #{idcustomer,jdbcType=INTEGER},
+      </if>
+      <if test="idsettlecustomer != null" >
+        #{idsettlecustomer,jdbcType=INTEGER},
+      </if>
+      <if test="idclerk != null" >
+        #{idclerk,jdbcType=INTEGER},
+      </if>
+      <if test="idproject != null" >
+        #{idproject,jdbcType=INTEGER},
+      </if>
+      <if test="idwarehouse != null" >
+        #{idwarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="idcollaborateupvouchertype != null" >
+        #{idcollaborateupvouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="idcollaborateupvoucher != null" >
+        #{idcollaborateupvoucher,jdbcType=INTEGER},
+      </if>
+      <if test="datasource != null" >
+        #{datasource,jdbcType=INTEGER},
+      </if>
+      <if test="deliverymode != null" >
+        #{deliverymode,jdbcType=INTEGER},
+      </if>
+      <if test="iscancel != null" >
+        #{iscancel,jdbcType=INTEGER},
+      </if>
+      <if test="issaledelivery != null" >
+        #{issaledelivery,jdbcType=INTEGER},
+      </if>
+      <if test="issaleout != null" >
+        #{issaleout,jdbcType=INTEGER},
+      </if>
+      <if test="recivetype != null" >
+        #{recivetype,jdbcType=INTEGER},
+      </if>
+      <if test="voucherstate != null" >
+        #{voucherstate,jdbcType=INTEGER},
+      </if>
+      <if test="auditorid != null" >
+        #{auditorid,jdbcType=INTEGER},
+      </if>
+      <if test="makerid != null" >
+        #{makerid,jdbcType=INTEGER},
+      </if>
+      <if test="changerid != null" >
+        #{changerid,jdbcType=INTEGER},
+      </if>
+      <if test="idcollaboratedownvouchertype != null" >
+        #{idcollaboratedownvouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="collaboratestate != null" >
+        #{collaboratestate,jdbcType=INTEGER},
+      </if>
+      <if test="idcollaboratedowndraftvoucher != null" >
+        #{idcollaboratedowndraftvoucher,jdbcType=INTEGER},
+      </if>
+      <if test="sourcevoucherid != null" >
+        #{sourcevoucherid,jdbcType=INTEGER},
+      </if>
+      <if test="idsourcevouchertype != null" >
+        #{idsourcevouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="deliverydate != null" >
+        #{deliverydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voucherdate != null" >
+        #{voucherdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="madedate != null" >
+        #{madedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditeddate != null" >
+        #{auditeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changedate != null" >
+        #{changedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="externalvouchercode != null" >
+        #{externalvouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="customerphone != null" >
+        #{customerphone,jdbcType=NVARCHAR},
+      </if>
+      <if test="hasrecordcredit != null" >
+        #{hasrecordcredit,jdbcType=BIT},
+      </if>
+      <if test="isautowarehouse != null" >
+        #{isautowarehouse,jdbcType=BIT},
+      </if>
+      <if test="inputdatasource != null" >
+        #{inputdatasource,jdbcType=INTEGER},
+      </if>
+      <if test="closer != null" >
+        #{closer,jdbcType=NVARCHAR},
+      </if>
+      <if test="closedate != null" >
+        #{closedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.SaSaleorder" >
+    update SA_SaleOrder
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="discountrate != null" >
+        discountRate = #{discountrate,jdbcType=DECIMAL},
+      </if>
+      <if test="discountamount != null" >
+        discountAmount = #{discountamount,jdbcType=DECIMAL},
+      </if>
+      <if test="origdiscountamount != null" >
+        origDiscountAmount = #{origdiscountamount,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangerate != null" >
+        exchangeRate = #{exchangerate,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=NVARCHAR},
+      </if>
+      <if test="linkman != null" >
+        linkMan = #{linkman,jdbcType=NVARCHAR},
+      </if>
+      <if test="contractcode != null" >
+        contractCode = #{contractcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="origearnestmoney != null" >
+        origEarnestMoney = #{origearnestmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="earnestmoney != null" >
+        earnestMoney = #{earnestmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=NVARCHAR},
+      </if>
+      <if test="origamount != null" >
+        origAmount = #{origamount,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="origtaxamount != null" >
+        origTaxAmount = #{origtaxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxamount != null" >
+        taxAmount = #{taxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="contactphone != null" >
+        contactPhone = #{contactphone,jdbcType=NVARCHAR},
+      </if>
+      <if test="maker != null" >
+        maker = #{maker,jdbcType=NVARCHAR},
+      </if>
+      <if test="auditor != null" >
+        auditor = #{auditor,jdbcType=NVARCHAR},
+      </if>
+      <if test="reviser != null" >
+        reviser = #{reviser,jdbcType=NVARCHAR},
+      </if>
+      <if test="iscarriedforwardout != null" >
+        iscarriedforwardout = #{iscarriedforwardout,jdbcType=TINYINT},
+      </if>
+      <if test="iscarriedforwardin != null" >
+        iscarriedforwardin = #{iscarriedforwardin,jdbcType=TINYINT},
+      </if>
+      <if test="ismodifiedcode != null" >
+        ismodifiedcode = #{ismodifiedcode,jdbcType=TINYINT},
+      </if>
+      <if test="docid != null" >
+        docid = #{docid,jdbcType=NVARCHAR},
+      </if>
+      <if test="updatedby != null" >
+        updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        priuserdefnvc5 = #{priuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        priuserdefdecm5 = #{priuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc6 != null" >
+        priuserdefnvc6 = #{priuserdefnvc6,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm6 != null" >
+        priuserdefdecm6 = #{priuserdefdecm6,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc1 != null" >
+        pubuserdefnvc1 = #{pubuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm1 != null" >
+        pubuserdefdecm1 = #{pubuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc2 != null" >
+        pubuserdefnvc2 = #{pubuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm2 != null" >
+        pubuserdefdecm2 = #{pubuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc3 != null" >
+        pubuserdefnvc3 = #{pubuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm3 != null" >
+        pubuserdefdecm3 = #{pubuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc4 != null" >
+        pubuserdefnvc4 = #{pubuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm4 != null" >
+        pubuserdefdecm4 = #{pubuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc5 != null" >
+        pubuserdefnvc5 = #{pubuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm5 != null" >
+        pubuserdefdecm5 = #{pubuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc6 != null" >
+        pubuserdefnvc6 = #{pubuserdefnvc6,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm6 != null" >
+        pubuserdefdecm6 = #{pubuserdefdecm6,jdbcType=DECIMAL},
+      </if>
+      <if test="isautogeneratesaleorderbom != null" >
+        IsAutoGenerateSaleOrderBOM = #{isautogeneratesaleorderbom,jdbcType=TINYINT},
+      </if>
+      <if test="isautogeneraterouting != null" >
+        IsAutoGenerateRouting = #{isautogeneraterouting,jdbcType=TINYINT},
+      </if>
+      <if test="sourcevouchercode != null" >
+        SourceVoucherCode = #{sourcevouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="isnomodify != null" >
+        isnomodify = #{isnomodify,jdbcType=NVARCHAR},
+      </if>
+      <if test="changer != null" >
+        changer = #{changer,jdbcType=NVARCHAR},
+      </if>
+      <if test="mobilephone != null" >
+        Mobilephone = #{mobilephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="memberaddress != null" >
+        MemberAddress = #{memberaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="printcount != null" >
+        PrintCount = #{printcount,jdbcType=INTEGER},
+      </if>
+      <if test="isseparatebywarehouse != null" >
+        IsSeparateByWareHouse = #{isseparatebywarehouse,jdbcType=TINYINT},
+      </if>
+      <if test="origreceiveamount != null" >
+        OrigReceiveAmount = #{origreceiveamount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveamount != null" >
+        ReceiveAmount = #{receiveamount,jdbcType=DECIMAL},
+      </if>
+      <if test="collaboratevouchercode != null" >
+        collaborateVoucherCode = #{collaboratevouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="externalcode != null" >
+        ExternalCode = #{externalcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="idbusinesstype != null" >
+        idbusinesstype = #{idbusinesstype,jdbcType=INTEGER},
+      </if>
+      <if test="idcurrency != null" >
+        idcurrency = #{idcurrency,jdbcType=INTEGER},
+      </if>
+      <if test="iddepartment != null" >
+        iddepartment = #{iddepartment,jdbcType=INTEGER},
+      </if>
+      <if test="idmember != null" >
+        IdMember = #{idmember,jdbcType=INTEGER},
+      </if>
+      <if test="idmarketingorgan != null" >
+        idmarketingOrgan = #{idmarketingorgan,jdbcType=INTEGER},
+      </if>
+      <if test="idcustomer != null" >
+        idcustomer = #{idcustomer,jdbcType=INTEGER},
+      </if>
+      <if test="idsettlecustomer != null" >
+        idsettlecustomer = #{idsettlecustomer,jdbcType=INTEGER},
+      </if>
+      <if test="idclerk != null" >
+        idclerk = #{idclerk,jdbcType=INTEGER},
+      </if>
+      <if test="idproject != null" >
+        idproject = #{idproject,jdbcType=INTEGER},
+      </if>
+      <if test="idwarehouse != null" >
+        idwarehouse = #{idwarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="idcollaborateupvouchertype != null" >
+        idCollaborateUpVoucherType = #{idcollaborateupvouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="idcollaborateupvoucher != null" >
+        idCollaborateUpVoucher = #{idcollaborateupvoucher,jdbcType=INTEGER},
+      </if>
+      <if test="datasource != null" >
+        DataSource = #{datasource,jdbcType=INTEGER},
+      </if>
+      <if test="deliverymode != null" >
+        deliveryMode = #{deliverymode,jdbcType=INTEGER},
+      </if>
+      <if test="iscancel != null" >
+        isCancel = #{iscancel,jdbcType=INTEGER},
+      </if>
+      <if test="issaledelivery != null" >
+        isSaleDelivery = #{issaledelivery,jdbcType=INTEGER},
+      </if>
+      <if test="issaleout != null" >
+        isSaleOut = #{issaleout,jdbcType=INTEGER},
+      </if>
+      <if test="recivetype != null" >
+        reciveType = #{recivetype,jdbcType=INTEGER},
+      </if>
+      <if test="voucherstate != null" >
+        voucherState = #{voucherstate,jdbcType=INTEGER},
+      </if>
+      <if test="auditorid != null" >
+        auditorid = #{auditorid,jdbcType=INTEGER},
+      </if>
+      <if test="makerid != null" >
+        makerid = #{makerid,jdbcType=INTEGER},
+      </if>
+      <if test="changerid != null" >
+        changerid = #{changerid,jdbcType=INTEGER},
+      </if>
+      <if test="idcollaboratedownvouchertype != null" >
+        idCollaborateDownVoucherType = #{idcollaboratedownvouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="collaboratestate != null" >
+        CollaborateState = #{collaboratestate,jdbcType=INTEGER},
+      </if>
+      <if test="idcollaboratedowndraftvoucher != null" >
+        idCollaborateDownDraftVoucher = #{idcollaboratedowndraftvoucher,jdbcType=INTEGER},
+      </if>
+      <if test="sourcevoucherid != null" >
+        SourceVoucherID = #{sourcevoucherid,jdbcType=INTEGER},
+      </if>
+      <if test="idsourcevouchertype != null" >
+        idsourcevouchertype = #{idsourcevouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="deliverydate != null" >
+        deliveryDate = #{deliverydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voucherdate != null" >
+        voucherdate = #{voucherdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="madedate != null" >
+        madedate = #{madedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditeddate != null" >
+        auditeddate = #{auditeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changedate != null" >
+        changedate = #{changedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="externalvouchercode != null" >
+        ExternalVoucherCode = #{externalvouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="customerphone != null" >
+        CustomerPhone = #{customerphone,jdbcType=NVARCHAR},
+      </if>
+      <if test="hasrecordcredit != null" >
+        HasRecordCredit = #{hasrecordcredit,jdbcType=BIT},
+      </if>
+      <if test="isautowarehouse != null" >
+        IsAutoWarehouse = #{isautowarehouse,jdbcType=BIT},
+      </if>
+      <if test="inputdatasource != null" >
+        InputDataSource = #{inputdatasource,jdbcType=INTEGER},
+      </if>
+      <if test="closer != null" >
+        Closer = #{closer,jdbcType=NVARCHAR},
+      </if>
+      <if test="closedate != null" >
+        CloseDate = #{closedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        ts = #{ts,jdbcType=BINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.ssm.po.SaSaleorder" >
+    update SA_SaleOrder
+    set code = #{code,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      discountRate = #{discountrate,jdbcType=DECIMAL},
+      discountAmount = #{discountamount,jdbcType=DECIMAL},
+      origDiscountAmount = #{origdiscountamount,jdbcType=DECIMAL},
+      exchangeRate = #{exchangerate,jdbcType=DECIMAL},
+      address = #{address,jdbcType=NVARCHAR},
+      linkMan = #{linkman,jdbcType=NVARCHAR},
+      contractCode = #{contractcode,jdbcType=NVARCHAR},
+      origEarnestMoney = #{origearnestmoney,jdbcType=DECIMAL},
+      earnestMoney = #{earnestmoney,jdbcType=DECIMAL},
+      memo = #{memo,jdbcType=NVARCHAR},
+      origAmount = #{origamount,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      origTaxAmount = #{origtaxamount,jdbcType=DECIMAL},
+      taxAmount = #{taxamount,jdbcType=DECIMAL},
+      contactPhone = #{contactphone,jdbcType=NVARCHAR},
+      maker = #{maker,jdbcType=NVARCHAR},
+      auditor = #{auditor,jdbcType=NVARCHAR},
+      reviser = #{reviser,jdbcType=NVARCHAR},
+      iscarriedforwardout = #{iscarriedforwardout,jdbcType=TINYINT},
+      iscarriedforwardin = #{iscarriedforwardin,jdbcType=TINYINT},
+      ismodifiedcode = #{ismodifiedcode,jdbcType=TINYINT},
+      docid = #{docid,jdbcType=NVARCHAR},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      priuserdefnvc5 = #{priuserdefnvc5,jdbcType=NVARCHAR},
+      priuserdefdecm5 = #{priuserdefdecm5,jdbcType=DECIMAL},
+      priuserdefnvc6 = #{priuserdefnvc6,jdbcType=NVARCHAR},
+      priuserdefdecm6 = #{priuserdefdecm6,jdbcType=DECIMAL},
+      pubuserdefnvc1 = #{pubuserdefnvc1,jdbcType=NVARCHAR},
+      pubuserdefdecm1 = #{pubuserdefdecm1,jdbcType=DECIMAL},
+      pubuserdefnvc2 = #{pubuserdefnvc2,jdbcType=NVARCHAR},
+      pubuserdefdecm2 = #{pubuserdefdecm2,jdbcType=DECIMAL},
+      pubuserdefnvc3 = #{pubuserdefnvc3,jdbcType=NVARCHAR},
+      pubuserdefdecm3 = #{pubuserdefdecm3,jdbcType=DECIMAL},
+      pubuserdefnvc4 = #{pubuserdefnvc4,jdbcType=NVARCHAR},
+      pubuserdefdecm4 = #{pubuserdefdecm4,jdbcType=DECIMAL},
+      pubuserdefnvc5 = #{pubuserdefnvc5,jdbcType=NVARCHAR},
+      pubuserdefdecm5 = #{pubuserdefdecm5,jdbcType=DECIMAL},
+      pubuserdefnvc6 = #{pubuserdefnvc6,jdbcType=NVARCHAR},
+      pubuserdefdecm6 = #{pubuserdefdecm6,jdbcType=DECIMAL},
+      IsAutoGenerateSaleOrderBOM = #{isautogeneratesaleorderbom,jdbcType=TINYINT},
+      IsAutoGenerateRouting = #{isautogeneraterouting,jdbcType=TINYINT},
+      SourceVoucherCode = #{sourcevouchercode,jdbcType=NVARCHAR},
+      isnomodify = #{isnomodify,jdbcType=NVARCHAR},
+      changer = #{changer,jdbcType=NVARCHAR},
+      Mobilephone = #{mobilephone,jdbcType=NVARCHAR},
+      MemberAddress = #{memberaddress,jdbcType=NVARCHAR},
+      PrintCount = #{printcount,jdbcType=INTEGER},
+      IsSeparateByWareHouse = #{isseparatebywarehouse,jdbcType=TINYINT},
+      OrigReceiveAmount = #{origreceiveamount,jdbcType=DECIMAL},
+      ReceiveAmount = #{receiveamount,jdbcType=DECIMAL},
+      collaborateVoucherCode = #{collaboratevouchercode,jdbcType=NVARCHAR},
+      ExternalCode = #{externalcode,jdbcType=NVARCHAR},
+      idbusinesstype = #{idbusinesstype,jdbcType=INTEGER},
+      idcurrency = #{idcurrency,jdbcType=INTEGER},
+      iddepartment = #{iddepartment,jdbcType=INTEGER},
+      IdMember = #{idmember,jdbcType=INTEGER},
+      idmarketingOrgan = #{idmarketingorgan,jdbcType=INTEGER},
+      idcustomer = #{idcustomer,jdbcType=INTEGER},
+      idsettlecustomer = #{idsettlecustomer,jdbcType=INTEGER},
+      idclerk = #{idclerk,jdbcType=INTEGER},
+      idproject = #{idproject,jdbcType=INTEGER},
+      idwarehouse = #{idwarehouse,jdbcType=INTEGER},
+      idCollaborateUpVoucherType = #{idcollaborateupvouchertype,jdbcType=INTEGER},
+      idCollaborateUpVoucher = #{idcollaborateupvoucher,jdbcType=INTEGER},
+      DataSource = #{datasource,jdbcType=INTEGER},
+      deliveryMode = #{deliverymode,jdbcType=INTEGER},
+      isCancel = #{iscancel,jdbcType=INTEGER},
+      isSaleDelivery = #{issaledelivery,jdbcType=INTEGER},
+      isSaleOut = #{issaleout,jdbcType=INTEGER},
+      reciveType = #{recivetype,jdbcType=INTEGER},
+      voucherState = #{voucherstate,jdbcType=INTEGER},
+      auditorid = #{auditorid,jdbcType=INTEGER},
+      makerid = #{makerid,jdbcType=INTEGER},
+      changerid = #{changerid,jdbcType=INTEGER},
+      idCollaborateDownVoucherType = #{idcollaboratedownvouchertype,jdbcType=INTEGER},
+      CollaborateState = #{collaboratestate,jdbcType=INTEGER},
+      idCollaborateDownDraftVoucher = #{idcollaboratedowndraftvoucher,jdbcType=INTEGER},
+      SourceVoucherID = #{sourcevoucherid,jdbcType=INTEGER},
+      idsourcevouchertype = #{idsourcevouchertype,jdbcType=INTEGER},
+      deliveryDate = #{deliverydate,jdbcType=TIMESTAMP},
+      voucherdate = #{voucherdate,jdbcType=TIMESTAMP},
+      madedate = #{madedate,jdbcType=TIMESTAMP},
+      auditeddate = #{auditeddate,jdbcType=TIMESTAMP},
+      createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      changedate = #{changedate,jdbcType=TIMESTAMP},
+      ExternalVoucherCode = #{externalvouchercode,jdbcType=NVARCHAR},
+      CustomerPhone = #{customerphone,jdbcType=NVARCHAR},
+      HasRecordCredit = #{hasrecordcredit,jdbcType=BIT},
+      IsAutoWarehouse = #{isautowarehouse,jdbcType=BIT},
+      InputDataSource = #{inputdatasource,jdbcType=INTEGER},
+      Closer = #{closer,jdbcType=NVARCHAR},
+      CloseDate = #{closedate,jdbcType=TIMESTAMP},
+      ts = #{ts,jdbcType=BINARY}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.SaSaleorder" >
+    update SA_SaleOrder
+    set code = #{code,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      discountRate = #{discountrate,jdbcType=DECIMAL},
+      discountAmount = #{discountamount,jdbcType=DECIMAL},
+      origDiscountAmount = #{origdiscountamount,jdbcType=DECIMAL},
+      exchangeRate = #{exchangerate,jdbcType=DECIMAL},
+      address = #{address,jdbcType=NVARCHAR},
+      linkMan = #{linkman,jdbcType=NVARCHAR},
+      contractCode = #{contractcode,jdbcType=NVARCHAR},
+      origEarnestMoney = #{origearnestmoney,jdbcType=DECIMAL},
+      earnestMoney = #{earnestmoney,jdbcType=DECIMAL},
+      memo = #{memo,jdbcType=NVARCHAR},
+      origAmount = #{origamount,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      origTaxAmount = #{origtaxamount,jdbcType=DECIMAL},
+      taxAmount = #{taxamount,jdbcType=DECIMAL},
+      contactPhone = #{contactphone,jdbcType=NVARCHAR},
+      maker = #{maker,jdbcType=NVARCHAR},
+      auditor = #{auditor,jdbcType=NVARCHAR},
+      reviser = #{reviser,jdbcType=NVARCHAR},
+      iscarriedforwardout = #{iscarriedforwardout,jdbcType=TINYINT},
+      iscarriedforwardin = #{iscarriedforwardin,jdbcType=TINYINT},
+      ismodifiedcode = #{ismodifiedcode,jdbcType=TINYINT},
+      docid = #{docid,jdbcType=NVARCHAR},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      priuserdefnvc5 = #{priuserdefnvc5,jdbcType=NVARCHAR},
+      priuserdefdecm5 = #{priuserdefdecm5,jdbcType=DECIMAL},
+      priuserdefnvc6 = #{priuserdefnvc6,jdbcType=NVARCHAR},
+      priuserdefdecm6 = #{priuserdefdecm6,jdbcType=DECIMAL},
+      pubuserdefnvc1 = #{pubuserdefnvc1,jdbcType=NVARCHAR},
+      pubuserdefdecm1 = #{pubuserdefdecm1,jdbcType=DECIMAL},
+      pubuserdefnvc2 = #{pubuserdefnvc2,jdbcType=NVARCHAR},
+      pubuserdefdecm2 = #{pubuserdefdecm2,jdbcType=DECIMAL},
+      pubuserdefnvc3 = #{pubuserdefnvc3,jdbcType=NVARCHAR},
+      pubuserdefdecm3 = #{pubuserdefdecm3,jdbcType=DECIMAL},
+      pubuserdefnvc4 = #{pubuserdefnvc4,jdbcType=NVARCHAR},
+      pubuserdefdecm4 = #{pubuserdefdecm4,jdbcType=DECIMAL},
+      pubuserdefnvc5 = #{pubuserdefnvc5,jdbcType=NVARCHAR},
+      pubuserdefdecm5 = #{pubuserdefdecm5,jdbcType=DECIMAL},
+      pubuserdefnvc6 = #{pubuserdefnvc6,jdbcType=NVARCHAR},
+      pubuserdefdecm6 = #{pubuserdefdecm6,jdbcType=DECIMAL},
+      IsAutoGenerateSaleOrderBOM = #{isautogeneratesaleorderbom,jdbcType=TINYINT},
+      IsAutoGenerateRouting = #{isautogeneraterouting,jdbcType=TINYINT},
+      SourceVoucherCode = #{sourcevouchercode,jdbcType=NVARCHAR},
+      isnomodify = #{isnomodify,jdbcType=NVARCHAR},
+      changer = #{changer,jdbcType=NVARCHAR},
+      Mobilephone = #{mobilephone,jdbcType=NVARCHAR},
+      MemberAddress = #{memberaddress,jdbcType=NVARCHAR},
+      PrintCount = #{printcount,jdbcType=INTEGER},
+      IsSeparateByWareHouse = #{isseparatebywarehouse,jdbcType=TINYINT},
+      OrigReceiveAmount = #{origreceiveamount,jdbcType=DECIMAL},
+      ReceiveAmount = #{receiveamount,jdbcType=DECIMAL},
+      collaborateVoucherCode = #{collaboratevouchercode,jdbcType=NVARCHAR},
+      ExternalCode = #{externalcode,jdbcType=NVARCHAR},
+      idbusinesstype = #{idbusinesstype,jdbcType=INTEGER},
+      idcurrency = #{idcurrency,jdbcType=INTEGER},
+      iddepartment = #{iddepartment,jdbcType=INTEGER},
+      IdMember = #{idmember,jdbcType=INTEGER},
+      idmarketingOrgan = #{idmarketingorgan,jdbcType=INTEGER},
+      idcustomer = #{idcustomer,jdbcType=INTEGER},
+      idsettlecustomer = #{idsettlecustomer,jdbcType=INTEGER},
+      idclerk = #{idclerk,jdbcType=INTEGER},
+      idproject = #{idproject,jdbcType=INTEGER},
+      idwarehouse = #{idwarehouse,jdbcType=INTEGER},
+      idCollaborateUpVoucherType = #{idcollaborateupvouchertype,jdbcType=INTEGER},
+      idCollaborateUpVoucher = #{idcollaborateupvoucher,jdbcType=INTEGER},
+      DataSource = #{datasource,jdbcType=INTEGER},
+      deliveryMode = #{deliverymode,jdbcType=INTEGER},
+      isCancel = #{iscancel,jdbcType=INTEGER},
+      isSaleDelivery = #{issaledelivery,jdbcType=INTEGER},
+      isSaleOut = #{issaleout,jdbcType=INTEGER},
+      reciveType = #{recivetype,jdbcType=INTEGER},
+      voucherState = #{voucherstate,jdbcType=INTEGER},
+      auditorid = #{auditorid,jdbcType=INTEGER},
+      makerid = #{makerid,jdbcType=INTEGER},
+      changerid = #{changerid,jdbcType=INTEGER},
+      idCollaborateDownVoucherType = #{idcollaboratedownvouchertype,jdbcType=INTEGER},
+      CollaborateState = #{collaboratestate,jdbcType=INTEGER},
+      idCollaborateDownDraftVoucher = #{idcollaboratedowndraftvoucher,jdbcType=INTEGER},
+      SourceVoucherID = #{sourcevoucherid,jdbcType=INTEGER},
+      idsourcevouchertype = #{idsourcevouchertype,jdbcType=INTEGER},
+      deliveryDate = #{deliverydate,jdbcType=TIMESTAMP},
+      voucherdate = #{voucherdate,jdbcType=TIMESTAMP},
+      madedate = #{madedate,jdbcType=TIMESTAMP},
+      auditeddate = #{auditeddate,jdbcType=TIMESTAMP},
+      createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      changedate = #{changedate,jdbcType=TIMESTAMP},
+      ExternalVoucherCode = #{externalvouchercode,jdbcType=NVARCHAR},
+      CustomerPhone = #{customerphone,jdbcType=NVARCHAR},
+      HasRecordCredit = #{hasrecordcredit,jdbcType=BIT},
+      IsAutoWarehouse = #{isautowarehouse,jdbcType=BIT},
+      InputDataSource = #{inputdatasource,jdbcType=INTEGER},
+      Closer = #{closer,jdbcType=NVARCHAR},
+      CloseDate = #{closedate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- 1、查询订单总数量(分页使用) -->
+  <select id="selectSaleOrderCount" resultType="int">
+   select  count(*) from  SA_SaleOrder s
+  	<where>
+		<include refid="query_SaleOrder_where"/>
+	</where>
+  </select>
+  
+  
+  <!-- 2、查询订单总数量(分页使用) -->
+  <select id="selectSaleOrder" resultMap="BaseResultMap1">
+   select top 16 s.ID, s.code,s.idcustomer,s.maker,s.auditor,s.madedate,s.auditeddate,s.Closer from SA_SaleOrder s
+  	<where>
+		<include refid="query_SaleOrder_where"/>
+	</where>
+	and s.ID not in (select top (#{startPos}) ID FROM SA_SaleOrder)
+  </select>
+  
+  
+  <!-- 3、1查看详细信息-基础信息 -->
+  <select id="selectOrderdetail" resultMap="BaseResultMap">
+  select distinct s.code,s.idcustomer,s.maker,s.madedate from SA_SaleOrder s
+  where s.ID=#{0}
+  </select>
+  
+  
+   <!-- 3、2查看详细信息-具体信息 -->
+  <select id="selectSaleOrderdetail" resultMap="BaseResultMap">
+   select sb.idinventory,sb.idbaseunit,sb.quantity from SA_SaleOrder AS s INNER JOIN SA_SaleOrder_b AS sb ON
+   s.ID=sb.idSaleOrderDTO
+    where s.ID=#{0}
+   </select>
+   
+   <!-- 4、查询是否存在该订单号 -->
+   <select id="selectOrderNoIsNull" resultMap="BaseResultMap">
+   select*from SA_SaleOrder
+    where code=#{0}
+   </select>
+   
+   
+   <!-- 5、根据订单号查询客户信息-->
+  <select id="selectClient" resultMap="BaseResultMap">
+  select distinct s.idcustomer from SA_SaleOrder s
+  where s.code=#{0}
+  </select>
+  
+    <!-- 6、Ajax-周计划-根据订单号得到图号下拉显示 -->
+  <select id="selectClientMaterialNo" resultType="String" parameterType="String">
+   select sb.idinventory from SA_SaleOrder AS s INNER JOIN SA_SaleOrder_b AS sb ON
+   s.ID=sb.idSaleOrderDTO
+    where s.code=#{0}
+  </select>
+  
+  
+    <!--7、根据订单号和存货id查询得到订单数量 -->
+  <select id="selectOrdernum" resultMap="BaseResultMap">
+   select sb.compositionquantity from SA_SaleOrder AS s INNER JOIN SA_SaleOrder_b AS sb ON
+   s.ID=sb.idSaleOrderDTO
+    where s.code=#{0}
+    and sb.idinventory=#{1}
+   </select>
+   
+   <!-- 8、根据订单号得到所有成品的存货id -->
+  <select id="selectOrderNoToIdInventory" resultType="Integer" parameterType="String">
+   select sb.idinventory from SA_SaleOrder AS s INNER JOIN SA_SaleOrder_b AS sb ON
+   s.ID=sb.idSaleOrderDTO
+    where s.code=#{0}
+   </select>
+
+</mapper>

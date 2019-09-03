@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.DailyCheckMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.DailyCheck" >
+    <id column="check_id" property="checkId" jdbcType="INTEGER" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR" />
+    <result column="asset_name" property="assetName" jdbcType="VARCHAR" />
+    <result column="asset_no" property="assetNo" jdbcType="VARCHAR" />
+    <result column="asset_xh" property="assetXh" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="error_date" property="errorDate" jdbcType="VARCHAR" />
+    <result column="error_content" property="errorContent" jdbcType="VARCHAR" />
+    <result column="is_latest" property="isLatest" jdbcType="INTEGER" />
+    <result column="is_repair" property="isRepair" jdbcType="INTEGER" />
+    <result column="repair_person" property="repairPerson" jdbcType="VARCHAR" />
+    <result column="repair_date" property="repairDate" jdbcType="VARCHAR" />
+    <result column="send_person" property="sendPerson" jdbcType="VARCHAR" />
+    <result column="is_rijian" property="isRijian" jdbcType="INTEGER" />
+    <result column="is_mold" property="isMold" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="query_dailycheck_where">
+  
+             <if test="batchNo!=null and batchNo!=''">
+				and  a.batch_no like '%${batchNo}%'
+			</if>
+			<if test="processName!=null and processName!=''">
+				and  a.process_name like '%${processName}%'
+			</if>
+			<if test="assetNo!=null and assetNo!=''">
+				and  a.asset_no like '%${assetNo}%'
+			</if>
+            and a.is_rijian=0
+  </sql>
+  
+  <!-- 故障查询 -->
+	<sql id="query_breakdown_where">
+  
+             <if test="batchNo!=null and batchNo!=''">
+				and  a.batch_no like '%${batchNo}%'
+			</if>
+			<if test="processName!=null and processName!=''">
+				and  a.process_name like '%${processName}%'
+			</if>
+			<if test="assetNo!=null and assetNo!=''">
+				and  a.asset_no like '%${assetNo}%'
+			</if>
+            and a.is_rijian=1
+  </sql>
+  <sql id="Base_Column_List" >
+    check_id, plan_no, client_material_no, material_no, batch_no, shop_name, process_name, 
+    asset_name, asset_no, asset_xh, operator, state, error_date, error_content, is_latest, 
+    is_repair, repair_person, repair_date, send_person, is_rijian, is_mold
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from daily_check
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from daily_check
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.DailyCheck" >
+    insert into daily_check (check_id, plan_no, client_material_no, 
+      material_no, batch_no, shop_name, 
+      process_name, asset_name, asset_no, 
+      asset_xh, operator, state, 
+      error_date, error_content, is_latest, 
+      is_repair, repair_person, repair_date, 
+      send_person, is_rijian, is_mold
+      )
+    values (#{checkId,jdbcType=INTEGER}, #{planNo,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, 
+      #{materialNo,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, 
+      #{processName,jdbcType=VARCHAR}, #{assetName,jdbcType=VARCHAR}, #{assetNo,jdbcType=VARCHAR}, 
+      #{assetXh,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{errorDate,jdbcType=VARCHAR}, #{errorContent,jdbcType=VARCHAR}, #{isLatest,jdbcType=INTEGER}, 
+      #{isRepair,jdbcType=INTEGER}, #{repairPerson,jdbcType=VARCHAR}, #{repairDate,jdbcType=VARCHAR}, 
+      #{sendPerson,jdbcType=VARCHAR}, #{isRijian,jdbcType=INTEGER}, #{isMold,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.DailyCheck" >
+    insert into daily_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="checkId != null" >
+        check_id,
+      </if>
+      <if test="planNo != null" >
+        plan_no,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="processName != null" >
+        process_name,
+      </if>
+      <if test="assetName != null" >
+        asset_name,
+      </if>
+      <if test="assetNo != null" >
+        asset_no,
+      </if>
+      <if test="assetXh != null" >
+        asset_xh,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="errorDate != null" >
+        error_date,
+      </if>
+      <if test="errorContent != null" >
+        error_content,
+      </if>
+      <if test="isLatest != null" >
+        is_latest,
+      </if>
+      <if test="isRepair != null" >
+        is_repair,
+      </if>
+      <if test="repairPerson != null" >
+        repair_person,
+      </if>
+      <if test="repairDate != null" >
+        repair_date,
+      </if>
+      <if test="sendPerson != null" >
+        send_person,
+      </if>
+      <if test="isRijian != null" >
+        is_rijian,
+      </if>
+      <if test="isMold != null" >
+        is_mold,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="checkId != null" >
+        #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="planNo != null" >
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetName != null" >
+        #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetNo != null" >
+        #{assetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="assetXh != null" >
+        #{assetXh,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="errorDate != null" >
+        #{errorDate,jdbcType=VARCHAR},
+      </if>
+      <if test="errorContent != null" >
+        #{errorContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isLatest != null" >
+        #{isLatest,jdbcType=INTEGER},
+      </if>
+      <if test="isRepair != null" >
+        #{isRepair,jdbcType=INTEGER},
+      </if>
+      <if test="repairPerson != null" >
+        #{repairPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="repairDate != null" >
+        #{repairDate,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPerson != null" >
+        #{sendPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="isRijian != null" >
+        #{isRijian,jdbcType=INTEGER},
+      </if>
+      <if test="isMold != null" >
+        #{isMold,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.DailyCheck" >
+    update daily_check
+    <set >
+      <if test="planNo != null" >
+        plan_no = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        process_name = #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetName != null" >
+        asset_name = #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetNo != null" >
+        asset_no = #{assetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="assetXh != null" >
+        asset_xh = #{assetXh,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="errorDate != null" >
+        error_date = #{errorDate,jdbcType=VARCHAR},
+      </if>
+      <if test="errorContent != null" >
+        error_content = #{errorContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isLatest != null" >
+        is_latest = #{isLatest,jdbcType=INTEGER},
+      </if>
+      <if test="isRepair != null" >
+        is_repair = #{isRepair,jdbcType=INTEGER},
+      </if>
+      <if test="repairPerson != null" >
+        repair_person = #{repairPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="repairDate != null" >
+        repair_date = #{repairDate,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPerson != null" >
+        send_person = #{sendPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="isRijian != null" >
+        is_rijian = #{isRijian,jdbcType=INTEGER},
+      </if>
+      <if test="isMold != null" >
+        is_mold = #{isMold,jdbcType=INTEGER},
+      </if>
+    </set>
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.DailyCheck" >
+    update daily_check
+    set plan_no = #{planNo,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      process_name = #{processName,jdbcType=VARCHAR},
+      asset_name = #{assetName,jdbcType=VARCHAR},
+      asset_no = #{assetNo,jdbcType=VARCHAR},
+      asset_xh = #{assetXh,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      error_date = #{errorDate,jdbcType=VARCHAR},
+      error_content = #{errorContent,jdbcType=VARCHAR},
+      is_latest = #{isLatest,jdbcType=INTEGER},
+      is_repair = #{isRepair,jdbcType=INTEGER},
+      repair_person = #{repairPerson,jdbcType=VARCHAR},
+      repair_date = #{repairDate,jdbcType=VARCHAR},
+      send_person = #{sendPerson,jdbcType=VARCHAR},
+      is_rijian = #{isRijian,jdbcType=INTEGER},
+      is_mold = #{isMold,jdbcType=INTEGER}
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </update>
+  
+    <select id="selectDailyCheckByParam" resultMap="BaseResultMap"  >
+    select  * from
+     daily_check a
+     <where>
+         <include refid="query_dailycheck_where"/>
+     </where>
+     ORDER BY check_id DESC
+	limit #{startPos},#{pageSize}
+  </select> 
+  <!-- 查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectByPrimarytotalCount" resultType="int">
+  	select  count(*) from  daily_check a
+  	<where>
+		<include refid="query_dailycheck_where"/>
+	</where>
+  </select>
+  
+  <!-- 故障查询 -->
+  <select id="selectBreakdownByParam" resultMap="BaseResultMap"  >
+    select  * from
+     daily_check a
+     <where>
+         <include refid="query_breakdown_where"/>
+     </where>
+    <!--  ORDER BY check_id DESC -->
+     ORDER BY RIGHT(a.batch_no,13) DESC
+	limit #{startPos},#{pageSize}
+  </select> 
+  <!-- 查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectByPrimarytotalCount1" resultType="int">
+  	select  count(*) from  daily_check a
+  	<where>
+		<include refid="query_breakdown_where"/>
+	</where>
+  </select>
+</mapper>

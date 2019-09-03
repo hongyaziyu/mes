@@ -1,0 +1,150 @@
+.lineright{
+    position:relative;
+    text-align:right;
+    margin-right: 25px;
+}
+.divcss{
+    position:relative;
+    width: 1500px;
+    height: 50px;
+    background:#fff;
+    text-align:left;
+    margin-left:auto; 
+    margin-right:auto;
+}
+.room1{
+    text-align:left;
+    width:550px;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 3px;
+    left:350px;
+    top:0;
+}
+.room2{
+    text-align:left;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 0px;
+    left:620px;
+    top: -3px;
+}
+.room3{
+    text-align:left;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 0px;
+    left:850px;
+    top: -3px;
+}
+
+.room4{
+    text-align:left;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 0px;
+    left:370px;
+    top: -3px;
+}
+.room5{
+    font-size:16px;
+    text-align:left;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 12px;
+    left:550px;
+    top: 0px;
+}
+.room6{
+    text-align:left;
+    width:438px;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 3px;
+    left:630px;
+    top:0;
+}
+.room7{
+    font-size:16px;
+    text-align:left;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 12px;
+    left:825px;
+    top: 0px;
+}
+.room8{
+    text-align:left;
+    width:438px;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 3px;
+    left:870px;
+    top:0;
+}
+.room9{
+    text-align:left;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 0px;
+    left:1080px;
+    top: -3px;
+}
+.room10{
+    font-size:16px;
+    text-align:left;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 12px;
+    left:370px;
+    top: 0px;
+}
+.room11{
+    text-align:left;
+    width:438px;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 3px;
+    left:450px;
+    top:0;
+}
+.room12{
+    font-size:16px;
+    text-align:left;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 12px;
+    left:650px;
+    top: 0px;
+}
+.room13{
+    text-align:left;
+    width:438px;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 3px;
+    left:730px;
+    top:0;
+}
+.room14{
+    text-align:left;
+    height:50px;
+    background:#fff;
+    position:absolute;
+    padding-top: 0px;
+    left:950px;
+    top: -3px;
+}

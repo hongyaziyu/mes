@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.ProductTestMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.ProductTest" >
+    <id column="test_id" property="testId" jdbcType="INTEGER" />
+    <result column="client" property="client" jdbcType="VARCHAR" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="half_product_name" property="halfProductName" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="produce_date" property="produceDate" jdbcType="VARCHAR" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR" />
+    <result column="character_val" property="characterVal" jdbcType="VARCHAR" />
+    <result column="standard_val" property="standardVal" jdbcType="VARCHAR" />
+    <result column="test_val_1" property="testVal1" jdbcType="VARCHAR" />
+    <result column="test_val_2" property="testVal2" jdbcType="VARCHAR" />
+    <result column="test_val_3" property="testVal3" jdbcType="VARCHAR" />
+    <result column="test_val_4" property="testVal4" jdbcType="VARCHAR" />
+    <result column="test_val_5" property="testVal5" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="check_person" property="checkPerson" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="VARCHAR" />
+    <result column="batch_number" property="batchNumber" jdbcType="VARCHAR" />
+    <result column="is_ok" property="isOk" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    test_id, client, plan_no, batch_no, product_name, client_material_no, half_product_name, 
+    material_no, produce_date, process_name, character_val, standard_val, test_val_1, 
+    test_val_2, test_val_3, test_val_4, test_val_5, operator, check_person, check_date, 
+    batch_number, is_ok
+  </sql>
+  
+  
+   <sql id="query_product_test_where">
+  	
+			<if test="client!=null and client!=''">
+				and  s.client like '%${client}%'
+			</if>
+			<if test="materialNo!=null and materialNo!=''">
+				and  s.material_no like '%${materialNo}%'
+			</if>
+			
+			<if test="start_date!=null and start_date!=''">
+				and  s.check_date BETWEEN #{start_date} AND #{end_date}
+			</if>
+			
+	</sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_test
+    where test_id = #{testId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_test
+    where test_id = #{testId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.ProductTest" >
+    insert into product_test (test_id, client, plan_no, 
+      batch_no, product_name, client_material_no, 
+      half_product_name, material_no, produce_date, 
+      process_name, character_val, standard_val, 
+      test_val_1, test_val_2, test_val_3, 
+      test_val_4, test_val_5, operator, 
+      check_person, check_date, batch_number, 
+      is_ok)
+    values (#{testId,jdbcType=INTEGER}, #{client,jdbcType=VARCHAR}, #{planNo,jdbcType=VARCHAR}, 
+      #{batchNo,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, 
+      #{halfProductName,jdbcType=VARCHAR}, #{materialNo,jdbcType=VARCHAR}, #{produceDate,jdbcType=VARCHAR}, 
+      #{processName,jdbcType=VARCHAR}, #{characterVal,jdbcType=VARCHAR}, #{standardVal,jdbcType=VARCHAR}, 
+      #{testVal1,jdbcType=VARCHAR}, #{testVal2,jdbcType=VARCHAR}, #{testVal3,jdbcType=VARCHAR}, 
+      #{testVal4,jdbcType=VARCHAR}, #{testVal5,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{checkPerson,jdbcType=VARCHAR}, #{checkDate,jdbcType=VARCHAR}, #{batchNumber,jdbcType=VARCHAR}, 
+      #{isOk,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.ProductTest" >
+    insert into product_test
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="testId != null" >
+        test_id,
+      </if>
+      <if test="client != null" >
+        client,
+      </if>
+      <if test="planNo != null" >
+        plan_no,
+      </if>
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="halfProductName != null" >
+        half_product_name,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="produceDate != null" >
+        produce_date,
+      </if>
+      <if test="processName != null" >
+        process_name,
+      </if>
+      <if test="characterVal != null" >
+        character_val,
+      </if>
+      <if test="standardVal != null" >
+        standard_val,
+      </if>
+      <if test="testVal1 != null" >
+        test_val_1,
+      </if>
+      <if test="testVal2 != null" >
+        test_val_2,
+      </if>
+      <if test="testVal3 != null" >
+        test_val_3,
+      </if>
+      <if test="testVal4 != null" >
+        test_val_4,
+      </if>
+      <if test="testVal5 != null" >
+        test_val_5,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="checkPerson != null" >
+        check_person,
+      </if>
+      <if test="checkDate != null" >
+        check_date,
+      </if>
+      <if test="batchNumber != null" >
+        batch_number,
+      </if>
+      <if test="isOk != null" >
+        is_ok,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="testId != null" >
+        #{testId,jdbcType=INTEGER},
+      </if>
+      <if test="client != null" >
+        #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="halfProductName != null" >
+        #{halfProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null" >
+        #{produceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="characterVal != null" >
+        #{characterVal,jdbcType=VARCHAR},
+      </if>
+      <if test="standardVal != null" >
+        #{standardVal,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal1 != null" >
+        #{testVal1,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal2 != null" >
+        #{testVal2,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal3 != null" >
+        #{testVal3,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal4 != null" >
+        #{testVal4,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal5 != null" >
+        #{testVal5,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="checkPerson != null" >
+        #{checkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNumber != null" >
+        #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isOk != null" >
+        #{isOk,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.ProductTest" >
+    update product_test
+    <set >
+      <if test="client != null" >
+        client = #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        plan_no = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="halfProductName != null" >
+        half_product_name = #{halfProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null" >
+        produce_date = #{produceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        process_name = #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="characterVal != null" >
+        character_val = #{characterVal,jdbcType=VARCHAR},
+      </if>
+      <if test="standardVal != null" >
+        standard_val = #{standardVal,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal1 != null" >
+        test_val_1 = #{testVal1,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal2 != null" >
+        test_val_2 = #{testVal2,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal3 != null" >
+        test_val_3 = #{testVal3,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal4 != null" >
+        test_val_4 = #{testVal4,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal5 != null" >
+        test_val_5 = #{testVal5,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="checkPerson != null" >
+        check_person = #{checkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        check_date = #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNumber != null" >
+        batch_number = #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isOk != null" >
+        is_ok = #{isOk,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where test_id = #{testId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.ProductTest" >
+    update product_test
+    set client = #{client,jdbcType=VARCHAR},
+      plan_no = #{planNo,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      half_product_name = #{halfProductName,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      produce_date = #{produceDate,jdbcType=VARCHAR},
+      process_name = #{processName,jdbcType=VARCHAR},
+      character_val = #{characterVal,jdbcType=VARCHAR},
+      standard_val = #{standardVal,jdbcType=VARCHAR},
+      test_val_1 = #{testVal1,jdbcType=VARCHAR},
+      test_val_2 = #{testVal2,jdbcType=VARCHAR},
+      test_val_3 = #{testVal3,jdbcType=VARCHAR},
+      test_val_4 = #{testVal4,jdbcType=VARCHAR},
+      test_val_5 = #{testVal5,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      check_person = #{checkPerson,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=VARCHAR},
+      batch_number = #{batchNumber,jdbcType=VARCHAR},
+      is_ok = #{isOk,jdbcType=VARCHAR}
+    where test_id = #{testId,jdbcType=INTEGER}
+  </update>
+  
+    <!-- 吴永-添加的部分：根据客户和产品名称、计划单号、批次号查询ProductTest表的信息分页-->
+  <select id="selectProductTestByParam" resultMap="BaseResultMap">
+  select 
+    <include refid="Base_Column_List" />
+    from product_test s
+    <where>
+		<include refid="query_product_test_where"/>
+	</where>
+	<!-- ORDER BY test_id DESC -->
+	ORDER BY RIGHT(s.batch_no,13) DESC
+	limit #{startPos},#{pageSize}
+  </select>
+  
+  <!--查询ProductTest表的信息分页查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectProductTestByParamtotalCount" resultType="int">
+  	select  count(*) from  product_test s
+  	<where>
+		<include refid="query_product_test_where"/>
+	</where>
+  </select>
+  
+  
+  <!-- Spc曲线的图号，物料号，批次号，产品名称，工序-->
+  <select id="selectSpc" resultMap="BaseResultMap">
+    SELECT st.test_id,st.client_material_no,st.material_no,st.batch_no,st.product_name,st.process_name,st.character_val FROM product_test st 
+		WHERE st.test_id in(SELECT MAX(test_id)FROM product_test GROUP BY test_id,client_material_no,material_no,batch_no,product_name,process_name)
+		AND client_material_no=#{0}
+		AND material_no=#{1}
+		AND batch_no=#{2}
+		AND process_name=#{3}
+		
+		ORDER BY st.test_id limit 1
+  </select>
+   
+  <!-- 标准值的获取 --> 
+  <select id="selectStandard" resultType="String">
+   select st.standard_val
+		  from product_test st
+		  where client_material_no=#{0}
+		  AND material_no=#{1}
+		  AND batch_no=#{2}
+		  AND process_name=#{3}	
+		 
+		  ORDER BY st.test_id DESC LIMIT 1
+  </select> 
+ 
+ <!-- Spc曲线查询检测截止日期最大的字段-->
+  <select id="selectEndCheckDate" resultType="String">
+  SELECT st.check_date FROM product_test st 
+		WHERE client_material_no=#{0}
+		AND material_no=#{1}
+		AND batch_no=#{2}
+		AND process_name=#{3}
+        ORDER BY st.test_id desc limit 1
+  </select>
+  
+  <!-- Spc曲线查询检测开始日期最小的字段-->
+  <select id="selectStartCheckDate" resultType="String">
+ SELECT st.check_date FROM product_test st 
+		WHERE client_material_no=#{0}
+		AND material_no=#{1}
+		AND batch_no=#{2}
+		AND process_name=#{3}	
+        ORDER BY st.test_id limit 1
+  </select>
+  
+  
+<!-- Spc曲线查询测量值-->
+  <select id="selectTestVal" resultMap="BaseResultMap">
+ SELECT st.test_val_1,st.test_val_2,st.test_val_3,st.test_val_4,st.test_val_5 FROM product_test st
+  WHERE client_material_no=#{0}
+		AND material_no=#{1}
+		AND batch_no=#{2}
+		AND process_name=#{3}
+		
+  </select>
+</mapper>

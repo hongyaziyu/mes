@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.HeightGaugeMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.HeightGauge" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gauge_no" property="gaugeNo" jdbcType="CHAR" />
+    <result column="product_specification" property="productSpecification" jdbcType="VARCHAR" />
+    <result column="tolerance_range" property="toleranceRange" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="declaration_date" property="declarationDate" jdbcType="VARCHAR" />
+    <result column="purpose" property="purpose" jdbcType="VARCHAR" />
+    <result column="completion_date" property="completionDate" jdbcType="VARCHAR" />
+    <result column="collar_workers" property="collarWorkers" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gauge_no, product_specification, tolerance_range, num, declaration_date, purpose, 
+    completion_date, collar_workers
+  </sql>
+  
+   <!-- 检具-高度规查询sql片段 -->
+  <sql id="query_heightgauge_where">
+  
+            <if test="gaugeNo!=null and gaugeNo!=''">
+				and  a.gauge_no like '%${gaugeNo}%'
+			</if>
+			<if test="productSpecification!=null and productSpecification!=''">
+				and  a.product_specification like '%${productSpecification}%'
+			</if>
+  
+  </sql>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from height_gauge
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from height_gauge
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.HeightGauge" >
+    insert into height_gauge (id, gauge_no, product_specification, 
+      tolerance_range, num, declaration_date, 
+      purpose, completion_date, collar_workers
+      )
+    values (#{id,jdbcType=INTEGER}, #{gaugeNo,jdbcType=CHAR}, #{productSpecification,jdbcType=VARCHAR}, 
+      #{toleranceRange,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, #{declarationDate,jdbcType=VARCHAR}, 
+      #{purpose,jdbcType=VARCHAR}, #{completionDate,jdbcType=VARCHAR}, #{collarWorkers,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.HeightGauge" >
+    insert into height_gauge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gaugeNo != null" >
+        gauge_no,
+      </if>
+      <if test="productSpecification != null" >
+        product_specification,
+      </if>
+      <if test="toleranceRange != null" >
+        tolerance_range,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="declarationDate != null" >
+        declaration_date,
+      </if>
+      <if test="purpose != null" >
+        purpose,
+      </if>
+      <if test="completionDate != null" >
+        completion_date,
+      </if>
+      <if test="collarWorkers != null" >
+        collar_workers,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gaugeNo != null" >
+        #{gaugeNo,jdbcType=CHAR},
+      </if>
+      <if test="productSpecification != null" >
+        #{productSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="toleranceRange != null" >
+        #{toleranceRange,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="declarationDate != null" >
+        #{declarationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="purpose != null" >
+        #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="completionDate != null" >
+        #{completionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="collarWorkers != null" >
+        #{collarWorkers,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.HeightGauge" >
+    update height_gauge
+    <set >
+      <if test="gaugeNo != null" >
+        gauge_no = #{gaugeNo,jdbcType=CHAR},
+      </if>
+      <if test="productSpecification != null" >
+        product_specification = #{productSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="toleranceRange != null" >
+        tolerance_range = #{toleranceRange,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="declarationDate != null" >
+        declaration_date = #{declarationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="purpose != null" >
+        purpose = #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="completionDate != null" >
+        completion_date = #{completionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="collarWorkers != null" >
+        collar_workers = #{collarWorkers,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.HeightGauge" >
+    update height_gauge
+    set gauge_no = #{gaugeNo,jdbcType=CHAR},
+      product_specification = #{productSpecification,jdbcType=VARCHAR},
+      tolerance_range = #{toleranceRange,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      declaration_date = #{declarationDate,jdbcType=VARCHAR},
+      purpose = #{purpose,jdbcType=VARCHAR},
+      completion_date = #{completionDate,jdbcType=VARCHAR},
+      collar_workers = #{collarWorkers,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!--添加部分：多条件查询的条件 //检具-高度规查询分页 -->
+  <select id="selectHeightGaugeByParam" resultMap="BaseResultMap"  >
+    select * from
+     height_gauge a
+     <where>
+		<include refid="query_heightgauge_where"/>
+	</where>
+	ORDER BY id DESC
+	<!-- limit m,n为从m+1开始取n条记录 -->
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+  
+  <!--检具-高度规-excel导入多条件查询的条件 -->
+  <select id="selectHeightGaugeByParam1" resultMap="BaseResultMap"  >
+    select * from
+     height_gauge 
+     where gauge_no = #{0}
+     and product_specification = #{1}
+  </select>
+  
+  <!-- //检具-高度规查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectHeightGaugeByParamtotalCount" resultType="int">
+  	select  count(*) from  height_gauge a
+  	<where>
+		<include refid="query_heightgauge_where"/>
+	</where>
+  </select>
+  
+  <!-- 车间排产显示检具-高度规编号 -->
+  <select id="selectHeightGaugeNo" resultType="string">
+    select gauge_no from height_gauge
+  </select>
+</mapper>

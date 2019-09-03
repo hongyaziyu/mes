@@ -1,0 +1,1719 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.AaInventoryMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.AaInventory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="shorthand" property="shorthand" jdbcType="NVARCHAR" />
+    <result column="specification" property="specification" jdbcType="NVARCHAR" />
+    <result column="procureBatch" property="procurebatch" jdbcType="DECIMAL" />
+    <result column="invSCost" property="invscost" jdbcType="DECIMAL" />
+    <result column="latestCost_Abandon" property="latestcostAbandon" jdbcType="DECIMAL" />
+    <result column="avagCost_Abandon" property="avagcostAbandon" jdbcType="DECIMAL" />
+    <result column="isLimitedWithdraw" property="islimitedwithdraw" jdbcType="TINYINT" />
+    <result column="isBatch" property="isbatch" jdbcType="TINYINT" />
+    <result column="isQualityPeriod" property="isqualityperiod" jdbcType="TINYINT" />
+    <result column="isSale" property="issale" jdbcType="TINYINT" />
+    <result column="isMadeSelf" property="ismadeself" jdbcType="TINYINT" />
+    <result column="isPurchase" property="ispurchase" jdbcType="TINYINT" />
+    <result column="isMaterial" property="ismaterial" jdbcType="TINYINT" />
+    <result column="lowQuantity" property="lowquantity" jdbcType="DECIMAL" />
+    <result column="topQuantity" property="topquantity" jdbcType="DECIMAL" />
+    <result column="safeQuantity" property="safequantity" jdbcType="DECIMAL" />
+    <result column="picture" property="picture" jdbcType="NVARCHAR" />
+    <result column="disabled" property="disabled" jdbcType="TINYINT" />
+    <result column="isQualityCheck" property="isqualitycheck" jdbcType="TINYINT" />
+    <result column="isMadeRequest" property="ismaderequest" jdbcType="TINYINT" />
+    <result column="isSingleUnit" property="issingleunit" jdbcType="TINYINT" />
+    <result column="updatedBy" property="updatedby" jdbcType="NVARCHAR" />
+    <result column="Userfreeitem7" property="userfreeitem7" jdbcType="TINYINT" />
+    <result column="Userfreeitem6" property="userfreeitem6" jdbcType="TINYINT" />
+    <result column="Userfreeitem2" property="userfreeitem2" jdbcType="TINYINT" />
+    <result column="Userfreeitem1" property="userfreeitem1" jdbcType="TINYINT" />
+    <result column="Userfreeitem9" property="userfreeitem9" jdbcType="TINYINT" />
+    <result column="Userfreeitem0" property="userfreeitem0" jdbcType="TINYINT" />
+    <result column="Userfreeitem8" property="userfreeitem8" jdbcType="TINYINT" />
+    <result column="Userfreeitem5" property="userfreeitem5" jdbcType="TINYINT" />
+    <result column="Userfreeitem4" property="userfreeitem4" jdbcType="TINYINT" />
+    <result column="Userfreeitem3" property="userfreeitem3" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem7" property="mustinputfreeitem7" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem2" property="mustinputfreeitem2" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem6" property="mustinputfreeitem6" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem3" property="mustinputfreeitem3" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem5" property="mustinputfreeitem5" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem4" property="mustinputfreeitem4" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem9" property="mustinputfreeitem9" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem1" property="mustinputfreeitem1" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem8" property="mustinputfreeitem8" jdbcType="TINYINT" />
+    <result column="MustInputFreeitem0" property="mustinputfreeitem0" jdbcType="TINYINT" />
+    <result column="produceBatch" property="producebatch" jdbcType="DECIMAL" />
+    <result column="imageFile" property="imagefile" jdbcType="NVARCHAR" />
+    <result column="priuserdefnvc1" property="priuserdefnvc1" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm1" property="priuserdefdecm1" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc2" property="priuserdefnvc2" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm2" property="priuserdefdecm2" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc3" property="priuserdefnvc3" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm3" property="priuserdefdecm3" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc4" property="priuserdefnvc4" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm4" property="priuserdefdecm4" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc5" property="priuserdefnvc5" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm5" property="priuserdefdecm5" jdbcType="DECIMAL" />
+    <result column="standardturnoverdays" property="standardturnoverdays" jdbcType="DECIMAL" />
+    <result column="HasEverChanged" property="haseverchanged" jdbcType="NVARCHAR" />
+    <result column="pickbatch" property="pickbatch" jdbcType="DECIMAL" />
+    <result column="isphantom" property="isphantom" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem0" property="controlrangefreeitem0" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem1" property="controlrangefreeitem1" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem2" property="controlrangefreeitem2" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem3" property="controlrangefreeitem3" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem4" property="controlrangefreeitem4" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem5" property="controlrangefreeitem5" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem6" property="controlrangefreeitem6" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem7" property="controlrangefreeitem7" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem8" property="controlrangefreeitem8" jdbcType="TINYINT" />
+    <result column="ControlRangeFreeitem9" property="controlrangefreeitem9" jdbcType="TINYINT" />
+    <result column="IsLaborCost" property="islaborcost" jdbcType="TINYINT" />
+    <result column="BatchRunNumber" property="batchrunnumber" jdbcType="DECIMAL" />
+    <result column="IsNew" property="isnew" jdbcType="TINYINT" />
+    <result column="MadeRecordDate" property="maderecorddate" jdbcType="TIMESTAMP" />
+    <result column="InventoryDescript" property="inventorydescript" jdbcType="NVARCHAR" />
+    <result column="ReNewGoodSellDays" property="renewgoodselldays" jdbcType="INTEGER" />
+    <result column="ReNewGoodAheadDays" property="renewgoodaheaddays" jdbcType="INTEGER" />
+    <result column="IsSuite" property="issuite" jdbcType="TINYINT" />
+    <result column="IsWeigh" property="isweigh" jdbcType="TINYINT" />
+    <result column="DefaultBarCode" property="defaultbarcode" jdbcType="NVARCHAR" />
+    <result column="NewProductPeriod" property="newproductperiod" jdbcType="INTEGER" />
+    <result column="Expired" property="expired" jdbcType="INTEGER" />
+    <result column="idbarcodesolution" property="idbarcodesolution" jdbcType="INTEGER" />
+    <result column="idinventoryclass" property="idinventoryclass" jdbcType="INTEGER" />
+    <result column="idinvlocation" property="idinvlocation" jdbcType="INTEGER" />
+    <result column="idMarketingOrgan" property="idmarketingorgan" jdbcType="INTEGER" />
+    <result column="idpartner" property="idpartner" jdbcType="INTEGER" />
+    <result column="idunit" property="idunit" jdbcType="INTEGER" />
+    <result column="idunitbymanufacture" property="idunitbymanufacture" jdbcType="INTEGER" />
+    <result column="idUnitByPurchase" property="idunitbypurchase" jdbcType="INTEGER" />
+    <result column="idUnitByRetail" property="idunitbyretail" jdbcType="INTEGER" />
+    <result column="idUnitBySale" property="idunitbysale" jdbcType="INTEGER" />
+    <result column="idUnitByStock" property="idunitbystock" jdbcType="INTEGER" />
+    <result column="idunitgroup" property="idunitgroup" jdbcType="INTEGER" />
+    <result column="idSubUnitByReport" property="idsubunitbyreport" jdbcType="INTEGER" />
+    <result column="ExpiredUnit" property="expiredunit" jdbcType="INTEGER" />
+    <result column="idwarehouse" property="idwarehouse" jdbcType="INTEGER" />
+    <result column="customerReplenishmentRule" property="customerreplenishmentrule" jdbcType="INTEGER" />
+    <result column="pickbatchmethod" property="pickbatchmethod" jdbcType="INTEGER" />
+    <result column="planattribute" property="planattribute" jdbcType="INTEGER" />
+    <result column="productInfo" property="productinfo" jdbcType="INTEGER" />
+    <result column="storeReplenishmentRule" property="storereplenishmentrule" jdbcType="INTEGER" />
+    <result column="taxRate" property="taxrate" jdbcType="INTEGER" />
+    <result column="unittype" property="unittype" jdbcType="INTEGER" />
+    <result column="valueType" property="valuetype" jdbcType="INTEGER" />
+    <result column="madeDate" property="madedate" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="createdTime" property="createdtime" jdbcType="TIMESTAMP" />
+    <result column="Creater" property="creater" jdbcType="NVARCHAR" />
+    <result column="Changer" property="changer" jdbcType="NVARCHAR" />
+    <result column="Changedate" property="changedate" jdbcType="TIMESTAMP" />
+    <result column="JinShuiCode" property="jinshuicode" jdbcType="NVARCHAR" />
+    <result column="IsModifiedCode" property="ismodifiedcode" jdbcType="TINYINT" />
+    <result column="WithOutBargain" property="withoutbargain" jdbcType="TINYINT" />
+    <result column="idInventoryFreeItemClass0" property="idinventoryfreeitemclass0" jdbcType="INTEGER" />
+    <result column="idInventoryFreeItemClass1" property="idinventoryfreeitemclass1" jdbcType="INTEGER" />
+    <result column="idInventoryFreeItemClass2" property="idinventoryfreeitemclass2" jdbcType="INTEGER" />
+    <result column="idInventoryFreeItemClass3" property="idinventoryfreeitemclass3" jdbcType="INTEGER" />
+    <result column="idInventoryFreeItemClass4" property="idinventoryfreeitemclass4" jdbcType="INTEGER" />
+    <result column="idInventoryFreeItemClass5" property="idinventoryfreeitemclass5" jdbcType="INTEGER" />
+    <result column="idInventoryFreeItemClass6" property="idinventoryfreeitemclass6" jdbcType="INTEGER" />
+    <result column="idInventoryFreeItemClass7" property="idinventoryfreeitemclass7" jdbcType="INTEGER" />
+    <result column="idInventoryFreeItemClass8" property="idinventoryfreeitemclass8" jdbcType="INTEGER" />
+    <result column="idInventoryFreeItemClass9" property="idinventoryfreeitemclass9" jdbcType="INTEGER" />
+    <result column="InStorageUpLimit" property="instorageuplimit" jdbcType="DECIMAL" />
+    <result column="OutStorageUpLimit" property="outstorageuplimit" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.ssm.po.AaInventory" extends="BaseResultMap" >
+    <result column="ts" property="ts" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, shorthand, specification, procureBatch, invSCost, latestCost_Abandon, 
+    avagCost_Abandon, isLimitedWithdraw, isBatch, isQualityPeriod, isSale, isMadeSelf, 
+    isPurchase, isMaterial, lowQuantity, topQuantity, safeQuantity, picture, disabled, 
+    isQualityCheck, isMadeRequest, isSingleUnit, updatedBy, Userfreeitem7, Userfreeitem6, 
+    Userfreeitem2, Userfreeitem1, Userfreeitem9, Userfreeitem0, Userfreeitem8, Userfreeitem5, 
+    Userfreeitem4, Userfreeitem3, MustInputFreeitem7, MustInputFreeitem2, MustInputFreeitem6, 
+    MustInputFreeitem3, MustInputFreeitem5, MustInputFreeitem4, MustInputFreeitem9, MustInputFreeitem1, 
+    MustInputFreeitem8, MustInputFreeitem0, produceBatch, imageFile, priuserdefnvc1, 
+    priuserdefdecm1, priuserdefnvc2, priuserdefdecm2, priuserdefnvc3, priuserdefdecm3, 
+    priuserdefnvc4, priuserdefdecm4, priuserdefnvc5, priuserdefdecm5, standardturnoverdays, 
+    HasEverChanged, pickbatch, isphantom, ControlRangeFreeitem0, ControlRangeFreeitem1, 
+    ControlRangeFreeitem2, ControlRangeFreeitem3, ControlRangeFreeitem4, ControlRangeFreeitem5, 
+    ControlRangeFreeitem6, ControlRangeFreeitem7, ControlRangeFreeitem8, ControlRangeFreeitem9, 
+    IsLaborCost, BatchRunNumber, IsNew, MadeRecordDate, InventoryDescript, ReNewGoodSellDays, 
+    ReNewGoodAheadDays, IsSuite, IsWeigh, DefaultBarCode, NewProductPeriod, Expired, 
+    idbarcodesolution, idinventoryclass, idinvlocation, idMarketingOrgan, idpartner, 
+    idunit, idunitbymanufacture, idUnitByPurchase, idUnitByRetail, idUnitBySale, idUnitByStock, 
+    idunitgroup, idSubUnitByReport, ExpiredUnit, idwarehouse, customerReplenishmentRule, 
+    pickbatchmethod, planattribute, productInfo, storeReplenishmentRule, taxRate, unittype, 
+    valueType, madeDate, updated, createdTime, Creater, Changer, Changedate, JinShuiCode, 
+    IsModifiedCode, WithOutBargain, idInventoryFreeItemClass0, idInventoryFreeItemClass1, 
+    idInventoryFreeItemClass2, idInventoryFreeItemClass3, idInventoryFreeItemClass4, 
+    idInventoryFreeItemClass5, idInventoryFreeItemClass6, idInventoryFreeItemClass7, 
+    idInventoryFreeItemClass8, idInventoryFreeItemClass9, InStorageUpLimit, OutStorageUpLimit
+  </sql>
+  <sql id="Blob_Column_List" >
+    ts
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from AA_Inventory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from AA_Inventory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.AaInventory" >
+    insert into AA_Inventory (id, code, name, 
+      shorthand, specification, procureBatch, 
+      invSCost, latestCost_Abandon, avagCost_Abandon, 
+      isLimitedWithdraw, isBatch, isQualityPeriod, 
+      isSale, isMadeSelf, isPurchase, 
+      isMaterial, lowQuantity, topQuantity, 
+      safeQuantity, picture, disabled, 
+      isQualityCheck, isMadeRequest, isSingleUnit, 
+      updatedBy, Userfreeitem7, Userfreeitem6, 
+      Userfreeitem2, Userfreeitem1, Userfreeitem9, 
+      Userfreeitem0, Userfreeitem8, Userfreeitem5, 
+      Userfreeitem4, Userfreeitem3, MustInputFreeitem7, 
+      MustInputFreeitem2, MustInputFreeitem6, 
+      MustInputFreeitem3, MustInputFreeitem5, 
+      MustInputFreeitem4, MustInputFreeitem9, 
+      MustInputFreeitem1, MustInputFreeitem8, 
+      MustInputFreeitem0, produceBatch, imageFile, 
+      priuserdefnvc1, priuserdefdecm1, priuserdefnvc2, 
+      priuserdefdecm2, priuserdefnvc3, priuserdefdecm3, 
+      priuserdefnvc4, priuserdefdecm4, priuserdefnvc5, 
+      priuserdefdecm5, standardturnoverdays, 
+      HasEverChanged, pickbatch, isphantom, 
+      ControlRangeFreeitem0, ControlRangeFreeitem1, 
+      ControlRangeFreeitem2, ControlRangeFreeitem3, 
+      ControlRangeFreeitem4, ControlRangeFreeitem5, 
+      ControlRangeFreeitem6, ControlRangeFreeitem7, 
+      ControlRangeFreeitem8, ControlRangeFreeitem9, 
+      IsLaborCost, BatchRunNumber, IsNew, 
+      MadeRecordDate, InventoryDescript, ReNewGoodSellDays, 
+      ReNewGoodAheadDays, IsSuite, IsWeigh, 
+      DefaultBarCode, NewProductPeriod, Expired, 
+      idbarcodesolution, idinventoryclass, idinvlocation, 
+      idMarketingOrgan, idpartner, idunit, 
+      idunitbymanufacture, idUnitByPurchase, 
+      idUnitByRetail, idUnitBySale, idUnitByStock, 
+      idunitgroup, idSubUnitByReport, ExpiredUnit, 
+      idwarehouse, customerReplenishmentRule, 
+      pickbatchmethod, planattribute, productInfo, 
+      storeReplenishmentRule, taxRate, unittype, 
+      valueType, madeDate, updated, 
+      createdTime, Creater, Changer, 
+      Changedate, JinShuiCode, IsModifiedCode, 
+      WithOutBargain, idInventoryFreeItemClass0, 
+      idInventoryFreeItemClass1, idInventoryFreeItemClass2, 
+      idInventoryFreeItemClass3, idInventoryFreeItemClass4, 
+      idInventoryFreeItemClass5, idInventoryFreeItemClass6, 
+      idInventoryFreeItemClass7, idInventoryFreeItemClass8, 
+      idInventoryFreeItemClass9, InStorageUpLimit, 
+      OutStorageUpLimit, ts)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{shorthand,jdbcType=NVARCHAR}, #{specification,jdbcType=NVARCHAR}, #{procurebatch,jdbcType=DECIMAL}, 
+      #{invscost,jdbcType=DECIMAL}, #{latestcostAbandon,jdbcType=DECIMAL}, #{avagcostAbandon,jdbcType=DECIMAL}, 
+      #{islimitedwithdraw,jdbcType=TINYINT}, #{isbatch,jdbcType=TINYINT}, #{isqualityperiod,jdbcType=TINYINT}, 
+      #{issale,jdbcType=TINYINT}, #{ismadeself,jdbcType=TINYINT}, #{ispurchase,jdbcType=TINYINT}, 
+      #{ismaterial,jdbcType=TINYINT}, #{lowquantity,jdbcType=DECIMAL}, #{topquantity,jdbcType=DECIMAL}, 
+      #{safequantity,jdbcType=DECIMAL}, #{picture,jdbcType=NVARCHAR}, #{disabled,jdbcType=TINYINT}, 
+      #{isqualitycheck,jdbcType=TINYINT}, #{ismaderequest,jdbcType=TINYINT}, #{issingleunit,jdbcType=TINYINT}, 
+      #{updatedby,jdbcType=NVARCHAR}, #{userfreeitem7,jdbcType=TINYINT}, #{userfreeitem6,jdbcType=TINYINT}, 
+      #{userfreeitem2,jdbcType=TINYINT}, #{userfreeitem1,jdbcType=TINYINT}, #{userfreeitem9,jdbcType=TINYINT}, 
+      #{userfreeitem0,jdbcType=TINYINT}, #{userfreeitem8,jdbcType=TINYINT}, #{userfreeitem5,jdbcType=TINYINT}, 
+      #{userfreeitem4,jdbcType=TINYINT}, #{userfreeitem3,jdbcType=TINYINT}, #{mustinputfreeitem7,jdbcType=TINYINT}, 
+      #{mustinputfreeitem2,jdbcType=TINYINT}, #{mustinputfreeitem6,jdbcType=TINYINT}, 
+      #{mustinputfreeitem3,jdbcType=TINYINT}, #{mustinputfreeitem5,jdbcType=TINYINT}, 
+      #{mustinputfreeitem4,jdbcType=TINYINT}, #{mustinputfreeitem9,jdbcType=TINYINT}, 
+      #{mustinputfreeitem1,jdbcType=TINYINT}, #{mustinputfreeitem8,jdbcType=TINYINT}, 
+      #{mustinputfreeitem0,jdbcType=TINYINT}, #{producebatch,jdbcType=DECIMAL}, #{imagefile,jdbcType=NVARCHAR}, 
+      #{priuserdefnvc1,jdbcType=NVARCHAR}, #{priuserdefdecm1,jdbcType=DECIMAL}, #{priuserdefnvc2,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm2,jdbcType=DECIMAL}, #{priuserdefnvc3,jdbcType=NVARCHAR}, #{priuserdefdecm3,jdbcType=DECIMAL}, 
+      #{priuserdefnvc4,jdbcType=NVARCHAR}, #{priuserdefdecm4,jdbcType=DECIMAL}, #{priuserdefnvc5,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm5,jdbcType=DECIMAL}, #{standardturnoverdays,jdbcType=DECIMAL}, 
+      #{haseverchanged,jdbcType=NVARCHAR}, #{pickbatch,jdbcType=DECIMAL}, #{isphantom,jdbcType=TINYINT}, 
+      #{controlrangefreeitem0,jdbcType=TINYINT}, #{controlrangefreeitem1,jdbcType=TINYINT}, 
+      #{controlrangefreeitem2,jdbcType=TINYINT}, #{controlrangefreeitem3,jdbcType=TINYINT}, 
+      #{controlrangefreeitem4,jdbcType=TINYINT}, #{controlrangefreeitem5,jdbcType=TINYINT}, 
+      #{controlrangefreeitem6,jdbcType=TINYINT}, #{controlrangefreeitem7,jdbcType=TINYINT}, 
+      #{controlrangefreeitem8,jdbcType=TINYINT}, #{controlrangefreeitem9,jdbcType=TINYINT}, 
+      #{islaborcost,jdbcType=TINYINT}, #{batchrunnumber,jdbcType=DECIMAL}, #{isnew,jdbcType=TINYINT}, 
+      #{maderecorddate,jdbcType=TIMESTAMP}, #{inventorydescript,jdbcType=NVARCHAR}, #{renewgoodselldays,jdbcType=INTEGER}, 
+      #{renewgoodaheaddays,jdbcType=INTEGER}, #{issuite,jdbcType=TINYINT}, #{isweigh,jdbcType=TINYINT}, 
+      #{defaultbarcode,jdbcType=NVARCHAR}, #{newproductperiod,jdbcType=INTEGER}, #{expired,jdbcType=INTEGER}, 
+      #{idbarcodesolution,jdbcType=INTEGER}, #{idinventoryclass,jdbcType=INTEGER}, #{idinvlocation,jdbcType=INTEGER}, 
+      #{idmarketingorgan,jdbcType=INTEGER}, #{idpartner,jdbcType=INTEGER}, #{idunit,jdbcType=INTEGER}, 
+      #{idunitbymanufacture,jdbcType=INTEGER}, #{idunitbypurchase,jdbcType=INTEGER}, 
+      #{idunitbyretail,jdbcType=INTEGER}, #{idunitbysale,jdbcType=INTEGER}, #{idunitbystock,jdbcType=INTEGER}, 
+      #{idunitgroup,jdbcType=INTEGER}, #{idsubunitbyreport,jdbcType=INTEGER}, #{expiredunit,jdbcType=INTEGER}, 
+      #{idwarehouse,jdbcType=INTEGER}, #{customerreplenishmentrule,jdbcType=INTEGER}, 
+      #{pickbatchmethod,jdbcType=INTEGER}, #{planattribute,jdbcType=INTEGER}, #{productinfo,jdbcType=INTEGER}, 
+      #{storereplenishmentrule,jdbcType=INTEGER}, #{taxrate,jdbcType=INTEGER}, #{unittype,jdbcType=INTEGER}, 
+      #{valuetype,jdbcType=INTEGER}, #{madedate,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{creater,jdbcType=NVARCHAR}, #{changer,jdbcType=NVARCHAR}, 
+      #{changedate,jdbcType=TIMESTAMP}, #{jinshuicode,jdbcType=NVARCHAR}, #{ismodifiedcode,jdbcType=TINYINT}, 
+      #{withoutbargain,jdbcType=TINYINT}, #{idinventoryfreeitemclass0,jdbcType=INTEGER}, 
+      #{idinventoryfreeitemclass1,jdbcType=INTEGER}, #{idinventoryfreeitemclass2,jdbcType=INTEGER}, 
+      #{idinventoryfreeitemclass3,jdbcType=INTEGER}, #{idinventoryfreeitemclass4,jdbcType=INTEGER}, 
+      #{idinventoryfreeitemclass5,jdbcType=INTEGER}, #{idinventoryfreeitemclass6,jdbcType=INTEGER}, 
+      #{idinventoryfreeitemclass7,jdbcType=INTEGER}, #{idinventoryfreeitemclass8,jdbcType=INTEGER}, 
+      #{idinventoryfreeitemclass9,jdbcType=INTEGER}, #{instorageuplimit,jdbcType=DECIMAL}, 
+      #{outstorageuplimit,jdbcType=DECIMAL}, #{ts,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.AaInventory" >
+    insert into AA_Inventory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="shorthand != null" >
+        shorthand,
+      </if>
+      <if test="specification != null" >
+        specification,
+      </if>
+      <if test="procurebatch != null" >
+        procureBatch,
+      </if>
+      <if test="invscost != null" >
+        invSCost,
+      </if>
+      <if test="latestcostAbandon != null" >
+        latestCost_Abandon,
+      </if>
+      <if test="avagcostAbandon != null" >
+        avagCost_Abandon,
+      </if>
+      <if test="islimitedwithdraw != null" >
+        isLimitedWithdraw,
+      </if>
+      <if test="isbatch != null" >
+        isBatch,
+      </if>
+      <if test="isqualityperiod != null" >
+        isQualityPeriod,
+      </if>
+      <if test="issale != null" >
+        isSale,
+      </if>
+      <if test="ismadeself != null" >
+        isMadeSelf,
+      </if>
+      <if test="ispurchase != null" >
+        isPurchase,
+      </if>
+      <if test="ismaterial != null" >
+        isMaterial,
+      </if>
+      <if test="lowquantity != null" >
+        lowQuantity,
+      </if>
+      <if test="topquantity != null" >
+        topQuantity,
+      </if>
+      <if test="safequantity != null" >
+        safeQuantity,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="isqualitycheck != null" >
+        isQualityCheck,
+      </if>
+      <if test="ismaderequest != null" >
+        isMadeRequest,
+      </if>
+      <if test="issingleunit != null" >
+        isSingleUnit,
+      </if>
+      <if test="updatedby != null" >
+        updatedBy,
+      </if>
+      <if test="userfreeitem7 != null" >
+        Userfreeitem7,
+      </if>
+      <if test="userfreeitem6 != null" >
+        Userfreeitem6,
+      </if>
+      <if test="userfreeitem2 != null" >
+        Userfreeitem2,
+      </if>
+      <if test="userfreeitem1 != null" >
+        Userfreeitem1,
+      </if>
+      <if test="userfreeitem9 != null" >
+        Userfreeitem9,
+      </if>
+      <if test="userfreeitem0 != null" >
+        Userfreeitem0,
+      </if>
+      <if test="userfreeitem8 != null" >
+        Userfreeitem8,
+      </if>
+      <if test="userfreeitem5 != null" >
+        Userfreeitem5,
+      </if>
+      <if test="userfreeitem4 != null" >
+        Userfreeitem4,
+      </if>
+      <if test="userfreeitem3 != null" >
+        Userfreeitem3,
+      </if>
+      <if test="mustinputfreeitem7 != null" >
+        MustInputFreeitem7,
+      </if>
+      <if test="mustinputfreeitem2 != null" >
+        MustInputFreeitem2,
+      </if>
+      <if test="mustinputfreeitem6 != null" >
+        MustInputFreeitem6,
+      </if>
+      <if test="mustinputfreeitem3 != null" >
+        MustInputFreeitem3,
+      </if>
+      <if test="mustinputfreeitem5 != null" >
+        MustInputFreeitem5,
+      </if>
+      <if test="mustinputfreeitem4 != null" >
+        MustInputFreeitem4,
+      </if>
+      <if test="mustinputfreeitem9 != null" >
+        MustInputFreeitem9,
+      </if>
+      <if test="mustinputfreeitem1 != null" >
+        MustInputFreeitem1,
+      </if>
+      <if test="mustinputfreeitem8 != null" >
+        MustInputFreeitem8,
+      </if>
+      <if test="mustinputfreeitem0 != null" >
+        MustInputFreeitem0,
+      </if>
+      <if test="producebatch != null" >
+        produceBatch,
+      </if>
+      <if test="imagefile != null" >
+        imageFile,
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        priuserdefnvc1,
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        priuserdefdecm1,
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        priuserdefnvc2,
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        priuserdefdecm2,
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        priuserdefnvc3,
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        priuserdefdecm3,
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        priuserdefnvc4,
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        priuserdefdecm4,
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        priuserdefnvc5,
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        priuserdefdecm5,
+      </if>
+      <if test="standardturnoverdays != null" >
+        standardturnoverdays,
+      </if>
+      <if test="haseverchanged != null" >
+        HasEverChanged,
+      </if>
+      <if test="pickbatch != null" >
+        pickbatch,
+      </if>
+      <if test="isphantom != null" >
+        isphantom,
+      </if>
+      <if test="controlrangefreeitem0 != null" >
+        ControlRangeFreeitem0,
+      </if>
+      <if test="controlrangefreeitem1 != null" >
+        ControlRangeFreeitem1,
+      </if>
+      <if test="controlrangefreeitem2 != null" >
+        ControlRangeFreeitem2,
+      </if>
+      <if test="controlrangefreeitem3 != null" >
+        ControlRangeFreeitem3,
+      </if>
+      <if test="controlrangefreeitem4 != null" >
+        ControlRangeFreeitem4,
+      </if>
+      <if test="controlrangefreeitem5 != null" >
+        ControlRangeFreeitem5,
+      </if>
+      <if test="controlrangefreeitem6 != null" >
+        ControlRangeFreeitem6,
+      </if>
+      <if test="controlrangefreeitem7 != null" >
+        ControlRangeFreeitem7,
+      </if>
+      <if test="controlrangefreeitem8 != null" >
+        ControlRangeFreeitem8,
+      </if>
+      <if test="controlrangefreeitem9 != null" >
+        ControlRangeFreeitem9,
+      </if>
+      <if test="islaborcost != null" >
+        IsLaborCost,
+      </if>
+      <if test="batchrunnumber != null" >
+        BatchRunNumber,
+      </if>
+      <if test="isnew != null" >
+        IsNew,
+      </if>
+      <if test="maderecorddate != null" >
+        MadeRecordDate,
+      </if>
+      <if test="inventorydescript != null" >
+        InventoryDescript,
+      </if>
+      <if test="renewgoodselldays != null" >
+        ReNewGoodSellDays,
+      </if>
+      <if test="renewgoodaheaddays != null" >
+        ReNewGoodAheadDays,
+      </if>
+      <if test="issuite != null" >
+        IsSuite,
+      </if>
+      <if test="isweigh != null" >
+        IsWeigh,
+      </if>
+      <if test="defaultbarcode != null" >
+        DefaultBarCode,
+      </if>
+      <if test="newproductperiod != null" >
+        NewProductPeriod,
+      </if>
+      <if test="expired != null" >
+        Expired,
+      </if>
+      <if test="idbarcodesolution != null" >
+        idbarcodesolution,
+      </if>
+      <if test="idinventoryclass != null" >
+        idinventoryclass,
+      </if>
+      <if test="idinvlocation != null" >
+        idinvlocation,
+      </if>
+      <if test="idmarketingorgan != null" >
+        idMarketingOrgan,
+      </if>
+      <if test="idpartner != null" >
+        idpartner,
+      </if>
+      <if test="idunit != null" >
+        idunit,
+      </if>
+      <if test="idunitbymanufacture != null" >
+        idunitbymanufacture,
+      </if>
+      <if test="idunitbypurchase != null" >
+        idUnitByPurchase,
+      </if>
+      <if test="idunitbyretail != null" >
+        idUnitByRetail,
+      </if>
+      <if test="idunitbysale != null" >
+        idUnitBySale,
+      </if>
+      <if test="idunitbystock != null" >
+        idUnitByStock,
+      </if>
+      <if test="idunitgroup != null" >
+        idunitgroup,
+      </if>
+      <if test="idsubunitbyreport != null" >
+        idSubUnitByReport,
+      </if>
+      <if test="expiredunit != null" >
+        ExpiredUnit,
+      </if>
+      <if test="idwarehouse != null" >
+        idwarehouse,
+      </if>
+      <if test="customerreplenishmentrule != null" >
+        customerReplenishmentRule,
+      </if>
+      <if test="pickbatchmethod != null" >
+        pickbatchmethod,
+      </if>
+      <if test="planattribute != null" >
+        planattribute,
+      </if>
+      <if test="productinfo != null" >
+        productInfo,
+      </if>
+      <if test="storereplenishmentrule != null" >
+        storeReplenishmentRule,
+      </if>
+      <if test="taxrate != null" >
+        taxRate,
+      </if>
+      <if test="unittype != null" >
+        unittype,
+      </if>
+      <if test="valuetype != null" >
+        valueType,
+      </if>
+      <if test="madedate != null" >
+        madeDate,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="createdtime != null" >
+        createdTime,
+      </if>
+      <if test="creater != null" >
+        Creater,
+      </if>
+      <if test="changer != null" >
+        Changer,
+      </if>
+      <if test="changedate != null" >
+        Changedate,
+      </if>
+      <if test="jinshuicode != null" >
+        JinShuiCode,
+      </if>
+      <if test="ismodifiedcode != null" >
+        IsModifiedCode,
+      </if>
+      <if test="withoutbargain != null" >
+        WithOutBargain,
+      </if>
+      <if test="idinventoryfreeitemclass0 != null" >
+        idInventoryFreeItemClass0,
+      </if>
+      <if test="idinventoryfreeitemclass1 != null" >
+        idInventoryFreeItemClass1,
+      </if>
+      <if test="idinventoryfreeitemclass2 != null" >
+        idInventoryFreeItemClass2,
+      </if>
+      <if test="idinventoryfreeitemclass3 != null" >
+        idInventoryFreeItemClass3,
+      </if>
+      <if test="idinventoryfreeitemclass4 != null" >
+        idInventoryFreeItemClass4,
+      </if>
+      <if test="idinventoryfreeitemclass5 != null" >
+        idInventoryFreeItemClass5,
+      </if>
+      <if test="idinventoryfreeitemclass6 != null" >
+        idInventoryFreeItemClass6,
+      </if>
+      <if test="idinventoryfreeitemclass7 != null" >
+        idInventoryFreeItemClass7,
+      </if>
+      <if test="idinventoryfreeitemclass8 != null" >
+        idInventoryFreeItemClass8,
+      </if>
+      <if test="idinventoryfreeitemclass9 != null" >
+        idInventoryFreeItemClass9,
+      </if>
+      <if test="instorageuplimit != null" >
+        InStorageUpLimit,
+      </if>
+      <if test="outstorageuplimit != null" >
+        OutStorageUpLimit,
+      </if>
+      <if test="ts != null" >
+        ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="shorthand != null" >
+        #{shorthand,jdbcType=NVARCHAR},
+      </if>
+      <if test="specification != null" >
+        #{specification,jdbcType=NVARCHAR},
+      </if>
+      <if test="procurebatch != null" >
+        #{procurebatch,jdbcType=DECIMAL},
+      </if>
+      <if test="invscost != null" >
+        #{invscost,jdbcType=DECIMAL},
+      </if>
+      <if test="latestcostAbandon != null" >
+        #{latestcostAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="avagcostAbandon != null" >
+        #{avagcostAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="islimitedwithdraw != null" >
+        #{islimitedwithdraw,jdbcType=TINYINT},
+      </if>
+      <if test="isbatch != null" >
+        #{isbatch,jdbcType=TINYINT},
+      </if>
+      <if test="isqualityperiod != null" >
+        #{isqualityperiod,jdbcType=TINYINT},
+      </if>
+      <if test="issale != null" >
+        #{issale,jdbcType=TINYINT},
+      </if>
+      <if test="ismadeself != null" >
+        #{ismadeself,jdbcType=TINYINT},
+      </if>
+      <if test="ispurchase != null" >
+        #{ispurchase,jdbcType=TINYINT},
+      </if>
+      <if test="ismaterial != null" >
+        #{ismaterial,jdbcType=TINYINT},
+      </if>
+      <if test="lowquantity != null" >
+        #{lowquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="topquantity != null" >
+        #{topquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="safequantity != null" >
+        #{safequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=NVARCHAR},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=TINYINT},
+      </if>
+      <if test="isqualitycheck != null" >
+        #{isqualitycheck,jdbcType=TINYINT},
+      </if>
+      <if test="ismaderequest != null" >
+        #{ismaderequest,jdbcType=TINYINT},
+      </if>
+      <if test="issingleunit != null" >
+        #{issingleunit,jdbcType=TINYINT},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="userfreeitem7 != null" >
+        #{userfreeitem7,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem6 != null" >
+        #{userfreeitem6,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem2 != null" >
+        #{userfreeitem2,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem1 != null" >
+        #{userfreeitem1,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem9 != null" >
+        #{userfreeitem9,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem0 != null" >
+        #{userfreeitem0,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem8 != null" >
+        #{userfreeitem8,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem5 != null" >
+        #{userfreeitem5,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem4 != null" >
+        #{userfreeitem4,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem3 != null" >
+        #{userfreeitem3,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem7 != null" >
+        #{mustinputfreeitem7,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem2 != null" >
+        #{mustinputfreeitem2,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem6 != null" >
+        #{mustinputfreeitem6,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem3 != null" >
+        #{mustinputfreeitem3,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem5 != null" >
+        #{mustinputfreeitem5,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem4 != null" >
+        #{mustinputfreeitem4,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem9 != null" >
+        #{mustinputfreeitem9,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem1 != null" >
+        #{mustinputfreeitem1,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem8 != null" >
+        #{mustinputfreeitem8,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem0 != null" >
+        #{mustinputfreeitem0,jdbcType=TINYINT},
+      </if>
+      <if test="producebatch != null" >
+        #{producebatch,jdbcType=DECIMAL},
+      </if>
+      <if test="imagefile != null" >
+        #{imagefile,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        #{priuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        #{priuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        #{priuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        #{priuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        #{priuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        #{priuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        #{priuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        #{priuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        #{priuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        #{priuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="standardturnoverdays != null" >
+        #{standardturnoverdays,jdbcType=DECIMAL},
+      </if>
+      <if test="haseverchanged != null" >
+        #{haseverchanged,jdbcType=NVARCHAR},
+      </if>
+      <if test="pickbatch != null" >
+        #{pickbatch,jdbcType=DECIMAL},
+      </if>
+      <if test="isphantom != null" >
+        #{isphantom,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem0 != null" >
+        #{controlrangefreeitem0,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem1 != null" >
+        #{controlrangefreeitem1,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem2 != null" >
+        #{controlrangefreeitem2,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem3 != null" >
+        #{controlrangefreeitem3,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem4 != null" >
+        #{controlrangefreeitem4,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem5 != null" >
+        #{controlrangefreeitem5,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem6 != null" >
+        #{controlrangefreeitem6,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem7 != null" >
+        #{controlrangefreeitem7,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem8 != null" >
+        #{controlrangefreeitem8,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem9 != null" >
+        #{controlrangefreeitem9,jdbcType=TINYINT},
+      </if>
+      <if test="islaborcost != null" >
+        #{islaborcost,jdbcType=TINYINT},
+      </if>
+      <if test="batchrunnumber != null" >
+        #{batchrunnumber,jdbcType=DECIMAL},
+      </if>
+      <if test="isnew != null" >
+        #{isnew,jdbcType=TINYINT},
+      </if>
+      <if test="maderecorddate != null" >
+        #{maderecorddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inventorydescript != null" >
+        #{inventorydescript,jdbcType=NVARCHAR},
+      </if>
+      <if test="renewgoodselldays != null" >
+        #{renewgoodselldays,jdbcType=INTEGER},
+      </if>
+      <if test="renewgoodaheaddays != null" >
+        #{renewgoodaheaddays,jdbcType=INTEGER},
+      </if>
+      <if test="issuite != null" >
+        #{issuite,jdbcType=TINYINT},
+      </if>
+      <if test="isweigh != null" >
+        #{isweigh,jdbcType=TINYINT},
+      </if>
+      <if test="defaultbarcode != null" >
+        #{defaultbarcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="newproductperiod != null" >
+        #{newproductperiod,jdbcType=INTEGER},
+      </if>
+      <if test="expired != null" >
+        #{expired,jdbcType=INTEGER},
+      </if>
+      <if test="idbarcodesolution != null" >
+        #{idbarcodesolution,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryclass != null" >
+        #{idinventoryclass,jdbcType=INTEGER},
+      </if>
+      <if test="idinvlocation != null" >
+        #{idinvlocation,jdbcType=INTEGER},
+      </if>
+      <if test="idmarketingorgan != null" >
+        #{idmarketingorgan,jdbcType=INTEGER},
+      </if>
+      <if test="idpartner != null" >
+        #{idpartner,jdbcType=INTEGER},
+      </if>
+      <if test="idunit != null" >
+        #{idunit,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbymanufacture != null" >
+        #{idunitbymanufacture,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbypurchase != null" >
+        #{idunitbypurchase,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbyretail != null" >
+        #{idunitbyretail,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbysale != null" >
+        #{idunitbysale,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbystock != null" >
+        #{idunitbystock,jdbcType=INTEGER},
+      </if>
+      <if test="idunitgroup != null" >
+        #{idunitgroup,jdbcType=INTEGER},
+      </if>
+      <if test="idsubunitbyreport != null" >
+        #{idsubunitbyreport,jdbcType=INTEGER},
+      </if>
+      <if test="expiredunit != null" >
+        #{expiredunit,jdbcType=INTEGER},
+      </if>
+      <if test="idwarehouse != null" >
+        #{idwarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="customerreplenishmentrule != null" >
+        #{customerreplenishmentrule,jdbcType=INTEGER},
+      </if>
+      <if test="pickbatchmethod != null" >
+        #{pickbatchmethod,jdbcType=INTEGER},
+      </if>
+      <if test="planattribute != null" >
+        #{planattribute,jdbcType=INTEGER},
+      </if>
+      <if test="productinfo != null" >
+        #{productinfo,jdbcType=INTEGER},
+      </if>
+      <if test="storereplenishmentrule != null" >
+        #{storereplenishmentrule,jdbcType=INTEGER},
+      </if>
+      <if test="taxrate != null" >
+        #{taxrate,jdbcType=INTEGER},
+      </if>
+      <if test="unittype != null" >
+        #{unittype,jdbcType=INTEGER},
+      </if>
+      <if test="valuetype != null" >
+        #{valuetype,jdbcType=INTEGER},
+      </if>
+      <if test="madedate != null" >
+        #{madedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=NVARCHAR},
+      </if>
+      <if test="changer != null" >
+        #{changer,jdbcType=NVARCHAR},
+      </if>
+      <if test="changedate != null" >
+        #{changedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jinshuicode != null" >
+        #{jinshuicode,jdbcType=NVARCHAR},
+      </if>
+      <if test="ismodifiedcode != null" >
+        #{ismodifiedcode,jdbcType=TINYINT},
+      </if>
+      <if test="withoutbargain != null" >
+        #{withoutbargain,jdbcType=TINYINT},
+      </if>
+      <if test="idinventoryfreeitemclass0 != null" >
+        #{idinventoryfreeitemclass0,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass1 != null" >
+        #{idinventoryfreeitemclass1,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass2 != null" >
+        #{idinventoryfreeitemclass2,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass3 != null" >
+        #{idinventoryfreeitemclass3,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass4 != null" >
+        #{idinventoryfreeitemclass4,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass5 != null" >
+        #{idinventoryfreeitemclass5,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass6 != null" >
+        #{idinventoryfreeitemclass6,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass7 != null" >
+        #{idinventoryfreeitemclass7,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass8 != null" >
+        #{idinventoryfreeitemclass8,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass9 != null" >
+        #{idinventoryfreeitemclass9,jdbcType=INTEGER},
+      </if>
+      <if test="instorageuplimit != null" >
+        #{instorageuplimit,jdbcType=DECIMAL},
+      </if>
+      <if test="outstorageuplimit != null" >
+        #{outstorageuplimit,jdbcType=DECIMAL},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.AaInventory" >
+    update AA_Inventory
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="shorthand != null" >
+        shorthand = #{shorthand,jdbcType=NVARCHAR},
+      </if>
+      <if test="specification != null" >
+        specification = #{specification,jdbcType=NVARCHAR},
+      </if>
+      <if test="procurebatch != null" >
+        procureBatch = #{procurebatch,jdbcType=DECIMAL},
+      </if>
+      <if test="invscost != null" >
+        invSCost = #{invscost,jdbcType=DECIMAL},
+      </if>
+      <if test="latestcostAbandon != null" >
+        latestCost_Abandon = #{latestcostAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="avagcostAbandon != null" >
+        avagCost_Abandon = #{avagcostAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="islimitedwithdraw != null" >
+        isLimitedWithdraw = #{islimitedwithdraw,jdbcType=TINYINT},
+      </if>
+      <if test="isbatch != null" >
+        isBatch = #{isbatch,jdbcType=TINYINT},
+      </if>
+      <if test="isqualityperiod != null" >
+        isQualityPeriod = #{isqualityperiod,jdbcType=TINYINT},
+      </if>
+      <if test="issale != null" >
+        isSale = #{issale,jdbcType=TINYINT},
+      </if>
+      <if test="ismadeself != null" >
+        isMadeSelf = #{ismadeself,jdbcType=TINYINT},
+      </if>
+      <if test="ispurchase != null" >
+        isPurchase = #{ispurchase,jdbcType=TINYINT},
+      </if>
+      <if test="ismaterial != null" >
+        isMaterial = #{ismaterial,jdbcType=TINYINT},
+      </if>
+      <if test="lowquantity != null" >
+        lowQuantity = #{lowquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="topquantity != null" >
+        topQuantity = #{topquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="safequantity != null" >
+        safeQuantity = #{safequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=NVARCHAR},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=TINYINT},
+      </if>
+      <if test="isqualitycheck != null" >
+        isQualityCheck = #{isqualitycheck,jdbcType=TINYINT},
+      </if>
+      <if test="ismaderequest != null" >
+        isMadeRequest = #{ismaderequest,jdbcType=TINYINT},
+      </if>
+      <if test="issingleunit != null" >
+        isSingleUnit = #{issingleunit,jdbcType=TINYINT},
+      </if>
+      <if test="updatedby != null" >
+        updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="userfreeitem7 != null" >
+        Userfreeitem7 = #{userfreeitem7,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem6 != null" >
+        Userfreeitem6 = #{userfreeitem6,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem2 != null" >
+        Userfreeitem2 = #{userfreeitem2,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem1 != null" >
+        Userfreeitem1 = #{userfreeitem1,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem9 != null" >
+        Userfreeitem9 = #{userfreeitem9,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem0 != null" >
+        Userfreeitem0 = #{userfreeitem0,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem8 != null" >
+        Userfreeitem8 = #{userfreeitem8,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem5 != null" >
+        Userfreeitem5 = #{userfreeitem5,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem4 != null" >
+        Userfreeitem4 = #{userfreeitem4,jdbcType=TINYINT},
+      </if>
+      <if test="userfreeitem3 != null" >
+        Userfreeitem3 = #{userfreeitem3,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem7 != null" >
+        MustInputFreeitem7 = #{mustinputfreeitem7,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem2 != null" >
+        MustInputFreeitem2 = #{mustinputfreeitem2,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem6 != null" >
+        MustInputFreeitem6 = #{mustinputfreeitem6,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem3 != null" >
+        MustInputFreeitem3 = #{mustinputfreeitem3,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem5 != null" >
+        MustInputFreeitem5 = #{mustinputfreeitem5,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem4 != null" >
+        MustInputFreeitem4 = #{mustinputfreeitem4,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem9 != null" >
+        MustInputFreeitem9 = #{mustinputfreeitem9,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem1 != null" >
+        MustInputFreeitem1 = #{mustinputfreeitem1,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem8 != null" >
+        MustInputFreeitem8 = #{mustinputfreeitem8,jdbcType=TINYINT},
+      </if>
+      <if test="mustinputfreeitem0 != null" >
+        MustInputFreeitem0 = #{mustinputfreeitem0,jdbcType=TINYINT},
+      </if>
+      <if test="producebatch != null" >
+        produceBatch = #{producebatch,jdbcType=DECIMAL},
+      </if>
+      <if test="imagefile != null" >
+        imageFile = #{imagefile,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        priuserdefnvc5 = #{priuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        priuserdefdecm5 = #{priuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="standardturnoverdays != null" >
+        standardturnoverdays = #{standardturnoverdays,jdbcType=DECIMAL},
+      </if>
+      <if test="haseverchanged != null" >
+        HasEverChanged = #{haseverchanged,jdbcType=NVARCHAR},
+      </if>
+      <if test="pickbatch != null" >
+        pickbatch = #{pickbatch,jdbcType=DECIMAL},
+      </if>
+      <if test="isphantom != null" >
+        isphantom = #{isphantom,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem0 != null" >
+        ControlRangeFreeitem0 = #{controlrangefreeitem0,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem1 != null" >
+        ControlRangeFreeitem1 = #{controlrangefreeitem1,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem2 != null" >
+        ControlRangeFreeitem2 = #{controlrangefreeitem2,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem3 != null" >
+        ControlRangeFreeitem3 = #{controlrangefreeitem3,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem4 != null" >
+        ControlRangeFreeitem4 = #{controlrangefreeitem4,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem5 != null" >
+        ControlRangeFreeitem5 = #{controlrangefreeitem5,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem6 != null" >
+        ControlRangeFreeitem6 = #{controlrangefreeitem6,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem7 != null" >
+        ControlRangeFreeitem7 = #{controlrangefreeitem7,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem8 != null" >
+        ControlRangeFreeitem8 = #{controlrangefreeitem8,jdbcType=TINYINT},
+      </if>
+      <if test="controlrangefreeitem9 != null" >
+        ControlRangeFreeitem9 = #{controlrangefreeitem9,jdbcType=TINYINT},
+      </if>
+      <if test="islaborcost != null" >
+        IsLaborCost = #{islaborcost,jdbcType=TINYINT},
+      </if>
+      <if test="batchrunnumber != null" >
+        BatchRunNumber = #{batchrunnumber,jdbcType=DECIMAL},
+      </if>
+      <if test="isnew != null" >
+        IsNew = #{isnew,jdbcType=TINYINT},
+      </if>
+      <if test="maderecorddate != null" >
+        MadeRecordDate = #{maderecorddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inventorydescript != null" >
+        InventoryDescript = #{inventorydescript,jdbcType=NVARCHAR},
+      </if>
+      <if test="renewgoodselldays != null" >
+        ReNewGoodSellDays = #{renewgoodselldays,jdbcType=INTEGER},
+      </if>
+      <if test="renewgoodaheaddays != null" >
+        ReNewGoodAheadDays = #{renewgoodaheaddays,jdbcType=INTEGER},
+      </if>
+      <if test="issuite != null" >
+        IsSuite = #{issuite,jdbcType=TINYINT},
+      </if>
+      <if test="isweigh != null" >
+        IsWeigh = #{isweigh,jdbcType=TINYINT},
+      </if>
+      <if test="defaultbarcode != null" >
+        DefaultBarCode = #{defaultbarcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="newproductperiod != null" >
+        NewProductPeriod = #{newproductperiod,jdbcType=INTEGER},
+      </if>
+      <if test="expired != null" >
+        Expired = #{expired,jdbcType=INTEGER},
+      </if>
+      <if test="idbarcodesolution != null" >
+        idbarcodesolution = #{idbarcodesolution,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryclass != null" >
+        idinventoryclass = #{idinventoryclass,jdbcType=INTEGER},
+      </if>
+      <if test="idinvlocation != null" >
+        idinvlocation = #{idinvlocation,jdbcType=INTEGER},
+      </if>
+      <if test="idmarketingorgan != null" >
+        idMarketingOrgan = #{idmarketingorgan,jdbcType=INTEGER},
+      </if>
+      <if test="idpartner != null" >
+        idpartner = #{idpartner,jdbcType=INTEGER},
+      </if>
+      <if test="idunit != null" >
+        idunit = #{idunit,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbymanufacture != null" >
+        idunitbymanufacture = #{idunitbymanufacture,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbypurchase != null" >
+        idUnitByPurchase = #{idunitbypurchase,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbyretail != null" >
+        idUnitByRetail = #{idunitbyretail,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbysale != null" >
+        idUnitBySale = #{idunitbysale,jdbcType=INTEGER},
+      </if>
+      <if test="idunitbystock != null" >
+        idUnitByStock = #{idunitbystock,jdbcType=INTEGER},
+      </if>
+      <if test="idunitgroup != null" >
+        idunitgroup = #{idunitgroup,jdbcType=INTEGER},
+      </if>
+      <if test="idsubunitbyreport != null" >
+        idSubUnitByReport = #{idsubunitbyreport,jdbcType=INTEGER},
+      </if>
+      <if test="expiredunit != null" >
+        ExpiredUnit = #{expiredunit,jdbcType=INTEGER},
+      </if>
+      <if test="idwarehouse != null" >
+        idwarehouse = #{idwarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="customerreplenishmentrule != null" >
+        customerReplenishmentRule = #{customerreplenishmentrule,jdbcType=INTEGER},
+      </if>
+      <if test="pickbatchmethod != null" >
+        pickbatchmethod = #{pickbatchmethod,jdbcType=INTEGER},
+      </if>
+      <if test="planattribute != null" >
+        planattribute = #{planattribute,jdbcType=INTEGER},
+      </if>
+      <if test="productinfo != null" >
+        productInfo = #{productinfo,jdbcType=INTEGER},
+      </if>
+      <if test="storereplenishmentrule != null" >
+        storeReplenishmentRule = #{storereplenishmentrule,jdbcType=INTEGER},
+      </if>
+      <if test="taxrate != null" >
+        taxRate = #{taxrate,jdbcType=INTEGER},
+      </if>
+      <if test="unittype != null" >
+        unittype = #{unittype,jdbcType=INTEGER},
+      </if>
+      <if test="valuetype != null" >
+        valueType = #{valuetype,jdbcType=INTEGER},
+      </if>
+      <if test="madedate != null" >
+        madeDate = #{madedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        createdTime = #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        Creater = #{creater,jdbcType=NVARCHAR},
+      </if>
+      <if test="changer != null" >
+        Changer = #{changer,jdbcType=NVARCHAR},
+      </if>
+      <if test="changedate != null" >
+        Changedate = #{changedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jinshuicode != null" >
+        JinShuiCode = #{jinshuicode,jdbcType=NVARCHAR},
+      </if>
+      <if test="ismodifiedcode != null" >
+        IsModifiedCode = #{ismodifiedcode,jdbcType=TINYINT},
+      </if>
+      <if test="withoutbargain != null" >
+        WithOutBargain = #{withoutbargain,jdbcType=TINYINT},
+      </if>
+      <if test="idinventoryfreeitemclass0 != null" >
+        idInventoryFreeItemClass0 = #{idinventoryfreeitemclass0,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass1 != null" >
+        idInventoryFreeItemClass1 = #{idinventoryfreeitemclass1,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass2 != null" >
+        idInventoryFreeItemClass2 = #{idinventoryfreeitemclass2,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass3 != null" >
+        idInventoryFreeItemClass3 = #{idinventoryfreeitemclass3,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass4 != null" >
+        idInventoryFreeItemClass4 = #{idinventoryfreeitemclass4,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass5 != null" >
+        idInventoryFreeItemClass5 = #{idinventoryfreeitemclass5,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass6 != null" >
+        idInventoryFreeItemClass6 = #{idinventoryfreeitemclass6,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass7 != null" >
+        idInventoryFreeItemClass7 = #{idinventoryfreeitemclass7,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass8 != null" >
+        idInventoryFreeItemClass8 = #{idinventoryfreeitemclass8,jdbcType=INTEGER},
+      </if>
+      <if test="idinventoryfreeitemclass9 != null" >
+        idInventoryFreeItemClass9 = #{idinventoryfreeitemclass9,jdbcType=INTEGER},
+      </if>
+      <if test="instorageuplimit != null" >
+        InStorageUpLimit = #{instorageuplimit,jdbcType=DECIMAL},
+      </if>
+      <if test="outstorageuplimit != null" >
+        OutStorageUpLimit = #{outstorageuplimit,jdbcType=DECIMAL},
+      </if>
+      <if test="ts != null" >
+        ts = #{ts,jdbcType=BINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.ssm.po.AaInventory" >
+    update AA_Inventory
+    set code = #{code,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      shorthand = #{shorthand,jdbcType=NVARCHAR},
+      specification = #{specification,jdbcType=NVARCHAR},
+      procureBatch = #{procurebatch,jdbcType=DECIMAL},
+      invSCost = #{invscost,jdbcType=DECIMAL},
+      latestCost_Abandon = #{latestcostAbandon,jdbcType=DECIMAL},
+      avagCost_Abandon = #{avagcostAbandon,jdbcType=DECIMAL},
+      isLimitedWithdraw = #{islimitedwithdraw,jdbcType=TINYINT},
+      isBatch = #{isbatch,jdbcType=TINYINT},
+      isQualityPeriod = #{isqualityperiod,jdbcType=TINYINT},
+      isSale = #{issale,jdbcType=TINYINT},
+      isMadeSelf = #{ismadeself,jdbcType=TINYINT},
+      isPurchase = #{ispurchase,jdbcType=TINYINT},
+      isMaterial = #{ismaterial,jdbcType=TINYINT},
+      lowQuantity = #{lowquantity,jdbcType=DECIMAL},
+      topQuantity = #{topquantity,jdbcType=DECIMAL},
+      safeQuantity = #{safequantity,jdbcType=DECIMAL},
+      picture = #{picture,jdbcType=NVARCHAR},
+      disabled = #{disabled,jdbcType=TINYINT},
+      isQualityCheck = #{isqualitycheck,jdbcType=TINYINT},
+      isMadeRequest = #{ismaderequest,jdbcType=TINYINT},
+      isSingleUnit = #{issingleunit,jdbcType=TINYINT},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      Userfreeitem7 = #{userfreeitem7,jdbcType=TINYINT},
+      Userfreeitem6 = #{userfreeitem6,jdbcType=TINYINT},
+      Userfreeitem2 = #{userfreeitem2,jdbcType=TINYINT},
+      Userfreeitem1 = #{userfreeitem1,jdbcType=TINYINT},
+      Userfreeitem9 = #{userfreeitem9,jdbcType=TINYINT},
+      Userfreeitem0 = #{userfreeitem0,jdbcType=TINYINT},
+      Userfreeitem8 = #{userfreeitem8,jdbcType=TINYINT},
+      Userfreeitem5 = #{userfreeitem5,jdbcType=TINYINT},
+      Userfreeitem4 = #{userfreeitem4,jdbcType=TINYINT},
+      Userfreeitem3 = #{userfreeitem3,jdbcType=TINYINT},
+      MustInputFreeitem7 = #{mustinputfreeitem7,jdbcType=TINYINT},
+      MustInputFreeitem2 = #{mustinputfreeitem2,jdbcType=TINYINT},
+      MustInputFreeitem6 = #{mustinputfreeitem6,jdbcType=TINYINT},
+      MustInputFreeitem3 = #{mustinputfreeitem3,jdbcType=TINYINT},
+      MustInputFreeitem5 = #{mustinputfreeitem5,jdbcType=TINYINT},
+      MustInputFreeitem4 = #{mustinputfreeitem4,jdbcType=TINYINT},
+      MustInputFreeitem9 = #{mustinputfreeitem9,jdbcType=TINYINT},
+      MustInputFreeitem1 = #{mustinputfreeitem1,jdbcType=TINYINT},
+      MustInputFreeitem8 = #{mustinputfreeitem8,jdbcType=TINYINT},
+      MustInputFreeitem0 = #{mustinputfreeitem0,jdbcType=TINYINT},
+      produceBatch = #{producebatch,jdbcType=DECIMAL},
+      imageFile = #{imagefile,jdbcType=NVARCHAR},
+      priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      priuserdefnvc5 = #{priuserdefnvc5,jdbcType=NVARCHAR},
+      priuserdefdecm5 = #{priuserdefdecm5,jdbcType=DECIMAL},
+      standardturnoverdays = #{standardturnoverdays,jdbcType=DECIMAL},
+      HasEverChanged = #{haseverchanged,jdbcType=NVARCHAR},
+      pickbatch = #{pickbatch,jdbcType=DECIMAL},
+      isphantom = #{isphantom,jdbcType=TINYINT},
+      ControlRangeFreeitem0 = #{controlrangefreeitem0,jdbcType=TINYINT},
+      ControlRangeFreeitem1 = #{controlrangefreeitem1,jdbcType=TINYINT},
+      ControlRangeFreeitem2 = #{controlrangefreeitem2,jdbcType=TINYINT},
+      ControlRangeFreeitem3 = #{controlrangefreeitem3,jdbcType=TINYINT},
+      ControlRangeFreeitem4 = #{controlrangefreeitem4,jdbcType=TINYINT},
+      ControlRangeFreeitem5 = #{controlrangefreeitem5,jdbcType=TINYINT},
+      ControlRangeFreeitem6 = #{controlrangefreeitem6,jdbcType=TINYINT},
+      ControlRangeFreeitem7 = #{controlrangefreeitem7,jdbcType=TINYINT},
+      ControlRangeFreeitem8 = #{controlrangefreeitem8,jdbcType=TINYINT},
+      ControlRangeFreeitem9 = #{controlrangefreeitem9,jdbcType=TINYINT},
+      IsLaborCost = #{islaborcost,jdbcType=TINYINT},
+      BatchRunNumber = #{batchrunnumber,jdbcType=DECIMAL},
+      IsNew = #{isnew,jdbcType=TINYINT},
+      MadeRecordDate = #{maderecorddate,jdbcType=TIMESTAMP},
+      InventoryDescript = #{inventorydescript,jdbcType=NVARCHAR},
+      ReNewGoodSellDays = #{renewgoodselldays,jdbcType=INTEGER},
+      ReNewGoodAheadDays = #{renewgoodaheaddays,jdbcType=INTEGER},
+      IsSuite = #{issuite,jdbcType=TINYINT},
+      IsWeigh = #{isweigh,jdbcType=TINYINT},
+      DefaultBarCode = #{defaultbarcode,jdbcType=NVARCHAR},
+      NewProductPeriod = #{newproductperiod,jdbcType=INTEGER},
+      Expired = #{expired,jdbcType=INTEGER},
+      idbarcodesolution = #{idbarcodesolution,jdbcType=INTEGER},
+      idinventoryclass = #{idinventoryclass,jdbcType=INTEGER},
+      idinvlocation = #{idinvlocation,jdbcType=INTEGER},
+      idMarketingOrgan = #{idmarketingorgan,jdbcType=INTEGER},
+      idpartner = #{idpartner,jdbcType=INTEGER},
+      idunit = #{idunit,jdbcType=INTEGER},
+      idunitbymanufacture = #{idunitbymanufacture,jdbcType=INTEGER},
+      idUnitByPurchase = #{idunitbypurchase,jdbcType=INTEGER},
+      idUnitByRetail = #{idunitbyretail,jdbcType=INTEGER},
+      idUnitBySale = #{idunitbysale,jdbcType=INTEGER},
+      idUnitByStock = #{idunitbystock,jdbcType=INTEGER},
+      idunitgroup = #{idunitgroup,jdbcType=INTEGER},
+      idSubUnitByReport = #{idsubunitbyreport,jdbcType=INTEGER},
+      ExpiredUnit = #{expiredunit,jdbcType=INTEGER},
+      idwarehouse = #{idwarehouse,jdbcType=INTEGER},
+      customerReplenishmentRule = #{customerreplenishmentrule,jdbcType=INTEGER},
+      pickbatchmethod = #{pickbatchmethod,jdbcType=INTEGER},
+      planattribute = #{planattribute,jdbcType=INTEGER},
+      productInfo = #{productinfo,jdbcType=INTEGER},
+      storeReplenishmentRule = #{storereplenishmentrule,jdbcType=INTEGER},
+      taxRate = #{taxrate,jdbcType=INTEGER},
+      unittype = #{unittype,jdbcType=INTEGER},
+      valueType = #{valuetype,jdbcType=INTEGER},
+      madeDate = #{madedate,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      createdTime = #{createdtime,jdbcType=TIMESTAMP},
+      Creater = #{creater,jdbcType=NVARCHAR},
+      Changer = #{changer,jdbcType=NVARCHAR},
+      Changedate = #{changedate,jdbcType=TIMESTAMP},
+      JinShuiCode = #{jinshuicode,jdbcType=NVARCHAR},
+      IsModifiedCode = #{ismodifiedcode,jdbcType=TINYINT},
+      WithOutBargain = #{withoutbargain,jdbcType=TINYINT},
+      idInventoryFreeItemClass0 = #{idinventoryfreeitemclass0,jdbcType=INTEGER},
+      idInventoryFreeItemClass1 = #{idinventoryfreeitemclass1,jdbcType=INTEGER},
+      idInventoryFreeItemClass2 = #{idinventoryfreeitemclass2,jdbcType=INTEGER},
+      idInventoryFreeItemClass3 = #{idinventoryfreeitemclass3,jdbcType=INTEGER},
+      idInventoryFreeItemClass4 = #{idinventoryfreeitemclass4,jdbcType=INTEGER},
+      idInventoryFreeItemClass5 = #{idinventoryfreeitemclass5,jdbcType=INTEGER},
+      idInventoryFreeItemClass6 = #{idinventoryfreeitemclass6,jdbcType=INTEGER},
+      idInventoryFreeItemClass7 = #{idinventoryfreeitemclass7,jdbcType=INTEGER},
+      idInventoryFreeItemClass8 = #{idinventoryfreeitemclass8,jdbcType=INTEGER},
+      idInventoryFreeItemClass9 = #{idinventoryfreeitemclass9,jdbcType=INTEGER},
+      InStorageUpLimit = #{instorageuplimit,jdbcType=DECIMAL},
+      OutStorageUpLimit = #{outstorageuplimit,jdbcType=DECIMAL},
+      ts = #{ts,jdbcType=BINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.AaInventory" >
+    update AA_Inventory
+    set code = #{code,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      shorthand = #{shorthand,jdbcType=NVARCHAR},
+      specification = #{specification,jdbcType=NVARCHAR},
+      procureBatch = #{procurebatch,jdbcType=DECIMAL},
+      invSCost = #{invscost,jdbcType=DECIMAL},
+      latestCost_Abandon = #{latestcostAbandon,jdbcType=DECIMAL},
+      avagCost_Abandon = #{avagcostAbandon,jdbcType=DECIMAL},
+      isLimitedWithdraw = #{islimitedwithdraw,jdbcType=TINYINT},
+      isBatch = #{isbatch,jdbcType=TINYINT},
+      isQualityPeriod = #{isqualityperiod,jdbcType=TINYINT},
+      isSale = #{issale,jdbcType=TINYINT},
+      isMadeSelf = #{ismadeself,jdbcType=TINYINT},
+      isPurchase = #{ispurchase,jdbcType=TINYINT},
+      isMaterial = #{ismaterial,jdbcType=TINYINT},
+      lowQuantity = #{lowquantity,jdbcType=DECIMAL},
+      topQuantity = #{topquantity,jdbcType=DECIMAL},
+      safeQuantity = #{safequantity,jdbcType=DECIMAL},
+      picture = #{picture,jdbcType=NVARCHAR},
+      disabled = #{disabled,jdbcType=TINYINT},
+      isQualityCheck = #{isqualitycheck,jdbcType=TINYINT},
+      isMadeRequest = #{ismaderequest,jdbcType=TINYINT},
+      isSingleUnit = #{issingleunit,jdbcType=TINYINT},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      Userfreeitem7 = #{userfreeitem7,jdbcType=TINYINT},
+      Userfreeitem6 = #{userfreeitem6,jdbcType=TINYINT},
+      Userfreeitem2 = #{userfreeitem2,jdbcType=TINYINT},
+      Userfreeitem1 = #{userfreeitem1,jdbcType=TINYINT},
+      Userfreeitem9 = #{userfreeitem9,jdbcType=TINYINT},
+      Userfreeitem0 = #{userfreeitem0,jdbcType=TINYINT},
+      Userfreeitem8 = #{userfreeitem8,jdbcType=TINYINT},
+      Userfreeitem5 = #{userfreeitem5,jdbcType=TINYINT},
+      Userfreeitem4 = #{userfreeitem4,jdbcType=TINYINT},
+      Userfreeitem3 = #{userfreeitem3,jdbcType=TINYINT},
+      MustInputFreeitem7 = #{mustinputfreeitem7,jdbcType=TINYINT},
+      MustInputFreeitem2 = #{mustinputfreeitem2,jdbcType=TINYINT},
+      MustInputFreeitem6 = #{mustinputfreeitem6,jdbcType=TINYINT},
+      MustInputFreeitem3 = #{mustinputfreeitem3,jdbcType=TINYINT},
+      MustInputFreeitem5 = #{mustinputfreeitem5,jdbcType=TINYINT},
+      MustInputFreeitem4 = #{mustinputfreeitem4,jdbcType=TINYINT},
+      MustInputFreeitem9 = #{mustinputfreeitem9,jdbcType=TINYINT},
+      MustInputFreeitem1 = #{mustinputfreeitem1,jdbcType=TINYINT},
+      MustInputFreeitem8 = #{mustinputfreeitem8,jdbcType=TINYINT},
+      MustInputFreeitem0 = #{mustinputfreeitem0,jdbcType=TINYINT},
+      produceBatch = #{producebatch,jdbcType=DECIMAL},
+      imageFile = #{imagefile,jdbcType=NVARCHAR},
+      priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      priuserdefnvc5 = #{priuserdefnvc5,jdbcType=NVARCHAR},
+      priuserdefdecm5 = #{priuserdefdecm5,jdbcType=DECIMAL},
+      standardturnoverdays = #{standardturnoverdays,jdbcType=DECIMAL},
+      HasEverChanged = #{haseverchanged,jdbcType=NVARCHAR},
+      pickbatch = #{pickbatch,jdbcType=DECIMAL},
+      isphantom = #{isphantom,jdbcType=TINYINT},
+      ControlRangeFreeitem0 = #{controlrangefreeitem0,jdbcType=TINYINT},
+      ControlRangeFreeitem1 = #{controlrangefreeitem1,jdbcType=TINYINT},
+      ControlRangeFreeitem2 = #{controlrangefreeitem2,jdbcType=TINYINT},
+      ControlRangeFreeitem3 = #{controlrangefreeitem3,jdbcType=TINYINT},
+      ControlRangeFreeitem4 = #{controlrangefreeitem4,jdbcType=TINYINT},
+      ControlRangeFreeitem5 = #{controlrangefreeitem5,jdbcType=TINYINT},
+      ControlRangeFreeitem6 = #{controlrangefreeitem6,jdbcType=TINYINT},
+      ControlRangeFreeitem7 = #{controlrangefreeitem7,jdbcType=TINYINT},
+      ControlRangeFreeitem8 = #{controlrangefreeitem8,jdbcType=TINYINT},
+      ControlRangeFreeitem9 = #{controlrangefreeitem9,jdbcType=TINYINT},
+      IsLaborCost = #{islaborcost,jdbcType=TINYINT},
+      BatchRunNumber = #{batchrunnumber,jdbcType=DECIMAL},
+      IsNew = #{isnew,jdbcType=TINYINT},
+      MadeRecordDate = #{maderecorddate,jdbcType=TIMESTAMP},
+      InventoryDescript = #{inventorydescript,jdbcType=NVARCHAR},
+      ReNewGoodSellDays = #{renewgoodselldays,jdbcType=INTEGER},
+      ReNewGoodAheadDays = #{renewgoodaheaddays,jdbcType=INTEGER},
+      IsSuite = #{issuite,jdbcType=TINYINT},
+      IsWeigh = #{isweigh,jdbcType=TINYINT},
+      DefaultBarCode = #{defaultbarcode,jdbcType=NVARCHAR},
+      NewProductPeriod = #{newproductperiod,jdbcType=INTEGER},
+      Expired = #{expired,jdbcType=INTEGER},
+      idbarcodesolution = #{idbarcodesolution,jdbcType=INTEGER},
+      idinventoryclass = #{idinventoryclass,jdbcType=INTEGER},
+      idinvlocation = #{idinvlocation,jdbcType=INTEGER},
+      idMarketingOrgan = #{idmarketingorgan,jdbcType=INTEGER},
+      idpartner = #{idpartner,jdbcType=INTEGER},
+      idunit = #{idunit,jdbcType=INTEGER},
+      idunitbymanufacture = #{idunitbymanufacture,jdbcType=INTEGER},
+      idUnitByPurchase = #{idunitbypurchase,jdbcType=INTEGER},
+      idUnitByRetail = #{idunitbyretail,jdbcType=INTEGER},
+      idUnitBySale = #{idunitbysale,jdbcType=INTEGER},
+      idUnitByStock = #{idunitbystock,jdbcType=INTEGER},
+      idunitgroup = #{idunitgroup,jdbcType=INTEGER},
+      idSubUnitByReport = #{idsubunitbyreport,jdbcType=INTEGER},
+      ExpiredUnit = #{expiredunit,jdbcType=INTEGER},
+      idwarehouse = #{idwarehouse,jdbcType=INTEGER},
+      customerReplenishmentRule = #{customerreplenishmentrule,jdbcType=INTEGER},
+      pickbatchmethod = #{pickbatchmethod,jdbcType=INTEGER},
+      planattribute = #{planattribute,jdbcType=INTEGER},
+      productInfo = #{productinfo,jdbcType=INTEGER},
+      storeReplenishmentRule = #{storereplenishmentrule,jdbcType=INTEGER},
+      taxRate = #{taxrate,jdbcType=INTEGER},
+      unittype = #{unittype,jdbcType=INTEGER},
+      valueType = #{valuetype,jdbcType=INTEGER},
+      madeDate = #{madedate,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      createdTime = #{createdtime,jdbcType=TIMESTAMP},
+      Creater = #{creater,jdbcType=NVARCHAR},
+      Changer = #{changer,jdbcType=NVARCHAR},
+      Changedate = #{changedate,jdbcType=TIMESTAMP},
+      JinShuiCode = #{jinshuicode,jdbcType=NVARCHAR},
+      IsModifiedCode = #{ismodifiedcode,jdbcType=TINYINT},
+      WithOutBargain = #{withoutbargain,jdbcType=TINYINT},
+      idInventoryFreeItemClass0 = #{idinventoryfreeitemclass0,jdbcType=INTEGER},
+      idInventoryFreeItemClass1 = #{idinventoryfreeitemclass1,jdbcType=INTEGER},
+      idInventoryFreeItemClass2 = #{idinventoryfreeitemclass2,jdbcType=INTEGER},
+      idInventoryFreeItemClass3 = #{idinventoryfreeitemclass3,jdbcType=INTEGER},
+      idInventoryFreeItemClass4 = #{idinventoryfreeitemclass4,jdbcType=INTEGER},
+      idInventoryFreeItemClass5 = #{idinventoryfreeitemclass5,jdbcType=INTEGER},
+      idInventoryFreeItemClass6 = #{idinventoryfreeitemclass6,jdbcType=INTEGER},
+      idInventoryFreeItemClass7 = #{idinventoryfreeitemclass7,jdbcType=INTEGER},
+      idInventoryFreeItemClass8 = #{idinventoryfreeitemclass8,jdbcType=INTEGER},
+      idInventoryFreeItemClass9 = #{idinventoryfreeitemclass9,jdbcType=INTEGER},
+      InStorageUpLimit = #{instorageuplimit,jdbcType=DECIMAL},
+      OutStorageUpLimit = #{outstorageuplimit,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 1、根据存货id查询图号、物料号、产品名称、产品规格 -->
+  <select id="selectSaleOrder" resultMap="BaseResultMap">
+  select distinct a.name,a.code,a.specification,a.InventoryDescript,a.idunit from AA_Inventory a
+  where a.id = #{0}
+  </select>
+  
+   <!-- 2、根据物料号查询存货id -->
+  <select id="selectInventoryid" resultMap="BaseResultMap">
+  select a.id from AA_Inventory a
+  where a.code = #{0}
+  </select>
+  
+  <!--3、根据存货id查询物料号 -->
+  <select id="selectInventoryidToMaterialNo" resultType="String" parameterType="Integer">
+  select distinct a.code from AA_Inventory a
+  where a.id = #{0}
+  </select>
+  
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.MoldRecordMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.MoldRecord" >
+    <id column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="mold_no" property="moldNo" jdbcType="VARCHAR" />
+    <result column="mold_name" property="moldName" jdbcType="VARCHAR" />
+    <result column="provider" property="provider" jdbcType="VARCHAR" />
+    <result column="shop1" property="shop1" jdbcType="VARCHAR" />
+    <result column="acceptor" property="acceptor" jdbcType="VARCHAR" />
+    <result column="shop2" property="shop2" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="out_date" property="outDate" jdbcType="VARCHAR" />
+    <result column="in_date" property="inDate" jdbcType="VARCHAR" />
+    <result column="use_times" property="useTimes" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  
+	<!-- 模具出入库记录sql片段 -->
+ <sql id="query_mold_record_where">
+			
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="batch_no!=null and batch_no!=''">
+				and  a.batch_no like '%${batch_no}%'
+			</if>
+			<if test="mold_no!=null and mold_no!=''">
+				and  a.mold_no like '%${mold_no}%'
+			</if>
+			
+	</sql>
+  
+  <sql id="Base_Column_List" >
+    record_id, plan_no, client_material_no, material_no, product_spec, batch_no, mold_no, 
+    mold_name, provider, shop1, acceptor, shop2, num, out_date, in_date, use_times, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mold_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mold_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.MoldRecord" >
+    insert into mold_record (record_id, plan_no, client_material_no, 
+      material_no, product_spec, batch_no, 
+      mold_no, mold_name, provider, 
+      shop1, acceptor, shop2, 
+      num, out_date, in_date, 
+      use_times, remark)
+    values (#{recordId,jdbcType=INTEGER}, #{planNo,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, 
+      #{materialNo,jdbcType=VARCHAR}, #{productSpec,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, 
+      #{moldNo,jdbcType=VARCHAR}, #{moldName,jdbcType=VARCHAR}, #{provider,jdbcType=VARCHAR}, 
+      #{shop1,jdbcType=VARCHAR}, #{acceptor,jdbcType=VARCHAR}, #{shop2,jdbcType=VARCHAR}, 
+      #{num,jdbcType=VARCHAR}, #{outDate,jdbcType=VARCHAR}, #{inDate,jdbcType=VARCHAR}, 
+      #{useTimes,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.MoldRecord" >
+    insert into mold_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        record_id,
+      </if>
+      <if test="planNo != null" >
+        plan_no,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="productSpec != null" >
+        product_spec,
+      </if>
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="moldNo != null" >
+        mold_no,
+      </if>
+      <if test="moldName != null" >
+        mold_name,
+      </if>
+      <if test="provider != null" >
+        provider,
+      </if>
+      <if test="shop1 != null" >
+        shop1,
+      </if>
+      <if test="acceptor != null" >
+        acceptor,
+      </if>
+      <if test="shop2 != null" >
+        shop2,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="outDate != null" >
+        out_date,
+      </if>
+      <if test="inDate != null" >
+        in_date,
+      </if>
+      <if test="useTimes != null" >
+        use_times,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="planNo != null" >
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null" >
+        #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moldName != null" >
+        #{moldName,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="shop1 != null" >
+        #{shop1,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptor != null" >
+        #{acceptor,jdbcType=VARCHAR},
+      </if>
+      <if test="shop2 != null" >
+        #{shop2,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="outDate != null" >
+        #{outDate,jdbcType=VARCHAR},
+      </if>
+      <if test="inDate != null" >
+        #{inDate,jdbcType=VARCHAR},
+      </if>
+      <if test="useTimes != null" >
+        #{useTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.MoldRecord" >
+    update mold_record
+    <set >
+      <if test="planNo != null" >
+        plan_no = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null" >
+        mold_no = #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moldName != null" >
+        mold_name = #{moldName,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        provider = #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="shop1 != null" >
+        shop1 = #{shop1,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptor != null" >
+        acceptor = #{acceptor,jdbcType=VARCHAR},
+      </if>
+      <if test="shop2 != null" >
+        shop2 = #{shop2,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="outDate != null" >
+        out_date = #{outDate,jdbcType=VARCHAR},
+      </if>
+      <if test="inDate != null" >
+        in_date = #{inDate,jdbcType=VARCHAR},
+      </if>
+      <if test="useTimes != null" >
+        use_times = #{useTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.MoldRecord" >
+    update mold_record
+    set plan_no = #{planNo,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      mold_no = #{moldNo,jdbcType=VARCHAR},
+      mold_name = #{moldName,jdbcType=VARCHAR},
+      provider = #{provider,jdbcType=VARCHAR},
+      shop1 = #{shop1,jdbcType=VARCHAR},
+      acceptor = #{acceptor,jdbcType=VARCHAR},
+      shop2 = #{shop2,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      out_date = #{outDate,jdbcType=VARCHAR},
+      in_date = #{inDate,jdbcType=VARCHAR},
+      use_times = #{useTimes,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 添加的部分：根据图号，物料号，模具名称查询 //模具出入库记录分页查询-->
+  <select id="selectByPrimary" resultMap="BaseResultMap">
+  select*from
+  mold_record a
+   <where>
+		<include refid="query_mold_record_where"/>
+	</where>
+	<!-- ORDER BY record_id DESC -->
+	 ORDER BY RIGHT(a.batch_no,13) DESC
+	limit #{startPos},#{pageSize}
+  </select>
+  
+   <!-- //模具出入库记录分页查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectByPrimarytotalCount" resultType="int">
+  	select  count(*) from  mold_record a
+  	<where>
+		<include refid="query_mold_record_where"/>
+	</where>
+  </select>
+  
+  
+  
+</mapper>

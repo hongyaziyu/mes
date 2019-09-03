@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.CheckContentMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.CheckContent" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="asset_name" property="assetName" jdbcType="VARCHAR" />
+    <result column="asset_no" property="assetNo" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, asset_name, asset_no, result
+  </sql>
+  
+  <!-- 设备点检内容查询sql片段 -->
+  <sql id="query_assetcheckrecord_where">
+  
+            <if test="assetName!=null and assetName!=''">
+				and  a.asset_name like '%${assetName}%'
+			</if>
+			
+  </sql>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from check_content
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from check_content
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.CheckContent" >
+    insert into check_content (id, asset_name, asset_no, 
+      result)
+    values (#{id,jdbcType=INTEGER}, #{assetName,jdbcType=VARCHAR}, #{assetNo,jdbcType=VARCHAR}, 
+      #{result,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.CheckContent" >
+    insert into check_content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="assetName != null" >
+        asset_name,
+      </if>
+      <if test="assetNo != null" >
+        asset_no,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="assetName != null" >
+        #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetNo != null" >
+        #{assetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.CheckContent" >
+    update check_content
+    <set >
+      <if test="assetName != null" >
+        asset_name = #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetNo != null" >
+        asset_no = #{assetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.CheckContent" >
+    update check_content
+    set asset_name = #{assetName,jdbcType=VARCHAR},
+      asset_no = #{assetNo,jdbcType=VARCHAR},
+      result = #{result,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <!--1.2设备查询分页 -->
+  <select id="selectAssetCheckRecord" resultMap="BaseResultMap">
+    select DISTINCT a.asset_name from
+     check_content a
+     <where>
+		<include refid="query_assetcheckrecord_where"/>
+	</where>
+	ORDER BY id DESC
+	<!-- limit m,n为从m+1开始取n条记录 -->
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+  
+  <!-- 1.1设备查询分页返回行数totalCount -->
+  <select id="selectAssetCheckRecordtotalCount" resultType="int">
+  	select  count(DISTINCT a.asset_name) from check_content a
+  	<where>
+		<include refid="query_assetcheckrecord_where"/>
+	</where>
+  </select>
+  
+  
+  <!-- 2.更新-先查询设备点检内容 -->
+  <select id="selectAssetCheckRecordByParm" resultMap="BaseResultMap">
+  	select*from check_content 
+  	where asset_name=#{0}
+  </select>
+  
+  <!--3.删除设备点检内容 -->
+   <delete id="deleteAssetCheckRecord" parameterType="java.lang.String" >
+    delete from check_content
+    where asset_name=#{0}
+  </delete>
+  
+  
+   <!--4.excel导入-查询是否存在该条信息 -->
+  <select id="selectAssetCheckRecordExcel" resultMap="BaseResultMap">
+  	select*from check_content 
+  	where asset_name=#{0}
+  	and result=#{1}
+  </select>
+   
+</mapper>

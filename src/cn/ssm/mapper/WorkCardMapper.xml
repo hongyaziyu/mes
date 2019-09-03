@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.WorkCardMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.WorkCard" >
+    <id column="track_id" property="trackId" jdbcType="INTEGER" />
+    <result column="card_id" property="cardId" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="asset" property="asset" jdbcType="VARCHAR" />
+    <result column="asset_state" property="assetState" jdbcType="VARCHAR" />
+    <result column="mold" property="mold" jdbcType="VARCHAR" />
+    <result column="mold_state" property="moldState" jdbcType="VARCHAR" />
+    <result column="total_num" property="totalNum" jdbcType="VARCHAR" />
+    <result column="hege_num" property="hegeNum" jdbcType="VARCHAR" />
+    <result column="total_cipin_num" property="totalCipinNum" jdbcType="VARCHAR" />
+    <result column="produce_date" property="produceDate" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="tem_price" property="temPrice" jdbcType="VARCHAR" />
+    <result column="is_approval" property="isApproval" jdbcType="INTEGER" />
+    
+     <!-- 添加的3表列，实现1对多（2表对3表） -->
+   <collection property="cipin" ofType="cn.ssm.po.Cipin">
+	 <result column="cipin_id" property="cipinId" jdbcType="VARCHAR" />
+	 <result column="cipin_type" property="cipinType" jdbcType="VARCHAR" />
+	 <result column="cipin_species" property="cipinSpecies" jdbcType="VARCHAR" />
+	 <result column="cipin_num" property="cipinNum" jdbcType="VARCHAR" />
+   </collection> 
+  </resultMap>
+  <sql id="Base_Column_List" >
+    track_id, card_id, shop_name, process_name, operator, asset, asset_state, mold, mold_state, 
+    total_num, hege_num, total_cipin_num, produce_date, remark, price, tem_price, is_approval
+  </sql>
+  
+  <!-- 工资单信息sql片段 -->
+  <sql id="query_SelectByPrimary_where">
+            <if test="operator!=null and operator!=''">
+				and a.operator like '%${operator}%'
+			</if>
+			<if test="shop_name!=null and shop_name!=''">
+				and a.shop_name like '%${shop_name}%'
+			</if>
+			<if test="date!=null and date!=''">
+				and LEFT(a.produce_date,7)=#{date}
+			</if>
+	
+	</sql>
+	
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from work_card
+    where track_id = #{trackId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from work_card
+    where track_id = #{trackId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.WorkCard" >
+    insert into work_card (track_id, card_id, shop_name, 
+      process_name, operator, asset, 
+      asset_state, mold, mold_state, 
+      total_num, hege_num, total_cipin_num, 
+      produce_date, remark, price, 
+      tem_price, is_approval)
+    values (#{trackId,jdbcType=INTEGER}, #{cardId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, 
+      #{processName,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, #{asset,jdbcType=VARCHAR}, 
+      #{assetState,jdbcType=VARCHAR}, #{mold,jdbcType=VARCHAR}, #{moldState,jdbcType=VARCHAR}, 
+      #{totalNum,jdbcType=VARCHAR}, #{hegeNum,jdbcType=VARCHAR}, #{totalCipinNum,jdbcType=VARCHAR}, 
+      #{produceDate,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{temPrice,jdbcType=VARCHAR}, #{isApproval,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.WorkCard" >
+    insert into work_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trackId != null" >
+        track_id,
+      </if>
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="processName != null" >
+        process_name,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="asset != null" >
+        asset,
+      </if>
+      <if test="assetState != null" >
+        asset_state,
+      </if>
+      <if test="mold != null" >
+        mold,
+      </if>
+      <if test="moldState != null" >
+        mold_state,
+      </if>
+      <if test="totalNum != null" >
+        total_num,
+      </if>
+      <if test="hegeNum != null" >
+        hege_num,
+      </if>
+      <if test="totalCipinNum != null" >
+        total_cipin_num,
+      </if>
+      <if test="produceDate != null" >
+        produce_date,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="temPrice != null" >
+        tem_price,
+      </if>
+      <if test="isApproval != null" >
+        is_approval,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trackId != null" >
+        #{trackId,jdbcType=INTEGER},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="asset != null" >
+        #{asset,jdbcType=VARCHAR},
+      </if>
+      <if test="assetState != null" >
+        #{assetState,jdbcType=VARCHAR},
+      </if>
+      <if test="mold != null" >
+        #{mold,jdbcType=VARCHAR},
+      </if>
+      <if test="moldState != null" >
+        #{moldState,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="hegeNum != null" >
+        #{hegeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCipinNum != null" >
+        #{totalCipinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null" >
+        #{produceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="temPrice != null" >
+        #{temPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="isApproval != null" >
+        #{isApproval,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.WorkCard" >
+    update work_card
+    <set >
+      <if test="cardId != null" >
+        card_id = #{cardId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        process_name = #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="asset != null" >
+        asset = #{asset,jdbcType=VARCHAR},
+      </if>
+      <if test="assetState != null" >
+        asset_state = #{assetState,jdbcType=VARCHAR},
+      </if>
+      <if test="mold != null" >
+        mold = #{mold,jdbcType=VARCHAR},
+      </if>
+      <if test="moldState != null" >
+        mold_state = #{moldState,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null" >
+        total_num = #{totalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="hegeNum != null" >
+        hege_num = #{hegeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCipinNum != null" >
+        total_cipin_num = #{totalCipinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null" >
+        produce_date = #{produceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="temPrice != null" >
+        tem_price = #{temPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="isApproval != null" >
+        is_approval = #{isApproval,jdbcType=INTEGER},
+      </if>
+    </set>
+    where track_id = #{trackId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.WorkCard" >
+    update work_card
+    set card_id = #{cardId,jdbcType=INTEGER},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      process_name = #{processName,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      asset = #{asset,jdbcType=VARCHAR},
+      asset_state = #{assetState,jdbcType=VARCHAR},
+      mold = #{mold,jdbcType=VARCHAR},
+      mold_state = #{moldState,jdbcType=VARCHAR},
+      total_num = #{totalNum,jdbcType=VARCHAR},
+      hege_num = #{hegeNum,jdbcType=VARCHAR},
+      total_cipin_num = #{totalCipinNum,jdbcType=VARCHAR},
+      produce_date = #{produceDate,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      tem_price = #{temPrice,jdbcType=VARCHAR},
+      is_approval = #{isApproval,jdbcType=INTEGER}
+    where track_id = #{trackId,jdbcType=INTEGER}
+  </update>
+  
+  
+   <!-- 根据操作工，车间，月份的工资查询 //工资单记录查询分页-->
+  <select id="SelectByPrimary" resultMap="BaseResultMap">
+  select*from
+  work_card a
+   <where>
+		<include refid="query_SelectByPrimary_where"/>
+	</where>
+	ORDER BY track_id DESC
+	limit #{startPos},#{pageSize}
+  </select>
+  
+  
+  <!-- 工资单记录查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="SelectByPrimarytotalCount" resultType="int">
+  	select  count(*) from  work_card a
+  	<where>
+		<include refid="query_SelectByPrimary_where"/>
+	</where>
+  </select>
+  
+ 
+   <!-- 工资单记录excel查询-->
+  <select id="SelectexcelByPrimary" resultMap="BaseResultMap">
+  select*from
+  work_card a
+   <where>
+		<include refid="query_SelectByPrimary_where"/>
+	</where>
+	<!-- ORDER BY track_id DESC -->
+	ORDER BY produce_date DESC
+  </select>
+  
+  
+  
+   <!-- 根据card_id查询2表的信息 -->
+  <!-- LEFT JOIN左连接，显示2表的全部信息和2表与3表的连接部分，避免了在3表没有次品的情况下，2表的信息仍然显示 -->
+  <select id="SelectBycardId" resultMap="BaseResultMap">
+  select*from
+  work_card AS a LEFT JOIN cipin AS b ON
+  a.track_id=b.track_id
+  where a.card_id=#{0}
+  </select>
+  
+  
+   <!-- 次品率查询信息 -->
+  <select id="selectWorkCardByParam" resultMap="BaseResultMap">
+  select track_id, shop_name,  process_name, operator,SUM(total_num)AS total_num,SUM(hege_num) as hege_num,SUM(total_cipin_num) AS total_cipin_num  
+	from work_card 
+	where 
+	produce_date BETWEEN #{produceDate} and #{produceDate1} GROUP BY shop_name , process_name, operator
+	ORDER BY total_cipin_num /total_num  DESC
+  limit #{startPos},#{pageSize}
+  </select>
+  
+   <!-- 次品率查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectWorkCardByParamtotalCount" resultType="int">
+  	select  count(*) from  work_card
+  	where 
+	produce_date BETWEEN #{produceDate} and #{produceDate1} 
+  </select>
+  
+  
+  <!--查询模具使用频次 -->
+  <select id="SelectBycardId1" resultType="string">
+  	SELECT SUM(total_num) AS total_num  FROM work_card 
+	WHERE card_id=#{0}
+	AND mold=#{1}
+	GROUP BY mold
+  </select>
+ 
+  
+</mapper>

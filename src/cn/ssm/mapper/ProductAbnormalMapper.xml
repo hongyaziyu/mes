@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.ProductAbnormalMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.ProductAbnormal" >
+    <id column="abnormal_id" property="abnormalId" jdbcType="INTEGER" />
+    <result column="abnormal_no" property="abnormalNo" jdbcType="VARCHAR" />
+    <result column="client" property="client" jdbcType="VARCHAR" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="site" property="site" jdbcType="VARCHAR" />
+    <result column="half_product_name" property="halfProductName" jdbcType="VARCHAR" />
+    <result column="product_specfic" property="productSpecfic" jdbcType="VARCHAR" />
+    <result column="produce_date" property="produceDate" jdbcType="VARCHAR" />
+    <result column="abnormal_num" property="abnormalNum" jdbcType="VARCHAR" />
+    <result column="send_date" property="sendDate" jdbcType="VARCHAR" />
+    <result column="send_person" property="sendPerson" jdbcType="VARCHAR" />
+    <result column="abnormal_desc" property="abnormalDesc" jdbcType="VARCHAR" />
+    <result column="track_verification" property="trackVerification" jdbcType="VARCHAR" />
+    <result column="verific_date" property="verificDate" jdbcType="VARCHAR" />
+    <result column="verifier" property="verifier" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_repair" property="isRepair" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <!-- 产品异常记录的sql语句 -->
+   <sql id="query_product_abnormal_where">
+   			
+			<if test="start_date!=null and start_date!=''">
+				and  s.produce_date BETWEEN #{start_date} AND #{end_date} 
+			</if>
+			<if test="client!=null and client!=''">
+				and  s.client like '%${client}%'
+			</if>
+         	<if test="material_no!=null and material_no!=''">
+				and  s.material_no like '%${material_no}%'
+			</if>
+  	
+			
+	</sql>		
+  
+  
+  <sql id="Base_Column_List" >
+    abnormal_id, abnormal_no, client, plan_no, batch_no, client_material_no, product_name, 
+    material_no, site, half_product_name, product_specfic, produce_date, abnormal_num, 
+    send_date, send_person, abnormal_desc, track_verification, verific_date, verifier, 
+    remark, is_repair
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_abnormal
+    where abnormal_id = #{abnormalId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_abnormal
+    where abnormal_id = #{abnormalId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.ProductAbnormal" >
+    insert into product_abnormal (abnormal_id, abnormal_no, client, 
+      plan_no, batch_no, client_material_no, 
+      product_name, material_no, site, 
+      half_product_name, product_specfic, produce_date, 
+      abnormal_num, send_date, send_person, 
+      abnormal_desc, track_verification, verific_date, 
+      verifier, remark, is_repair
+      )
+    values (#{abnormalId,jdbcType=INTEGER}, #{abnormalNo,jdbcType=VARCHAR}, #{client,jdbcType=VARCHAR}, 
+      #{planNo,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, 
+      #{productName,jdbcType=VARCHAR}, #{materialNo,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR}, 
+      #{halfProductName,jdbcType=VARCHAR}, #{productSpecfic,jdbcType=VARCHAR}, #{produceDate,jdbcType=VARCHAR}, 
+      #{abnormalNum,jdbcType=VARCHAR}, #{sendDate,jdbcType=VARCHAR}, #{sendPerson,jdbcType=VARCHAR}, 
+      #{abnormalDesc,jdbcType=VARCHAR}, #{trackVerification,jdbcType=VARCHAR}, #{verificDate,jdbcType=VARCHAR}, 
+      #{verifier,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{isRepair,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.ProductAbnormal"  keyColumn="abnormal_id" keyProperty="abnormalId" useGeneratedKeys="true" >
+    insert into product_abnormal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="abnormalId != null" >
+        abnormal_id,
+      </if>
+      <if test="abnormalNo != null" >
+        abnormal_no,
+      </if>
+      <if test="client != null" >
+        client,
+      </if>
+      <if test="planNo != null" >
+        plan_no,
+      </if>
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="site != null" >
+        site,
+      </if>
+      <if test="halfProductName != null" >
+        half_product_name,
+      </if>
+      <if test="productSpecfic != null" >
+        product_specfic,
+      </if>
+      <if test="produceDate != null" >
+        produce_date,
+      </if>
+      <if test="abnormalNum != null" >
+        abnormal_num,
+      </if>
+      <if test="sendDate != null" >
+        send_date,
+      </if>
+      <if test="sendPerson != null" >
+        send_person,
+      </if>
+      <if test="abnormalDesc != null" >
+        abnormal_desc,
+      </if>
+      <if test="trackVerification != null" >
+        track_verification,
+      </if>
+      <if test="verificDate != null" >
+        verific_date,
+      </if>
+      <if test="verifier != null" >
+        verifier,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isRepair != null" >
+        is_repair,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="abnormalId != null" >
+        #{abnormalId,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalNo != null" >
+        #{abnormalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="client != null" >
+        #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="halfProductName != null" >
+        #{halfProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpecfic != null" >
+        #{productSpecfic,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null" >
+        #{produceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalNum != null" >
+        #{abnormalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null" >
+        #{sendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPerson != null" >
+        #{sendPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalDesc != null" >
+        #{abnormalDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="trackVerification != null" >
+        #{trackVerification,jdbcType=VARCHAR},
+      </if>
+      <if test="verificDate != null" >
+        #{verificDate,jdbcType=VARCHAR},
+      </if>
+      <if test="verifier != null" >
+        #{verifier,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepair != null" >
+        #{isRepair,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.ProductAbnormal" >
+    update product_abnormal
+    <set >
+      <if test="abnormalNo != null" >
+        abnormal_no = #{abnormalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="client != null" >
+        client = #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        plan_no = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        site = #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="halfProductName != null" >
+        half_product_name = #{halfProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpecfic != null" >
+        product_specfic = #{productSpecfic,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null" >
+        produce_date = #{produceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalNum != null" >
+        abnormal_num = #{abnormalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null" >
+        send_date = #{sendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPerson != null" >
+        send_person = #{sendPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalDesc != null" >
+        abnormal_desc = #{abnormalDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="trackVerification != null" >
+        track_verification = #{trackVerification,jdbcType=VARCHAR},
+      </if>
+      <if test="verificDate != null" >
+        verific_date = #{verificDate,jdbcType=VARCHAR},
+      </if>
+      <if test="verifier != null" >
+        verifier = #{verifier,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepair != null" >
+        is_repair = #{isRepair,jdbcType=INTEGER},
+      </if>
+    </set>
+    where abnormal_id = #{abnormalId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.ProductAbnormal" >
+    update product_abnormal
+    set abnormal_no = #{abnormalNo,jdbcType=VARCHAR},
+      client = #{client,jdbcType=VARCHAR},
+      plan_no = #{planNo,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      site = #{site,jdbcType=VARCHAR},
+      half_product_name = #{halfProductName,jdbcType=VARCHAR},
+      product_specfic = #{productSpecfic,jdbcType=VARCHAR},
+      produce_date = #{produceDate,jdbcType=VARCHAR},
+      abnormal_num = #{abnormalNum,jdbcType=VARCHAR},
+      send_date = #{sendDate,jdbcType=VARCHAR},
+      send_person = #{sendPerson,jdbcType=VARCHAR},
+      abnormal_desc = #{abnormalDesc,jdbcType=VARCHAR},
+      track_verification = #{trackVerification,jdbcType=VARCHAR},
+      verific_date = #{verificDate,jdbcType=VARCHAR},
+      verifier = #{verifier,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_repair = #{isRepair,jdbcType=INTEGER}
+    where abnormal_id = #{abnormalId,jdbcType=INTEGER}
+  </update>
+  
+<!--   //产品异常单记录分页 -->
+  <select id="selectProductAbnormalByParam" resultMap="BaseResultMap"  >
+    select * from
+     product_abnormal s
+     <where>
+		<include refid="query_product_abnormal_where"/>
+	</where>
+    <!--  ORDER BY abnormal_id DESC -->
+     ORDER BY RIGHT(s.batch_no,13) DESC
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+    <!-- //产品异常单记录分页查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectProductAbnormalByParamtotalCount" resultType="int">
+  	select  count(*) from  product_abnormal s
+  	<where>
+		<include refid="query_product_abnormal_where"/>
+	</where>
+  </select>
+  
+  
+</mapper>

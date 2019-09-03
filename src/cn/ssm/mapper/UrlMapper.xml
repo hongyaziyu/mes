@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.UrlMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.Url" >
+    <id column="url_id" property="urlId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    url_id, type, url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from url
+    where url_id = #{urlId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from url
+    where url_id = #{urlId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.Url" >
+    insert into url (url_id, type, url
+      )
+    values (#{urlId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.Url" >
+    insert into url
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="urlId != null" >
+        url_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="urlId != null" >
+        #{urlId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.Url" >
+    update url
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where url_id = #{urlId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.Url" >
+    update url
+    set type = #{type,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where url_id = #{urlId,jdbcType=INTEGER}
+  </update>
+  <select id="selectUrlByParam" resultType="string" parameterType="string"> 
+  	select url from url where type=#{param}
+  </select>
+  
+  
+  <!-- 查询所有的type -->
+  <select id="selectType" resultType="string" > 
+  	select DISTINCT type from url where type!="员工"
+  </select>
+  
+   <!--根据type查询所有的url -->
+  <select id="selectUrl" resultMap="BaseResultMap"  >
+    select * from
+     url 
+     where type = #{0}
+  </select>
+  
+  
+</mapper>

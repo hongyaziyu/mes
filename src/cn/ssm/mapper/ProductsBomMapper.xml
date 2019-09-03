@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.ProductsBomMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.ProductsBom" >
+    <id column="products_id" property="productsId" jdbcType="INTEGER" />
+    <result column="client" property="client" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+    <result column="zijian_no" property="zijianNo" jdbcType="VARCHAR" />
+    <result column="zijian_name" property="zijianName" jdbcType="VARCHAR" />
+    <result column="ratio1" property="ratio1" jdbcType="REAL" />
+    <result column="ratio2" property="ratio2" jdbcType="REAL" />
+    <result column="weight" property="weight" jdbcType="REAL" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 产品表查询的sql片段 -->
+  <sql id="query_selectProductsBomByParam_where">
+           
+           <if test="client_material_no!=null and client_material_no!=''">
+				and  a.client_material_no like '%${client_material_no}%'
+			</if>
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			
+  </sql>
+  <sql id="Base_Column_List" >
+    products_id, client, client_material_no, material_no, product_name, product_spec, 
+    zijian_no, zijian_name, ratio1, ratio2, weight, unit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from products_bom
+    where products_id = #{productsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from products_bom
+    where products_id = #{productsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.ProductsBom" >
+    insert into products_bom (products_id, client, client_material_no, 
+      material_no, product_name, product_spec, 
+      zijian_no, zijian_name, ratio1, 
+      ratio2, weight, unit)
+    values (#{productsId,jdbcType=INTEGER}, #{client,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, 
+      #{materialNo,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productSpec,jdbcType=VARCHAR}, 
+      #{zijianNo,jdbcType=VARCHAR}, #{zijianName,jdbcType=VARCHAR}, #{ratio1,jdbcType=REAL}, 
+      #{ratio2,jdbcType=REAL}, #{weight,jdbcType=REAL}, #{unit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.ProductsBom" >
+    insert into products_bom
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productsId != null" >
+        products_id,
+      </if>
+      <if test="client != null" >
+        client,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productSpec != null" >
+        product_spec,
+      </if>
+      <if test="zijianNo != null" >
+        zijian_no,
+      </if>
+      <if test="zijianName != null" >
+        zijian_name,
+      </if>
+      <if test="ratio1 != null" >
+        ratio1,
+      </if>
+      <if test="ratio2 != null" >
+        ratio2,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productsId != null" >
+        #{productsId,jdbcType=INTEGER},
+      </if>
+      <if test="client != null" >
+        #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="zijianNo != null" >
+        #{zijianNo,jdbcType=VARCHAR},
+      </if>
+      <if test="zijianName != null" >
+        #{zijianName,jdbcType=VARCHAR},
+      </if>
+      <if test="ratio1 != null" >
+        #{ratio1,jdbcType=REAL},
+      </if>
+      <if test="ratio2 != null" >
+        #{ratio2,jdbcType=REAL},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=REAL},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.ProductsBom" >
+    update products_bom
+    <set >
+      <if test="client != null" >
+        client = #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="zijianNo != null" >
+        zijian_no = #{zijianNo,jdbcType=VARCHAR},
+      </if>
+      <if test="zijianName != null" >
+        zijian_name = #{zijianName,jdbcType=VARCHAR},
+      </if>
+      <if test="ratio1 != null" >
+        ratio1 = #{ratio1,jdbcType=REAL},
+      </if>
+      <if test="ratio2 != null" >
+        ratio2 = #{ratio2,jdbcType=REAL},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=REAL},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where products_id = #{productsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.ProductsBom" >
+    update products_bom
+    set client = #{client,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      zijian_no = #{zijianNo,jdbcType=VARCHAR},
+      zijian_name = #{zijianName,jdbcType=VARCHAR},
+      ratio1 = #{ratio1,jdbcType=REAL},
+      ratio2 = #{ratio2,jdbcType=REAL},
+      weight = #{weight,jdbcType=REAL},
+      unit = #{unit,jdbcType=VARCHAR}
+    where products_id = #{productsId,jdbcType=INTEGER}
+  </update>
+  
+   <!-- 添加的部分：根据客户和物料号查询//产品表查询分页-->
+  <select id="selectProductsBomByParam" resultMap="BaseResultMap">
+  select * from
+     products_bom a
+      <where>
+            <include refid="query_selectProductsBomByParam_where"/>
+      </where>
+      <!-- 按照物料号分组，重复只显示一条 -->
+      group by material_no
+      ORDER BY products_id DESC
+	limit #{startPos},#{pageSize}
+  </select>
+  
+   <!-- //产品表查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectProductsBomByParamtotalCount" resultType="int">
+  	select  count(DISTINCT material_no) from  products_bom a
+  	<where>
+		<include refid="query_selectProductsBomByParam_where"/>
+	</where>
+  </select>
+  
+  
+  
+  <!--添加的部分  根据物料号和客户物料号删除-->
+  <delete id="deleteProductsBom"  >
+    delete from products_bom
+    where client_material_no = #{0}
+    AND material_no = #{1}
+  </delete>
+  
+  
+  <!-- 添加的部分：根据图号和物料号查询-->
+  <select id="selectByParam" resultMap="BaseResultMap">
+  select distinct p.client_material_no,p.material_no,p.product_name,p.product_spec,p.zijian_name,p.zijian_no,p.ratio1,p.weight,p.unit from
+    products_bom p
+      where client_material_no = #{0}
+    AND material_no = #{1}
+  </select>
+  
+  
+  <!-- 判断图号是否存在 -->
+   <select id="selectMaterialNoIsNull" resultMap="BaseResultMap" parameterType="string">
+  	select 
+    <include refid="Base_Column_List" />
+    from products_bom
+    where client_material_no=#{0}
+  </select>
+  
+  
+  <!-- 根据图号显示相应的物料号clientMaterialNo-->
+  <!-- DISTINCT去掉重复项只显示一条数据 -->
+  <select id="selectMaterialNos" resultType="String" parameterType="string">
+  	select DISTINCT material_no from products_bom 
+  	 where client_material_no like '%${clientMaterialNo}%'
+  </select>
+  
+   <!-- 根据图号、物料号得到子件名称（材料名称） -->
+  <!-- ORDER BY 语句用于对结果集进行排序,ASC：升序（默认），DESC：降序。 limit 0,1 是只取记录中的第一条. 所以这条语句只能得到一条记录 如想取前10条则 limit 0,10 如想取第10至20条则 limit 10,20-->
+  <select id="selectProductsBom" resultMap="BaseResultMap">
+  	select distinct zijian_name,zijian_no,unit,ratio1,ratio2 from products_bom 
+  	 where 
+  	client_material_no like '%${clientMaterialNo}%'
+  	and material_no=#{materialNo}
+  </select>
+
+ 
+   <!-- 添加的部分：根据图号和物料号查询-->
+  <select id="selectexcelByParam" resultMap="BaseResultMap">
+  select * from
+     products_bom 
+      where client_material_no = #{0}
+       AND material_no = #{1}
+       AND zijian_no = #{2}
+  </select>
+  
+   
+  <!-- 根据物料号显示相应的产品名称-->
+  
+  <select id="selectProductName" resultType="String" parameterType="string">
+  	select DISTINCT product_name from products_bom pb
+  	 where pb.material_no=#{0}
+  </select>
+  
+  
+  
+   <!--Ajax根据物料号显示产品名称和产品规格-->
+  <select id="selectCpmcandCpgg" resultMap="BaseResultMap">
+  select distinct product_name,product_spec from
+     products_bom 
+      where  material_no = #{0}  
+  </select>
+  
+  <!-- 根据批次号,图号，物料号查询周计划的计划单号，产品名称，产品规格所有信息-->
+  <select id="selectJCC" resultMap="BaseResultMap">
+  select distinct st.product_name,st.product_spec
+   from products_bom st
+   WHERE client_material_no like '%${clientMaterialNo}%'
+   AND  material_no = #{materialNo}
+  </select>
+</mapper>

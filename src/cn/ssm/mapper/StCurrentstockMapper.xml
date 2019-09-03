@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.StCurrentstockMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.StCurrentstock" >
+    <result column="idwarehouse" property="idwarehouse" jdbcType="INTEGER" />
+    <result column="idinventory" property="idinventory" jdbcType="INTEGER" />
+    <result column="batch" property="batch" jdbcType="NVARCHAR" />
+    <result column="IdMarketingOrgan" property="idmarketingorgan" jdbcType="INTEGER" />
+    <result column="receiveVoucherCode" property="receivevouchercode" jdbcType="NVARCHAR" />
+    <result column="productionDate" property="productiondate" jdbcType="TIMESTAMP" />
+    <result column="expiryDate" property="expirydate" jdbcType="TIMESTAMP" />
+    <result column="receiveVoucherId" property="receivevoucherid" jdbcType="INTEGER" />
+    <result column="receiveVoucherDetailId" property="receivevoucherdetailid" jdbcType="INTEGER" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="idbaseunit" property="idbaseunit" jdbcType="INTEGER" />
+    <result column="idsubunit" property="idsubunit" jdbcType="INTEGER" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="isCarriedForwardOut" property="iscarriedforwardout" jdbcType="TINYINT" />
+    <result column="isCarriedForwardIn" property="iscarriedforwardin" jdbcType="TINYINT" />
+    <result column="BaseQuantity" property="basequantity" jdbcType="DECIMAL" />
+    <result column="SubQuantity" property="subquantity" jdbcType="DECIMAL" />
+    <result column="CanuseBaseQuantity" property="canusebasequantity" jdbcType="DECIMAL" />
+    <result column="onwayBaseQuantity" property="onwaybasequantity" jdbcType="DECIMAL" />
+    <result column="fordispatchBaseQuantity" property="fordispatchbasequantity" jdbcType="DECIMAL" />
+    <result column="CanuseSubQuantity" property="canusesubquantity" jdbcType="DECIMAL" />
+    <result column="onwaySubQuantity" property="onwaysubquantity" jdbcType="DECIMAL" />
+    <result column="fordispatchSubQuantity" property="fordispatchsubquantity" jdbcType="DECIMAL" />
+    <result column="freeItem0" property="freeitem0" jdbcType="NVARCHAR" />
+    <result column="freeItem1" property="freeitem1" jdbcType="NVARCHAR" />
+    <result column="freeItem2" property="freeitem2" jdbcType="NVARCHAR" />
+    <result column="freeItem3" property="freeitem3" jdbcType="NVARCHAR" />
+    <result column="freeItem4" property="freeitem4" jdbcType="NVARCHAR" />
+    <result column="freeItem5" property="freeitem5" jdbcType="NVARCHAR" />
+    <result column="freeItem6" property="freeitem6" jdbcType="NVARCHAR" />
+    <result column="freeItem7" property="freeitem7" jdbcType="NVARCHAR" />
+    <result column="freeItem8" property="freeitem8" jdbcType="NVARCHAR" />
+    <result column="freeItem9" property="freeitem9" jdbcType="NVARCHAR" />
+    <result column="PurchaseOrderOnWayBaseQuantity" property="purchaseorderonwaybasequantity" jdbcType="DECIMAL" />
+    <result column="PurchaseArrivalBaseQuantity" property="purchasearrivalbasequantity" jdbcType="DECIMAL" />
+    <result column="OnProducingBaseQuantity" property="onproducingbasequantity" jdbcType="DECIMAL" />
+    <result column="ProduceForDispatchBaseQuantity" property="producefordispatchbasequantity" jdbcType="DECIMAL" />
+    <result column="DelegateOrderForProductBaseQuantity" property="delegateorderforproductbasequantity" jdbcType="DECIMAL" />
+    <result column="DelegateOrderForMaterialBaseQuantity" property="delegateorderformaterialbasequantity" jdbcType="DECIMAL" />
+    <result column="OtherOnWayBaseQuantity" property="otheronwaybasequantity" jdbcType="DECIMAL" />
+    <result column="ForSaleOrderBaseQuantity" property="forsaleorderbasequantity" jdbcType="DECIMAL" />
+    <result column="PurchaseForReceiveBaseQuantity" property="purchaseforreceivebasequantity" jdbcType="DECIMAL" />
+    <result column="ProductForReceiveBaseQuantity" property="productforreceivebasequantity" jdbcType="DECIMAL" />
+    <result column="DelegateForReceiveBaseQuantity" property="delegateforreceivebasequantity" jdbcType="DECIMAL" />
+    <result column="TransOnWayBaseQuantity" property="transonwaybasequantity" jdbcType="DECIMAL" />
+    <result column="TransForDispatchBaseQuantity" property="transfordispatchbasequantity" jdbcType="DECIMAL" />
+    <result column="SaleDeliveryBaseQuantity" property="saledeliverybasequantity" jdbcType="DECIMAL" />
+    <result column="ForSaleDispatchBaseQuantity" property="forsaledispatchbasequantity" jdbcType="DECIMAL" />
+    <result column="MaterialForSendBaseQuantity" property="materialforsendbasequantity" jdbcType="DECIMAL" />
+    <result column="DelegateForDispatchBaseQuantity" property="delegatefordispatchbasequantity" jdbcType="DECIMAL" />
+    <result column="OtherForDispatchBaseQuantity" property="otherfordispatchbasequantity" jdbcType="DECIMAL" />
+    <result column="StockRequestBaseQuantity" property="stockrequestbasequantity" jdbcType="DECIMAL" />
+    <result column="PurchaseOrderOnWaySubQuantity" property="purchaseorderonwaysubquantity" jdbcType="DECIMAL" />
+    <result column="PurchaseArrivalSubQuantity" property="purchasearrivalsubquantity" jdbcType="DECIMAL" />
+    <result column="OnProducingSubQuantity" property="onproducingsubquantity" jdbcType="DECIMAL" />
+    <result column="ProduceForDispatchSubQuantity" property="producefordispatchsubquantity" jdbcType="DECIMAL" />
+    <result column="DelegateOrderForProductSubQuantity" property="delegateorderforproductsubquantity" jdbcType="DECIMAL" />
+    <result column="DelegateOrderForMaterialSubQuantity" property="delegateorderformaterialsubquantity" jdbcType="DECIMAL" />
+    <result column="OtherOnWaySubQuantity" property="otheronwaysubquantity" jdbcType="DECIMAL" />
+    <result column="ForSaleOrderSubQuantity" property="forsaleordersubquantity" jdbcType="DECIMAL" />
+    <result column="PurchaseForReceiveSubQuantity" property="purchaseforreceivesubquantity" jdbcType="DECIMAL" />
+    <result column="ProductForReceiveSubQuantity" property="productforreceivesubquantity" jdbcType="DECIMAL" />
+    <result column="DelegateForReceiveSubQuantity" property="delegateforreceivesubquantity" jdbcType="DECIMAL" />
+    <result column="TransOnWaySubQuantity" property="transonwaysubquantity" jdbcType="DECIMAL" />
+    <result column="TransForDispatchSubQuantity" property="transfordispatchsubquantity" jdbcType="DECIMAL" />
+    <result column="SaleDeliverySubQuantity" property="saledeliverysubquantity" jdbcType="DECIMAL" />
+    <result column="ForSaleDispatchSubQuantity" property="forsaledispatchsubquantity" jdbcType="DECIMAL" />
+    <result column="MaterialForSendSubQuantity" property="materialforsendsubquantity" jdbcType="DECIMAL" />
+    <result column="DelegateForDispatchSubQuantity" property="delegatefordispatchsubquantity" jdbcType="DECIMAL" />
+    <result column="OtherForDispatchSubQuantity" property="otherfordispatchsubquantity" jdbcType="DECIMAL" />
+    <result column="StockRequestSubQuantity" property="stockrequestsubquantity" jdbcType="DECIMAL" />
+    <result column="changeRate" property="changerate" jdbcType="INTEGER" />
+    <result column="idBatchDispatchDTO" property="idbatchdispatchdto" jdbcType="INTEGER" />
+    <result column="idvoucherunit" property="idvoucherunit" jdbcType="INTEGER" />
+    <result column="idvoucherunit2" property="idvoucherunit2" jdbcType="INTEGER" />
+    <result column="lowQuantity" property="lowquantity" jdbcType="INTEGER" />
+    <result column="preBaseQuantity" property="prebasequantity" jdbcType="INTEGER" />
+    <result column="preSubQuantity" property="presubquantity" jdbcType="INTEGER" />
+    <result column="topQuantity" property="topquantity" jdbcType="INTEGER" />
+    <result column="updatedBy" property="updatedby" jdbcType="INTEGER" />
+    <result column="voucherQuantity" property="voucherquantity" jdbcType="INTEGER" />
+    <result column="voucherQuantity2" property="voucherquantity2" jdbcType="INTEGER" />
+    <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.ssm.po.StCurrentstock" extends="BaseResultMap" >
+    <result column="ts" property="ts" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    ts
+  </sql>
+  <insert id="insert" parameterType="cn.ssm.po.StCurrentstock" >
+    insert into ST_CurrentStock (idwarehouse, idinventory, batch, 
+      IdMarketingOrgan, receiveVoucherCode, 
+      productionDate, expiryDate, receiveVoucherId, 
+      receiveVoucherDetailId, updated, idbaseunit, 
+      idsubunit, id, isCarriedForwardOut, 
+      isCarriedForwardIn, BaseQuantity, SubQuantity, 
+      CanuseBaseQuantity, onwayBaseQuantity, 
+      fordispatchBaseQuantity, CanuseSubQuantity, 
+      onwaySubQuantity, fordispatchSubQuantity, 
+      freeItem0, freeItem1, freeItem2, 
+      freeItem3, freeItem4, freeItem5, 
+      freeItem6, freeItem7, freeItem8, 
+      freeItem9, PurchaseOrderOnWayBaseQuantity, 
+      PurchaseArrivalBaseQuantity, OnProducingBaseQuantity, 
+      ProduceForDispatchBaseQuantity, DelegateOrderForProductBaseQuantity, 
+      DelegateOrderForMaterialBaseQuantity, OtherOnWayBaseQuantity, 
+      ForSaleOrderBaseQuantity, PurchaseForReceiveBaseQuantity, 
+      ProductForReceiveBaseQuantity, DelegateForReceiveBaseQuantity, 
+      TransOnWayBaseQuantity, TransForDispatchBaseQuantity, 
+      SaleDeliveryBaseQuantity, ForSaleDispatchBaseQuantity, 
+      MaterialForSendBaseQuantity, DelegateForDispatchBaseQuantity, 
+      OtherForDispatchBaseQuantity, StockRequestBaseQuantity, 
+      PurchaseOrderOnWaySubQuantity, PurchaseArrivalSubQuantity, 
+      OnProducingSubQuantity, ProduceForDispatchSubQuantity, 
+      DelegateOrderForProductSubQuantity, DelegateOrderForMaterialSubQuantity, 
+      OtherOnWaySubQuantity, ForSaleOrderSubQuantity, 
+      PurchaseForReceiveSubQuantity, ProductForReceiveSubQuantity, 
+      DelegateForReceiveSubQuantity, TransOnWaySubQuantity, 
+      TransForDispatchSubQuantity, SaleDeliverySubQuantity, 
+      ForSaleDispatchSubQuantity, MaterialForSendSubQuantity, 
+      DelegateForDispatchSubQuantity, OtherForDispatchSubQuantity, 
+      StockRequestSubQuantity, changeRate, idBatchDispatchDTO, 
+      idvoucherunit, idvoucherunit2, lowQuantity, 
+      preBaseQuantity, preSubQuantity, topQuantity, 
+      updatedBy, voucherQuantity, voucherQuantity2, 
+      createdtime, ts)
+    values (#{idwarehouse,jdbcType=INTEGER}, #{idinventory,jdbcType=INTEGER}, #{batch,jdbcType=NVARCHAR}, 
+      #{idmarketingorgan,jdbcType=INTEGER}, #{receivevouchercode,jdbcType=NVARCHAR}, 
+      #{productiondate,jdbcType=TIMESTAMP}, #{expirydate,jdbcType=TIMESTAMP}, #{receivevoucherid,jdbcType=INTEGER}, 
+      #{receivevoucherdetailid,jdbcType=INTEGER}, #{updated,jdbcType=TIMESTAMP}, #{idbaseunit,jdbcType=INTEGER}, 
+      #{idsubunit,jdbcType=INTEGER}, #{id,jdbcType=INTEGER}, #{iscarriedforwardout,jdbcType=TINYINT}, 
+      #{iscarriedforwardin,jdbcType=TINYINT}, #{basequantity,jdbcType=DECIMAL}, #{subquantity,jdbcType=DECIMAL}, 
+      #{canusebasequantity,jdbcType=DECIMAL}, #{onwaybasequantity,jdbcType=DECIMAL}, 
+      #{fordispatchbasequantity,jdbcType=DECIMAL}, #{canusesubquantity,jdbcType=DECIMAL}, 
+      #{onwaysubquantity,jdbcType=DECIMAL}, #{fordispatchsubquantity,jdbcType=DECIMAL}, 
+      #{freeitem0,jdbcType=NVARCHAR}, #{freeitem1,jdbcType=NVARCHAR}, #{freeitem2,jdbcType=NVARCHAR}, 
+      #{freeitem3,jdbcType=NVARCHAR}, #{freeitem4,jdbcType=NVARCHAR}, #{freeitem5,jdbcType=NVARCHAR}, 
+      #{freeitem6,jdbcType=NVARCHAR}, #{freeitem7,jdbcType=NVARCHAR}, #{freeitem8,jdbcType=NVARCHAR}, 
+      #{freeitem9,jdbcType=NVARCHAR}, #{purchaseorderonwaybasequantity,jdbcType=DECIMAL}, 
+      #{purchasearrivalbasequantity,jdbcType=DECIMAL}, #{onproducingbasequantity,jdbcType=DECIMAL}, 
+      #{producefordispatchbasequantity,jdbcType=DECIMAL}, #{delegateorderforproductbasequantity,jdbcType=DECIMAL}, 
+      #{delegateorderformaterialbasequantity,jdbcType=DECIMAL}, #{otheronwaybasequantity,jdbcType=DECIMAL}, 
+      #{forsaleorderbasequantity,jdbcType=DECIMAL}, #{purchaseforreceivebasequantity,jdbcType=DECIMAL}, 
+      #{productforreceivebasequantity,jdbcType=DECIMAL}, #{delegateforreceivebasequantity,jdbcType=DECIMAL}, 
+      #{transonwaybasequantity,jdbcType=DECIMAL}, #{transfordispatchbasequantity,jdbcType=DECIMAL}, 
+      #{saledeliverybasequantity,jdbcType=DECIMAL}, #{forsaledispatchbasequantity,jdbcType=DECIMAL}, 
+      #{materialforsendbasequantity,jdbcType=DECIMAL}, #{delegatefordispatchbasequantity,jdbcType=DECIMAL}, 
+      #{otherfordispatchbasequantity,jdbcType=DECIMAL}, #{stockrequestbasequantity,jdbcType=DECIMAL}, 
+      #{purchaseorderonwaysubquantity,jdbcType=DECIMAL}, #{purchasearrivalsubquantity,jdbcType=DECIMAL}, 
+      #{onproducingsubquantity,jdbcType=DECIMAL}, #{producefordispatchsubquantity,jdbcType=DECIMAL}, 
+      #{delegateorderforproductsubquantity,jdbcType=DECIMAL}, #{delegateorderformaterialsubquantity,jdbcType=DECIMAL}, 
+      #{otheronwaysubquantity,jdbcType=DECIMAL}, #{forsaleordersubquantity,jdbcType=DECIMAL}, 
+      #{purchaseforreceivesubquantity,jdbcType=DECIMAL}, #{productforreceivesubquantity,jdbcType=DECIMAL}, 
+      #{delegateforreceivesubquantity,jdbcType=DECIMAL}, #{transonwaysubquantity,jdbcType=DECIMAL}, 
+      #{transfordispatchsubquantity,jdbcType=DECIMAL}, #{saledeliverysubquantity,jdbcType=DECIMAL}, 
+      #{forsaledispatchsubquantity,jdbcType=DECIMAL}, #{materialforsendsubquantity,jdbcType=DECIMAL}, 
+      #{delegatefordispatchsubquantity,jdbcType=DECIMAL}, #{otherfordispatchsubquantity,jdbcType=DECIMAL}, 
+      #{stockrequestsubquantity,jdbcType=DECIMAL}, #{changerate,jdbcType=INTEGER}, #{idbatchdispatchdto,jdbcType=INTEGER}, 
+      #{idvoucherunit,jdbcType=INTEGER}, #{idvoucherunit2,jdbcType=INTEGER}, #{lowquantity,jdbcType=INTEGER}, 
+      #{prebasequantity,jdbcType=INTEGER}, #{presubquantity,jdbcType=INTEGER}, #{topquantity,jdbcType=INTEGER}, 
+      #{updatedby,jdbcType=INTEGER}, #{voucherquantity,jdbcType=INTEGER}, #{voucherquantity2,jdbcType=INTEGER}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{ts,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.StCurrentstock" >
+    insert into ST_CurrentStock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idwarehouse != null" >
+        idwarehouse,
+      </if>
+      <if test="idinventory != null" >
+        idinventory,
+      </if>
+      <if test="batch != null" >
+        batch,
+      </if>
+      <if test="idmarketingorgan != null" >
+        IdMarketingOrgan,
+      </if>
+      <if test="receivevouchercode != null" >
+        receiveVoucherCode,
+      </if>
+      <if test="productiondate != null" >
+        productionDate,
+      </if>
+      <if test="expirydate != null" >
+        expiryDate,
+      </if>
+      <if test="receivevoucherid != null" >
+        receiveVoucherId,
+      </if>
+      <if test="receivevoucherdetailid != null" >
+        receiveVoucherDetailId,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="idbaseunit != null" >
+        idbaseunit,
+      </if>
+      <if test="idsubunit != null" >
+        idsubunit,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="iscarriedforwardout != null" >
+        isCarriedForwardOut,
+      </if>
+      <if test="iscarriedforwardin != null" >
+        isCarriedForwardIn,
+      </if>
+      <if test="basequantity != null" >
+        BaseQuantity,
+      </if>
+      <if test="subquantity != null" >
+        SubQuantity,
+      </if>
+      <if test="canusebasequantity != null" >
+        CanuseBaseQuantity,
+      </if>
+      <if test="onwaybasequantity != null" >
+        onwayBaseQuantity,
+      </if>
+      <if test="fordispatchbasequantity != null" >
+        fordispatchBaseQuantity,
+      </if>
+      <if test="canusesubquantity != null" >
+        CanuseSubQuantity,
+      </if>
+      <if test="onwaysubquantity != null" >
+        onwaySubQuantity,
+      </if>
+      <if test="fordispatchsubquantity != null" >
+        fordispatchSubQuantity,
+      </if>
+      <if test="freeitem0 != null" >
+        freeItem0,
+      </if>
+      <if test="freeitem1 != null" >
+        freeItem1,
+      </if>
+      <if test="freeitem2 != null" >
+        freeItem2,
+      </if>
+      <if test="freeitem3 != null" >
+        freeItem3,
+      </if>
+      <if test="freeitem4 != null" >
+        freeItem4,
+      </if>
+      <if test="freeitem5 != null" >
+        freeItem5,
+      </if>
+      <if test="freeitem6 != null" >
+        freeItem6,
+      </if>
+      <if test="freeitem7 != null" >
+        freeItem7,
+      </if>
+      <if test="freeitem8 != null" >
+        freeItem8,
+      </if>
+      <if test="freeitem9 != null" >
+        freeItem9,
+      </if>
+      <if test="purchaseorderonwaybasequantity != null" >
+        PurchaseOrderOnWayBaseQuantity,
+      </if>
+      <if test="purchasearrivalbasequantity != null" >
+        PurchaseArrivalBaseQuantity,
+      </if>
+      <if test="onproducingbasequantity != null" >
+        OnProducingBaseQuantity,
+      </if>
+      <if test="producefordispatchbasequantity != null" >
+        ProduceForDispatchBaseQuantity,
+      </if>
+      <if test="delegateorderforproductbasequantity != null" >
+        DelegateOrderForProductBaseQuantity,
+      </if>
+      <if test="delegateorderformaterialbasequantity != null" >
+        DelegateOrderForMaterialBaseQuantity,
+      </if>
+      <if test="otheronwaybasequantity != null" >
+        OtherOnWayBaseQuantity,
+      </if>
+      <if test="forsaleorderbasequantity != null" >
+        ForSaleOrderBaseQuantity,
+      </if>
+      <if test="purchaseforreceivebasequantity != null" >
+        PurchaseForReceiveBaseQuantity,
+      </if>
+      <if test="productforreceivebasequantity != null" >
+        ProductForReceiveBaseQuantity,
+      </if>
+      <if test="delegateforreceivebasequantity != null" >
+        DelegateForReceiveBaseQuantity,
+      </if>
+      <if test="transonwaybasequantity != null" >
+        TransOnWayBaseQuantity,
+      </if>
+      <if test="transfordispatchbasequantity != null" >
+        TransForDispatchBaseQuantity,
+      </if>
+      <if test="saledeliverybasequantity != null" >
+        SaleDeliveryBaseQuantity,
+      </if>
+      <if test="forsaledispatchbasequantity != null" >
+        ForSaleDispatchBaseQuantity,
+      </if>
+      <if test="materialforsendbasequantity != null" >
+        MaterialForSendBaseQuantity,
+      </if>
+      <if test="delegatefordispatchbasequantity != null" >
+        DelegateForDispatchBaseQuantity,
+      </if>
+      <if test="otherfordispatchbasequantity != null" >
+        OtherForDispatchBaseQuantity,
+      </if>
+      <if test="stockrequestbasequantity != null" >
+        StockRequestBaseQuantity,
+      </if>
+      <if test="purchaseorderonwaysubquantity != null" >
+        PurchaseOrderOnWaySubQuantity,
+      </if>
+      <if test="purchasearrivalsubquantity != null" >
+        PurchaseArrivalSubQuantity,
+      </if>
+      <if test="onproducingsubquantity != null" >
+        OnProducingSubQuantity,
+      </if>
+      <if test="producefordispatchsubquantity != null" >
+        ProduceForDispatchSubQuantity,
+      </if>
+      <if test="delegateorderforproductsubquantity != null" >
+        DelegateOrderForProductSubQuantity,
+      </if>
+      <if test="delegateorderformaterialsubquantity != null" >
+        DelegateOrderForMaterialSubQuantity,
+      </if>
+      <if test="otheronwaysubquantity != null" >
+        OtherOnWaySubQuantity,
+      </if>
+      <if test="forsaleordersubquantity != null" >
+        ForSaleOrderSubQuantity,
+      </if>
+      <if test="purchaseforreceivesubquantity != null" >
+        PurchaseForReceiveSubQuantity,
+      </if>
+      <if test="productforreceivesubquantity != null" >
+        ProductForReceiveSubQuantity,
+      </if>
+      <if test="delegateforreceivesubquantity != null" >
+        DelegateForReceiveSubQuantity,
+      </if>
+      <if test="transonwaysubquantity != null" >
+        TransOnWaySubQuantity,
+      </if>
+      <if test="transfordispatchsubquantity != null" >
+        TransForDispatchSubQuantity,
+      </if>
+      <if test="saledeliverysubquantity != null" >
+        SaleDeliverySubQuantity,
+      </if>
+      <if test="forsaledispatchsubquantity != null" >
+        ForSaleDispatchSubQuantity,
+      </if>
+      <if test="materialforsendsubquantity != null" >
+        MaterialForSendSubQuantity,
+      </if>
+      <if test="delegatefordispatchsubquantity != null" >
+        DelegateForDispatchSubQuantity,
+      </if>
+      <if test="otherfordispatchsubquantity != null" >
+        OtherForDispatchSubQuantity,
+      </if>
+      <if test="stockrequestsubquantity != null" >
+        StockRequestSubQuantity,
+      </if>
+      <if test="changerate != null" >
+        changeRate,
+      </if>
+      <if test="idbatchdispatchdto != null" >
+        idBatchDispatchDTO,
+      </if>
+      <if test="idvoucherunit != null" >
+        idvoucherunit,
+      </if>
+      <if test="idvoucherunit2 != null" >
+        idvoucherunit2,
+      </if>
+      <if test="lowquantity != null" >
+        lowQuantity,
+      </if>
+      <if test="prebasequantity != null" >
+        preBaseQuantity,
+      </if>
+      <if test="presubquantity != null" >
+        preSubQuantity,
+      </if>
+      <if test="topquantity != null" >
+        topQuantity,
+      </if>
+      <if test="updatedby != null" >
+        updatedBy,
+      </if>
+      <if test="voucherquantity != null" >
+        voucherQuantity,
+      </if>
+      <if test="voucherquantity2 != null" >
+        voucherQuantity2,
+      </if>
+      <if test="createdtime != null" >
+        createdtime,
+      </if>
+      <if test="ts != null" >
+        ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idwarehouse != null" >
+        #{idwarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="idinventory != null" >
+        #{idinventory,jdbcType=INTEGER},
+      </if>
+      <if test="batch != null" >
+        #{batch,jdbcType=NVARCHAR},
+      </if>
+      <if test="idmarketingorgan != null" >
+        #{idmarketingorgan,jdbcType=INTEGER},
+      </if>
+      <if test="receivevouchercode != null" >
+        #{receivevouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="productiondate != null" >
+        #{productiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirydate != null" >
+        #{expirydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivevoucherid != null" >
+        #{receivevoucherid,jdbcType=INTEGER},
+      </if>
+      <if test="receivevoucherdetailid != null" >
+        #{receivevoucherdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idbaseunit != null" >
+        #{idbaseunit,jdbcType=INTEGER},
+      </if>
+      <if test="idsubunit != null" >
+        #{idsubunit,jdbcType=INTEGER},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="iscarriedforwardout != null" >
+        #{iscarriedforwardout,jdbcType=TINYINT},
+      </if>
+      <if test="iscarriedforwardin != null" >
+        #{iscarriedforwardin,jdbcType=TINYINT},
+      </if>
+      <if test="basequantity != null" >
+        #{basequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="subquantity != null" >
+        #{subquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="canusebasequantity != null" >
+        #{canusebasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="onwaybasequantity != null" >
+        #{onwaybasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="fordispatchbasequantity != null" >
+        #{fordispatchbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="canusesubquantity != null" >
+        #{canusesubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="onwaysubquantity != null" >
+        #{onwaysubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="fordispatchsubquantity != null" >
+        #{fordispatchsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="freeitem0 != null" >
+        #{freeitem0,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem1 != null" >
+        #{freeitem1,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem2 != null" >
+        #{freeitem2,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem3 != null" >
+        #{freeitem3,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem4 != null" >
+        #{freeitem4,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem5 != null" >
+        #{freeitem5,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem6 != null" >
+        #{freeitem6,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem7 != null" >
+        #{freeitem7,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem8 != null" >
+        #{freeitem8,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem9 != null" >
+        #{freeitem9,jdbcType=NVARCHAR},
+      </if>
+      <if test="purchaseorderonwaybasequantity != null" >
+        #{purchaseorderonwaybasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasearrivalbasequantity != null" >
+        #{purchasearrivalbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="onproducingbasequantity != null" >
+        #{onproducingbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="producefordispatchbasequantity != null" >
+        #{producefordispatchbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="delegateorderforproductbasequantity != null" >
+        #{delegateorderforproductbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="delegateorderformaterialbasequantity != null" >
+        #{delegateorderformaterialbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="otheronwaybasequantity != null" >
+        #{otheronwaybasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="forsaleorderbasequantity != null" >
+        #{forsaleorderbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseforreceivebasequantity != null" >
+        #{purchaseforreceivebasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="productforreceivebasequantity != null" >
+        #{productforreceivebasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="delegateforreceivebasequantity != null" >
+        #{delegateforreceivebasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="transonwaybasequantity != null" >
+        #{transonwaybasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="transfordispatchbasequantity != null" >
+        #{transfordispatchbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="saledeliverybasequantity != null" >
+        #{saledeliverybasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="forsaledispatchbasequantity != null" >
+        #{forsaledispatchbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="materialforsendbasequantity != null" >
+        #{materialforsendbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="delegatefordispatchbasequantity != null" >
+        #{delegatefordispatchbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="otherfordispatchbasequantity != null" >
+        #{otherfordispatchbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="stockrequestbasequantity != null" >
+        #{stockrequestbasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseorderonwaysubquantity != null" >
+        #{purchaseorderonwaysubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasearrivalsubquantity != null" >
+        #{purchasearrivalsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="onproducingsubquantity != null" >
+        #{onproducingsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="producefordispatchsubquantity != null" >
+        #{producefordispatchsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="delegateorderforproductsubquantity != null" >
+        #{delegateorderforproductsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="delegateorderformaterialsubquantity != null" >
+        #{delegateorderformaterialsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="otheronwaysubquantity != null" >
+        #{otheronwaysubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="forsaleordersubquantity != null" >
+        #{forsaleordersubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseforreceivesubquantity != null" >
+        #{purchaseforreceivesubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="productforreceivesubquantity != null" >
+        #{productforreceivesubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="delegateforreceivesubquantity != null" >
+        #{delegateforreceivesubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="transonwaysubquantity != null" >
+        #{transonwaysubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="transfordispatchsubquantity != null" >
+        #{transfordispatchsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="saledeliverysubquantity != null" >
+        #{saledeliverysubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="forsaledispatchsubquantity != null" >
+        #{forsaledispatchsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="materialforsendsubquantity != null" >
+        #{materialforsendsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="delegatefordispatchsubquantity != null" >
+        #{delegatefordispatchsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="otherfordispatchsubquantity != null" >
+        #{otherfordispatchsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="stockrequestsubquantity != null" >
+        #{stockrequestsubquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="changerate != null" >
+        #{changerate,jdbcType=INTEGER},
+      </if>
+      <if test="idbatchdispatchdto != null" >
+        #{idbatchdispatchdto,jdbcType=INTEGER},
+      </if>
+      <if test="idvoucherunit != null" >
+        #{idvoucherunit,jdbcType=INTEGER},
+      </if>
+      <if test="idvoucherunit2 != null" >
+        #{idvoucherunit2,jdbcType=INTEGER},
+      </if>
+      <if test="lowquantity != null" >
+        #{lowquantity,jdbcType=INTEGER},
+      </if>
+      <if test="prebasequantity != null" >
+        #{prebasequantity,jdbcType=INTEGER},
+      </if>
+      <if test="presubquantity != null" >
+        #{presubquantity,jdbcType=INTEGER},
+      </if>
+      <if test="topquantity != null" >
+        #{topquantity,jdbcType=INTEGER},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType=INTEGER},
+      </if>
+      <if test="voucherquantity != null" >
+        #{voucherquantity,jdbcType=INTEGER},
+      </if>
+      <if test="voucherquantity2 != null" >
+        #{voucherquantity2,jdbcType=INTEGER},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 1、成品库存数量(条件：ST_CurrentStock.idwarehouse= N'1') -->
+  <select id="selectFULLInventoryNum" resultType="Integer" parameterType="Integer">
+	  select convert(int,SUM(ISNULL(BaseQuantity,0))) from ST_CurrentStock 
+	   WHERE idinventory=#{0} 
+	   AND idmarketingOrgan =  N'1'
+	   AND idwarehouse=N'2'
+  </select>
+  
+   <!-- 2.原材料库存数量(条件：ST_CurrentStock.idwarehouse= N'1') -->
+  <select id="selectMaterialInventoryNum" resultType="Integer" parameterType="Integer">
+	  select convert(int,SUM(ISNULL(BaseQuantity,0))) from ST_CurrentStock 
+	   WHERE idinventory=#{0} 
+	   AND idmarketingOrgan =  N'1'
+	   AND idwarehouse=N'1'
+  </select>
+  
+   
+  
+</mapper>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.ProcessTransitionMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.ProcessTransition" >
+    <id column="transition_id" property="transitionId" jdbcType="INTEGER" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="provider" property="provider" jdbcType="VARCHAR" />
+    <result column="process1" property="process1" jdbcType="VARCHAR" />
+    <result column="acceptor" property="acceptor" jdbcType="VARCHAR" />
+    <result column="process2" property="process2" jdbcType="VARCHAR" />
+    <result column="tran_date" property="tranDate" jdbcType="VARCHAR" />
+    <result column="qualified_num" property="qualifiedNum" jdbcType="VARCHAR" />
+    <result column="unqualified_num" property="unqualifiedNum" jdbcType="VARCHAR" />
+    <result column="shop_name1" property="shopName1" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    transition_id, plan_no, client_material_no, material_no, batch_no, shop_name, provider, 
+    process1, acceptor, process2, tran_date, qualified_num, unqualified_num, shop_name1
+  </sql>
+  
+  <!-- 工序交接记录的sql语句 -->
+   <sql id="query_process_transition_where">
+   			
+			<if test="start_date!=null and start_date!=''">
+				and  s.tran_date BETWEEN #{start_date} AND #{end_date} 
+			</if>
+			<if test="provider!=null and provider!=''">
+				and  (s.provider like '%${provider}%' or s.acceptor like '%${provider}%')
+			</if>
+			<if test="batchNo!=null and batchNo!=''">
+				and  s.batch_no like '%${batchNo}%'
+			</if>
+         	<if test="shopName!=null and shopName!=''">
+				and  (s.shop_name like '%${shopName}%' or s.shop_name1 like '%${shopName}%')
+			</if>
+  			
+	</sql>		
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from process_transition
+    where transition_id = #{transitionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from process_transition
+    where transition_id = #{transitionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.ProcessTransition" >
+    insert into process_transition (transition_id, plan_no, client_material_no, 
+      material_no, batch_no, shop_name, 
+      provider, process1, acceptor, 
+      process2, tran_date, qualified_num, 
+      unqualified_num, shop_name1)
+    values (#{transitionId,jdbcType=INTEGER}, #{planNo,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, 
+      #{materialNo,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, 
+      #{provider,jdbcType=VARCHAR}, #{process1,jdbcType=VARCHAR}, #{acceptor,jdbcType=VARCHAR}, 
+      #{process2,jdbcType=VARCHAR}, #{tranDate,jdbcType=VARCHAR}, #{qualifiedNum,jdbcType=VARCHAR}, 
+      #{unqualifiedNum,jdbcType=VARCHAR}, #{shopName1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.ProcessTransition" >
+    insert into process_transition
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="transitionId != null" >
+        transition_id,
+      </if>
+      <if test="planNo != null" >
+        plan_no,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="provider != null" >
+        provider,
+      </if>
+      <if test="process1 != null" >
+        process1,
+      </if>
+      <if test="acceptor != null" >
+        acceptor,
+      </if>
+      <if test="process2 != null" >
+        process2,
+      </if>
+      <if test="tranDate != null" >
+        tran_date,
+      </if>
+      <if test="qualifiedNum != null" >
+        qualified_num,
+      </if>
+      <if test="unqualifiedNum != null" >
+        unqualified_num,
+      </if>
+      <if test="shopName1 != null" >
+        shop_name1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="transitionId != null" >
+        #{transitionId,jdbcType=INTEGER},
+      </if>
+      <if test="planNo != null" >
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="process1 != null" >
+        #{process1,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptor != null" >
+        #{acceptor,jdbcType=VARCHAR},
+      </if>
+      <if test="process2 != null" >
+        #{process2,jdbcType=VARCHAR},
+      </if>
+      <if test="tranDate != null" >
+        #{tranDate,jdbcType=VARCHAR},
+      </if>
+      <if test="qualifiedNum != null" >
+        #{qualifiedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unqualifiedNum != null" >
+        #{unqualifiedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName1 != null" >
+        #{shopName1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.ProcessTransition" >
+    update process_transition
+    <set >
+      <if test="planNo != null" >
+        plan_no = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        provider = #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="process1 != null" >
+        process1 = #{process1,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptor != null" >
+        acceptor = #{acceptor,jdbcType=VARCHAR},
+      </if>
+      <if test="process2 != null" >
+        process2 = #{process2,jdbcType=VARCHAR},
+      </if>
+      <if test="tranDate != null" >
+        tran_date = #{tranDate,jdbcType=VARCHAR},
+      </if>
+      <if test="qualifiedNum != null" >
+        qualified_num = #{qualifiedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unqualifiedNum != null" >
+        unqualified_num = #{unqualifiedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName1 != null" >
+        shop_name1 = #{shopName1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where transition_id = #{transitionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.ProcessTransition" >
+    update process_transition
+    set plan_no = #{planNo,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      provider = #{provider,jdbcType=VARCHAR},
+      process1 = #{process1,jdbcType=VARCHAR},
+      acceptor = #{acceptor,jdbcType=VARCHAR},
+      process2 = #{process2,jdbcType=VARCHAR},
+      tran_date = #{tranDate,jdbcType=VARCHAR},
+      qualified_num = #{qualifiedNum,jdbcType=VARCHAR},
+      unqualified_num = #{unqualifiedNum,jdbcType=VARCHAR},
+      shop_name1 = #{shopName1,jdbcType=VARCHAR}
+    where transition_id = #{transitionId,jdbcType=INTEGER}
+  </update>
+  
+   <!--   //工序交接单记录分页 -->
+  <select id="selectProcessTransitionByParam" resultMap="BaseResultMap"  >
+    select * from
+     process_transition s
+     <where>
+		<include refid="query_process_transition_where"/>
+	</where>
+   <!--   ORDER BY transition_id DESC -->
+    ORDER BY RIGHT(s.batch_no,13) DESC
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+    <!-- //工序交接记录分页查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectProcessTransitionByParamtotalCount" resultType="int">
+  	select  count(*) from  process_transition s
+  	<where>
+		<include refid="query_process_transition_where"/>
+	</where>
+  </select>
+  
+   <!--   //工序交接excel单记录分页 -->
+  <select id="selectExcelProcessTransitionByParam" resultMap="BaseResultMap"  >
+    select * from
+     process_transition s
+     <where>
+		<include refid="query_process_transition_where"/>
+	</where>
+  </select> 
+  
+</mapper>

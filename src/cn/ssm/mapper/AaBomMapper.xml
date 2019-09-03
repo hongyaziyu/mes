@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.AaBomMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.AaBom" >
+    <result column="code" property="code" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="version" property="version" jdbcType="NVARCHAR" />
+    <result column="produceQuantity" property="producequantity" jdbcType="DECIMAL" />
+    <result column="rationWage" property="rationwage" jdbcType="DECIMAL" />
+    <result column="rationCharge" property="rationcharge" jdbcType="DECIMAL" />
+    <result column="rationManHour" property="rationmanhour" jdbcType="DECIMAL" />
+    <result column="isDefaultBom" property="isdefaultbom" jdbcType="TINYINT" />
+    <result column="bomDepth" property="bomdepth" jdbcType="INTEGER" />
+    <result column="disabled" property="disabled" jdbcType="TINYINT" />
+    <result column="updatedBy" property="updatedby" jdbcType="NVARCHAR" />
+    <result column="freeItem0" property="freeitem0" jdbcType="NVARCHAR" />
+    <result column="freeItem1" property="freeitem1" jdbcType="NVARCHAR" />
+    <result column="freeItem2" property="freeitem2" jdbcType="NVARCHAR" />
+    <result column="freeItem3" property="freeitem3" jdbcType="NVARCHAR" />
+    <result column="freeItem4" property="freeitem4" jdbcType="NVARCHAR" />
+    <result column="freeItem5" property="freeitem5" jdbcType="NVARCHAR" />
+    <result column="freeItem6" property="freeitem6" jdbcType="NVARCHAR" />
+    <result column="freeItem7" property="freeitem7" jdbcType="NVARCHAR" />
+    <result column="freeItem8" property="freeitem8" jdbcType="NVARCHAR" />
+    <result column="freeItem9" property="freeitem9" jdbcType="NVARCHAR" />
+    <result column="priuserdefnvc1" property="priuserdefnvc1" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm1" property="priuserdefdecm1" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc2" property="priuserdefnvc2" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm2" property="priuserdefdecm2" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc3" property="priuserdefnvc3" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm3" property="priuserdefdecm3" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc4" property="priuserdefnvc4" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm4" property="priuserdefdecm4" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc5" property="priuserdefnvc5" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm5" property="priuserdefdecm5" jdbcType="DECIMAL" />
+    <result column="producequantity2" property="producequantity2" jdbcType="DECIMAL" />
+    <result column="rationcost" property="rationcost" jdbcType="DECIMAL" />
+    <result column="rationmaterial" property="rationmaterial" jdbcType="DECIMAL" />
+    <result column="cost" property="cost" jdbcType="DECIMAL" />
+    <result column="rateofexchange" property="rateofexchange" jdbcType="DECIMAL" />
+    <result column="yieldrate" property="yieldrate" jdbcType="DECIMAL" />
+    <result column="iscostbom" property="iscostbom" jdbcType="TINYINT" />
+    <result column="idsaleorder" property="idsaleorder" jdbcType="NVARCHAR" />
+    <result column="maker" property="maker" jdbcType="NVARCHAR" />
+    <result column="auditor" property="auditor" jdbcType="NVARCHAR" />
+    <result column="reviser" property="reviser" jdbcType="NVARCHAR" />
+    <result column="isorderbom" property="isorderbom" jdbcType="TINYINT" />
+    <result column="customerName" property="customername" jdbcType="NVARCHAR" />
+    <result column="customerCode" property="customercode" jdbcType="NVARCHAR" />
+    <result column="customerForShort" property="customerforshort" jdbcType="NVARCHAR" />
+    <result column="pubuserdefnvc1" property="pubuserdefnvc1" jdbcType="NVARCHAR" />
+    <result column="pubuserdefnvc2" property="pubuserdefnvc2" jdbcType="NVARCHAR" />
+    <result column="pubuserdefnvc3" property="pubuserdefnvc3" jdbcType="NVARCHAR" />
+    <result column="pubuserdefnvc4" property="pubuserdefnvc4" jdbcType="NVARCHAR" />
+    <result column="pubuserdefnvc5" property="pubuserdefnvc5" jdbcType="NVARCHAR" />
+    <result column="pubuserdefnvc6" property="pubuserdefnvc6" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm1" property="pubuserdefdecm1" jdbcType="DECIMAL" />
+    <result column="pubuserdefdecm2" property="pubuserdefdecm2" jdbcType="DECIMAL" />
+    <result column="pubuserdefdecm3" property="pubuserdefdecm3" jdbcType="DECIMAL" />
+    <result column="pubuserdefdecm4" property="pubuserdefdecm4" jdbcType="DECIMAL" />
+    <result column="pubuserdefdecm5" property="pubuserdefdecm5" jdbcType="DECIMAL" />
+    <result column="pubuserdefdecm6" property="pubuserdefdecm6" jdbcType="DECIMAL" />
+    <result column="priuserdefdecm6" property="priuserdefdecm6" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc6" property="priuserdefnvc6" jdbcType="NVARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="idBomRelationDTO" property="idbomrelationdto" jdbcType="INTEGER" />
+    <result column="idmanufactureplant" property="idmanufactureplant" jdbcType="INTEGER" />
+    <result column="idinventory" property="idinventory" jdbcType="INTEGER" />
+    <result column="idmechiner" property="idmechiner" jdbcType="INTEGER" />
+    <result column="idrouting" property="idrouting" jdbcType="INTEGER" />
+    <result column="idunit" property="idunit" jdbcType="INTEGER" />
+    <result column="idunit2" property="idunit2" jdbcType="INTEGER" />
+    <result column="idwarehouse" property="idwarehouse" jdbcType="INTEGER" />
+    <result column="getbomchildunitmethod" property="getbomchildunitmethod" jdbcType="INTEGER" />
+    <result column="produceType" property="producetype" jdbcType="INTEGER" />
+    <result column="voucherstate" property="voucherstate" jdbcType="INTEGER" />
+    <result column="auditorid" property="auditorid" jdbcType="INTEGER" />
+    <result column="makerid" property="makerid" jdbcType="INTEGER" />
+    <result column="madeDate" property="madedate" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="voucherdate" property="voucherdate" jdbcType="TIMESTAMP" />
+    <result column="auditeddate" property="auditeddate" jdbcType="TIMESTAMP" />
+    <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+    <result column="reviserid" property="reviserid" jdbcType="INTEGER" />
+    <result column="ReviserDate" property="reviserdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.ssm.po.AaBom" extends="BaseResultMap" >
+    <result column="ts" property="ts" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    ts
+  </sql>
+  <insert id="insert" parameterType="cn.ssm.po.AaBom" >
+    insert into AA_BOM (code, name, version, 
+      produceQuantity, rationWage, rationCharge, 
+      rationManHour, isDefaultBom, bomDepth, 
+      disabled, updatedBy, freeItem0, 
+      freeItem1, freeItem2, freeItem3, 
+      freeItem4, freeItem5, freeItem6, 
+      freeItem7, freeItem8, freeItem9, 
+      priuserdefnvc1, priuserdefdecm1, priuserdefnvc2, 
+      priuserdefdecm2, priuserdefnvc3, priuserdefdecm3, 
+      priuserdefnvc4, priuserdefdecm4, priuserdefnvc5, 
+      priuserdefdecm5, producequantity2, rationcost, 
+      rationmaterial, cost, rateofexchange, 
+      yieldrate, iscostbom, idsaleorder, 
+      maker, auditor, reviser, 
+      isorderbom, customerName, customerCode, 
+      customerForShort, pubuserdefnvc1, pubuserdefnvc2, 
+      pubuserdefnvc3, pubuserdefnvc4, pubuserdefnvc5, 
+      pubuserdefnvc6, pubuserdefdecm1, pubuserdefdecm2, 
+      pubuserdefdecm3, pubuserdefdecm4, pubuserdefdecm5, 
+      pubuserdefdecm6, priuserdefdecm6, priuserdefnvc6, 
+      id, idBomRelationDTO, idmanufactureplant, 
+      idinventory, idmechiner, idrouting, 
+      idunit, idunit2, idwarehouse, 
+      getbomchildunitmethod, produceType, voucherstate, 
+      auditorid, makerid, madeDate, 
+      updated, voucherdate, auditeddate, 
+      createdtime, reviserid, ReviserDate, 
+      ts)
+    values (#{code,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{version,jdbcType=NVARCHAR}, 
+      #{producequantity,jdbcType=DECIMAL}, #{rationwage,jdbcType=DECIMAL}, #{rationcharge,jdbcType=DECIMAL}, 
+      #{rationmanhour,jdbcType=DECIMAL}, #{isdefaultbom,jdbcType=TINYINT}, #{bomdepth,jdbcType=INTEGER}, 
+      #{disabled,jdbcType=TINYINT}, #{updatedby,jdbcType=NVARCHAR}, #{freeitem0,jdbcType=NVARCHAR}, 
+      #{freeitem1,jdbcType=NVARCHAR}, #{freeitem2,jdbcType=NVARCHAR}, #{freeitem3,jdbcType=NVARCHAR}, 
+      #{freeitem4,jdbcType=NVARCHAR}, #{freeitem5,jdbcType=NVARCHAR}, #{freeitem6,jdbcType=NVARCHAR}, 
+      #{freeitem7,jdbcType=NVARCHAR}, #{freeitem8,jdbcType=NVARCHAR}, #{freeitem9,jdbcType=NVARCHAR}, 
+      #{priuserdefnvc1,jdbcType=NVARCHAR}, #{priuserdefdecm1,jdbcType=DECIMAL}, #{priuserdefnvc2,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm2,jdbcType=DECIMAL}, #{priuserdefnvc3,jdbcType=NVARCHAR}, #{priuserdefdecm3,jdbcType=DECIMAL}, 
+      #{priuserdefnvc4,jdbcType=NVARCHAR}, #{priuserdefdecm4,jdbcType=DECIMAL}, #{priuserdefnvc5,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm5,jdbcType=DECIMAL}, #{producequantity2,jdbcType=DECIMAL}, #{rationcost,jdbcType=DECIMAL}, 
+      #{rationmaterial,jdbcType=DECIMAL}, #{cost,jdbcType=DECIMAL}, #{rateofexchange,jdbcType=DECIMAL}, 
+      #{yieldrate,jdbcType=DECIMAL}, #{iscostbom,jdbcType=TINYINT}, #{idsaleorder,jdbcType=NVARCHAR}, 
+      #{maker,jdbcType=NVARCHAR}, #{auditor,jdbcType=NVARCHAR}, #{reviser,jdbcType=NVARCHAR}, 
+      #{isorderbom,jdbcType=TINYINT}, #{customername,jdbcType=NVARCHAR}, #{customercode,jdbcType=NVARCHAR}, 
+      #{customerforshort,jdbcType=NVARCHAR}, #{pubuserdefnvc1,jdbcType=NVARCHAR}, #{pubuserdefnvc2,jdbcType=NVARCHAR}, 
+      #{pubuserdefnvc3,jdbcType=NVARCHAR}, #{pubuserdefnvc4,jdbcType=NVARCHAR}, #{pubuserdefnvc5,jdbcType=NVARCHAR}, 
+      #{pubuserdefnvc6,jdbcType=NVARCHAR}, #{pubuserdefdecm1,jdbcType=DECIMAL}, #{pubuserdefdecm2,jdbcType=DECIMAL}, 
+      #{pubuserdefdecm3,jdbcType=DECIMAL}, #{pubuserdefdecm4,jdbcType=DECIMAL}, #{pubuserdefdecm5,jdbcType=DECIMAL}, 
+      #{pubuserdefdecm6,jdbcType=DECIMAL}, #{priuserdefdecm6,jdbcType=DECIMAL}, #{priuserdefnvc6,jdbcType=NVARCHAR}, 
+      #{id,jdbcType=INTEGER}, #{idbomrelationdto,jdbcType=INTEGER}, #{idmanufactureplant,jdbcType=INTEGER}, 
+      #{idinventory,jdbcType=INTEGER}, #{idmechiner,jdbcType=INTEGER}, #{idrouting,jdbcType=INTEGER}, 
+      #{idunit,jdbcType=INTEGER}, #{idunit2,jdbcType=INTEGER}, #{idwarehouse,jdbcType=INTEGER}, 
+      #{getbomchildunitmethod,jdbcType=INTEGER}, #{producetype,jdbcType=INTEGER}, #{voucherstate,jdbcType=INTEGER}, 
+      #{auditorid,jdbcType=INTEGER}, #{makerid,jdbcType=INTEGER}, #{madedate,jdbcType=TIMESTAMP}, 
+      #{updated,jdbcType=TIMESTAMP}, #{voucherdate,jdbcType=TIMESTAMP}, #{auditeddate,jdbcType=TIMESTAMP}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{reviserid,jdbcType=INTEGER}, #{reviserdate,jdbcType=TIMESTAMP}, 
+      #{ts,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.AaBom" >
+    insert into AA_BOM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="producequantity != null" >
+        produceQuantity,
+      </if>
+      <if test="rationwage != null" >
+        rationWage,
+      </if>
+      <if test="rationcharge != null" >
+        rationCharge,
+      </if>
+      <if test="rationmanhour != null" >
+        rationManHour,
+      </if>
+      <if test="isdefaultbom != null" >
+        isDefaultBom,
+      </if>
+      <if test="bomdepth != null" >
+        bomDepth,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="updatedby != null" >
+        updatedBy,
+      </if>
+      <if test="freeitem0 != null" >
+        freeItem0,
+      </if>
+      <if test="freeitem1 != null" >
+        freeItem1,
+      </if>
+      <if test="freeitem2 != null" >
+        freeItem2,
+      </if>
+      <if test="freeitem3 != null" >
+        freeItem3,
+      </if>
+      <if test="freeitem4 != null" >
+        freeItem4,
+      </if>
+      <if test="freeitem5 != null" >
+        freeItem5,
+      </if>
+      <if test="freeitem6 != null" >
+        freeItem6,
+      </if>
+      <if test="freeitem7 != null" >
+        freeItem7,
+      </if>
+      <if test="freeitem8 != null" >
+        freeItem8,
+      </if>
+      <if test="freeitem9 != null" >
+        freeItem9,
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        priuserdefnvc1,
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        priuserdefdecm1,
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        priuserdefnvc2,
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        priuserdefdecm2,
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        priuserdefnvc3,
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        priuserdefdecm3,
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        priuserdefnvc4,
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        priuserdefdecm4,
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        priuserdefnvc5,
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        priuserdefdecm5,
+      </if>
+      <if test="producequantity2 != null" >
+        producequantity2,
+      </if>
+      <if test="rationcost != null" >
+        rationcost,
+      </if>
+      <if test="rationmaterial != null" >
+        rationmaterial,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="rateofexchange != null" >
+        rateofexchange,
+      </if>
+      <if test="yieldrate != null" >
+        yieldrate,
+      </if>
+      <if test="iscostbom != null" >
+        iscostbom,
+      </if>
+      <if test="idsaleorder != null" >
+        idsaleorder,
+      </if>
+      <if test="maker != null" >
+        maker,
+      </if>
+      <if test="auditor != null" >
+        auditor,
+      </if>
+      <if test="reviser != null" >
+        reviser,
+      </if>
+      <if test="isorderbom != null" >
+        isorderbom,
+      </if>
+      <if test="customername != null" >
+        customerName,
+      </if>
+      <if test="customercode != null" >
+        customerCode,
+      </if>
+      <if test="customerforshort != null" >
+        customerForShort,
+      </if>
+      <if test="pubuserdefnvc1 != null" >
+        pubuserdefnvc1,
+      </if>
+      <if test="pubuserdefnvc2 != null" >
+        pubuserdefnvc2,
+      </if>
+      <if test="pubuserdefnvc3 != null" >
+        pubuserdefnvc3,
+      </if>
+      <if test="pubuserdefnvc4 != null" >
+        pubuserdefnvc4,
+      </if>
+      <if test="pubuserdefnvc5 != null" >
+        pubuserdefnvc5,
+      </if>
+      <if test="pubuserdefnvc6 != null" >
+        pubuserdefnvc6,
+      </if>
+      <if test="pubuserdefdecm1 != null" >
+        pubuserdefdecm1,
+      </if>
+      <if test="pubuserdefdecm2 != null" >
+        pubuserdefdecm2,
+      </if>
+      <if test="pubuserdefdecm3 != null" >
+        pubuserdefdecm3,
+      </if>
+      <if test="pubuserdefdecm4 != null" >
+        pubuserdefdecm4,
+      </if>
+      <if test="pubuserdefdecm5 != null" >
+        pubuserdefdecm5,
+      </if>
+      <if test="pubuserdefdecm6 != null" >
+        pubuserdefdecm6,
+      </if>
+      <if test="priuserdefdecm6 != null" >
+        priuserdefdecm6,
+      </if>
+      <if test="priuserdefnvc6 != null" >
+        priuserdefnvc6,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="idbomrelationdto != null" >
+        idBomRelationDTO,
+      </if>
+      <if test="idmanufactureplant != null" >
+        idmanufactureplant,
+      </if>
+      <if test="idinventory != null" >
+        idinventory,
+      </if>
+      <if test="idmechiner != null" >
+        idmechiner,
+      </if>
+      <if test="idrouting != null" >
+        idrouting,
+      </if>
+      <if test="idunit != null" >
+        idunit,
+      </if>
+      <if test="idunit2 != null" >
+        idunit2,
+      </if>
+      <if test="idwarehouse != null" >
+        idwarehouse,
+      </if>
+      <if test="getbomchildunitmethod != null" >
+        getbomchildunitmethod,
+      </if>
+      <if test="producetype != null" >
+        produceType,
+      </if>
+      <if test="voucherstate != null" >
+        voucherstate,
+      </if>
+      <if test="auditorid != null" >
+        auditorid,
+      </if>
+      <if test="makerid != null" >
+        makerid,
+      </if>
+      <if test="madedate != null" >
+        madeDate,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="voucherdate != null" >
+        voucherdate,
+      </if>
+      <if test="auditeddate != null" >
+        auditeddate,
+      </if>
+      <if test="createdtime != null" >
+        createdtime,
+      </if>
+      <if test="reviserid != null" >
+        reviserid,
+      </if>
+      <if test="reviserdate != null" >
+        ReviserDate,
+      </if>
+      <if test="ts != null" >
+        ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=NVARCHAR},
+      </if>
+      <if test="producequantity != null" >
+        #{producequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="rationwage != null" >
+        #{rationwage,jdbcType=DECIMAL},
+      </if>
+      <if test="rationcharge != null" >
+        #{rationcharge,jdbcType=DECIMAL},
+      </if>
+      <if test="rationmanhour != null" >
+        #{rationmanhour,jdbcType=DECIMAL},
+      </if>
+      <if test="isdefaultbom != null" >
+        #{isdefaultbom,jdbcType=TINYINT},
+      </if>
+      <if test="bomdepth != null" >
+        #{bomdepth,jdbcType=INTEGER},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=TINYINT},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem0 != null" >
+        #{freeitem0,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem1 != null" >
+        #{freeitem1,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem2 != null" >
+        #{freeitem2,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem3 != null" >
+        #{freeitem3,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem4 != null" >
+        #{freeitem4,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem5 != null" >
+        #{freeitem5,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem6 != null" >
+        #{freeitem6,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem7 != null" >
+        #{freeitem7,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem8 != null" >
+        #{freeitem8,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem9 != null" >
+        #{freeitem9,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        #{priuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        #{priuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        #{priuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        #{priuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        #{priuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        #{priuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        #{priuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        #{priuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        #{priuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        #{priuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="producequantity2 != null" >
+        #{producequantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="rationcost != null" >
+        #{rationcost,jdbcType=DECIMAL},
+      </if>
+      <if test="rationmaterial != null" >
+        #{rationmaterial,jdbcType=DECIMAL},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="rateofexchange != null" >
+        #{rateofexchange,jdbcType=DECIMAL},
+      </if>
+      <if test="yieldrate != null" >
+        #{yieldrate,jdbcType=DECIMAL},
+      </if>
+      <if test="iscostbom != null" >
+        #{iscostbom,jdbcType=TINYINT},
+      </if>
+      <if test="idsaleorder != null" >
+        #{idsaleorder,jdbcType=NVARCHAR},
+      </if>
+      <if test="maker != null" >
+        #{maker,jdbcType=NVARCHAR},
+      </if>
+      <if test="auditor != null" >
+        #{auditor,jdbcType=NVARCHAR},
+      </if>
+      <if test="reviser != null" >
+        #{reviser,jdbcType=NVARCHAR},
+      </if>
+      <if test="isorderbom != null" >
+        #{isorderbom,jdbcType=TINYINT},
+      </if>
+      <if test="customername != null" >
+        #{customername,jdbcType=NVARCHAR},
+      </if>
+      <if test="customercode != null" >
+        #{customercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="customerforshort != null" >
+        #{customerforshort,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefnvc1 != null" >
+        #{pubuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefnvc2 != null" >
+        #{pubuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefnvc3 != null" >
+        #{pubuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefnvc4 != null" >
+        #{pubuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefnvc5 != null" >
+        #{pubuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefnvc6 != null" >
+        #{pubuserdefnvc6,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm1 != null" >
+        #{pubuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefdecm2 != null" >
+        #{pubuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefdecm3 != null" >
+        #{pubuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefdecm4 != null" >
+        #{pubuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefdecm5 != null" >
+        #{pubuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefdecm6 != null" >
+        #{pubuserdefdecm6,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefdecm6 != null" >
+        #{priuserdefdecm6,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc6 != null" >
+        #{priuserdefnvc6,jdbcType=NVARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="idbomrelationdto != null" >
+        #{idbomrelationdto,jdbcType=INTEGER},
+      </if>
+      <if test="idmanufactureplant != null" >
+        #{idmanufactureplant,jdbcType=INTEGER},
+      </if>
+      <if test="idinventory != null" >
+        #{idinventory,jdbcType=INTEGER},
+      </if>
+      <if test="idmechiner != null" >
+        #{idmechiner,jdbcType=INTEGER},
+      </if>
+      <if test="idrouting != null" >
+        #{idrouting,jdbcType=INTEGER},
+      </if>
+      <if test="idunit != null" >
+        #{idunit,jdbcType=INTEGER},
+      </if>
+      <if test="idunit2 != null" >
+        #{idunit2,jdbcType=INTEGER},
+      </if>
+      <if test="idwarehouse != null" >
+        #{idwarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="getbomchildunitmethod != null" >
+        #{getbomchildunitmethod,jdbcType=INTEGER},
+      </if>
+      <if test="producetype != null" >
+        #{producetype,jdbcType=INTEGER},
+      </if>
+      <if test="voucherstate != null" >
+        #{voucherstate,jdbcType=INTEGER},
+      </if>
+      <if test="auditorid != null" >
+        #{auditorid,jdbcType=INTEGER},
+      </if>
+      <if test="makerid != null" >
+        #{makerid,jdbcType=INTEGER},
+      </if>
+      <if test="madedate != null" >
+        #{madedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voucherdate != null" >
+        #{voucherdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditeddate != null" >
+        #{auditeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviserid != null" >
+        #{reviserid,jdbcType=INTEGER},
+      </if>
+      <if test="reviserdate != null" >
+        #{reviserdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 1、查询模糊查询所有的图号对应的物料号-->
+  <select id="selectAaBom" resultType="String" parameterType="String"> 
+  select distinct a.code from AA_BOM a
+  where a.name like '%${clientMaterialNo}%'
+  and disabled=0
+  </select>
+  
+   <!--2、根据物料号得到所有的子件bom的存货id-->
+  <select id="selectZiIdInventory" resultType="Integer" parameterType="String"> 
+   select distinct ac.idinventory from AA_BOM AS a INNER JOIN AA_BOMChild AS ac ON
+   a.id=ac.idbom
+  where a.code=#{0}
+   and disabled=0
+  </select>
+  
+  <!--3、根据物料号得到所有的母件bom的存货id-->
+  <select id="selectMuIdInventory" resultType="Integer" parameterType="String"> 
+   select distinct a.idinventory from AA_BOM a 
+   where a.code=#{0}
+   and disabled=0
+  </select>
+  
+  
+</mapper>

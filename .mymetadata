@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="mes"
+  id="myeclipse.1508222442345"
+  context-root="/mes"
+  j2ee-spec="5.0"
+  archive="mes.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

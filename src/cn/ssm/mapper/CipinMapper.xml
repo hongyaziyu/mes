@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.CipinMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.Cipin" >
+    <id column="cipin_id" property="cipinId" jdbcType="INTEGER" />
+    <result column="track_id" property="trackId" jdbcType="INTEGER" />
+    <result column="cipin_type" property="cipinType" jdbcType="VARCHAR" />
+    <result column="cipin_species" property="cipinSpecies" jdbcType="VARCHAR" />
+    <result column="cipin_num" property="cipinNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cipin_id, track_id, cipin_type, cipin_species, cipin_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cipin
+    where cipin_id = #{cipinId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cipin
+    where cipin_id = #{cipinId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.Cipin" >
+    insert into cipin (cipin_id, track_id, cipin_type, 
+      cipin_species, cipin_num)
+    values (#{cipinId,jdbcType=INTEGER}, #{trackId,jdbcType=INTEGER}, #{cipinType,jdbcType=VARCHAR}, 
+      #{cipinSpecies,jdbcType=VARCHAR}, #{cipinNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.Cipin" >
+    insert into cipin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cipinId != null" >
+        cipin_id,
+      </if>
+      <if test="trackId != null" >
+        track_id,
+      </if>
+      <if test="cipinType != null" >
+        cipin_type,
+      </if>
+      <if test="cipinSpecies != null" >
+        cipin_species,
+      </if>
+      <if test="cipinNum != null" >
+        cipin_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cipinId != null" >
+        #{cipinId,jdbcType=INTEGER},
+      </if>
+      <if test="trackId != null" >
+        #{trackId,jdbcType=INTEGER},
+      </if>
+      <if test="cipinType != null" >
+        #{cipinType,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinSpecies != null" >
+        #{cipinSpecies,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinNum != null" >
+        #{cipinNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.Cipin" >
+    update cipin
+    <set >
+      <if test="trackId != null" >
+        track_id = #{trackId,jdbcType=INTEGER},
+      </if>
+      <if test="cipinType != null" >
+        cipin_type = #{cipinType,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinSpecies != null" >
+        cipin_species = #{cipinSpecies,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinNum != null" >
+        cipin_num = #{cipinNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cipin_id = #{cipinId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.Cipin" >
+    update cipin
+    set track_id = #{trackId,jdbcType=INTEGER},
+      cipin_type = #{cipinType,jdbcType=VARCHAR},
+      cipin_species = #{cipinSpecies,jdbcType=VARCHAR},
+      cipin_num = #{cipinNum,jdbcType=VARCHAR}
+    where cipin_id = #{cipinId,jdbcType=INTEGER}
+  </update>
+  
+  
+   <!--料废数量查询==============================修改  -->
+  <select id="selectByTrackId" resultMap="BaseResultMap">
+	  select SUM(cipin_num) AS cipin_num 
+	  from  cipin 
+	  where track_id=#{trackId}
+	  AND cipin_type="料废" ORDER BY cipin_type 
+  </select>
+  
+  
+   <!--料废和工废数量查询==============================修改  -->
+  <select id="selectWasteByTrackId" resultMap="BaseResultMap">
+	  select cipin_type, cipin_species,cipin_num  
+	  from  cipin 
+	  where track_id=#{trackId}
+	  ORDER BY cipin_type 
+  </select>
+  
+</mapper>

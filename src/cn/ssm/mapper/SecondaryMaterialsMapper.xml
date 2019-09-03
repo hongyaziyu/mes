@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.SecondaryMaterialsMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.SecondaryMaterials" >
+    <id column="materials_id" property="materialsId" jdbcType="INTEGER" />
+    <result column="sec_materials_name" property="secMaterialsName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="product_describe" property="productDescribe" jdbcType="VARCHAR" />
+    <result column="product_no" property="productNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    materials_id, sec_materials_name, type, money, number, unit, product_describe, product_no
+  </sql>
+  
+  
+  <!--辅料查询sql片段 -->
+  <sql id="query_sec_where">
+  
+            <if test="secMaterialsName!=null and secMaterialsName!=''">
+				and  a.sec_materials_name like '%${secMaterialsName}%'
+			</if>
+			<if test="type!=null and type!=''">
+				and  a.type like '%${type}%'
+			</if>
+  
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from secondary_materials
+    where materials_id = #{materialsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from secondary_materials
+    where materials_id = #{materialsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.SecondaryMaterials" >
+    insert into secondary_materials (materials_id, sec_materials_name, type, 
+      money, number, unit, 
+      product_describe, product_no)
+    values (#{materialsId,jdbcType=INTEGER}, #{secMaterialsName,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{money,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{productDescribe,jdbcType=VARCHAR}, #{productNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.SecondaryMaterials" >
+    insert into secondary_materials
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="materialsId != null" >
+        materials_id,
+      </if>
+      <if test="secMaterialsName != null" >
+        sec_materials_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="productDescribe != null" >
+        product_describe,
+      </if>
+      <if test="productNo != null" >
+        product_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="materialsId != null" >
+        #{materialsId,jdbcType=INTEGER},
+      </if>
+      <if test="secMaterialsName != null" >
+        #{secMaterialsName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="productDescribe != null" >
+        #{productDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null" >
+        #{productNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.SecondaryMaterials" >
+    update secondary_materials
+    <set >
+      <if test="secMaterialsName != null" >
+        sec_materials_name = #{secMaterialsName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="productDescribe != null" >
+        product_describe = #{productDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null" >
+        product_no = #{productNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where materials_id = #{materialsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.SecondaryMaterials" >
+    update secondary_materials
+    set sec_materials_name = #{secMaterialsName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      product_describe = #{productDescribe,jdbcType=VARCHAR},
+      product_no = #{productNo,jdbcType=VARCHAR}
+    where materials_id = #{materialsId,jdbcType=INTEGER}
+  </update>
+  
+   <!--添加部分：多条件查询的条件 //辅料查询分页 -->
+  <select id="selectSecByParam" resultMap="BaseResultMap"  >
+    select * from
+     secondary_materials a
+     <where>
+		<include refid="query_sec_where"/>
+	</where>
+	ORDER BY materials_id DESC
+	<!-- limit m,n为从m+1开始取n条记录 -->
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+  
+  <!--excel导入多条件查询的条件 -->
+  <select id="selectSecByParamAjax" resultMap="BaseResultMap"  >
+    select * from
+     secondary_materials 
+     where sec_materials_name = #{0}
+     and type = #{1}
+  </select>
+  
+  <!-- //辅料查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectSecByParamtotalCount" resultType="int">
+  	select  count(*) from  secondary_materials a
+  	<where>
+		<include refid="query_sec_where"/>
+	</where>
+  </select>
+  
+  
+</mapper>

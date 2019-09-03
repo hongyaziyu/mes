@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.AaUnitMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.AaUnit" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="isMainUnit" property="ismainunit" jdbcType="TINYINT" />
+    <result column="changeRate" property="changerate" jdbcType="DECIMAL" />
+    <result column="isSingleUnit" property="issingleunit" jdbcType="TINYINT" />
+    <result column="disabled" property="disabled" jdbcType="TINYINT" />
+    <result column="updatedBy" property="updatedby" jdbcType="NVARCHAR" />
+    <result column="rateDescription" property="ratedescription" jdbcType="NVARCHAR" />
+    <result column="isGroup" property="isgroup" jdbcType="TINYINT" />
+    <result column="idunitgroup" property="idunitgroup" jdbcType="INTEGER" />
+    <result column="changeType" property="changetype" jdbcType="INTEGER" />
+    <result column="changeType1" property="changetype1" jdbcType="INTEGER" />
+    <result column="madeDate" property="madedate" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="createdTime" property="createdtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.ssm.po.AaUnit" extends="BaseResultMap" >
+    <result column="ts" property="ts" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, isMainUnit, changeRate, isSingleUnit, disabled, updatedBy, rateDescription, 
+    isGroup, idunitgroup, changeType, changeType1, madeDate, updated, createdTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    ts
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from AA_Unit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from AA_Unit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.AaUnit" >
+    insert into AA_Unit (id, code, name, 
+      isMainUnit, changeRate, isSingleUnit, 
+      disabled, updatedBy, rateDescription, 
+      isGroup, idunitgroup, changeType, 
+      changeType1, madeDate, updated, 
+      createdTime, ts)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{ismainunit,jdbcType=TINYINT}, #{changerate,jdbcType=DECIMAL}, #{issingleunit,jdbcType=TINYINT}, 
+      #{disabled,jdbcType=TINYINT}, #{updatedby,jdbcType=NVARCHAR}, #{ratedescription,jdbcType=NVARCHAR}, 
+      #{isgroup,jdbcType=TINYINT}, #{idunitgroup,jdbcType=INTEGER}, #{changetype,jdbcType=INTEGER}, 
+      #{changetype1,jdbcType=INTEGER}, #{madedate,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{ts,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.AaUnit" >
+    insert into AA_Unit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ismainunit != null" >
+        isMainUnit,
+      </if>
+      <if test="changerate != null" >
+        changeRate,
+      </if>
+      <if test="issingleunit != null" >
+        isSingleUnit,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="updatedby != null" >
+        updatedBy,
+      </if>
+      <if test="ratedescription != null" >
+        rateDescription,
+      </if>
+      <if test="isgroup != null" >
+        isGroup,
+      </if>
+      <if test="idunitgroup != null" >
+        idunitgroup,
+      </if>
+      <if test="changetype != null" >
+        changeType,
+      </if>
+      <if test="changetype1 != null" >
+        changeType1,
+      </if>
+      <if test="madedate != null" >
+        madeDate,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="createdtime != null" >
+        createdTime,
+      </if>
+      <if test="ts != null" >
+        ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="ismainunit != null" >
+        #{ismainunit,jdbcType=TINYINT},
+      </if>
+      <if test="changerate != null" >
+        #{changerate,jdbcType=DECIMAL},
+      </if>
+      <if test="issingleunit != null" >
+        #{issingleunit,jdbcType=TINYINT},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=TINYINT},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="ratedescription != null" >
+        #{ratedescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="isgroup != null" >
+        #{isgroup,jdbcType=TINYINT},
+      </if>
+      <if test="idunitgroup != null" >
+        #{idunitgroup,jdbcType=INTEGER},
+      </if>
+      <if test="changetype != null" >
+        #{changetype,jdbcType=INTEGER},
+      </if>
+      <if test="changetype1 != null" >
+        #{changetype1,jdbcType=INTEGER},
+      </if>
+      <if test="madedate != null" >
+        #{madedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.AaUnit" >
+    update AA_Unit
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="ismainunit != null" >
+        isMainUnit = #{ismainunit,jdbcType=TINYINT},
+      </if>
+      <if test="changerate != null" >
+        changeRate = #{changerate,jdbcType=DECIMAL},
+      </if>
+      <if test="issingleunit != null" >
+        isSingleUnit = #{issingleunit,jdbcType=TINYINT},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=TINYINT},
+      </if>
+      <if test="updatedby != null" >
+        updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="ratedescription != null" >
+        rateDescription = #{ratedescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="isgroup != null" >
+        isGroup = #{isgroup,jdbcType=TINYINT},
+      </if>
+      <if test="idunitgroup != null" >
+        idunitgroup = #{idunitgroup,jdbcType=INTEGER},
+      </if>
+      <if test="changetype != null" >
+        changeType = #{changetype,jdbcType=INTEGER},
+      </if>
+      <if test="changetype1 != null" >
+        changeType1 = #{changetype1,jdbcType=INTEGER},
+      </if>
+      <if test="madedate != null" >
+        madeDate = #{madedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        createdTime = #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        ts = #{ts,jdbcType=BINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.ssm.po.AaUnit" >
+    update AA_Unit
+    set code = #{code,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      isMainUnit = #{ismainunit,jdbcType=TINYINT},
+      changeRate = #{changerate,jdbcType=DECIMAL},
+      isSingleUnit = #{issingleunit,jdbcType=TINYINT},
+      disabled = #{disabled,jdbcType=TINYINT},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      rateDescription = #{ratedescription,jdbcType=NVARCHAR},
+      isGroup = #{isgroup,jdbcType=TINYINT},
+      idunitgroup = #{idunitgroup,jdbcType=INTEGER},
+      changeType = #{changetype,jdbcType=INTEGER},
+      changeType1 = #{changetype1,jdbcType=INTEGER},
+      madeDate = #{madedate,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      createdTime = #{createdtime,jdbcType=TIMESTAMP},
+      ts = #{ts,jdbcType=BINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.AaUnit" >
+    update AA_Unit
+    set code = #{code,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      isMainUnit = #{ismainunit,jdbcType=TINYINT},
+      changeRate = #{changerate,jdbcType=DECIMAL},
+      isSingleUnit = #{issingleunit,jdbcType=TINYINT},
+      disabled = #{disabled,jdbcType=TINYINT},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      rateDescription = #{ratedescription,jdbcType=NVARCHAR},
+      isGroup = #{isgroup,jdbcType=TINYINT},
+      idunitgroup = #{idunitgroup,jdbcType=INTEGER},
+      changeType = #{changetype,jdbcType=INTEGER},
+      changeType1 = #{changetype1,jdbcType=INTEGER},
+      madeDate = #{madedate,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      createdTime = #{createdtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 1、根据id去查计量单位表中单位名称 -->
+  <select id="selectunitname" resultType="String">
+  select distinct a.name from AA_Unit a
+  where a.id=#{0}
+  
+  </select>
+</mapper>

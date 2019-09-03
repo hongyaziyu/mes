@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.PersonMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.Person" >
+    <id column="person_id" property="personId" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="person_name" property="personName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="rfid" property="rfid" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <!-- 人员权限查询sql片段 -->
+  <sql id="query_person_where">
+  
+            <if test="number!=null and number!=''">
+				and  a.number like '%${number}%'
+			</if>
+			<if test="person_name!=null and person_name!=''">
+				and  a.person_name like '%${person_name}%'
+			</if>
+			<if test="department!=null and department!=''">
+				and  a.department like '%${department}%'
+			</if>
+  			and a.person_name !="admin"
+  			and a.number !="123456" 
+  </sql>
+  
+  <sql id="Base_Column_List" >
+    person_id, number, person_name, sex, position, department, password, email, rfid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where person_id = #{personId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectPersonNames" resultType="String">
+  	select person_name from person
+  </select>
+  
+  <!--parameterType传来的数据类型  ，返回单个类型为resultType，返回一个对象如person用resultMap-->
+  <select id="selectByLoginidAndPassword" resultMap="BaseResultMap" parameterType="map" >
+	  select * from person where number =#{loginid} and password =#{password}
+  </select>
+    <select id="selectByLoginId" resultMap="BaseResultMap" parameterType="String">
+  	SELECT * FROM person WHERE number = #{loginid}
+  </select>
+  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="String">
+  	SELECT * FROM person WHERE email = #{email}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from person
+    where person_id = #{personId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.Person" >
+    insert into person (person_id, number, person_name, 
+      sex, position, department, 
+      password, email, rfid
+      )
+    values (#{personId,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{personName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{rfid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.Person" >
+    insert into person
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="personId != null" >
+        person_id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="personName != null" >
+        person_name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="rfid != null" >
+        rfid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="personId != null" >
+        #{personId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null" >
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null" >
+        #{rfid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.Person" >
+    update person
+    <set >
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null" >
+        person_name = #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null" >
+        rfid = #{rfid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where person_id = #{personId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.Person" >
+    update person
+    set number = #{number,jdbcType=VARCHAR},
+      person_name = #{personName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      rfid = #{rfid,jdbcType=VARCHAR}
+    where person_id = #{personId,jdbcType=INTEGER}
+  </update>
+  
+   <!--添加部分：多条件查询的条件 //人员权限分页 -->
+  <select id="selectLimitManage" resultMap="BaseResultMap"  >
+    select * from
+     person a
+     <where>
+		<include refid="query_person_where"/>
+	</where>
+	ORDER BY person_id DESC
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+  
+   <!-- //人员权限分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectLimitManagetotalCount" resultType="int">
+  	select  count(*) from  person a
+  	<where>
+		<include refid="query_person_where"/>
+	</where>
+  </select>
+  
+   <!--excel导入多条件查询的条件 -->
+  <select id="selectPersonByNumber" resultMap="BaseResultMap"  >
+    select * from
+     person 
+     where number = #{0}
+  </select>
+</mapper>

@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.GetMaterialMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.GetMaterial" >
+    <id column="get_material_id" property="getMaterialId" jdbcType="INTEGER" />
+    <result column="client" property="client" jdbcType="VARCHAR" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="material_name" property="materialName" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="apply_people" property="applyPeople" jdbcType="VARCHAR" />
+    <result column="apply_date" property="applyDate" jdbcType="VARCHAR" />
+    <result column="approver" property="approver" jdbcType="VARCHAR" />
+    <result column="approval_date" property="approvalDate" jdbcType="VARCHAR" />
+    <result column="is_approval" property="isApproval" jdbcType="INTEGER" />
+    <result column="is_reapply" property="isReapply" jdbcType="INTEGER" />
+    <result column="is_pushed" property="isPushed" jdbcType="INTEGER" />
+    <result column="is_got" property="isGot" jdbcType="INTEGER" />
+    <result column="is_recorded" property="isRecorded" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <!-- 新加的内容；创建一个pojo类接受领料记录 -->
+ <resultMap id="BaseResultMap1" type="cn.ssm.vo.Input" >
+  <result column="detail_id" property="detailId" jdbcType="INTEGER" />
+  <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+  <result column="client" property="client" jdbcType="VARCHAR" />
+  <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+  <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+  <result column="apply_people" property="applyPeople" jdbcType="VARCHAR" />
+  <result column="unit" property="unit" jdbcType="VARCHAR" />
+  <result column="provider" property="provider" jdbcType="VARCHAR" />
+  <result column="acceptor" property="acceptor" jdbcType="VARCHAR" />
+  <result column="remark" property="remark" jdbcType="VARCHAR" />
+  <result column="get_material_id" property="getMaterialId" jdbcType="INTEGER" />
+  <result column="material_name" property="materialName" jdbcType="VARCHAR" />
+  <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+  <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+  <result column="cailiao_mc" property="cailiaoMc" jdbcType="VARCHAR" />
+  <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+  <result column="cailiao_bh" property="cailiaoBh" jdbcType="VARCHAR" />
+  <result column="material_num" property="materialNum" jdbcType="VARCHAR" />
+  <result column="get_date" property="getDate" jdbcType="VARCHAR" />
+  <result column="material_batch_no" property="materialBatchNo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <!-- 新加的内容；创建一个pojo类接受退料记录 -->
+  
+ <resultMap id="BaseResultMap2" type="cn.ssm.vo.Output" >
+  <result column="detail_id" property="detailId" jdbcType="VARCHAR" />
+  <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+  <result column="client" property="client" jdbcType="VARCHAR" />
+  <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+  <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+  <result column="apply_people" property="applyPeople" jdbcType="VARCHAR" />
+  <result column="unit" property="unit" jdbcType="VARCHAR" />
+  <result column="provider" property="provider" jdbcType="VARCHAR" />
+  <result column="acceptor" property="acceptor" jdbcType="VARCHAR" />
+  <result column="remark" property="remark" jdbcType="VARCHAR" />
+  <result column="get_material_id" property="getMaterialId" jdbcType="VARCHAR" />
+  <result column="material_name" property="materialName" jdbcType="VARCHAR" />
+  <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+  <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+  <result column="cailiao_mc" property="cailiaoMc" jdbcType="VARCHAR" />
+  <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+  <result column="cailiao_bh" property="cailiaoBh" jdbcType="VARCHAR" />
+  <result column="material_num" property="materialNum" jdbcType="VARCHAR" />
+  <result column="get_date" property="getDate" jdbcType="VARCHAR" />
+  <result column="material_batch_no" property="materialBatchNo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <!-- 原材料出库单据(除了外协)记录sql片段 -->
+     <sql id="query_selectRowinMaterial_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  b.get_date BETWEEN #{start_date} AND #{end_date} 
+			</if>	
+			and b.is_return=0
+			and a.is_approval=1
+			and b.get_date is not null
+			and a.shop_name!='外协' 
+	</sql> 
+	
+	<!-- 原材料入库单据(除了外协)记录sql片段 -->
+     <sql id="query_selectRowoutMaterial_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  b.get_date BETWEEN #{start_date} AND #{end_date} 
+			</if>	
+			and b.is_return=1
+			and a.is_approval=1
+			and b.get_date is not null
+			and a.shop_name!='外协' 
+	</sql> 
+	
+   <!-- 原材料外协出库单据记录sql片段 -->
+     <sql id="query_selectGetMaterialAssociation_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  b.get_date BETWEEN #{start_date} AND #{end_date} 
+			</if>	
+			and b.is_return=0
+			and a.is_approval=1
+			and b.get_date is not null
+			and a.shop_name='外协'
+	</sql> 
+	
+	
+ <!-- 领料审批记录sql片段 -->
+     <sql id="query_selectGetMaterialByParam_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no  like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  a.apply_date BETWEEN #{start_date} AND #{end_date}
+			</if>	
+			and (a.apply_people!=" "and a.apply_people is not null)
+			
+	</sql> 
+  
+  <!-- 领原材料记录sql片段 -->
+     <sql id="query_selectinputGetMaterial_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  b.get_date BETWEEN #{start_date} AND #{end_date} 
+			</if>	
+			and b.is_return=0
+			and a.is_approval=1
+			and b.get_date is not null
+	</sql> 
+  
+ 
+  <!-- 退原材料记录sql片段 -->
+     <sql id="query_selectoutputGetMaterial_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  b.get_date BETWEEN #{start_date} AND #{end_date}
+			</if>
+			and b.is_return=1
+			and a.is_approval=1	
+			and b.get_date is not null
+	</sql> 
+  
+  
+  <sql id="Base_Column_List" >
+    get_material_id, client, plan_no, material_name, client_material_no, material_no, 
+    product_spec, batch_no, shop_name, apply_people, apply_date, approver, approval_date, 
+    is_approval, is_reapply, is_pushed, is_got, is_recorded
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from get_material
+    where get_material_id = #{getMaterialId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from get_material
+    where get_material_id = #{getMaterialId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.GetMaterial" >
+    insert into get_material (get_material_id, client, plan_no, 
+      material_name, client_material_no, material_no, 
+      product_spec, batch_no, shop_name, 
+      apply_people, apply_date, approver, 
+      approval_date, is_approval, is_reapply, 
+      is_pushed, is_got, is_recorded
+      )
+    values (#{getMaterialId,jdbcType=INTEGER}, #{client,jdbcType=VARCHAR}, #{planNo,jdbcType=VARCHAR}, 
+      #{materialName,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, #{materialNo,jdbcType=VARCHAR}, 
+      #{productSpec,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, 
+      #{applyPeople,jdbcType=VARCHAR}, #{applyDate,jdbcType=VARCHAR}, #{approver,jdbcType=VARCHAR}, 
+      #{approvalDate,jdbcType=VARCHAR}, #{isApproval,jdbcType=INTEGER}, #{isReapply,jdbcType=INTEGER}, 
+      #{isPushed,jdbcType=INTEGER}, #{isGot,jdbcType=INTEGER}, #{isRecorded,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.GetMaterial" keyColumn="get_material_id" keyProperty="getMaterialId" useGeneratedKeys="true">
+    insert into get_material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="getMaterialId != null" >
+        get_material_id,
+      </if>
+      <if test="client != null" >
+        client,
+      </if>
+      <if test="planNo != null" >
+        plan_no,
+      </if>
+      <if test="materialName != null" >
+        material_name,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="productSpec != null" >
+        product_spec,
+      </if>
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="applyPeople != null" >
+        apply_people,
+      </if>
+      <if test="applyDate != null" >
+        apply_date,
+      </if>
+      <if test="approver != null" >
+        approver,
+      </if>
+      <if test="approvalDate != null" >
+        approval_date,
+      </if>
+      <if test="isApproval != null" >
+        is_approval,
+      </if>
+      <if test="isReapply != null" >
+        is_reapply,
+      </if>
+      <if test="isPushed != null" >
+        is_pushed,
+      </if>
+      <if test="isGot != null" >
+        is_got,
+      </if>
+      <if test="isRecorded != null" >
+        is_recorded,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="getMaterialId != null" >
+        #{getMaterialId,jdbcType=INTEGER},
+      </if>
+      <if test="client != null" >
+        #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null" >
+        #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyPeople != null" >
+        #{applyPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null" >
+        #{applyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null" >
+        #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalDate != null" >
+        #{approvalDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isApproval != null" >
+        #{isApproval,jdbcType=INTEGER},
+      </if>
+      <if test="isReapply != null" >
+        #{isReapply,jdbcType=INTEGER},
+      </if>
+      <if test="isPushed != null" >
+        #{isPushed,jdbcType=INTEGER},
+      </if>
+      <if test="isGot != null" >
+        #{isGot,jdbcType=INTEGER},
+      </if>
+      <if test="isRecorded != null" >
+        #{isRecorded,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.GetMaterial" >
+    update get_material
+    <set >
+      <if test="client != null" >
+        client = #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        plan_no = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null" >
+        material_name = #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyPeople != null" >
+        apply_people = #{applyPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null" >
+        apply_date = #{applyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null" >
+        approver = #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalDate != null" >
+        approval_date = #{approvalDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isApproval != null" >
+        is_approval = #{isApproval,jdbcType=INTEGER},
+      </if>
+      <if test="isReapply != null" >
+        is_reapply = #{isReapply,jdbcType=INTEGER},
+      </if>
+      <if test="isPushed != null" >
+        is_pushed = #{isPushed,jdbcType=INTEGER},
+      </if>
+      <if test="isGot != null" >
+        is_got = #{isGot,jdbcType=INTEGER},
+      </if>
+      <if test="isRecorded != null" >
+        is_recorded = #{isRecorded,jdbcType=INTEGER},
+      </if>
+    </set>
+    where get_material_id = #{getMaterialId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.GetMaterial" >
+    update get_material
+    set client = #{client,jdbcType=VARCHAR},
+      plan_no = #{planNo,jdbcType=VARCHAR},
+      material_name = #{materialName,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      apply_people = #{applyPeople,jdbcType=VARCHAR},
+      apply_date = #{applyDate,jdbcType=VARCHAR},
+      approver = #{approver,jdbcType=VARCHAR},
+      approval_date = #{approvalDate,jdbcType=VARCHAR},
+      is_approval = #{isApproval,jdbcType=INTEGER},
+      is_reapply = #{isReapply,jdbcType=INTEGER},
+      is_pushed = #{isPushed,jdbcType=INTEGER},
+      is_got = #{isGot,jdbcType=INTEGER},
+      is_recorded = #{isRecorded,jdbcType=INTEGER}
+    where get_material_id = #{getMaterialId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 领料审批页面分页查询 -->
+  <!--领料审批页面:通过物料号，起始时间，截止时间查询-->
+  <select  id="selectGetMaterialByParam" resultMap="BaseResultMap">
+  select*from get_material a 
+  <!--把where移出用sql片段判断条件空的情况，实现：查询条件不输入显示全部，输入几个条件按几个条件显示  -->
+    <where>
+		<include refid="query_selectGetMaterialByParam_where"/>
+	</where>     
+	<!-- ORDER BY get_material_id DESC -->
+	 ORDER BY RIGHT(a.batch_no,13) DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                                   
+  </select>
+  
+  
+    <!-- 领料审批页面查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectGetMaterialByParamtotalCount" resultType="int">
+  	select  count(*) from  get_material a
+  	<where>
+		<include refid="query_selectGetMaterialByParam_where"/>
+	</where>
+  </select>
+  
+  
+  <!-- 未审批变为已审批  curdate()今天的日期 -->
+  <update id="updateByKey" parameterType="cn.ssm.po.GetMaterial" >
+  update get_material
+  set is_approval = 1,is_pushed=0,is_got=0,approval_date=curdate(),approver= #{1}
+   where get_material_id = #{0}
+  </update>
+  
+   <!-- 未审批变为审批不通过  curdate()今天的日期 -->
+  <update id="updatenotByKey" parameterType="cn.ssm.po.GetMaterial" >
+  update get_material
+  set is_approval = 2,approval_date=curdate(),approver= #{1}
+   where get_material_id = #{0}
+  </update>
+  
+  <!--新添加内容:通过物料号，起始时间，截止时间，以及隐藏条件is_return=0领料查询-->
+  <!-- 多表查询的前提条件：where查询条件牵扯到两张表时  领原材料记录分页 -->
+  <select  id="selectinputGetMaterial" resultMap="BaseResultMap1">
+  select  
+  a.client_material_no, a.material_no,a.get_material_id,a.material_name,a.product_spec,
+  a.batch_no,a.plan_no, b.cailiao_bh, b.cailiao_mc, b.material_num, b.get_date ,
+  b.get_material_id,b.detail_id,b.material_batch_no 
+  from 
+  get_material AS a INNER JOIN get_detail AS b ON
+  a.get_material_id=b.get_material_id       
+  <where>
+		<include refid="query_selectinputGetMaterial_where"/>
+ </where>  
+    <!--   ORDER BY detail_id DESC -->
+     ORDER BY RIGHT(a.batch_no,13) DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                             
+  </select>
+  
+   <!-- 领原材料记录分页查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectinputGetMaterialtotalCount" resultType="int">
+  	select  count(*) from  
+  	get_material AS a INNER JOIN get_detail AS b ON
+  a.get_material_id=b.get_material_id
+  	<where>
+		<include refid="query_selectinputGetMaterial_where"/>
+	</where>
+  </select>
+  
+  
+  
+  <!--新添加内容:通过物料号，起始时间，截止时间，以及隐藏条件is_return=1退料查询-->
+  <!-- 多表查询的前提条件：where查询条件牵扯到两张表时  //退原材料记录查询分页 -->
+  <select  id="selectoutputGetMaterial" resultMap="BaseResultMap2">
+   select  a.client_material_no, a.material_no,a.get_material_id,a.material_name,a.product_spec,
+  a.batch_no,a.plan_no, b.cailiao_bh, b.cailiao_mc, b.material_num, b.get_date ,
+  b.get_material_id,b.detail_id,b.material_batch_no 
+  from 
+  get_material AS a INNER JOIN get_detail AS b ON
+  a.get_material_id=b.get_material_id
+   <where>
+		<include refid="query_selectoutputGetMaterial_where"/>
+   </where> 
+ <!--   ORDER BY detail_id DESC -->
+  ORDER BY RIGHT(a.batch_no,13) DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                                     
+  </select>
+  
+  <!--退原材料记录查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectoutputGetMaterialtotalCount" resultType="int">
+  	select  count(*) from  
+  	get_material AS a INNER JOIN get_detail AS b ON
+  a.get_material_id=b.get_material_id
+  	<where>
+		<include refid="query_selectoutputGetMaterial_where"/>
+	</where>
+  </select>
+  
+  
+  <!-- 领料查看 -->
+  <select id="selectId" resultMap="BaseResultMap1" >
+    select*from  get_material AS a INNER JOIN get_detail AS b ON
+    a.get_material_id=b.get_material_id
+    where  b.get_material_id = #{0}
+    AND b.detail_id=#{1}
+  </select>
+  
+  
+   <!-- 退料查看 -->
+   <select id="selectById" resultMap="BaseResultMap2" >
+    select*from  get_material AS a INNER JOIN get_detail AS b ON
+    a.get_material_id=b.get_material_id
+    where  b.get_material_id = #{0}
+    AND b.detail_id=#{1}
+  </select>
+  
+   <!-- Ajax检查该批次号是否已经用过 -->
+   <select id="selectBatchNoIsNull" resultMap="BaseResultMap" parameterType="string">
+  	select*from get_material
+    where batch_no=#{0}
+  </select>
+  
+ <!--查询领原材料未审批数量  -->
+  <select id="selectGetMaterialCount" resultType="int">
+  	select  count(*) from  
+  	get_material 
+  	where apply_people!=" "and apply_people is not null
+	and is_approval='0'
+  </select>
+  
+
+  <!-- 原材料外协出库单据记录分页 -->
+  <select  id="selectMaterialAssociation" resultMap="BaseResultMap1">
+  select  
+  a.client_material_no, a.material_no,a.get_material_id,a.material_name,a.product_spec,
+  a.batch_no,a.plan_no, b.cailiao_bh, b.cailiao_mc, b.material_num, b.get_date ,
+  b.get_material_id,b.detail_id,b.material_batch_no,b.unit,b.acceptor
+  from 
+  get_material AS a INNER JOIN get_detail AS b ON
+  a.get_material_id=b.get_material_id       
+  <where>
+		<include refid="query_selectGetMaterialAssociation_where"/>
+ </where>  
+    <!--   ORDER BY detail_id DESC -->
+    ORDER BY RIGHT(a.batch_no,13) DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                             
+  </select>
+  
+  
+   <!-- 原材料外协出库单据记录分页查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectMaterialAssociationtotalCount" resultType="int">
+  	select  count(*) from  
+  	get_material AS a INNER JOIN get_detail AS b ON
+   a.get_material_id=b.get_material_id
+  	<where>
+		<include refid="query_selectGetMaterialAssociation_where"/>
+	</where>
+  </select>
+ 
+   <!--8.1领原材料T+系统模板excel导出（除了外协的原材料出库）  -->
+  <select  id="selectRowinMaterial" resultMap="BaseResultMap1">
+ select  
+  a.client_material_no, a.material_no,a.get_material_id,a.material_name,a.product_spec,
+  a.batch_no,a.plan_no,a.shop_name, b.cailiao_bh, b.cailiao_mc, b.material_num, b.get_date,b.unit,
+  b.get_material_id,b.detail_id,b.material_batch_no,b.acceptor
+  from 
+  get_material AS a INNER JOIN get_detail AS b ON
+  a.get_material_id=b.get_material_id  
+      <where>
+		<include refid="query_selectRowinMaterial_where"/>
+	</where> 
+                                                                                                                                                                                                                                                         
+  </select>
+  
+   <!--8.2退原材料T+系统的模板excel导出（除了外协的原材料出库）  -->
+  <select  id="selectRowoutMaterial" resultMap="BaseResultMap2">
+  select  
+  a.client_material_no, a.material_no,a.get_material_id,a.material_name,a.product_spec,
+  a.batch_no,a.plan_no,a.shop_name, b.cailiao_bh, b.cailiao_mc, b.material_num, b.get_date,b.unit,
+  b.get_material_id,b.detail_id,b.material_batch_no,b.acceptor
+  from 
+  get_material AS a INNER JOIN get_detail AS b ON
+  a.get_material_id=b.get_material_id       
+       <where>
+		<include refid="query_selectRowoutMaterial_where"/>
+	</where>                                                                                                                                                                                                                                                          
+  </select>
+  
+ 
+	<!--9.更新领料表的信息-根据批次号查询主键getMaterialId -->
+	<select id="selectBatchNotogetMaterialId" resultType="Integer">
+	select get_material_id from get_material
+	where batch_no=#{0}
+	</select>
+  
+  
+  
+   <!-- 原材料外协出库excel查询-->
+  <select  id="selectexcelinputGetMaterial" resultMap="BaseResultMap1">
+  select  
+  a.client_material_no, a.material_no,a.get_material_id,a.material_name,a.product_spec,
+  a.batch_no,a.plan_no, b.cailiao_bh, b.cailiao_mc, b.material_num, b.get_date ,
+  b.get_material_id,b.detail_id,b.material_batch_no 
+  from 
+  get_material AS a INNER JOIN get_detail AS b ON
+  a.get_material_id=b.get_material_id       
+  <where>
+		<include refid="query_selectinputGetMaterial_where"/>
+ </where>  
+      ORDER BY detail_id DESC                                                                                                                                                                                                                                                         
+  </select>
+</mapper>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.TestProcessMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.TestProcess" >
+    <id column="process_id" property="processId" jdbcType="INTEGER" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="process" property="process" jdbcType="VARCHAR" />
+    <result column="standard_val" property="standardVal" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    process_id, client_material_no, material_no, process, standard_val
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from test_process
+    where process_id = #{processId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from test_process
+    where process_id = #{processId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.TestProcess" >
+    insert into test_process (process_id, client_material_no, material_no, 
+      process, standard_val)
+    values (#{processId,jdbcType=INTEGER}, #{clientMaterialNo,jdbcType=VARCHAR}, #{materialNo,jdbcType=VARCHAR}, 
+      #{process,jdbcType=VARCHAR}, #{standardVal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.TestProcess" >
+    insert into test_process
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="processId != null" >
+        process_id,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="process != null" >
+        process,
+      </if>
+      <if test="standardVal != null" >
+        standard_val,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="processId != null" >
+        #{processId,jdbcType=INTEGER},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="standardVal != null" >
+        #{standardVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.TestProcess" >
+    update test_process
+    <set >
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null" >
+        process = #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="standardVal != null" >
+        standard_val = #{standardVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where process_id = #{processId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.TestProcess" >
+    update test_process
+    set client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      process = #{process,jdbcType=VARCHAR},
+      standard_val = #{standardVal,jdbcType=VARCHAR}
+    where process_id = #{processId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+ <!--添加的部分  根据客户物料号删除-->
+   <delete id="deleteTestProcess" >
+    delete from test_process
+    where client_material_no = #{0}
+    AND material_no = #{1}
+  </delete>
+  
+  <!-- 根据客户物料号和物料号查询-->
+  <select id="selectByParam" resultMap="BaseResultMap">
+  select * from
+     test_process
+    where client_material_no = #{0}
+    AND material_no = #{1}
+  </select>
+  
+   <select id="selectProcess" resultMap="BaseResultMap" >
+  	select process_id ,process,standard_val from test_process sp where 
+  	sp.material_no=#{materialNo} and sp.client_material_no like '%${clientMaterialNo}%'
+  </select>
+  
+   <select id="selectTestProcessByParam" resultMap="BaseResultMap" >
+  	select client_material_no,material_no,process,standard_val from test_process st where 
+  	st.material_no=#{materialNo}  and st.client_material_no like '%${clientMaterialNo}%' and 
+  	st.process=#{process}  
+  </select>
+  
+  
+  <update id="updateByPrimaryAllSelective" parameterType="cn.ssm.po.TestProcess" >
+    update test_process
+    set client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      process = #{process,jdbcType=VARCHAR},
+      standard_val = #{standardVal,jdbcType=VARCHAR}
+    where client_material_no = #{clientMaterialNo,jdbcType=VARCHAR} and
+          material_no = #{materialNo,jdbcType=VARCHAR}   and
+          process = #{process,jdbcType=VARCHAR}         
+          
+  </update>
+ <!--  //吴永-删除多余的检测工序1是删除原始检测工序，2是删除原始检测工序+特征值 -->
+   <delete id="deleteTestProcessduoyu1" >
+    delete from test_process
+   where client_material_no like '%${clientMaterialNo,jdbcType=VARCHAR}%' and
+          material_no = #{materialNo,jdbcType=VARCHAR}   and
+          process = #{process0,jdbcType=VARCHAR}  
+  </delete>
+  <!--  //吴永-删除多余的检测工序1是删除原始检测工序，2是删除原始检测工序+特征值 -->
+   <delete id="deleteTestProcessduoyu2" >
+    delete from test_process
+   where client_material_no like '%${clientMaterialNo,jdbcType=VARCHAR}%' and
+          material_no = #{materialNo,jdbcType=VARCHAR}   and
+          process = #{process,jdbcType=VARCHAR}  
+  </delete>
+  
+  
+   <!-- Ajax根据物料号得到工序，并下拉显示-->
+   <select id="selectMaterialNoToProcess" resultType="String" parameterType="String" >
+  	select distinct process from test_process where 
+  	material_no=#{0}  
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.MoldsMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.Molds" >
+    <id column="mold_id" property="moldId" jdbcType="INTEGER" />
+    <result column="client" property="client" jdbcType="VARCHAR" />
+    <result column="figure_no" property="figureNo" jdbcType="VARCHAR" />
+    <result column="mold_name" property="moldName" jdbcType="VARCHAR" />
+    <result column="mold_no" property="moldNo" jdbcType="VARCHAR" />
+    <result column="library_no" property="libraryNo" jdbcType="VARCHAR" />
+    <result column="side_no" property="sideNo" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="rfid" property="rfid" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  
+  <!--模具查询sql片段 -->
+  <sql id="query_molds_where">
+  
+             <if test="mold_name!=null and mold_name!=''">
+				and  a.mold_name like '%${mold_name}%'
+			</if>
+			<if test="mold_no!=null and mold_no!=''">
+				and  a.mold_no like '%${mold_no}%'
+			</if>
+  
+  </sql>
+  
+  <sql id="Base_Column_List" >
+    mold_id, client, figure_no, mold_name, mold_no, library_no, side_no, remark, rfid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from molds
+    where mold_id = #{moldId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from molds
+    where mold_id = #{moldId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.Molds" >
+    insert into molds (mold_id, client, figure_no, 
+      mold_name, mold_no, library_no, 
+      side_no, remark, rfid
+      )
+    values (#{moldId,jdbcType=INTEGER}, #{client,jdbcType=VARCHAR}, #{figureNo,jdbcType=VARCHAR}, 
+      #{moldName,jdbcType=VARCHAR}, #{moldNo,jdbcType=VARCHAR}, #{libraryNo,jdbcType=VARCHAR}, 
+      #{sideNo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{rfid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.Molds" >
+    insert into molds
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="moldId != null" >
+        mold_id,
+      </if>
+      <if test="client != null" >
+        client,
+      </if>
+      <if test="figureNo != null" >
+        figure_no,
+      </if>
+      <if test="moldName != null" >
+        mold_name,
+      </if>
+      <if test="moldNo != null" >
+        mold_no,
+      </if>
+      <if test="libraryNo != null" >
+        library_no,
+      </if>
+      <if test="sideNo != null" >
+        side_no,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="rfid != null" >
+        rfid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="moldId != null" >
+        #{moldId,jdbcType=INTEGER},
+      </if>
+      <if test="client != null" >
+        #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="figureNo != null" >
+        #{figureNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moldName != null" >
+        #{moldName,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null" >
+        #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="libraryNo != null" >
+        #{libraryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sideNo != null" >
+        #{sideNo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null" >
+        #{rfid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.Molds" >
+    update molds
+    <set >
+      <if test="client != null" >
+        client = #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="figureNo != null" >
+        figure_no = #{figureNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moldName != null" >
+        mold_name = #{moldName,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null" >
+        mold_no = #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="libraryNo != null" >
+        library_no = #{libraryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sideNo != null" >
+        side_no = #{sideNo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null" >
+        rfid = #{rfid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mold_id = #{moldId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.Molds" >
+    update molds
+    set client = #{client,jdbcType=VARCHAR},
+      figure_no = #{figureNo,jdbcType=VARCHAR},
+      mold_name = #{moldName,jdbcType=VARCHAR},
+      mold_no = #{moldNo,jdbcType=VARCHAR},
+      library_no = #{libraryNo,jdbcType=VARCHAR},
+      side_no = #{sideNo,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      rfid = #{rfid,jdbcType=VARCHAR}
+    where mold_id = #{moldId,jdbcType=INTEGER}
+  </update>
+  
+  <!--添加部分：多条件查询的条件  //模具查询分页-->
+  <select id="selectMoldsByParam" resultMap="BaseResultMap"  >
+    select  * from
+     molds a
+     <where>
+         <include refid="query_molds_where"/>
+     </where>
+     ORDER BY mold_id DESC
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+   <!-- //模具查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectMoldsByParamtotalCount" resultType="int">
+  	select  count(*) from  molds a
+  	<where>
+		<include refid="query_molds_where"/>
+	</where>
+  </select>
+  
+  
+  
+   <select id="selectMoldNames" resultType="String">
+  	select mold_no from molds
+  </select>
+  
+  
+   <select id="selectMoldsByParam1" resultMap="BaseResultMap"  >
+    select  * from
+     molds 
+     Where mold_name=#{0}
+     and mold_no=#{1}
+  </select> 
+  
+  
+</mapper>

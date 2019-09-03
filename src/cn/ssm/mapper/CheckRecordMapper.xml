@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.CheckRecordMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.CheckRecord" >
+    <id column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="check_id" property="checkId" jdbcType="INTEGER" />
+    <result column="check_content" property="checkContent" jdbcType="VARCHAR" />
+    <result column="results_1" property="results1" jdbcType="VARCHAR" />
+    <result column="time_1" property="time1" jdbcType="VARCHAR" />
+    <result column="remarks_1" property="remarks1" jdbcType="VARCHAR" />
+    <result column="results_2" property="results2" jdbcType="VARCHAR" />
+    <result column="time_2" property="time2" jdbcType="VARCHAR" />
+    <result column="remarks_2" property="remarks2" jdbcType="VARCHAR" />
+    <result column="results_3" property="results3" jdbcType="VARCHAR" />
+    <result column="time_3" property="time3" jdbcType="VARCHAR" />
+    <result column="remarks_3" property="remarks3" jdbcType="VARCHAR" />
+    <result column="results_4" property="results4" jdbcType="VARCHAR" />
+    <result column="time_4" property="time4" jdbcType="VARCHAR" />
+    <result column="remarks_4" property="remarks4" jdbcType="VARCHAR" />
+    <result column="results_5" property="results5" jdbcType="VARCHAR" />
+    <result column="time_5" property="time5" jdbcType="VARCHAR" />
+    <result column="remarks_5" property="remarks5" jdbcType="VARCHAR" />
+    <result column="results_6" property="results6" jdbcType="VARCHAR" />
+    <result column="time_6" property="time6" jdbcType="VARCHAR" />
+    <result column="remarks_6" property="remarks6" jdbcType="VARCHAR" />
+    <result column="results_7" property="results7" jdbcType="VARCHAR" />
+    <result column="time_7" property="time7" jdbcType="VARCHAR" />
+    <result column="remarks_7" property="remarks7" jdbcType="VARCHAR" />
+    <result column="results_8" property="results8" jdbcType="VARCHAR" />
+    <result column="time_8" property="time8" jdbcType="VARCHAR" />
+    <result column="remarks_8" property="remarks8" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    record_id, check_id, check_content, results_1, time_1, remarks_1, results_2, time_2, 
+    remarks_2, results_3, time_3, remarks_3, results_4, time_4, remarks_4, results_5, 
+    time_5, remarks_5, results_6, time_6, remarks_6, results_7, time_7, remarks_7, results_8, 
+    time_8, remarks_8
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from check_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from check_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.CheckRecord" >
+    insert into check_record (record_id, check_id, check_content, 
+      results_1, time_1, remarks_1, 
+      results_2, time_2, remarks_2, 
+      results_3, time_3, remarks_3, 
+      results_4, time_4, remarks_4, 
+      results_5, time_5, remarks_5, 
+      results_6, time_6, remarks_6, 
+      results_7, time_7, remarks_7, 
+      results_8, time_8, remarks_8
+      )
+    values (#{recordId,jdbcType=INTEGER}, #{checkId,jdbcType=INTEGER}, #{checkContent,jdbcType=VARCHAR}, 
+      #{results1,jdbcType=VARCHAR}, #{time1,jdbcType=VARCHAR}, #{remarks1,jdbcType=VARCHAR}, 
+      #{results2,jdbcType=VARCHAR}, #{time2,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, 
+      #{results3,jdbcType=VARCHAR}, #{time3,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}, 
+      #{results4,jdbcType=VARCHAR}, #{time4,jdbcType=VARCHAR}, #{remarks4,jdbcType=VARCHAR}, 
+      #{results5,jdbcType=VARCHAR}, #{time5,jdbcType=VARCHAR}, #{remarks5,jdbcType=VARCHAR}, 
+      #{results6,jdbcType=VARCHAR}, #{time6,jdbcType=VARCHAR}, #{remarks6,jdbcType=VARCHAR}, 
+      #{results7,jdbcType=VARCHAR}, #{time7,jdbcType=VARCHAR}, #{remarks7,jdbcType=VARCHAR}, 
+      #{results8,jdbcType=VARCHAR}, #{time8,jdbcType=VARCHAR}, #{remarks8,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.CheckRecord" >
+    insert into check_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        record_id,
+      </if>
+      <if test="checkId != null" >
+        check_id,
+      </if>
+      <if test="checkContent != null" >
+        check_content,
+      </if>
+      <if test="results1 != null" >
+        results_1,
+      </if>
+      <if test="time1 != null" >
+        time_1,
+      </if>
+      <if test="remarks1 != null" >
+        remarks_1,
+      </if>
+      <if test="results2 != null" >
+        results_2,
+      </if>
+      <if test="time2 != null" >
+        time_2,
+      </if>
+      <if test="remarks2 != null" >
+        remarks_2,
+      </if>
+      <if test="results3 != null" >
+        results_3,
+      </if>
+      <if test="time3 != null" >
+        time_3,
+      </if>
+      <if test="remarks3 != null" >
+        remarks_3,
+      </if>
+      <if test="results4 != null" >
+        results_4,
+      </if>
+      <if test="time4 != null" >
+        time_4,
+      </if>
+      <if test="remarks4 != null" >
+        remarks_4,
+      </if>
+      <if test="results5 != null" >
+        results_5,
+      </if>
+      <if test="time5 != null" >
+        time_5,
+      </if>
+      <if test="remarks5 != null" >
+        remarks_5,
+      </if>
+      <if test="results6 != null" >
+        results_6,
+      </if>
+      <if test="time6 != null" >
+        time_6,
+      </if>
+      <if test="remarks6 != null" >
+        remarks_6,
+      </if>
+      <if test="results7 != null" >
+        results_7,
+      </if>
+      <if test="time7 != null" >
+        time_7,
+      </if>
+      <if test="remarks7 != null" >
+        remarks_7,
+      </if>
+      <if test="results8 != null" >
+        results_8,
+      </if>
+      <if test="time8 != null" >
+        time_8,
+      </if>
+      <if test="remarks8 != null" >
+        remarks_8,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="checkId != null" >
+        #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="checkContent != null" >
+        #{checkContent,jdbcType=VARCHAR},
+      </if>
+      <if test="results1 != null" >
+        #{results1,jdbcType=VARCHAR},
+      </if>
+      <if test="time1 != null" >
+        #{time1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null" >
+        #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="results2 != null" >
+        #{results2,jdbcType=VARCHAR},
+      </if>
+      <if test="time2 != null" >
+        #{time2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null" >
+        #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="results3 != null" >
+        #{results3,jdbcType=VARCHAR},
+      </if>
+      <if test="time3 != null" >
+        #{time3,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null" >
+        #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="results4 != null" >
+        #{results4,jdbcType=VARCHAR},
+      </if>
+      <if test="time4 != null" >
+        #{time4,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks4 != null" >
+        #{remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="results5 != null" >
+        #{results5,jdbcType=VARCHAR},
+      </if>
+      <if test="time5 != null" >
+        #{time5,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks5 != null" >
+        #{remarks5,jdbcType=VARCHAR},
+      </if>
+      <if test="results6 != null" >
+        #{results6,jdbcType=VARCHAR},
+      </if>
+      <if test="time6 != null" >
+        #{time6,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks6 != null" >
+        #{remarks6,jdbcType=VARCHAR},
+      </if>
+      <if test="results7 != null" >
+        #{results7,jdbcType=VARCHAR},
+      </if>
+      <if test="time7 != null" >
+        #{time7,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks7 != null" >
+        #{remarks7,jdbcType=VARCHAR},
+      </if>
+      <if test="results8 != null" >
+        #{results8,jdbcType=VARCHAR},
+      </if>
+      <if test="time8 != null" >
+        #{time8,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks8 != null" >
+        #{remarks8,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.CheckRecord" >
+    update check_record
+    <set >
+      <if test="checkId != null" >
+        check_id = #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="checkContent != null" >
+        check_content = #{checkContent,jdbcType=VARCHAR},
+      </if>
+      <if test="results1 != null" >
+        results_1 = #{results1,jdbcType=VARCHAR},
+      </if>
+      <if test="time1 != null" >
+        time_1 = #{time1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null" >
+        remarks_1 = #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="results2 != null" >
+        results_2 = #{results2,jdbcType=VARCHAR},
+      </if>
+      <if test="time2 != null" >
+        time_2 = #{time2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null" >
+        remarks_2 = #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="results3 != null" >
+        results_3 = #{results3,jdbcType=VARCHAR},
+      </if>
+      <if test="time3 != null" >
+        time_3 = #{time3,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null" >
+        remarks_3 = #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="results4 != null" >
+        results_4 = #{results4,jdbcType=VARCHAR},
+      </if>
+      <if test="time4 != null" >
+        time_4 = #{time4,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks4 != null" >
+        remarks_4 = #{remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="results5 != null" >
+        results_5 = #{results5,jdbcType=VARCHAR},
+      </if>
+      <if test="time5 != null" >
+        time_5 = #{time5,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks5 != null" >
+        remarks_5 = #{remarks5,jdbcType=VARCHAR},
+      </if>
+      <if test="results6 != null" >
+        results_6 = #{results6,jdbcType=VARCHAR},
+      </if>
+      <if test="time6 != null" >
+        time_6 = #{time6,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks6 != null" >
+        remarks_6 = #{remarks6,jdbcType=VARCHAR},
+      </if>
+      <if test="results7 != null" >
+        results_7 = #{results7,jdbcType=VARCHAR},
+      </if>
+      <if test="time7 != null" >
+        time_7 = #{time7,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks7 != null" >
+        remarks_7 = #{remarks7,jdbcType=VARCHAR},
+      </if>
+      <if test="results8 != null" >
+        results_8 = #{results8,jdbcType=VARCHAR},
+      </if>
+      <if test="time8 != null" >
+        time_8 = #{time8,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks8 != null" >
+        remarks_8 = #{remarks8,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.CheckRecord" >
+    update check_record
+    set check_id = #{checkId,jdbcType=INTEGER},
+      check_content = #{checkContent,jdbcType=VARCHAR},
+      results_1 = #{results1,jdbcType=VARCHAR},
+      time_1 = #{time1,jdbcType=VARCHAR},
+      remarks_1 = #{remarks1,jdbcType=VARCHAR},
+      results_2 = #{results2,jdbcType=VARCHAR},
+      time_2 = #{time2,jdbcType=VARCHAR},
+      remarks_2 = #{remarks2,jdbcType=VARCHAR},
+      results_3 = #{results3,jdbcType=VARCHAR},
+      time_3 = #{time3,jdbcType=VARCHAR},
+      remarks_3 = #{remarks3,jdbcType=VARCHAR},
+      results_4 = #{results4,jdbcType=VARCHAR},
+      time_4 = #{time4,jdbcType=VARCHAR},
+      remarks_4 = #{remarks4,jdbcType=VARCHAR},
+      results_5 = #{results5,jdbcType=VARCHAR},
+      time_5 = #{time5,jdbcType=VARCHAR},
+      remarks_5 = #{remarks5,jdbcType=VARCHAR},
+      results_6 = #{results6,jdbcType=VARCHAR},
+      time_6 = #{time6,jdbcType=VARCHAR},
+      remarks_6 = #{remarks6,jdbcType=VARCHAR},
+      results_7 = #{results7,jdbcType=VARCHAR},
+      time_7 = #{time7,jdbcType=VARCHAR},
+      remarks_7 = #{remarks7,jdbcType=VARCHAR},
+      results_8 = #{results8,jdbcType=VARCHAR},
+      time_8 = #{time8,jdbcType=VARCHAR},
+      remarks_8 = #{remarks8,jdbcType=VARCHAR}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectCheckRecordByKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+    <include refid="Base_Column_List" />
+    from check_record
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </select>
+</mapper>

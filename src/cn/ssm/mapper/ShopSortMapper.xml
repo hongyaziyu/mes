@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.ShopSortMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.ShopSort" >
+    <id column="sort_id" property="sortId" jdbcType="INTEGER" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="shop" property="shop" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sort_id, client_material_no, material_no, shop
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop_sort
+    where sort_id = #{sortId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shop_sort
+    where sort_id = #{sortId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.ShopSort" >
+    insert into shop_sort (sort_id, client_material_no, material_no, 
+      shop)
+    values (#{sortId,jdbcType=INTEGER}, #{clientMaterialNo,jdbcType=VARCHAR}, #{materialNo,jdbcType=VARCHAR}, 
+      #{shop,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.ShopSort" >
+    insert into shop_sort
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sortId != null" >
+        sort_id,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="shop != null" >
+        shop,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sortId != null" >
+        #{sortId,jdbcType=INTEGER},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shop != null" >
+        #{shop,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.ShopSort" >
+    update shop_sort
+    <set >
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shop != null" >
+        shop = #{shop,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sort_id = #{sortId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.ShopSort" >
+    update shop_sort
+    set client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      shop = #{shop,jdbcType=VARCHAR}
+    where sort_id = #{sortId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <!--添加的部分  根据客户物料号删除-->
+   <delete id="deleteShopSort" >
+    delete from shop_sort
+    where client_material_no like'%${clientMaterialNo}%'
+        AND  material_no = #{material_no}
+  </delete>
+  
+  
+  <!-- 添加的部分：根据客户物料号和物料号查询-->
+  <select id="selectByParam" resultMap="BaseResultMap">
+  select * from
+     shop_sort
+        where client_material_no like'%${clientMaterialNo}%'
+        AND  material_no = #{material_no}
+  </select>
+  
+  <select id="selectShop" resultType="string"  >
+    select shop from shop_sort ss where 
+  	ss.material_no=#{materialNo}
+  	and ss.client_material_no like'%${clientMaterialNo}%'
+  </select>
+</mapper>

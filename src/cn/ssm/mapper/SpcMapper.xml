@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.SpcMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.Spc" >
+    <id column="spc_id" property="spcId" jdbcType="INTEGER" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR" />
+    <result column="character_val" property="characterVal" jdbcType="VARCHAR" />
+    <result column="make_start_date" property="makeStartDate" jdbcType="VARCHAR" />
+    <result column="make_end_date" property="makeEndDate" jdbcType="VARCHAR" />
+    <result column="mid" property="mid" jdbcType="REAL" />
+    <result column="usl" property="usl" jdbcType="REAL" />
+    <result column="lsl" property="lsl" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spc_id, client_material_no, material_no, batch_no, product_name, process_name, character_val, 
+    make_start_date, make_end_date, mid, usl, lsl
+  </sql>
+  
+  <!-- Spc记录查询sql片段 -->
+  <sql id="query_spc_where">
+  
+            <if test="materialNo!=null and materialNo!=''">
+				and  a.material_no like '%${materialNo}%'
+			</if>
+			<if test="batchNo!=null and batchNo!=''">
+				and  a.batch_no = like '%${batchNo}%'
+			</if>
+			<if test="process!=null and process!=''">
+				and  a.process_name like '%${process}%'
+			</if>
+			<if test="characterVal!=null and characterVal!=''">
+				and  a.character_val like '%${characterVal}%'
+			</if>
+  
+  </sql>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from spc
+    where spc_id = #{spcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from spc
+    where spc_id = #{spcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.Spc" >
+    insert into spc (spc_id, client_material_no, material_no, 
+      batch_no, product_name, process_name, 
+      character_val, make_start_date, make_end_date, 
+      mid, usl, lsl)
+    values (#{spcId,jdbcType=INTEGER}, #{clientMaterialNo,jdbcType=VARCHAR}, #{materialNo,jdbcType=VARCHAR}, 
+      #{batchNo,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{processName,jdbcType=VARCHAR}, 
+      #{characterVal,jdbcType=VARCHAR}, #{makeStartDate,jdbcType=VARCHAR}, #{makeEndDate,jdbcType=VARCHAR}, 
+      #{mid,jdbcType=REAL}, #{usl,jdbcType=REAL}, #{lsl,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.Spc" >
+    insert into spc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spcId != null" >
+        spc_id,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="processName != null" >
+        process_name,
+      </if>
+      <if test="characterVal != null" >
+        character_val,
+      </if>
+      <if test="makeStartDate != null" >
+        make_start_date,
+      </if>
+      <if test="makeEndDate != null" >
+        make_end_date,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="usl != null" >
+        usl,
+      </if>
+      <if test="lsl != null" >
+        lsl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spcId != null" >
+        #{spcId,jdbcType=INTEGER},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="characterVal != null" >
+        #{characterVal,jdbcType=VARCHAR},
+      </if>
+      <if test="makeStartDate != null" >
+        #{makeStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="makeEndDate != null" >
+        #{makeEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=REAL},
+      </if>
+      <if test="usl != null" >
+        #{usl,jdbcType=REAL},
+      </if>
+      <if test="lsl != null" >
+        #{lsl,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.Spc" >
+    update spc
+    <set >
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        process_name = #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="characterVal != null" >
+        character_val = #{characterVal,jdbcType=VARCHAR},
+      </if>
+      <if test="makeStartDate != null" >
+        make_start_date = #{makeStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="makeEndDate != null" >
+        make_end_date = #{makeEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=REAL},
+      </if>
+      <if test="usl != null" >
+        usl = #{usl,jdbcType=REAL},
+      </if>
+      <if test="lsl != null" >
+        lsl = #{lsl,jdbcType=REAL},
+      </if>
+    </set>
+    where spc_id = #{spcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.Spc" >
+    update spc
+    set client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      process_name = #{processName,jdbcType=VARCHAR},
+      character_val = #{characterVal,jdbcType=VARCHAR},
+      make_start_date = #{makeStartDate,jdbcType=VARCHAR},
+      make_end_date = #{makeEndDate,jdbcType=VARCHAR},
+      mid = #{mid,jdbcType=REAL},
+      usl = #{usl,jdbcType=REAL},
+      lsl = #{lsl,jdbcType=REAL}
+    where spc_id = #{spcId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询该图号物料号下的spc -->
+  <select id="selectSpc" resultType="String">
+  select*from spc
+  where client_material_no=#{0}
+  and material_no=#{1}
+  and batch_no=#{2}
+  and process_name=#{3}
+  AND character_val=#{4}
+  </select>
+  
+  <!-- 更新截止日期变化 -->
+   <update id="updateSpc" parameterType="cn.ssm.po.Spc">
+    update spc
+    set make_end_date = #{5}
+    where client_material_no=#{0}
+		  and material_no=#{1}
+		  and batch_no=#{2}
+		  and process_name=#{3}
+		  and character_val=#{4}
+  </update>
+  
+  
+   <!-- Spc过程能力分析-->
+  <select id="selectPCI" resultMap="BaseResultMap">
+  select*from spc
+  where client_material_no=#{0}
+  and material_no=#{1}
+  and batch_no=#{2}
+  and process_name=#{3}
+  AND character_val=#{4}
+  </select>
+  
+  
+  <!-- //Spc查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectSpcBytotalCount" resultType="int">
+  	select  count(*) from  spc a
+  	<where>
+		<include refid="query_spc_where"/>
+	</where>
+  </select>
+  
+  
+   <!-- //Spc查询分页记录 -->
+  <select id="selectSpcrecord" resultMap="BaseResultMap">
+  	select*from  spc a
+  	<where>
+		<include refid="query_spc_where"/>
+	</where>
+	<!-- ORDER BY spc_id DESC -->
+	 ORDER BY RIGHT(a.batch_no,13) DESC
+	<!-- limit m,n为从m+1开始取n条记录 -->
+	limit #{startPos},#{pageSize}
+  </select>
+  
+  
+   <!-- //Spc修改查询 -->
+  <select id="selectUpdateSpcrecord" resultMap="BaseResultMap">
+  	select*from  spc 
+  	 where  batch_no=#{0}
+		  and process_name=#{1}
+		  and character_val=#{2} 
+  </select>
+</mapper>

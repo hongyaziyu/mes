@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.SpcTestMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.SpcTest" >
+    <id column="test_id" property="testId" jdbcType="INTEGER" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR" />
+    <result column="character_val" property="characterVal" jdbcType="VARCHAR" />
+    <result column="test_val_1" property="testVal1" jdbcType="REAL" />
+    <result column="test_val_2" property="testVal2" jdbcType="REAL" />
+    <result column="test_val_3" property="testVal3" jdbcType="REAL" />
+    <result column="test_val_4" property="testVal4" jdbcType="REAL" />
+    <result column="test_val_5" property="testVal5" jdbcType="REAL" />
+    <result column="sum_x" property="sumX" jdbcType="DOUBLE" />
+    <result column="ave_x" property="aveX" jdbcType="DOUBLE" />
+    <result column="r" property="r" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    test_id, client_material_no, material_no, batch_no, process_name, character_val, 
+    test_val_1, test_val_2, test_val_3, test_val_4, test_val_5, sum_x, ave_x, r
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from spc_test
+    where test_id = #{testId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from spc_test
+    where test_id = #{testId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.SpcTest" >
+    insert into spc_test (test_id, client_material_no, material_no, 
+      batch_no, process_name, character_val, 
+      test_val_1, test_val_2, test_val_3, 
+      test_val_4, test_val_5, sum_x, 
+      ave_x, r)
+    values (#{testId,jdbcType=INTEGER}, #{clientMaterialNo,jdbcType=VARCHAR}, #{materialNo,jdbcType=VARCHAR}, 
+      #{batchNo,jdbcType=VARCHAR}, #{processName,jdbcType=VARCHAR}, #{characterVal,jdbcType=VARCHAR}, 
+      #{testVal1,jdbcType=REAL}, #{testVal2,jdbcType=REAL}, #{testVal3,jdbcType=REAL}, 
+      #{testVal4,jdbcType=REAL}, #{testVal5,jdbcType=REAL}, #{sumX,jdbcType=DOUBLE}, 
+      #{aveX,jdbcType=DOUBLE}, #{r,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.SpcTest" >
+    insert into spc_test
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="testId != null" >
+        test_id,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="processName != null" >
+        process_name,
+      </if>
+      <if test="characterVal != null" >
+        character_val,
+      </if>
+      <if test="testVal1 != null" >
+        test_val_1,
+      </if>
+      <if test="testVal2 != null" >
+        test_val_2,
+      </if>
+      <if test="testVal3 != null" >
+        test_val_3,
+      </if>
+      <if test="testVal4 != null" >
+        test_val_4,
+      </if>
+      <if test="testVal5 != null" >
+        test_val_5,
+      </if>
+      <if test="sumX != null" >
+        sum_x,
+      </if>
+      <if test="aveX != null" >
+        ave_x,
+      </if>
+      <if test="r != null" >
+        r,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="testId != null" >
+        #{testId,jdbcType=INTEGER},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="characterVal != null" >
+        #{characterVal,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal1 != null" >
+        #{testVal1,jdbcType=REAL},
+      </if>
+      <if test="testVal2 != null" >
+        #{testVal2,jdbcType=REAL},
+      </if>
+      <if test="testVal3 != null" >
+        #{testVal3,jdbcType=REAL},
+      </if>
+      <if test="testVal4 != null" >
+        #{testVal4,jdbcType=REAL},
+      </if>
+      <if test="testVal5 != null" >
+        #{testVal5,jdbcType=REAL},
+      </if>
+      <if test="sumX != null" >
+        #{sumX,jdbcType=DOUBLE},
+      </if>
+      <if test="aveX != null" >
+        #{aveX,jdbcType=DOUBLE},
+      </if>
+      <if test="r != null" >
+        #{r,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.SpcTest" >
+    update spc_test
+    <set >
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        process_name = #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="characterVal != null" >
+        character_val = #{characterVal,jdbcType=VARCHAR},
+      </if>
+      <if test="testVal1 != null" >
+        test_val_1 = #{testVal1,jdbcType=REAL},
+      </if>
+      <if test="testVal2 != null" >
+        test_val_2 = #{testVal2,jdbcType=REAL},
+      </if>
+      <if test="testVal3 != null" >
+        test_val_3 = #{testVal3,jdbcType=REAL},
+      </if>
+      <if test="testVal4 != null" >
+        test_val_4 = #{testVal4,jdbcType=REAL},
+      </if>
+      <if test="testVal5 != null" >
+        test_val_5 = #{testVal5,jdbcType=REAL},
+      </if>
+      <if test="sumX != null" >
+        sum_x = #{sumX,jdbcType=DOUBLE},
+      </if>
+      <if test="aveX != null" >
+        ave_x = #{aveX,jdbcType=DOUBLE},
+      </if>
+      <if test="r != null" >
+        r = #{r,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where test_id = #{testId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.SpcTest" >
+    update spc_test
+    set client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      process_name = #{processName,jdbcType=VARCHAR},
+      character_val = #{characterVal,jdbcType=VARCHAR},
+      test_val_1 = #{testVal1,jdbcType=REAL},
+      test_val_2 = #{testVal2,jdbcType=REAL},
+      test_val_3 = #{testVal3,jdbcType=REAL},
+      test_val_4 = #{testVal4,jdbcType=REAL},
+      test_val_5 = #{testVal5,jdbcType=REAL},
+      sum_x = #{sumX,jdbcType=DOUBLE},
+      ave_x = #{aveX,jdbcType=DOUBLE},
+      r = #{r,jdbcType=DOUBLE}
+    where test_id = #{testId,jdbcType=INTEGER}
+  </update>
+  
+   <!-- 根据图号，物料号，工序，特征值查询spc_test数据 -->
+  <select id="selectSpcTest" resultMap="BaseResultMap">
+  select*from spc_test
+      where client_material_no=#{0}
+      and material_no=#{1}
+       and batch_no=#{2}
+      and process_name=#{3}
+      and character_val=#{4}
+  </select>
+  
+   <!-- //Spc修改查询 -->
+  <select id="selectEditSpcrecord" resultMap="BaseResultMap">
+  	select*from  spc_test 
+  	 where  batch_no=#{0}
+		  and process_name=#{1}
+		  and character_val=#{2} 
+  </select>
+  
+</mapper>

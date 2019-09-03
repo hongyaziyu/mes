@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.MonthPlanMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.MonthPlan" >
+    <id column="plan_id" property="planId" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="spec" property="spec" jdbcType="VARCHAR" />
+    <result column="month_num" property="monthNum" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    plan_id, month, product_name, company, client_material_no, spec, month_num, remark
+  </sql>
+  
+  <!-- 月计划 记录-->
+   <sql id="query_monthPlan_where">
+    
+			<if test="company!=null and company!=''">
+				and  company like '%${company}%'
+			</if>
+			<if test="clientMaterialNo!=null and clientMaterialNo!=''">
+				and  client_material_no like '%${clientMaterialNo}%'
+			</if>
+			<if test="month!=null and month!=''">
+				and  month = #{month}
+			</if>
+			
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from month_plan
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from month_plan
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.MonthPlan" >
+    insert into month_plan (plan_id, month, product_name, 
+      company, client_material_no, spec, 
+      month_num, remark)
+    values (#{planId,jdbcType=INTEGER}, #{month,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{company,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, #{spec,jdbcType=VARCHAR}, 
+      #{monthNum,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.MonthPlan" >
+    insert into month_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planId != null" >
+        plan_id,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="spec != null" >
+        spec,
+      </if>
+      <if test="monthNum != null" >
+        month_num,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planId != null" >
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="spec != null" >
+        #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="monthNum != null" >
+        #{monthNum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.MonthPlan" >
+    update month_plan
+    <set >
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="spec != null" >
+        spec = #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="monthNum != null" >
+        month_num = #{monthNum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.MonthPlan" >
+    update month_plan
+    set month = #{month,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      spec = #{spec,jdbcType=VARCHAR},
+      month_num = #{monthNum,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </update>
+  
+   <!-- 月计划查询 -->
+  <select id="selectMonthPlan" parameterType="cn.ssm.po.MonthPlan"  resultMap="BaseResultMap"  >
+  	select  * from  month_plan
+  	<where>
+		<include refid="query_monthPlan_where"/>
+	</where>
+	ORDER BY month DESC
+	limit #{startPos},#{pageSize} 
+  </select>
+  
+  
+  <!-- 月计划分页数量查询 -->
+  <select id="selectMonthPlanCount" parameterType="cn.ssm.po.MonthPlan" resultType="int">
+  	select  count(*) from  month_plan 
+  	<where>
+		<include refid="query_monthPlan_where"/>
+	</where>
+  </select>
+  
+  
+  
+  <!--月计划excel查询是否重复 -->
+   <select id="selectMonthPlanByParam" parameterType="cn.ssm.po.MonthPlan"  resultMap="BaseResultMap">
+  	select  * from  month_plan
+  	where month=#{0}
+	and company=#{1}
+	and client_material_no=#{2}
+  </select>
+</mapper>

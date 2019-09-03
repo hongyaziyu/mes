@@ -1,0 +1,1642 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.SaSaleorderBMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.SaSaleorderB" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="NVARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+    <result column="quantity2" property="quantity2" jdbcType="DECIMAL" />
+    <result column="baseQuantity" property="basequantity" jdbcType="DECIMAL" />
+    <result column="subQuantity" property="subquantity" jdbcType="DECIMAL" />
+    <result column="compositionQuantity" property="compositionquantity" jdbcType="NVARCHAR" />
+    <result column="origPrice" property="origprice" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="basePrice" property="baseprice" jdbcType="DECIMAL" />
+    <result column="discountRate" property="discountrate" jdbcType="DECIMAL" />
+    <result column="origDiscountPrice" property="origdiscountprice" jdbcType="DECIMAL" />
+    <result column="discountPrice" property="discountprice" jdbcType="DECIMAL" />
+    <result column="baseDiscountPrice" property="basediscountprice" jdbcType="DECIMAL" />
+    <result column="taxRate" property="taxrate" jdbcType="DECIMAL" />
+    <result column="origTaxPrice" property="origtaxprice" jdbcType="DECIMAL" />
+    <result column="taxPrice" property="taxprice" jdbcType="DECIMAL" />
+    <result column="baseTaxPrice" property="basetaxprice" jdbcType="DECIMAL" />
+    <result column="origDiscountAmount" property="origdiscountamount" jdbcType="DECIMAL" />
+    <result column="discountAmount" property="discountamount" jdbcType="DECIMAL" />
+    <result column="origTax" property="origtax" jdbcType="DECIMAL" />
+    <result column="tax" property="tax" jdbcType="DECIMAL" />
+    <result column="origTaxAmount" property="origtaxamount" jdbcType="DECIMAL" />
+    <result column="taxAmount" property="taxamount" jdbcType="DECIMAL" />
+    <result column="isPresent" property="ispresent" jdbcType="TINYINT" />
+    <result column="manufactureQuantity" property="manufacturequantity" jdbcType="DECIMAL" />
+    <result column="manufactureQuantity2" property="manufacturequantity2" jdbcType="DECIMAL" />
+    <result column="purchaseQuantity" property="purchasequantity" jdbcType="DECIMAL" />
+    <result column="purchaseQuantity2" property="purchasequantity2" jdbcType="DECIMAL" />
+    <result column="deliveryQuantity" property="deliveryquantity" jdbcType="DECIMAL" />
+    <result column="deliveryQuantity2" property="deliveryquantity2" jdbcType="DECIMAL" />
+    <result column="saleOutQuantity" property="saleoutquantity" jdbcType="DECIMAL" />
+    <result column="saleOutQuantity2" property="saleoutquantity2" jdbcType="DECIMAL" />
+    <result column="executedQuantity" property="executedquantity" jdbcType="DECIMAL" />
+    <result column="executedQuantity2" property="executedquantity2" jdbcType="DECIMAL" />
+    <result column="unitExchangeRate" property="unitexchangerate" jdbcType="DECIMAL" />
+    <result column="origDiscount" property="origdiscount" jdbcType="DECIMAL" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="taxFlag" property="taxflag" jdbcType="TINYINT" />
+    <result column="inventoryBarCode" property="inventorybarcode" jdbcType="NVARCHAR" />
+    <result column="partnerInventoryCode" property="partnerinventorycode" jdbcType="NVARCHAR" />
+    <result column="updatedBy" property="updatedby" jdbcType="NVARCHAR" />
+    <result column="freeItem0" property="freeitem0" jdbcType="NVARCHAR" />
+    <result column="freeItem1" property="freeitem1" jdbcType="NVARCHAR" />
+    <result column="freeItem2" property="freeitem2" jdbcType="NVARCHAR" />
+    <result column="freeItem3" property="freeitem3" jdbcType="NVARCHAR" />
+    <result column="freeItem4" property="freeitem4" jdbcType="NVARCHAR" />
+    <result column="freeItem5" property="freeitem5" jdbcType="NVARCHAR" />
+    <result column="freeItem6" property="freeitem6" jdbcType="NVARCHAR" />
+    <result column="freeItem7" property="freeitem7" jdbcType="NVARCHAR" />
+    <result column="freeItem8" property="freeitem8" jdbcType="NVARCHAR" />
+    <result column="freeItem9" property="freeitem9" jdbcType="NVARCHAR" />
+    <result column="priuserdefnvc1" property="priuserdefnvc1" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm1" property="priuserdefdecm1" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc2" property="priuserdefnvc2" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm2" property="priuserdefdecm2" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc3" property="priuserdefnvc3" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm3" property="priuserdefdecm3" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc4" property="priuserdefnvc4" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm4" property="priuserdefdecm4" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc1" property="pubuserdefnvc1" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm1" property="pubuserdefdecm1" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc2" property="pubuserdefnvc2" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm2" property="pubuserdefdecm2" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc3" property="pubuserdefnvc3" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm3" property="pubuserdefdecm3" jdbcType="DECIMAL" />
+    <result column="pubuserdefnvc4" property="pubuserdefnvc4" jdbcType="NVARCHAR" />
+    <result column="pubuserdefdecm4" property="pubuserdefdecm4" jdbcType="DECIMAL" />
+    <result column="partnerInventoryName" property="partnerinventoryname" jdbcType="NVARCHAR" />
+    <result column="HasPRA" property="haspra" jdbcType="TINYINT" />
+    <result column="prarequiretimes" property="prarequiretimes" jdbcType="INTEGER" />
+    <result column="hasorderbom" property="hasorderbom" jdbcType="TINYINT" />
+    <result column="isnomodify" property="isnomodify" jdbcType="NVARCHAR" />
+    <result column="SourceVoucherCode" property="sourcevouchercode" jdbcType="NVARCHAR" />
+    <result column="detailVoucherState" property="detailvoucherstate" jdbcType="NVARCHAR" />
+    <result column="Retailprice" property="retailprice" jdbcType="DECIMAL" />
+    <result column="DistributionQuantity" property="distributionquantity" jdbcType="DECIMAL" />
+    <result column="DistributionQuantity2" property="distributionquantity2" jdbcType="DECIMAL" />
+    <result column="PriceStrategyTypeName" property="pricestrategytypename" jdbcType="NVARCHAR" />
+    <result column="PriceStrategySchemeIds" property="pricestrategyschemeids" jdbcType="NVARCHAR" />
+    <result column="PriceStrategySchemeNames" property="pricestrategyschemenames" jdbcType="NVARCHAR" />
+    <result column="PromotionVoucherCodes" property="promotionvouchercodes" jdbcType="NVARCHAR" />
+    <result column="PromotionVoucherIds" property="promotionvoucherids" jdbcType="NVARCHAR" />
+    <result column="IsMemberIntegral" property="ismemberintegral" jdbcType="TINYINT" />
+    <result column="IsPromotionPresent" property="ispromotionpresent" jdbcType="TINYINT" />
+    <result column="PromotionPresentVoucherCode" property="promotionpresentvouchercode" jdbcType="NVARCHAR" />
+    <result column="PromotionSingleVoucherCode" property="promotionsinglevouchercode" jdbcType="NVARCHAR" />
+    <result column="PromotionPresentGroupID" property="promotionpresentgroupid" jdbcType="NVARCHAR" />
+    <result column="PromotionSingleGroupID" property="promotionsinglegroupid" jdbcType="NVARCHAR" />
+    <result column="DetailMemo" property="detailmemo" jdbcType="NVARCHAR" />
+    <result column="idbom" property="idbom" jdbcType="INTEGER" />
+    <result column="idinventory" property="idinventory" jdbcType="INTEGER" />
+    <result column="idproject" property="idproject" jdbcType="INTEGER" />
+    <result column="idbaseunit" property="idbaseunit" jdbcType="INTEGER" />
+    <result column="idsubunit" property="idsubunit" jdbcType="INTEGER" />
+    <result column="idunit" property="idunit" jdbcType="INTEGER" />
+    <result column="idunit2" property="idunit2" jdbcType="INTEGER" />
+    <result column="idwarehouse" property="idwarehouse" jdbcType="INTEGER" />
+    <result column="CashbackWay" property="cashbackway" jdbcType="INTEGER" />
+    <result column="PriceStrategyTypeId" property="pricestrategytypeid" jdbcType="INTEGER" />
+    <result column="PromotionPresentTypeID" property="promotionpresenttypeid" jdbcType="INTEGER" />
+    <result column="PromotionSingleTypeID" property="promotionsingletypeid" jdbcType="INTEGER" />
+    <result column="PromotionPresentVoucherID" property="promotionpresentvoucherid" jdbcType="INTEGER" />
+    <result column="PromotionSingleVoucherID" property="promotionsinglevoucherid" jdbcType="INTEGER" />
+    <result column="idSaleOrderDTO" property="idsaleorderdto" jdbcType="INTEGER" />
+    <result column="SourceVoucherId" property="sourcevoucherid" jdbcType="INTEGER" />
+    <result column="SourceVoucherDetailId" property="sourcevoucherdetailid" jdbcType="INTEGER" />
+    <result column="iddestvouchertype" property="iddestvouchertype" jdbcType="INTEGER" />
+    <result column="idsourcevouchertype" property="idsourcevouchertype" jdbcType="INTEGER" />
+    <result column="deliveryDate" property="deliverydate" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="LatestCost" property="latestcost" jdbcType="DECIMAL" />
+    <result column="LatestPOrigTaxPrice" property="latestporigtaxprice" jdbcType="DECIMAL" />
+    <result column="LatestSaleOrigTaxPrice" property="latestsaleorigtaxprice" jdbcType="DECIMAL" />
+    <result column="LowestSalePrice" property="lowestsaleprice" jdbcType="DECIMAL" />
+    <result column="SingleInvGrossProfit" property="singleinvgrossprofit" jdbcType="DECIMAL" />
+    <result column="GrossProfit" property="grossprofit" jdbcType="DECIMAL" />
+    <result column="GrossProfitRate" property="grossprofitrate" jdbcType="DECIMAL" />
+    <result column="DataSource" property="datasource" jdbcType="INTEGER" />
+    <result column="IsClose" property="isclose" jdbcType="TINYINT" />
+    <result column="IsModifiedPrice" property="ismodifiedprice" jdbcType="TINYINT" />
+    <result column="Closer" property="closer" jdbcType="NVARCHAR" />
+    <result column="CloseDate" property="closedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.ssm.po.SaSaleorderB" extends="BaseResultMap" >
+    <result column="ts" property="ts" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, quantity, quantity2, baseQuantity, subQuantity, compositionQuantity, origPrice, 
+    price, basePrice, discountRate, origDiscountPrice, discountPrice, baseDiscountPrice, 
+    taxRate, origTaxPrice, taxPrice, baseTaxPrice, origDiscountAmount, discountAmount, 
+    origTax, tax, origTaxAmount, taxAmount, isPresent, manufactureQuantity, manufactureQuantity2, 
+    purchaseQuantity, purchaseQuantity2, deliveryQuantity, deliveryQuantity2, saleOutQuantity, 
+    saleOutQuantity2, executedQuantity, executedQuantity2, unitExchangeRate, origDiscount, 
+    discount, taxFlag, inventoryBarCode, partnerInventoryCode, updatedBy, freeItem0, 
+    freeItem1, freeItem2, freeItem3, freeItem4, freeItem5, freeItem6, freeItem7, freeItem8, 
+    freeItem9, priuserdefnvc1, priuserdefdecm1, priuserdefnvc2, priuserdefdecm2, priuserdefnvc3, 
+    priuserdefdecm3, priuserdefnvc4, priuserdefdecm4, pubuserdefnvc1, pubuserdefdecm1, 
+    pubuserdefnvc2, pubuserdefdecm2, pubuserdefnvc3, pubuserdefdecm3, pubuserdefnvc4, 
+    pubuserdefdecm4, partnerInventoryName, HasPRA, prarequiretimes, hasorderbom, isnomodify, 
+    SourceVoucherCode, detailVoucherState, Retailprice, DistributionQuantity, DistributionQuantity2, 
+    PriceStrategyTypeName, PriceStrategySchemeIds, PriceStrategySchemeNames, PromotionVoucherCodes, 
+    PromotionVoucherIds, IsMemberIntegral, IsPromotionPresent, PromotionPresentVoucherCode, 
+    PromotionSingleVoucherCode, PromotionPresentGroupID, PromotionSingleGroupID, DetailMemo, 
+    idbom, idinventory, idproject, idbaseunit, idsubunit, idunit, idunit2, idwarehouse, 
+    CashbackWay, PriceStrategyTypeId, PromotionPresentTypeID, PromotionSingleTypeID, 
+    PromotionPresentVoucherID, PromotionSingleVoucherID, idSaleOrderDTO, SourceVoucherId, 
+    SourceVoucherDetailId, iddestvouchertype, idsourcevouchertype, deliveryDate, updated, 
+    LatestCost, LatestPOrigTaxPrice, LatestSaleOrigTaxPrice, LowestSalePrice, SingleInvGrossProfit, 
+    GrossProfit, GrossProfitRate, DataSource, IsClose, IsModifiedPrice, Closer, CloseDate
+  </sql>
+  <sql id="Blob_Column_List" >
+    ts
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from SA_SaleOrder_b
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from SA_SaleOrder_b
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.SaSaleorderB" >
+    insert into SA_SaleOrder_b (id, code, quantity, 
+      quantity2, baseQuantity, subQuantity, 
+      compositionQuantity, origPrice, price, 
+      basePrice, discountRate, origDiscountPrice, 
+      discountPrice, baseDiscountPrice, taxRate, 
+      origTaxPrice, taxPrice, baseTaxPrice, 
+      origDiscountAmount, discountAmount, origTax, 
+      tax, origTaxAmount, taxAmount, 
+      isPresent, manufactureQuantity, manufactureQuantity2, 
+      purchaseQuantity, purchaseQuantity2, deliveryQuantity, 
+      deliveryQuantity2, saleOutQuantity, saleOutQuantity2, 
+      executedQuantity, executedQuantity2, unitExchangeRate, 
+      origDiscount, discount, taxFlag, 
+      inventoryBarCode, partnerInventoryCode, 
+      updatedBy, freeItem0, freeItem1, 
+      freeItem2, freeItem3, freeItem4, 
+      freeItem5, freeItem6, freeItem7, 
+      freeItem8, freeItem9, priuserdefnvc1, 
+      priuserdefdecm1, priuserdefnvc2, priuserdefdecm2, 
+      priuserdefnvc3, priuserdefdecm3, priuserdefnvc4, 
+      priuserdefdecm4, pubuserdefnvc1, pubuserdefdecm1, 
+      pubuserdefnvc2, pubuserdefdecm2, pubuserdefnvc3, 
+      pubuserdefdecm3, pubuserdefnvc4, pubuserdefdecm4, 
+      partnerInventoryName, HasPRA, prarequiretimes, 
+      hasorderbom, isnomodify, SourceVoucherCode, 
+      detailVoucherState, Retailprice, DistributionQuantity, 
+      DistributionQuantity2, PriceStrategyTypeName, 
+      PriceStrategySchemeIds, PriceStrategySchemeNames, 
+      PromotionVoucherCodes, PromotionVoucherIds, 
+      IsMemberIntegral, IsPromotionPresent, PromotionPresentVoucherCode, 
+      PromotionSingleVoucherCode, PromotionPresentGroupID, 
+      PromotionSingleGroupID, DetailMemo, idbom, 
+      idinventory, idproject, idbaseunit, 
+      idsubunit, idunit, idunit2, 
+      idwarehouse, CashbackWay, PriceStrategyTypeId, 
+      PromotionPresentTypeID, PromotionSingleTypeID, 
+      PromotionPresentVoucherID, PromotionSingleVoucherID, 
+      idSaleOrderDTO, SourceVoucherId, SourceVoucherDetailId, 
+      iddestvouchertype, idsourcevouchertype, 
+      deliveryDate, updated, LatestCost, 
+      LatestPOrigTaxPrice, LatestSaleOrigTaxPrice, 
+      LowestSalePrice, SingleInvGrossProfit, 
+      GrossProfit, GrossProfitRate, DataSource, 
+      IsClose, IsModifiedPrice, Closer, 
+      CloseDate, ts)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=NVARCHAR}, #{quantity,jdbcType=DECIMAL}, 
+      #{quantity2,jdbcType=DECIMAL}, #{basequantity,jdbcType=DECIMAL}, #{subquantity,jdbcType=DECIMAL}, 
+      #{compositionquantity,jdbcType=NVARCHAR}, #{origprice,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
+      #{baseprice,jdbcType=DECIMAL}, #{discountrate,jdbcType=DECIMAL}, #{origdiscountprice,jdbcType=DECIMAL}, 
+      #{discountprice,jdbcType=DECIMAL}, #{basediscountprice,jdbcType=DECIMAL}, #{taxrate,jdbcType=DECIMAL}, 
+      #{origtaxprice,jdbcType=DECIMAL}, #{taxprice,jdbcType=DECIMAL}, #{basetaxprice,jdbcType=DECIMAL}, 
+      #{origdiscountamount,jdbcType=DECIMAL}, #{discountamount,jdbcType=DECIMAL}, #{origtax,jdbcType=DECIMAL}, 
+      #{tax,jdbcType=DECIMAL}, #{origtaxamount,jdbcType=DECIMAL}, #{taxamount,jdbcType=DECIMAL}, 
+      #{ispresent,jdbcType=TINYINT}, #{manufacturequantity,jdbcType=DECIMAL}, #{manufacturequantity2,jdbcType=DECIMAL}, 
+      #{purchasequantity,jdbcType=DECIMAL}, #{purchasequantity2,jdbcType=DECIMAL}, #{deliveryquantity,jdbcType=DECIMAL}, 
+      #{deliveryquantity2,jdbcType=DECIMAL}, #{saleoutquantity,jdbcType=DECIMAL}, #{saleoutquantity2,jdbcType=DECIMAL}, 
+      #{executedquantity,jdbcType=DECIMAL}, #{executedquantity2,jdbcType=DECIMAL}, #{unitexchangerate,jdbcType=DECIMAL}, 
+      #{origdiscount,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, #{taxflag,jdbcType=TINYINT}, 
+      #{inventorybarcode,jdbcType=NVARCHAR}, #{partnerinventorycode,jdbcType=NVARCHAR}, 
+      #{updatedby,jdbcType=NVARCHAR}, #{freeitem0,jdbcType=NVARCHAR}, #{freeitem1,jdbcType=NVARCHAR}, 
+      #{freeitem2,jdbcType=NVARCHAR}, #{freeitem3,jdbcType=NVARCHAR}, #{freeitem4,jdbcType=NVARCHAR}, 
+      #{freeitem5,jdbcType=NVARCHAR}, #{freeitem6,jdbcType=NVARCHAR}, #{freeitem7,jdbcType=NVARCHAR}, 
+      #{freeitem8,jdbcType=NVARCHAR}, #{freeitem9,jdbcType=NVARCHAR}, #{priuserdefnvc1,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm1,jdbcType=DECIMAL}, #{priuserdefnvc2,jdbcType=NVARCHAR}, #{priuserdefdecm2,jdbcType=DECIMAL}, 
+      #{priuserdefnvc3,jdbcType=NVARCHAR}, #{priuserdefdecm3,jdbcType=DECIMAL}, #{priuserdefnvc4,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm4,jdbcType=DECIMAL}, #{pubuserdefnvc1,jdbcType=NVARCHAR}, #{pubuserdefdecm1,jdbcType=DECIMAL}, 
+      #{pubuserdefnvc2,jdbcType=NVARCHAR}, #{pubuserdefdecm2,jdbcType=DECIMAL}, #{pubuserdefnvc3,jdbcType=NVARCHAR}, 
+      #{pubuserdefdecm3,jdbcType=DECIMAL}, #{pubuserdefnvc4,jdbcType=NVARCHAR}, #{pubuserdefdecm4,jdbcType=DECIMAL}, 
+      #{partnerinventoryname,jdbcType=NVARCHAR}, #{haspra,jdbcType=TINYINT}, #{prarequiretimes,jdbcType=INTEGER}, 
+      #{hasorderbom,jdbcType=TINYINT}, #{isnomodify,jdbcType=NVARCHAR}, #{sourcevouchercode,jdbcType=NVARCHAR}, 
+      #{detailvoucherstate,jdbcType=NVARCHAR}, #{retailprice,jdbcType=DECIMAL}, #{distributionquantity,jdbcType=DECIMAL}, 
+      #{distributionquantity2,jdbcType=DECIMAL}, #{pricestrategytypename,jdbcType=NVARCHAR}, 
+      #{pricestrategyschemeids,jdbcType=NVARCHAR}, #{pricestrategyschemenames,jdbcType=NVARCHAR}, 
+      #{promotionvouchercodes,jdbcType=NVARCHAR}, #{promotionvoucherids,jdbcType=NVARCHAR}, 
+      #{ismemberintegral,jdbcType=TINYINT}, #{ispromotionpresent,jdbcType=TINYINT}, #{promotionpresentvouchercode,jdbcType=NVARCHAR}, 
+      #{promotionsinglevouchercode,jdbcType=NVARCHAR}, #{promotionpresentgroupid,jdbcType=NVARCHAR}, 
+      #{promotionsinglegroupid,jdbcType=NVARCHAR}, #{detailmemo,jdbcType=NVARCHAR}, #{idbom,jdbcType=INTEGER}, 
+      #{idinventory,jdbcType=INTEGER}, #{idproject,jdbcType=INTEGER}, #{idbaseunit,jdbcType=INTEGER}, 
+      #{idsubunit,jdbcType=INTEGER}, #{idunit,jdbcType=INTEGER}, #{idunit2,jdbcType=INTEGER}, 
+      #{idwarehouse,jdbcType=INTEGER}, #{cashbackway,jdbcType=INTEGER}, #{pricestrategytypeid,jdbcType=INTEGER}, 
+      #{promotionpresenttypeid,jdbcType=INTEGER}, #{promotionsingletypeid,jdbcType=INTEGER}, 
+      #{promotionpresentvoucherid,jdbcType=INTEGER}, #{promotionsinglevoucherid,jdbcType=INTEGER}, 
+      #{idsaleorderdto,jdbcType=INTEGER}, #{sourcevoucherid,jdbcType=INTEGER}, #{sourcevoucherdetailid,jdbcType=INTEGER}, 
+      #{iddestvouchertype,jdbcType=INTEGER}, #{idsourcevouchertype,jdbcType=INTEGER}, 
+      #{deliverydate,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{latestcost,jdbcType=DECIMAL}, 
+      #{latestporigtaxprice,jdbcType=DECIMAL}, #{latestsaleorigtaxprice,jdbcType=DECIMAL}, 
+      #{lowestsaleprice,jdbcType=DECIMAL}, #{singleinvgrossprofit,jdbcType=DECIMAL}, 
+      #{grossprofit,jdbcType=DECIMAL}, #{grossprofitrate,jdbcType=DECIMAL}, #{datasource,jdbcType=INTEGER}, 
+      #{isclose,jdbcType=TINYINT}, #{ismodifiedprice,jdbcType=TINYINT}, #{closer,jdbcType=NVARCHAR}, 
+      #{closedate,jdbcType=TIMESTAMP}, #{ts,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.SaSaleorderB" >
+    insert into SA_SaleOrder_b
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="quantity2 != null" >
+        quantity2,
+      </if>
+      <if test="basequantity != null" >
+        baseQuantity,
+      </if>
+      <if test="subquantity != null" >
+        subQuantity,
+      </if>
+      <if test="compositionquantity != null" >
+        compositionQuantity,
+      </if>
+      <if test="origprice != null" >
+        origPrice,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="baseprice != null" >
+        basePrice,
+      </if>
+      <if test="discountrate != null" >
+        discountRate,
+      </if>
+      <if test="origdiscountprice != null" >
+        origDiscountPrice,
+      </if>
+      <if test="discountprice != null" >
+        discountPrice,
+      </if>
+      <if test="basediscountprice != null" >
+        baseDiscountPrice,
+      </if>
+      <if test="taxrate != null" >
+        taxRate,
+      </if>
+      <if test="origtaxprice != null" >
+        origTaxPrice,
+      </if>
+      <if test="taxprice != null" >
+        taxPrice,
+      </if>
+      <if test="basetaxprice != null" >
+        baseTaxPrice,
+      </if>
+      <if test="origdiscountamount != null" >
+        origDiscountAmount,
+      </if>
+      <if test="discountamount != null" >
+        discountAmount,
+      </if>
+      <if test="origtax != null" >
+        origTax,
+      </if>
+      <if test="tax != null" >
+        tax,
+      </if>
+      <if test="origtaxamount != null" >
+        origTaxAmount,
+      </if>
+      <if test="taxamount != null" >
+        taxAmount,
+      </if>
+      <if test="ispresent != null" >
+        isPresent,
+      </if>
+      <if test="manufacturequantity != null" >
+        manufactureQuantity,
+      </if>
+      <if test="manufacturequantity2 != null" >
+        manufactureQuantity2,
+      </if>
+      <if test="purchasequantity != null" >
+        purchaseQuantity,
+      </if>
+      <if test="purchasequantity2 != null" >
+        purchaseQuantity2,
+      </if>
+      <if test="deliveryquantity != null" >
+        deliveryQuantity,
+      </if>
+      <if test="deliveryquantity2 != null" >
+        deliveryQuantity2,
+      </if>
+      <if test="saleoutquantity != null" >
+        saleOutQuantity,
+      </if>
+      <if test="saleoutquantity2 != null" >
+        saleOutQuantity2,
+      </if>
+      <if test="executedquantity != null" >
+        executedQuantity,
+      </if>
+      <if test="executedquantity2 != null" >
+        executedQuantity2,
+      </if>
+      <if test="unitexchangerate != null" >
+        unitExchangeRate,
+      </if>
+      <if test="origdiscount != null" >
+        origDiscount,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="taxflag != null" >
+        taxFlag,
+      </if>
+      <if test="inventorybarcode != null" >
+        inventoryBarCode,
+      </if>
+      <if test="partnerinventorycode != null" >
+        partnerInventoryCode,
+      </if>
+      <if test="updatedby != null" >
+        updatedBy,
+      </if>
+      <if test="freeitem0 != null" >
+        freeItem0,
+      </if>
+      <if test="freeitem1 != null" >
+        freeItem1,
+      </if>
+      <if test="freeitem2 != null" >
+        freeItem2,
+      </if>
+      <if test="freeitem3 != null" >
+        freeItem3,
+      </if>
+      <if test="freeitem4 != null" >
+        freeItem4,
+      </if>
+      <if test="freeitem5 != null" >
+        freeItem5,
+      </if>
+      <if test="freeitem6 != null" >
+        freeItem6,
+      </if>
+      <if test="freeitem7 != null" >
+        freeItem7,
+      </if>
+      <if test="freeitem8 != null" >
+        freeItem8,
+      </if>
+      <if test="freeitem9 != null" >
+        freeItem9,
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        priuserdefnvc1,
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        priuserdefdecm1,
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        priuserdefnvc2,
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        priuserdefdecm2,
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        priuserdefnvc3,
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        priuserdefdecm3,
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        priuserdefnvc4,
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        priuserdefdecm4,
+      </if>
+      <if test="pubuserdefnvc1 != null" >
+        pubuserdefnvc1,
+      </if>
+      <if test="pubuserdefdecm1 != null" >
+        pubuserdefdecm1,
+      </if>
+      <if test="pubuserdefnvc2 != null" >
+        pubuserdefnvc2,
+      </if>
+      <if test="pubuserdefdecm2 != null" >
+        pubuserdefdecm2,
+      </if>
+      <if test="pubuserdefnvc3 != null" >
+        pubuserdefnvc3,
+      </if>
+      <if test="pubuserdefdecm3 != null" >
+        pubuserdefdecm3,
+      </if>
+      <if test="pubuserdefnvc4 != null" >
+        pubuserdefnvc4,
+      </if>
+      <if test="pubuserdefdecm4 != null" >
+        pubuserdefdecm4,
+      </if>
+      <if test="partnerinventoryname != null" >
+        partnerInventoryName,
+      </if>
+      <if test="haspra != null" >
+        HasPRA,
+      </if>
+      <if test="prarequiretimes != null" >
+        prarequiretimes,
+      </if>
+      <if test="hasorderbom != null" >
+        hasorderbom,
+      </if>
+      <if test="isnomodify != null" >
+        isnomodify,
+      </if>
+      <if test="sourcevouchercode != null" >
+        SourceVoucherCode,
+      </if>
+      <if test="detailvoucherstate != null" >
+        detailVoucherState,
+      </if>
+      <if test="retailprice != null" >
+        Retailprice,
+      </if>
+      <if test="distributionquantity != null" >
+        DistributionQuantity,
+      </if>
+      <if test="distributionquantity2 != null" >
+        DistributionQuantity2,
+      </if>
+      <if test="pricestrategytypename != null" >
+        PriceStrategyTypeName,
+      </if>
+      <if test="pricestrategyschemeids != null" >
+        PriceStrategySchemeIds,
+      </if>
+      <if test="pricestrategyschemenames != null" >
+        PriceStrategySchemeNames,
+      </if>
+      <if test="promotionvouchercodes != null" >
+        PromotionVoucherCodes,
+      </if>
+      <if test="promotionvoucherids != null" >
+        PromotionVoucherIds,
+      </if>
+      <if test="ismemberintegral != null" >
+        IsMemberIntegral,
+      </if>
+      <if test="ispromotionpresent != null" >
+        IsPromotionPresent,
+      </if>
+      <if test="promotionpresentvouchercode != null" >
+        PromotionPresentVoucherCode,
+      </if>
+      <if test="promotionsinglevouchercode != null" >
+        PromotionSingleVoucherCode,
+      </if>
+      <if test="promotionpresentgroupid != null" >
+        PromotionPresentGroupID,
+      </if>
+      <if test="promotionsinglegroupid != null" >
+        PromotionSingleGroupID,
+      </if>
+      <if test="detailmemo != null" >
+        DetailMemo,
+      </if>
+      <if test="idbom != null" >
+        idbom,
+      </if>
+      <if test="idinventory != null" >
+        idinventory,
+      </if>
+      <if test="idproject != null" >
+        idproject,
+      </if>
+      <if test="idbaseunit != null" >
+        idbaseunit,
+      </if>
+      <if test="idsubunit != null" >
+        idsubunit,
+      </if>
+      <if test="idunit != null" >
+        idunit,
+      </if>
+      <if test="idunit2 != null" >
+        idunit2,
+      </if>
+      <if test="idwarehouse != null" >
+        idwarehouse,
+      </if>
+      <if test="cashbackway != null" >
+        CashbackWay,
+      </if>
+      <if test="pricestrategytypeid != null" >
+        PriceStrategyTypeId,
+      </if>
+      <if test="promotionpresenttypeid != null" >
+        PromotionPresentTypeID,
+      </if>
+      <if test="promotionsingletypeid != null" >
+        PromotionSingleTypeID,
+      </if>
+      <if test="promotionpresentvoucherid != null" >
+        PromotionPresentVoucherID,
+      </if>
+      <if test="promotionsinglevoucherid != null" >
+        PromotionSingleVoucherID,
+      </if>
+      <if test="idsaleorderdto != null" >
+        idSaleOrderDTO,
+      </if>
+      <if test="sourcevoucherid != null" >
+        SourceVoucherId,
+      </if>
+      <if test="sourcevoucherdetailid != null" >
+        SourceVoucherDetailId,
+      </if>
+      <if test="iddestvouchertype != null" >
+        iddestvouchertype,
+      </if>
+      <if test="idsourcevouchertype != null" >
+        idsourcevouchertype,
+      </if>
+      <if test="deliverydate != null" >
+        deliveryDate,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="latestcost != null" >
+        LatestCost,
+      </if>
+      <if test="latestporigtaxprice != null" >
+        LatestPOrigTaxPrice,
+      </if>
+      <if test="latestsaleorigtaxprice != null" >
+        LatestSaleOrigTaxPrice,
+      </if>
+      <if test="lowestsaleprice != null" >
+        LowestSalePrice,
+      </if>
+      <if test="singleinvgrossprofit != null" >
+        SingleInvGrossProfit,
+      </if>
+      <if test="grossprofit != null" >
+        GrossProfit,
+      </if>
+      <if test="grossprofitrate != null" >
+        GrossProfitRate,
+      </if>
+      <if test="datasource != null" >
+        DataSource,
+      </if>
+      <if test="isclose != null" >
+        IsClose,
+      </if>
+      <if test="ismodifiedprice != null" >
+        IsModifiedPrice,
+      </if>
+      <if test="closer != null" >
+        Closer,
+      </if>
+      <if test="closedate != null" >
+        CloseDate,
+      </if>
+      <if test="ts != null" >
+        ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity2 != null" >
+        #{quantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="basequantity != null" >
+        #{basequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="subquantity != null" >
+        #{subquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="compositionquantity != null" >
+        #{compositionquantity,jdbcType=NVARCHAR},
+      </if>
+      <if test="origprice != null" >
+        #{origprice,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="baseprice != null" >
+        #{baseprice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountrate != null" >
+        #{discountrate,jdbcType=DECIMAL},
+      </if>
+      <if test="origdiscountprice != null" >
+        #{origdiscountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountprice != null" >
+        #{discountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="basediscountprice != null" >
+        #{basediscountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="taxrate != null" >
+        #{taxrate,jdbcType=DECIMAL},
+      </if>
+      <if test="origtaxprice != null" >
+        #{origtaxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="taxprice != null" >
+        #{taxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="basetaxprice != null" >
+        #{basetaxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="origdiscountamount != null" >
+        #{origdiscountamount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountamount != null" >
+        #{discountamount,jdbcType=DECIMAL},
+      </if>
+      <if test="origtax != null" >
+        #{origtax,jdbcType=DECIMAL},
+      </if>
+      <if test="tax != null" >
+        #{tax,jdbcType=DECIMAL},
+      </if>
+      <if test="origtaxamount != null" >
+        #{origtaxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxamount != null" >
+        #{taxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ispresent != null" >
+        #{ispresent,jdbcType=TINYINT},
+      </if>
+      <if test="manufacturequantity != null" >
+        #{manufacturequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="manufacturequantity2 != null" >
+        #{manufacturequantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasequantity != null" >
+        #{purchasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasequantity2 != null" >
+        #{purchasequantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryquantity != null" >
+        #{deliveryquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryquantity2 != null" >
+        #{deliveryquantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="saleoutquantity != null" >
+        #{saleoutquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="saleoutquantity2 != null" >
+        #{saleoutquantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="executedquantity != null" >
+        #{executedquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="executedquantity2 != null" >
+        #{executedquantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="unitexchangerate != null" >
+        #{unitexchangerate,jdbcType=DECIMAL},
+      </if>
+      <if test="origdiscount != null" >
+        #{origdiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxflag != null" >
+        #{taxflag,jdbcType=TINYINT},
+      </if>
+      <if test="inventorybarcode != null" >
+        #{inventorybarcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="partnerinventorycode != null" >
+        #{partnerinventorycode,jdbcType=NVARCHAR},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem0 != null" >
+        #{freeitem0,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem1 != null" >
+        #{freeitem1,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem2 != null" >
+        #{freeitem2,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem3 != null" >
+        #{freeitem3,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem4 != null" >
+        #{freeitem4,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem5 != null" >
+        #{freeitem5,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem6 != null" >
+        #{freeitem6,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem7 != null" >
+        #{freeitem7,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem8 != null" >
+        #{freeitem8,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem9 != null" >
+        #{freeitem9,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        #{priuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        #{priuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        #{priuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        #{priuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        #{priuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        #{priuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        #{priuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        #{priuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc1 != null" >
+        #{pubuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm1 != null" >
+        #{pubuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc2 != null" >
+        #{pubuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm2 != null" >
+        #{pubuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc3 != null" >
+        #{pubuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm3 != null" >
+        #{pubuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc4 != null" >
+        #{pubuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm4 != null" >
+        #{pubuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="partnerinventoryname != null" >
+        #{partnerinventoryname,jdbcType=NVARCHAR},
+      </if>
+      <if test="haspra != null" >
+        #{haspra,jdbcType=TINYINT},
+      </if>
+      <if test="prarequiretimes != null" >
+        #{prarequiretimes,jdbcType=INTEGER},
+      </if>
+      <if test="hasorderbom != null" >
+        #{hasorderbom,jdbcType=TINYINT},
+      </if>
+      <if test="isnomodify != null" >
+        #{isnomodify,jdbcType=NVARCHAR},
+      </if>
+      <if test="sourcevouchercode != null" >
+        #{sourcevouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="detailvoucherstate != null" >
+        #{detailvoucherstate,jdbcType=NVARCHAR},
+      </if>
+      <if test="retailprice != null" >
+        #{retailprice,jdbcType=DECIMAL},
+      </if>
+      <if test="distributionquantity != null" >
+        #{distributionquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="distributionquantity2 != null" >
+        #{distributionquantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="pricestrategytypename != null" >
+        #{pricestrategytypename,jdbcType=NVARCHAR},
+      </if>
+      <if test="pricestrategyschemeids != null" >
+        #{pricestrategyschemeids,jdbcType=NVARCHAR},
+      </if>
+      <if test="pricestrategyschemenames != null" >
+        #{pricestrategyschemenames,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionvouchercodes != null" >
+        #{promotionvouchercodes,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionvoucherids != null" >
+        #{promotionvoucherids,jdbcType=NVARCHAR},
+      </if>
+      <if test="ismemberintegral != null" >
+        #{ismemberintegral,jdbcType=TINYINT},
+      </if>
+      <if test="ispromotionpresent != null" >
+        #{ispromotionpresent,jdbcType=TINYINT},
+      </if>
+      <if test="promotionpresentvouchercode != null" >
+        #{promotionpresentvouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionsinglevouchercode != null" >
+        #{promotionsinglevouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionpresentgroupid != null" >
+        #{promotionpresentgroupid,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionsinglegroupid != null" >
+        #{promotionsinglegroupid,jdbcType=NVARCHAR},
+      </if>
+      <if test="detailmemo != null" >
+        #{detailmemo,jdbcType=NVARCHAR},
+      </if>
+      <if test="idbom != null" >
+        #{idbom,jdbcType=INTEGER},
+      </if>
+      <if test="idinventory != null" >
+        #{idinventory,jdbcType=INTEGER},
+      </if>
+      <if test="idproject != null" >
+        #{idproject,jdbcType=INTEGER},
+      </if>
+      <if test="idbaseunit != null" >
+        #{idbaseunit,jdbcType=INTEGER},
+      </if>
+      <if test="idsubunit != null" >
+        #{idsubunit,jdbcType=INTEGER},
+      </if>
+      <if test="idunit != null" >
+        #{idunit,jdbcType=INTEGER},
+      </if>
+      <if test="idunit2 != null" >
+        #{idunit2,jdbcType=INTEGER},
+      </if>
+      <if test="idwarehouse != null" >
+        #{idwarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="cashbackway != null" >
+        #{cashbackway,jdbcType=INTEGER},
+      </if>
+      <if test="pricestrategytypeid != null" >
+        #{pricestrategytypeid,jdbcType=INTEGER},
+      </if>
+      <if test="promotionpresenttypeid != null" >
+        #{promotionpresenttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="promotionsingletypeid != null" >
+        #{promotionsingletypeid,jdbcType=INTEGER},
+      </if>
+      <if test="promotionpresentvoucherid != null" >
+        #{promotionpresentvoucherid,jdbcType=INTEGER},
+      </if>
+      <if test="promotionsinglevoucherid != null" >
+        #{promotionsinglevoucherid,jdbcType=INTEGER},
+      </if>
+      <if test="idsaleorderdto != null" >
+        #{idsaleorderdto,jdbcType=INTEGER},
+      </if>
+      <if test="sourcevoucherid != null" >
+        #{sourcevoucherid,jdbcType=INTEGER},
+      </if>
+      <if test="sourcevoucherdetailid != null" >
+        #{sourcevoucherdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="iddestvouchertype != null" >
+        #{iddestvouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="idsourcevouchertype != null" >
+        #{idsourcevouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="deliverydate != null" >
+        #{deliverydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latestcost != null" >
+        #{latestcost,jdbcType=DECIMAL},
+      </if>
+      <if test="latestporigtaxprice != null" >
+        #{latestporigtaxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="latestsaleorigtaxprice != null" >
+        #{latestsaleorigtaxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="lowestsaleprice != null" >
+        #{lowestsaleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="singleinvgrossprofit != null" >
+        #{singleinvgrossprofit,jdbcType=DECIMAL},
+      </if>
+      <if test="grossprofit != null" >
+        #{grossprofit,jdbcType=DECIMAL},
+      </if>
+      <if test="grossprofitrate != null" >
+        #{grossprofitrate,jdbcType=DECIMAL},
+      </if>
+      <if test="datasource != null" >
+        #{datasource,jdbcType=INTEGER},
+      </if>
+      <if test="isclose != null" >
+        #{isclose,jdbcType=TINYINT},
+      </if>
+      <if test="ismodifiedprice != null" >
+        #{ismodifiedprice,jdbcType=TINYINT},
+      </if>
+      <if test="closer != null" >
+        #{closer,jdbcType=NVARCHAR},
+      </if>
+      <if test="closedate != null" >
+        #{closedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.SaSaleorderB" >
+    update SA_SaleOrder_b
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity2 != null" >
+        quantity2 = #{quantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="basequantity != null" >
+        baseQuantity = #{basequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="subquantity != null" >
+        subQuantity = #{subquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="compositionquantity != null" >
+        compositionQuantity = #{compositionquantity,jdbcType=NVARCHAR},
+      </if>
+      <if test="origprice != null" >
+        origPrice = #{origprice,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="baseprice != null" >
+        basePrice = #{baseprice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountrate != null" >
+        discountRate = #{discountrate,jdbcType=DECIMAL},
+      </if>
+      <if test="origdiscountprice != null" >
+        origDiscountPrice = #{origdiscountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountprice != null" >
+        discountPrice = #{discountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="basediscountprice != null" >
+        baseDiscountPrice = #{basediscountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="taxrate != null" >
+        taxRate = #{taxrate,jdbcType=DECIMAL},
+      </if>
+      <if test="origtaxprice != null" >
+        origTaxPrice = #{origtaxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="taxprice != null" >
+        taxPrice = #{taxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="basetaxprice != null" >
+        baseTaxPrice = #{basetaxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="origdiscountamount != null" >
+        origDiscountAmount = #{origdiscountamount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountamount != null" >
+        discountAmount = #{discountamount,jdbcType=DECIMAL},
+      </if>
+      <if test="origtax != null" >
+        origTax = #{origtax,jdbcType=DECIMAL},
+      </if>
+      <if test="tax != null" >
+        tax = #{tax,jdbcType=DECIMAL},
+      </if>
+      <if test="origtaxamount != null" >
+        origTaxAmount = #{origtaxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxamount != null" >
+        taxAmount = #{taxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ispresent != null" >
+        isPresent = #{ispresent,jdbcType=TINYINT},
+      </if>
+      <if test="manufacturequantity != null" >
+        manufactureQuantity = #{manufacturequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="manufacturequantity2 != null" >
+        manufactureQuantity2 = #{manufacturequantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasequantity != null" >
+        purchaseQuantity = #{purchasequantity,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasequantity2 != null" >
+        purchaseQuantity2 = #{purchasequantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryquantity != null" >
+        deliveryQuantity = #{deliveryquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryquantity2 != null" >
+        deliveryQuantity2 = #{deliveryquantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="saleoutquantity != null" >
+        saleOutQuantity = #{saleoutquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="saleoutquantity2 != null" >
+        saleOutQuantity2 = #{saleoutquantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="executedquantity != null" >
+        executedQuantity = #{executedquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="executedquantity2 != null" >
+        executedQuantity2 = #{executedquantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="unitexchangerate != null" >
+        unitExchangeRate = #{unitexchangerate,jdbcType=DECIMAL},
+      </if>
+      <if test="origdiscount != null" >
+        origDiscount = #{origdiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxflag != null" >
+        taxFlag = #{taxflag,jdbcType=TINYINT},
+      </if>
+      <if test="inventorybarcode != null" >
+        inventoryBarCode = #{inventorybarcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="partnerinventorycode != null" >
+        partnerInventoryCode = #{partnerinventorycode,jdbcType=NVARCHAR},
+      </if>
+      <if test="updatedby != null" >
+        updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem0 != null" >
+        freeItem0 = #{freeitem0,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem1 != null" >
+        freeItem1 = #{freeitem1,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem2 != null" >
+        freeItem2 = #{freeitem2,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem3 != null" >
+        freeItem3 = #{freeitem3,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem4 != null" >
+        freeItem4 = #{freeitem4,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem5 != null" >
+        freeItem5 = #{freeitem5,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem6 != null" >
+        freeItem6 = #{freeitem6,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem7 != null" >
+        freeItem7 = #{freeitem7,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem8 != null" >
+        freeItem8 = #{freeitem8,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeitem9 != null" >
+        freeItem9 = #{freeitem9,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc1 != null" >
+        pubuserdefnvc1 = #{pubuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm1 != null" >
+        pubuserdefdecm1 = #{pubuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc2 != null" >
+        pubuserdefnvc2 = #{pubuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm2 != null" >
+        pubuserdefdecm2 = #{pubuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc3 != null" >
+        pubuserdefnvc3 = #{pubuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm3 != null" >
+        pubuserdefdecm3 = #{pubuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="pubuserdefnvc4 != null" >
+        pubuserdefnvc4 = #{pubuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="pubuserdefdecm4 != null" >
+        pubuserdefdecm4 = #{pubuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="partnerinventoryname != null" >
+        partnerInventoryName = #{partnerinventoryname,jdbcType=NVARCHAR},
+      </if>
+      <if test="haspra != null" >
+        HasPRA = #{haspra,jdbcType=TINYINT},
+      </if>
+      <if test="prarequiretimes != null" >
+        prarequiretimes = #{prarequiretimes,jdbcType=INTEGER},
+      </if>
+      <if test="hasorderbom != null" >
+        hasorderbom = #{hasorderbom,jdbcType=TINYINT},
+      </if>
+      <if test="isnomodify != null" >
+        isnomodify = #{isnomodify,jdbcType=NVARCHAR},
+      </if>
+      <if test="sourcevouchercode != null" >
+        SourceVoucherCode = #{sourcevouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="detailvoucherstate != null" >
+        detailVoucherState = #{detailvoucherstate,jdbcType=NVARCHAR},
+      </if>
+      <if test="retailprice != null" >
+        Retailprice = #{retailprice,jdbcType=DECIMAL},
+      </if>
+      <if test="distributionquantity != null" >
+        DistributionQuantity = #{distributionquantity,jdbcType=DECIMAL},
+      </if>
+      <if test="distributionquantity2 != null" >
+        DistributionQuantity2 = #{distributionquantity2,jdbcType=DECIMAL},
+      </if>
+      <if test="pricestrategytypename != null" >
+        PriceStrategyTypeName = #{pricestrategytypename,jdbcType=NVARCHAR},
+      </if>
+      <if test="pricestrategyschemeids != null" >
+        PriceStrategySchemeIds = #{pricestrategyschemeids,jdbcType=NVARCHAR},
+      </if>
+      <if test="pricestrategyschemenames != null" >
+        PriceStrategySchemeNames = #{pricestrategyschemenames,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionvouchercodes != null" >
+        PromotionVoucherCodes = #{promotionvouchercodes,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionvoucherids != null" >
+        PromotionVoucherIds = #{promotionvoucherids,jdbcType=NVARCHAR},
+      </if>
+      <if test="ismemberintegral != null" >
+        IsMemberIntegral = #{ismemberintegral,jdbcType=TINYINT},
+      </if>
+      <if test="ispromotionpresent != null" >
+        IsPromotionPresent = #{ispromotionpresent,jdbcType=TINYINT},
+      </if>
+      <if test="promotionpresentvouchercode != null" >
+        PromotionPresentVoucherCode = #{promotionpresentvouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionsinglevouchercode != null" >
+        PromotionSingleVoucherCode = #{promotionsinglevouchercode,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionpresentgroupid != null" >
+        PromotionPresentGroupID = #{promotionpresentgroupid,jdbcType=NVARCHAR},
+      </if>
+      <if test="promotionsinglegroupid != null" >
+        PromotionSingleGroupID = #{promotionsinglegroupid,jdbcType=NVARCHAR},
+      </if>
+      <if test="detailmemo != null" >
+        DetailMemo = #{detailmemo,jdbcType=NVARCHAR},
+      </if>
+      <if test="idbom != null" >
+        idbom = #{idbom,jdbcType=INTEGER},
+      </if>
+      <if test="idinventory != null" >
+        idinventory = #{idinventory,jdbcType=INTEGER},
+      </if>
+      <if test="idproject != null" >
+        idproject = #{idproject,jdbcType=INTEGER},
+      </if>
+      <if test="idbaseunit != null" >
+        idbaseunit = #{idbaseunit,jdbcType=INTEGER},
+      </if>
+      <if test="idsubunit != null" >
+        idsubunit = #{idsubunit,jdbcType=INTEGER},
+      </if>
+      <if test="idunit != null" >
+        idunit = #{idunit,jdbcType=INTEGER},
+      </if>
+      <if test="idunit2 != null" >
+        idunit2 = #{idunit2,jdbcType=INTEGER},
+      </if>
+      <if test="idwarehouse != null" >
+        idwarehouse = #{idwarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="cashbackway != null" >
+        CashbackWay = #{cashbackway,jdbcType=INTEGER},
+      </if>
+      <if test="pricestrategytypeid != null" >
+        PriceStrategyTypeId = #{pricestrategytypeid,jdbcType=INTEGER},
+      </if>
+      <if test="promotionpresenttypeid != null" >
+        PromotionPresentTypeID = #{promotionpresenttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="promotionsingletypeid != null" >
+        PromotionSingleTypeID = #{promotionsingletypeid,jdbcType=INTEGER},
+      </if>
+      <if test="promotionpresentvoucherid != null" >
+        PromotionPresentVoucherID = #{promotionpresentvoucherid,jdbcType=INTEGER},
+      </if>
+      <if test="promotionsinglevoucherid != null" >
+        PromotionSingleVoucherID = #{promotionsinglevoucherid,jdbcType=INTEGER},
+      </if>
+      <if test="idsaleorderdto != null" >
+        idSaleOrderDTO = #{idsaleorderdto,jdbcType=INTEGER},
+      </if>
+      <if test="sourcevoucherid != null" >
+        SourceVoucherId = #{sourcevoucherid,jdbcType=INTEGER},
+      </if>
+      <if test="sourcevoucherdetailid != null" >
+        SourceVoucherDetailId = #{sourcevoucherdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="iddestvouchertype != null" >
+        iddestvouchertype = #{iddestvouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="idsourcevouchertype != null" >
+        idsourcevouchertype = #{idsourcevouchertype,jdbcType=INTEGER},
+      </if>
+      <if test="deliverydate != null" >
+        deliveryDate = #{deliverydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latestcost != null" >
+        LatestCost = #{latestcost,jdbcType=DECIMAL},
+      </if>
+      <if test="latestporigtaxprice != null" >
+        LatestPOrigTaxPrice = #{latestporigtaxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="latestsaleorigtaxprice != null" >
+        LatestSaleOrigTaxPrice = #{latestsaleorigtaxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="lowestsaleprice != null" >
+        LowestSalePrice = #{lowestsaleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="singleinvgrossprofit != null" >
+        SingleInvGrossProfit = #{singleinvgrossprofit,jdbcType=DECIMAL},
+      </if>
+      <if test="grossprofit != null" >
+        GrossProfit = #{grossprofit,jdbcType=DECIMAL},
+      </if>
+      <if test="grossprofitrate != null" >
+        GrossProfitRate = #{grossprofitrate,jdbcType=DECIMAL},
+      </if>
+      <if test="datasource != null" >
+        DataSource = #{datasource,jdbcType=INTEGER},
+      </if>
+      <if test="isclose != null" >
+        IsClose = #{isclose,jdbcType=TINYINT},
+      </if>
+      <if test="ismodifiedprice != null" >
+        IsModifiedPrice = #{ismodifiedprice,jdbcType=TINYINT},
+      </if>
+      <if test="closer != null" >
+        Closer = #{closer,jdbcType=NVARCHAR},
+      </if>
+      <if test="closedate != null" >
+        CloseDate = #{closedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        ts = #{ts,jdbcType=BINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.ssm.po.SaSaleorderB" >
+    update SA_SaleOrder_b
+    set code = #{code,jdbcType=NVARCHAR},
+      quantity = #{quantity,jdbcType=DECIMAL},
+      quantity2 = #{quantity2,jdbcType=DECIMAL},
+      baseQuantity = #{basequantity,jdbcType=DECIMAL},
+      subQuantity = #{subquantity,jdbcType=DECIMAL},
+      compositionQuantity = #{compositionquantity,jdbcType=NVARCHAR},
+      origPrice = #{origprice,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      basePrice = #{baseprice,jdbcType=DECIMAL},
+      discountRate = #{discountrate,jdbcType=DECIMAL},
+      origDiscountPrice = #{origdiscountprice,jdbcType=DECIMAL},
+      discountPrice = #{discountprice,jdbcType=DECIMAL},
+      baseDiscountPrice = #{basediscountprice,jdbcType=DECIMAL},
+      taxRate = #{taxrate,jdbcType=DECIMAL},
+      origTaxPrice = #{origtaxprice,jdbcType=DECIMAL},
+      taxPrice = #{taxprice,jdbcType=DECIMAL},
+      baseTaxPrice = #{basetaxprice,jdbcType=DECIMAL},
+      origDiscountAmount = #{origdiscountamount,jdbcType=DECIMAL},
+      discountAmount = #{discountamount,jdbcType=DECIMAL},
+      origTax = #{origtax,jdbcType=DECIMAL},
+      tax = #{tax,jdbcType=DECIMAL},
+      origTaxAmount = #{origtaxamount,jdbcType=DECIMAL},
+      taxAmount = #{taxamount,jdbcType=DECIMAL},
+      isPresent = #{ispresent,jdbcType=TINYINT},
+      manufactureQuantity = #{manufacturequantity,jdbcType=DECIMAL},
+      manufactureQuantity2 = #{manufacturequantity2,jdbcType=DECIMAL},
+      purchaseQuantity = #{purchasequantity,jdbcType=DECIMAL},
+      purchaseQuantity2 = #{purchasequantity2,jdbcType=DECIMAL},
+      deliveryQuantity = #{deliveryquantity,jdbcType=DECIMAL},
+      deliveryQuantity2 = #{deliveryquantity2,jdbcType=DECIMAL},
+      saleOutQuantity = #{saleoutquantity,jdbcType=DECIMAL},
+      saleOutQuantity2 = #{saleoutquantity2,jdbcType=DECIMAL},
+      executedQuantity = #{executedquantity,jdbcType=DECIMAL},
+      executedQuantity2 = #{executedquantity2,jdbcType=DECIMAL},
+      unitExchangeRate = #{unitexchangerate,jdbcType=DECIMAL},
+      origDiscount = #{origdiscount,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=DECIMAL},
+      taxFlag = #{taxflag,jdbcType=TINYINT},
+      inventoryBarCode = #{inventorybarcode,jdbcType=NVARCHAR},
+      partnerInventoryCode = #{partnerinventorycode,jdbcType=NVARCHAR},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      freeItem0 = #{freeitem0,jdbcType=NVARCHAR},
+      freeItem1 = #{freeitem1,jdbcType=NVARCHAR},
+      freeItem2 = #{freeitem2,jdbcType=NVARCHAR},
+      freeItem3 = #{freeitem3,jdbcType=NVARCHAR},
+      freeItem4 = #{freeitem4,jdbcType=NVARCHAR},
+      freeItem5 = #{freeitem5,jdbcType=NVARCHAR},
+      freeItem6 = #{freeitem6,jdbcType=NVARCHAR},
+      freeItem7 = #{freeitem7,jdbcType=NVARCHAR},
+      freeItem8 = #{freeitem8,jdbcType=NVARCHAR},
+      freeItem9 = #{freeitem9,jdbcType=NVARCHAR},
+      priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      pubuserdefnvc1 = #{pubuserdefnvc1,jdbcType=NVARCHAR},
+      pubuserdefdecm1 = #{pubuserdefdecm1,jdbcType=DECIMAL},
+      pubuserdefnvc2 = #{pubuserdefnvc2,jdbcType=NVARCHAR},
+      pubuserdefdecm2 = #{pubuserdefdecm2,jdbcType=DECIMAL},
+      pubuserdefnvc3 = #{pubuserdefnvc3,jdbcType=NVARCHAR},
+      pubuserdefdecm3 = #{pubuserdefdecm3,jdbcType=DECIMAL},
+      pubuserdefnvc4 = #{pubuserdefnvc4,jdbcType=NVARCHAR},
+      pubuserdefdecm4 = #{pubuserdefdecm4,jdbcType=DECIMAL},
+      partnerInventoryName = #{partnerinventoryname,jdbcType=NVARCHAR},
+      HasPRA = #{haspra,jdbcType=TINYINT},
+      prarequiretimes = #{prarequiretimes,jdbcType=INTEGER},
+      hasorderbom = #{hasorderbom,jdbcType=TINYINT},
+      isnomodify = #{isnomodify,jdbcType=NVARCHAR},
+      SourceVoucherCode = #{sourcevouchercode,jdbcType=NVARCHAR},
+      detailVoucherState = #{detailvoucherstate,jdbcType=NVARCHAR},
+      Retailprice = #{retailprice,jdbcType=DECIMAL},
+      DistributionQuantity = #{distributionquantity,jdbcType=DECIMAL},
+      DistributionQuantity2 = #{distributionquantity2,jdbcType=DECIMAL},
+      PriceStrategyTypeName = #{pricestrategytypename,jdbcType=NVARCHAR},
+      PriceStrategySchemeIds = #{pricestrategyschemeids,jdbcType=NVARCHAR},
+      PriceStrategySchemeNames = #{pricestrategyschemenames,jdbcType=NVARCHAR},
+      PromotionVoucherCodes = #{promotionvouchercodes,jdbcType=NVARCHAR},
+      PromotionVoucherIds = #{promotionvoucherids,jdbcType=NVARCHAR},
+      IsMemberIntegral = #{ismemberintegral,jdbcType=TINYINT},
+      IsPromotionPresent = #{ispromotionpresent,jdbcType=TINYINT},
+      PromotionPresentVoucherCode = #{promotionpresentvouchercode,jdbcType=NVARCHAR},
+      PromotionSingleVoucherCode = #{promotionsinglevouchercode,jdbcType=NVARCHAR},
+      PromotionPresentGroupID = #{promotionpresentgroupid,jdbcType=NVARCHAR},
+      PromotionSingleGroupID = #{promotionsinglegroupid,jdbcType=NVARCHAR},
+      DetailMemo = #{detailmemo,jdbcType=NVARCHAR},
+      idbom = #{idbom,jdbcType=INTEGER},
+      idinventory = #{idinventory,jdbcType=INTEGER},
+      idproject = #{idproject,jdbcType=INTEGER},
+      idbaseunit = #{idbaseunit,jdbcType=INTEGER},
+      idsubunit = #{idsubunit,jdbcType=INTEGER},
+      idunit = #{idunit,jdbcType=INTEGER},
+      idunit2 = #{idunit2,jdbcType=INTEGER},
+      idwarehouse = #{idwarehouse,jdbcType=INTEGER},
+      CashbackWay = #{cashbackway,jdbcType=INTEGER},
+      PriceStrategyTypeId = #{pricestrategytypeid,jdbcType=INTEGER},
+      PromotionPresentTypeID = #{promotionpresenttypeid,jdbcType=INTEGER},
+      PromotionSingleTypeID = #{promotionsingletypeid,jdbcType=INTEGER},
+      PromotionPresentVoucherID = #{promotionpresentvoucherid,jdbcType=INTEGER},
+      PromotionSingleVoucherID = #{promotionsinglevoucherid,jdbcType=INTEGER},
+      idSaleOrderDTO = #{idsaleorderdto,jdbcType=INTEGER},
+      SourceVoucherId = #{sourcevoucherid,jdbcType=INTEGER},
+      SourceVoucherDetailId = #{sourcevoucherdetailid,jdbcType=INTEGER},
+      iddestvouchertype = #{iddestvouchertype,jdbcType=INTEGER},
+      idsourcevouchertype = #{idsourcevouchertype,jdbcType=INTEGER},
+      deliveryDate = #{deliverydate,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      LatestCost = #{latestcost,jdbcType=DECIMAL},
+      LatestPOrigTaxPrice = #{latestporigtaxprice,jdbcType=DECIMAL},
+      LatestSaleOrigTaxPrice = #{latestsaleorigtaxprice,jdbcType=DECIMAL},
+      LowestSalePrice = #{lowestsaleprice,jdbcType=DECIMAL},
+      SingleInvGrossProfit = #{singleinvgrossprofit,jdbcType=DECIMAL},
+      GrossProfit = #{grossprofit,jdbcType=DECIMAL},
+      GrossProfitRate = #{grossprofitrate,jdbcType=DECIMAL},
+      DataSource = #{datasource,jdbcType=INTEGER},
+      IsClose = #{isclose,jdbcType=TINYINT},
+      IsModifiedPrice = #{ismodifiedprice,jdbcType=TINYINT},
+      Closer = #{closer,jdbcType=NVARCHAR},
+      CloseDate = #{closedate,jdbcType=TIMESTAMP},
+      ts = #{ts,jdbcType=BINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.SaSaleorderB" >
+    update SA_SaleOrder_b
+    set code = #{code,jdbcType=NVARCHAR},
+      quantity = #{quantity,jdbcType=DECIMAL},
+      quantity2 = #{quantity2,jdbcType=DECIMAL},
+      baseQuantity = #{basequantity,jdbcType=DECIMAL},
+      subQuantity = #{subquantity,jdbcType=DECIMAL},
+      compositionQuantity = #{compositionquantity,jdbcType=NVARCHAR},
+      origPrice = #{origprice,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      basePrice = #{baseprice,jdbcType=DECIMAL},
+      discountRate = #{discountrate,jdbcType=DECIMAL},
+      origDiscountPrice = #{origdiscountprice,jdbcType=DECIMAL},
+      discountPrice = #{discountprice,jdbcType=DECIMAL},
+      baseDiscountPrice = #{basediscountprice,jdbcType=DECIMAL},
+      taxRate = #{taxrate,jdbcType=DECIMAL},
+      origTaxPrice = #{origtaxprice,jdbcType=DECIMAL},
+      taxPrice = #{taxprice,jdbcType=DECIMAL},
+      baseTaxPrice = #{basetaxprice,jdbcType=DECIMAL},
+      origDiscountAmount = #{origdiscountamount,jdbcType=DECIMAL},
+      discountAmount = #{discountamount,jdbcType=DECIMAL},
+      origTax = #{origtax,jdbcType=DECIMAL},
+      tax = #{tax,jdbcType=DECIMAL},
+      origTaxAmount = #{origtaxamount,jdbcType=DECIMAL},
+      taxAmount = #{taxamount,jdbcType=DECIMAL},
+      isPresent = #{ispresent,jdbcType=TINYINT},
+      manufactureQuantity = #{manufacturequantity,jdbcType=DECIMAL},
+      manufactureQuantity2 = #{manufacturequantity2,jdbcType=DECIMAL},
+      purchaseQuantity = #{purchasequantity,jdbcType=DECIMAL},
+      purchaseQuantity2 = #{purchasequantity2,jdbcType=DECIMAL},
+      deliveryQuantity = #{deliveryquantity,jdbcType=DECIMAL},
+      deliveryQuantity2 = #{deliveryquantity2,jdbcType=DECIMAL},
+      saleOutQuantity = #{saleoutquantity,jdbcType=DECIMAL},
+      saleOutQuantity2 = #{saleoutquantity2,jdbcType=DECIMAL},
+      executedQuantity = #{executedquantity,jdbcType=DECIMAL},
+      executedQuantity2 = #{executedquantity2,jdbcType=DECIMAL},
+      unitExchangeRate = #{unitexchangerate,jdbcType=DECIMAL},
+      origDiscount = #{origdiscount,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=DECIMAL},
+      taxFlag = #{taxflag,jdbcType=TINYINT},
+      inventoryBarCode = #{inventorybarcode,jdbcType=NVARCHAR},
+      partnerInventoryCode = #{partnerinventorycode,jdbcType=NVARCHAR},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      freeItem0 = #{freeitem0,jdbcType=NVARCHAR},
+      freeItem1 = #{freeitem1,jdbcType=NVARCHAR},
+      freeItem2 = #{freeitem2,jdbcType=NVARCHAR},
+      freeItem3 = #{freeitem3,jdbcType=NVARCHAR},
+      freeItem4 = #{freeitem4,jdbcType=NVARCHAR},
+      freeItem5 = #{freeitem5,jdbcType=NVARCHAR},
+      freeItem6 = #{freeitem6,jdbcType=NVARCHAR},
+      freeItem7 = #{freeitem7,jdbcType=NVARCHAR},
+      freeItem8 = #{freeitem8,jdbcType=NVARCHAR},
+      freeItem9 = #{freeitem9,jdbcType=NVARCHAR},
+      priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      pubuserdefnvc1 = #{pubuserdefnvc1,jdbcType=NVARCHAR},
+      pubuserdefdecm1 = #{pubuserdefdecm1,jdbcType=DECIMAL},
+      pubuserdefnvc2 = #{pubuserdefnvc2,jdbcType=NVARCHAR},
+      pubuserdefdecm2 = #{pubuserdefdecm2,jdbcType=DECIMAL},
+      pubuserdefnvc3 = #{pubuserdefnvc3,jdbcType=NVARCHAR},
+      pubuserdefdecm3 = #{pubuserdefdecm3,jdbcType=DECIMAL},
+      pubuserdefnvc4 = #{pubuserdefnvc4,jdbcType=NVARCHAR},
+      pubuserdefdecm4 = #{pubuserdefdecm4,jdbcType=DECIMAL},
+      partnerInventoryName = #{partnerinventoryname,jdbcType=NVARCHAR},
+      HasPRA = #{haspra,jdbcType=TINYINT},
+      prarequiretimes = #{prarequiretimes,jdbcType=INTEGER},
+      hasorderbom = #{hasorderbom,jdbcType=TINYINT},
+      isnomodify = #{isnomodify,jdbcType=NVARCHAR},
+      SourceVoucherCode = #{sourcevouchercode,jdbcType=NVARCHAR},
+      detailVoucherState = #{detailvoucherstate,jdbcType=NVARCHAR},
+      Retailprice = #{retailprice,jdbcType=DECIMAL},
+      DistributionQuantity = #{distributionquantity,jdbcType=DECIMAL},
+      DistributionQuantity2 = #{distributionquantity2,jdbcType=DECIMAL},
+      PriceStrategyTypeName = #{pricestrategytypename,jdbcType=NVARCHAR},
+      PriceStrategySchemeIds = #{pricestrategyschemeids,jdbcType=NVARCHAR},
+      PriceStrategySchemeNames = #{pricestrategyschemenames,jdbcType=NVARCHAR},
+      PromotionVoucherCodes = #{promotionvouchercodes,jdbcType=NVARCHAR},
+      PromotionVoucherIds = #{promotionvoucherids,jdbcType=NVARCHAR},
+      IsMemberIntegral = #{ismemberintegral,jdbcType=TINYINT},
+      IsPromotionPresent = #{ispromotionpresent,jdbcType=TINYINT},
+      PromotionPresentVoucherCode = #{promotionpresentvouchercode,jdbcType=NVARCHAR},
+      PromotionSingleVoucherCode = #{promotionsinglevouchercode,jdbcType=NVARCHAR},
+      PromotionPresentGroupID = #{promotionpresentgroupid,jdbcType=NVARCHAR},
+      PromotionSingleGroupID = #{promotionsinglegroupid,jdbcType=NVARCHAR},
+      DetailMemo = #{detailmemo,jdbcType=NVARCHAR},
+      idbom = #{idbom,jdbcType=INTEGER},
+      idinventory = #{idinventory,jdbcType=INTEGER},
+      idproject = #{idproject,jdbcType=INTEGER},
+      idbaseunit = #{idbaseunit,jdbcType=INTEGER},
+      idsubunit = #{idsubunit,jdbcType=INTEGER},
+      idunit = #{idunit,jdbcType=INTEGER},
+      idunit2 = #{idunit2,jdbcType=INTEGER},
+      idwarehouse = #{idwarehouse,jdbcType=INTEGER},
+      CashbackWay = #{cashbackway,jdbcType=INTEGER},
+      PriceStrategyTypeId = #{pricestrategytypeid,jdbcType=INTEGER},
+      PromotionPresentTypeID = #{promotionpresenttypeid,jdbcType=INTEGER},
+      PromotionSingleTypeID = #{promotionsingletypeid,jdbcType=INTEGER},
+      PromotionPresentVoucherID = #{promotionpresentvoucherid,jdbcType=INTEGER},
+      PromotionSingleVoucherID = #{promotionsinglevoucherid,jdbcType=INTEGER},
+      idSaleOrderDTO = #{idsaleorderdto,jdbcType=INTEGER},
+      SourceVoucherId = #{sourcevoucherid,jdbcType=INTEGER},
+      SourceVoucherDetailId = #{sourcevoucherdetailid,jdbcType=INTEGER},
+      iddestvouchertype = #{iddestvouchertype,jdbcType=INTEGER},
+      idsourcevouchertype = #{idsourcevouchertype,jdbcType=INTEGER},
+      deliveryDate = #{deliverydate,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      LatestCost = #{latestcost,jdbcType=DECIMAL},
+      LatestPOrigTaxPrice = #{latestporigtaxprice,jdbcType=DECIMAL},
+      LatestSaleOrigTaxPrice = #{latestsaleorigtaxprice,jdbcType=DECIMAL},
+      LowestSalePrice = #{lowestsaleprice,jdbcType=DECIMAL},
+      SingleInvGrossProfit = #{singleinvgrossprofit,jdbcType=DECIMAL},
+      GrossProfit = #{grossprofit,jdbcType=DECIMAL},
+      GrossProfitRate = #{grossprofitrate,jdbcType=DECIMAL},
+      DataSource = #{datasource,jdbcType=INTEGER},
+      IsClose = #{isclose,jdbcType=TINYINT},
+      IsModifiedPrice = #{ismodifiedprice,jdbcType=TINYINT},
+      Closer = #{closer,jdbcType=NVARCHAR},
+      CloseDate = #{closedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

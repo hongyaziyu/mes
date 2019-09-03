@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.TrackCardMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.TrackCard" >
+    <id column="card_id" property="cardId" jdbcType="INTEGER" />
+    <result column="client" property="client" jdbcType="VARCHAR" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="material_name" property="materialName" jdbcType="VARCHAR" />
+    <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+    <result column="lupihao" property="lupihao" jdbcType="VARCHAR" />
+    <result column="product_no" property="productNo" jdbcType="VARCHAR" />
+    <result column="product_des" property="productDes" jdbcType="VARCHAR" />
+    <result column="product_fig" property="productFig" jdbcType="VARCHAR" />
+    <result column="material_spec" property="materialSpec" jdbcType="VARCHAR" />
+    <result column="material_batch_no" property="materialBatchNo" jdbcType="VARCHAR" />
+    <result column="production_order" property="productionOrder" jdbcType="VARCHAR" />
+    <result column="people" property="people" jdbcType="VARCHAR" />
+    <result column="make_date" property="makeDate" jdbcType="VARCHAR" />
+    <result column="is_new" property="isNew" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <!-- 多对多查询，自己创一个pojo类 Salary-->
+   <resultMap id="BaseResultMap2" type="cn.ssm.vo.Salary" >
+    <result column="produce_date" property="produceDate" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="hege_num" property="hegeNum" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+     <!--料费计算新增加 ================================ -->
+     <result column="track_id" property="trackId" jdbcType="INTEGER" />
+    
+  </resultMap> 
+  
+  <!-- 多对多查询，自己创一个pojo类 ProductionRecordInquiry-->
+   <resultMap id="BaseResultMap3" type="cn.ssm.vo.ProductionRecordInquiry" >
+    <result column="produce_date" property="produceDate" jdbcType="VARCHAR" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="material_name" property="materialName" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="hege_num" property="hegeNum" jdbcType="VARCHAR" />
+    <result column="total_cipin_num" property="totalCipinNum" jdbcType="VARCHAR" />
+    <result column="asset" property="asset" jdbcType="VARCHAR" />
+    <result column="asset_state" property="assetState" jdbcType="VARCHAR" />
+    <result column="mold" property="mold" jdbcType="VARCHAR" />
+    <result column="mold_state" property="moldState" jdbcType="VARCHAR" />
+  
+  </resultMap> 
+  
+  <!-- 多对多查询，自己创一个pojo类 TemPrice-->
+   <resultMap id="BaseResultMap4" type="cn.ssm.vo.TemPrice" >
+    <result column="card_id" property="cardId" jdbcType="INTEGER" />
+    <result column="track_id" property="trackId" jdbcType="INTEGER" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="material_name" property="materialName" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR" />
+    <result column="tem_price" property="temPrice" jdbcType="VARCHAR" />
+    <result column="is_approval" property="isApproval" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="produce_date" property="produceDate" jdbcType="VARCHAR" />
+    
+  </resultMap> 
+  
+  <sql id="Base_Column_List" >
+    card_id, client, plan_no, client_material_no, material_no, batch_no, material_name, 
+    product_spec, lupihao, product_no, product_des, product_fig, material_spec, material_batch_no, 
+    production_order, people, make_date, is_new
+  </sql>
+  
+  <sql id="Base_Column_List2" >
+     produce_date,plan_no,batch_no,material_name,shop_name,process_name,operator,hege_num,
+   total_cipin_num,asset,asset_state,mold,mold_state
+  </sql>
+  
+  
+     <!-- 临时工价审批记录sql片段 -->
+     <sql id="query_selectTempriceByParam_where">
+  	
+			<if test="shopName!=null and shopName!=''">
+				and  b.shop_name  like '%${shopName}%'
+			</if>
+			<if test="processName!=null and processName!=''">
+				and  b.process_name  like '%${processName}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  b.produce_date BETWEEN #{start_date} AND #{end_date}
+			</if>	
+			and (b.tem_price is not null and b.tem_price !="")
+			
+	</sql> 
+	
+  <!-- 跟踪单记录sql片段 -->
+  <sql id="query_selectTrackCardByParam_where">
+			<if test="client!=null and client!=''">
+				and  a.client like '%${client}%'
+			</if>
+			<if test="plan_no!=null and plan_no!=''">
+				and  a.plan_no like '%${plan_no}%'
+			</if>
+			<if test="client_material_no!=null and client_material_no!=''">
+				and  a.client_material_no like '%${client_material_no}%'
+			</if>
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+	</sql>
+    
+  
+  <!-- 生产记录sql片段 -->
+  <sql id="query_ProductionRecordInquiry_where">
+			<if test="shop_name!=null and shop_name!=''">
+				and  b.shop_name like '%${shop_name}%'
+			</if>
+			<if test="operator!=null and operator!=''">
+				and  b.operator like '%${operator}%'
+			</if>
+			
+			<if test="client_material_no!=null and client_material_no!=''">
+				and  a.client_material_no like '%${client_material_no}%'
+			</if>
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+	</sql>
+	
+	<!-- 工资详细信息sql片段 -->
+  <sql id="query_SelectByPrimaryDate_where">
+			<if test="shop_name!=null and shop_name!=''">
+				and  b.shop_name like '%${shop_name}%'
+			</if>
+			<if test="operator!=null and operator!=''">
+				and  b.operator like '%${operator}%'
+			</if>
+			
+			<if test="date!=null and date!=''">
+				and LEFT(b.produce_date,7)=#{date}
+			</if>
+			
+	</sql>
+	
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from track_card
+    where card_id = #{cardId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from track_card
+    where card_id = #{cardId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.TrackCard" >
+    insert into track_card (card_id, client, plan_no, 
+      client_material_no, material_no, batch_no, 
+      material_name, product_spec, lupihao, 
+      product_no, product_des, product_fig, 
+      material_spec, material_batch_no, production_order, 
+      people, make_date, is_new
+      )
+    values (#{cardId,jdbcType=INTEGER}, #{client,jdbcType=VARCHAR}, #{planNo,jdbcType=VARCHAR}, 
+      #{clientMaterialNo,jdbcType=VARCHAR}, #{materialNo,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, 
+      #{materialName,jdbcType=VARCHAR}, #{productSpec,jdbcType=VARCHAR}, #{lupihao,jdbcType=VARCHAR}, 
+      #{productNo,jdbcType=VARCHAR}, #{productDes,jdbcType=VARCHAR}, #{productFig,jdbcType=VARCHAR}, 
+      #{materialSpec,jdbcType=VARCHAR}, #{materialBatchNo,jdbcType=VARCHAR}, #{productionOrder,jdbcType=VARCHAR}, 
+      #{people,jdbcType=VARCHAR}, #{makeDate,jdbcType=VARCHAR}, #{isNew,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.TrackCard" >
+    insert into track_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="client != null" >
+        client,
+      </if>
+      <if test="planNo != null" >
+        plan_no,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="materialName != null" >
+        material_name,
+      </if>
+      <if test="productSpec != null" >
+        product_spec,
+      </if>
+      <if test="lupihao != null" >
+        lupihao,
+      </if>
+      <if test="productNo != null" >
+        product_no,
+      </if>
+      <if test="productDes != null" >
+        product_des,
+      </if>
+      <if test="productFig != null" >
+        product_fig,
+      </if>
+      <if test="materialSpec != null" >
+        material_spec,
+      </if>
+      <if test="materialBatchNo != null" >
+        material_batch_no,
+      </if>
+      <if test="productionOrder != null" >
+        production_order,
+      </if>
+      <if test="people != null" >
+        people,
+      </if>
+      <if test="makeDate != null" >
+        make_date,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cardId != null" >
+        #{cardId,jdbcType=INTEGER},
+      </if>
+      <if test="client != null" >
+        #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null" >
+        #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="lupihao != null" >
+        #{lupihao,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null" >
+        #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productDes != null" >
+        #{productDes,jdbcType=VARCHAR},
+      </if>
+      <if test="productFig != null" >
+        #{productFig,jdbcType=VARCHAR},
+      </if>
+      <if test="materialSpec != null" >
+        #{materialSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialBatchNo != null" >
+        #{materialBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productionOrder != null" >
+        #{productionOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="people != null" >
+        #{people,jdbcType=VARCHAR},
+      </if>
+      <if test="makeDate != null" >
+        #{makeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isNew != null" >
+        #{isNew,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.TrackCard" >
+    update track_card
+    <set >
+      <if test="client != null" >
+        client = #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        plan_no = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null" >
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null" >
+        material_name = #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="lupihao != null" >
+        lupihao = #{lupihao,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null" >
+        product_no = #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productDes != null" >
+        product_des = #{productDes,jdbcType=VARCHAR},
+      </if>
+      <if test="productFig != null" >
+        product_fig = #{productFig,jdbcType=VARCHAR},
+      </if>
+      <if test="materialSpec != null" >
+        material_spec = #{materialSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialBatchNo != null" >
+        material_batch_no = #{materialBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productionOrder != null" >
+        production_order = #{productionOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="people != null" >
+        people = #{people,jdbcType=VARCHAR},
+      </if>
+      <if test="makeDate != null" >
+        make_date = #{makeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=INTEGER},
+      </if>
+    </set>
+    where card_id = #{cardId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.TrackCard" >
+    update track_card
+    set client = #{client,jdbcType=VARCHAR},
+      plan_no = #{planNo,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      material_name = #{materialName,jdbcType=VARCHAR},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      lupihao = #{lupihao,jdbcType=VARCHAR},
+      product_no = #{productNo,jdbcType=VARCHAR},
+      product_des = #{productDes,jdbcType=VARCHAR},
+      product_fig = #{productFig,jdbcType=VARCHAR},
+      material_spec = #{materialSpec,jdbcType=VARCHAR},
+      material_batch_no = #{materialBatchNo,jdbcType=VARCHAR},
+      production_order = #{productionOrder,jdbcType=VARCHAR},
+      people = #{people,jdbcType=VARCHAR},
+      make_date = #{makeDate,jdbcType=VARCHAR},
+      is_new = #{isNew,jdbcType=INTEGER}
+    where card_id = #{cardId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 添加的内容，通过内连接card_id连接两张表单，根据车间，操作工，年份，月份查询工资详细信息（第一张表） //工资单详细记录分页-->
+ <select id="SelectByPrimaryDate" resultMap="BaseResultMap2"> 
+  select a.client_material_no,a.material_no,a.product_spec,a.batch_no,b.track_id,b.shop_name,b.produce_date,b.process_name,b.operator,b.hege_num,b.price from 
+  track_card AS a INNER JOIN work_card AS b ON
+  a.card_id=b.card_id
+   <where>
+		<include refid="query_SelectByPrimaryDate_where"/>
+	</where>
+	ORDER BY produce_date DESC
+	limit #{startPos},#{pageSize}
+ </select>
+ 
+  <!-- //工资单详细记录分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="SelectByPrimaryDatetotalCount" resultType="int">
+  	select  count(*) from  track_card AS a INNER JOIN work_card AS b ON
+  a.card_id=b.card_id
+  	<where>
+		<include refid="query_SelectByPrimaryDate_where"/>
+	</where>
+  </select>
+ 
+ 
+ 
+  <!--工资单详细记录excel查询-->
+ <select id="SelectexcelByPrimaryDate" resultMap="BaseResultMap2"> 
+  select a.client_material_no,a.material_no,a.product_spec,a.batch_no,b.track_id,b.shop_name,b.produce_date,b.process_name,b.operator,b.hege_num,b.price from 
+  track_card AS a INNER JOIN work_card AS b ON
+  a.card_id=b.card_id
+   <where>
+		<include refid="query_SelectByPrimaryDate_where"/>
+	</where>
+	ORDER BY produce_date DESC
+ </select>
+ 
+ 
+ 
+ <!-- 吴永-添加的内容，通过内连接card_id连接三张表单，根据车间，操作工，客户物料号和物料号查询生产记录信息（第一张表）
+ 吴永-根据车间和操作工、图号、物料号进行生产记录查询，分页 -->
+ <select id="selectProductionRecordInquiryParam" resultMap="BaseResultMap3"> 
+ <!-- 吴永-resultMap返回的结果类型，原理：把数据库查询出来的结果给上面id为BaseResultMap2的pojo类里 -->
+  select 
+  <include refid="Base_Column_List2" />
+  	from track_card AS a INNER JOIN work_card AS b ON
+    a.card_id=b.card_id
+    <where>
+		<include refid="query_ProductionRecordInquiry_where"/>
+	</where>
+	<!-- ORDER BY produce_date DESC -->
+	ORDER BY RIGHT(a.batch_no,13) DESC
+	limit #{startPos},#{pageSize}
+ </select>
+ 
+ <!-- 吴永-根据车间和操作工、图号、物料号进行生产记录查询，分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectProductionRecordInquiryParamtotalCount" resultType="int">
+  	select  count(*) from 
+  	track_card AS a INNER JOIN work_card AS b ON
+    a.card_id=b.card_id
+  	<where>
+		<include refid="query_ProductionRecordInquiry_where"/>
+	</where>
+  </select>
+ 
+ 
+  <!--跟踪单详细信息添加多条件查询语句  //跟踪单记录分页-->
+  <select id="selectTrackCardByParam" resultMap="BaseResultMap"  >
+    select * from
+     track_card a
+     <where>
+		<include refid="query_selectTrackCardByParam_where"/>
+	</where>
+	<!-- ORDER BY card_id DESC -->
+	ORDER BY RIGHT(a.batch_no,13) DESC
+	limit #{startPos},#{pageSize}
+  </select>
+  
+  <!-- 跟踪单记录分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectTrackCardByParamtotalCount" resultType="int">
+  	select  count(*) from  track_card a
+  	<where>
+		<include refid="query_selectTrackCardByParam_where"/>
+	</where>
+  </select>
+  
+  <!-- 临时工价审批查询 -->
+  <select id="SelectByTemprice" resultMap="BaseResultMap4">
+  select DISTINCT a.client_material_no,a.material_no,a.material_name,a.batch_no,b.process_name,b.shop_name,b.tem_price,b.produce_date,b.is_approval from  track_card AS a INNER JOIN work_card AS b ON
+    a.card_id=b.card_id   
+  <where>
+		<include refid="query_selectTempriceByParam_where"/>
+  </where>
+	<!-- ORDER BY b.track_id DESC -->
+	 ORDER BY RIGHT(a.batch_no,13) DESC
+	limit #{startPos},#{pageSize}
+  </select>
+   
+   <!--临时工价审批记录查询分页返回行数  --> 
+  <select id="SelectByTempricetotalCount" resultType="int">
+  	select  COUNT(DISTINCT a.client_material_no,a.material_no,a.material_name,a.batch_no,b.process_name,b.shop_name,b.tem_price,b.produce_date,b.is_approval) from  track_card AS a INNER JOIN work_card AS b ON
+    a.card_id=b.card_id 
+    <where>
+		<include refid="query_selectTempriceByParam_where"/>
+    </where>
+  </select> 
+  
+   <!-- 未审批变为已审批 -->
+  <update id="updateapproveTemprice" parameterType="cn.ssm.po.WorkCard">
+  update track_card AS a INNER JOIN work_card AS b ON
+  a.card_id=b.card_id 
+  set b.is_approval = 1,b.price= #{1}
+  where a.batch_no = #{0}
+  </update>
+  
+  
+   <!-- 未审批变为审批不通过  -->
+  <update id="updatenotapproveTemprice" parameterType="cn.ssm.po.WorkCard">
+  update track_card AS a INNER JOIN work_card AS b ON
+  a.card_id=b.card_id 
+  set b.is_approval = 2
+  where a.batch_no = #{0}
+  </update>
+  
+  
+  
+  <!--查询临时工价未审批数量  -->
+  <select id="selectTempriceCount" resultType="int">
+  	select  COUNT(DISTINCT a.client_material_no,a.material_no,a.material_name,a.batch_no,b.process_name,b.shop_name,b.tem_price,b.produce_date,b.is_approval) from  track_card AS a INNER JOIN work_card AS b ON
+    a.card_id=b.card_id 
+  	where  tem_price is not null and tem_price !=""
+    and is_approval='0' 
+  </select>
+  
+  
+   <!--模具出入库-查询计划单号和图号 -->
+  <select id="selectByBatchNo" resultMap="BaseResultMap">
+  	select card_id , plan_no , client_material_no FROM track_card 
+    where  batch_no=#{0}
+  </select>
+  
+  <!--查询批次号是否存在 -->
+ 	 <select id="selectBatchNo" resultType="int">
+	SELECT
+		COUNT(batch_no)
+	FROM
+		track_card
+	WHERE batch_no = #{0}
+ 	 </select>  
+</mapper>

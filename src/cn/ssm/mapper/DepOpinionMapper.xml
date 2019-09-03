@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.DepOpinionMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.DepOpinion" >
+    <id column="opinion_id" property="opinionId" jdbcType="INTEGER" />
+    <result column="abnormal_id" property="abnormalId" jdbcType="INTEGER" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="opinion" property="opinion" jdbcType="VARCHAR" />
+    <result column="advisor" property="advisor" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    opinion_id, abnormal_id, department, opinion, advisor, date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dep_opinion
+    where opinion_id = #{opinionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dep_opinion
+    where opinion_id = #{opinionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.DepOpinion" >
+    insert into dep_opinion (opinion_id, abnormal_id, department, 
+      opinion, advisor, date
+      )
+    values (#{opinionId,jdbcType=INTEGER}, #{abnormalId,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, 
+      #{opinion,jdbcType=VARCHAR}, #{advisor,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.DepOpinion" >
+    insert into dep_opinion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="opinionId != null" >
+        opinion_id,
+      </if>
+      <if test="abnormalId != null" >
+        abnormal_id,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="opinion != null" >
+        opinion,
+      </if>
+      <if test="advisor != null" >
+        advisor,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="opinionId != null" >
+        #{opinionId,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalId != null" >
+        #{abnormalId,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null" >
+        #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="advisor != null" >
+        #{advisor,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.DepOpinion" >
+    update dep_opinion
+    <set >
+      <if test="abnormalId != null" >
+        abnormal_id = #{abnormalId,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null" >
+        opinion = #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="advisor != null" >
+        advisor = #{advisor,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where opinion_id = #{opinionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.DepOpinion" >
+    update dep_opinion
+    set abnormal_id = #{abnormalId,jdbcType=INTEGER},
+      department = #{department,jdbcType=VARCHAR},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      advisor = #{advisor,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR}
+    where opinion_id = #{opinionId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByAbnormalId" resultMap="BaseResultMap"  >
+    select * from
+     dep_opinion
+      where abnormal_id = #{0}
+  </select> 
+ 
+ 
+  <delete id="deleteByAbnormalId" parameterType="java.lang.Integer" >
+    delete from dep_opinion
+    where abnormal_id = #{abnormalId,jdbcType=INTEGER}
+  </delete>
+  
+</mapper>

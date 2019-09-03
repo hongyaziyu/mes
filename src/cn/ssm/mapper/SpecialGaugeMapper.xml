@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.SpecialGaugeMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.SpecialGauge" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="inspection_production" property="inspectionProduction" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="gauge_name" property="gaugeName" jdbcType="VARCHAR" />
+    <result column="gauge_no" property="gaugeNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, inspection_production, type, gauge_name, gauge_no
+  </sql>
+  
+  
+   <!-- 检具-特殊规查询sql片段 -->
+  <sql id="query_specialgauge_where">
+  
+            <if test="gaugeName!=null and gaugeName!=''">
+				and  a.gauge_name like '%${gaugeName}%'
+			</if>
+			<if test="gaugeNo!=null and gaugeNo!=''">
+				and  a.gauge_no like '%${gaugeNo}%'
+			</if>
+  
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from special_gauge
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from special_gauge
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.SpecialGauge" >
+    insert into special_gauge (id, inspection_production, type, 
+      gauge_name, gauge_no)
+    values (#{id,jdbcType=INTEGER}, #{inspectionProduction,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{gaugeName,jdbcType=VARCHAR}, #{gaugeNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.SpecialGauge" >
+    insert into special_gauge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="inspectionProduction != null" >
+        inspection_production,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="gaugeName != null" >
+        gauge_name,
+      </if>
+      <if test="gaugeNo != null" >
+        gauge_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="inspectionProduction != null" >
+        #{inspectionProduction,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="gaugeName != null" >
+        #{gaugeName,jdbcType=VARCHAR},
+      </if>
+      <if test="gaugeNo != null" >
+        #{gaugeNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.SpecialGauge" >
+    update special_gauge
+    <set >
+      <if test="inspectionProduction != null" >
+        inspection_production = #{inspectionProduction,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="gaugeName != null" >
+        gauge_name = #{gaugeName,jdbcType=VARCHAR},
+      </if>
+      <if test="gaugeNo != null" >
+        gauge_no = #{gaugeNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.SpecialGauge" >
+    update special_gauge
+    set inspection_production = #{inspectionProduction,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      gauge_name = #{gaugeName,jdbcType=VARCHAR},
+      gauge_no = #{gaugeNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+   <!--添加部分：多条件查询的条件 //检具-特殊规查询分页 -->
+  <select id="selectSpecialGaugeByParam" resultMap="BaseResultMap"  >
+    select * from
+     special_gauge a
+     <where>
+		<include refid="query_specialgauge_where"/>
+	</where>
+	ORDER BY id DESC
+	<!-- limit m,n为从m+1开始取n条记录 -->
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+  
+  <!--检具-特殊规-excel导入多条件查询的条件 -->
+  <select id="selectSpecialGaugeByParam1" resultMap="BaseResultMap"  >
+    select * from
+     special_gauge 
+     where gauge_name = #{0}
+     and gauge_no = #{1}
+  </select>
+  
+  <!-- //检具-特殊规查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectSpecialGaugeByParamtotalCount" resultType="int">
+  	select  count(*) from  special_gauge a
+  	<where>
+		<include refid="query_specialgauge_where"/>
+	</where>
+  </select>
+  
+   <!-- 车间排产显示检具-特殊规编号 -->
+  <select id="selectSpecialGaugeNo" resultType="string">
+    select gauge_no from special_gauge
+  </select>
+</mapper>

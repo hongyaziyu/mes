@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.ShopPlanMapper">
+	<resultMap id="BaseResultMap" type="cn.ssm.po.ShopPlan">
+		<id column="plan_id" property="planId" jdbcType="INTEGER" />
+		<result column="client" property="client" jdbcType="VARCHAR" />
+		<result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+		<result column="client_material_no" property="clientMaterialNo"
+			jdbcType="VARCHAR" />
+		<result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+		<result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+		<result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+		<result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+		<result column="material_name" property="materialName"
+			jdbcType="VARCHAR" />
+		<result column="plan_people" property="planPeople" jdbcType="VARCHAR" />
+		<result column="plan_date" property="planDate" jdbcType="VARCHAR" />
+		<result column="plan_num" property="planNum" jdbcType="VARCHAR" />
+		<result column="online_date" property="onlineDate" jdbcType="VARCHAR" />
+		<result column="produced_num" property="producedNum" jdbcType="VARCHAR" />
+		<result column="completed_date" property="completedDate"
+			jdbcType="VARCHAR" />
+		<result column="process_sort" property="processSort" jdbcType="VARCHAR" />
+		<result column="is_latest" property="isLatest" jdbcType="INTEGER" />
+		<result column="is_new" property="isNew" jdbcType="INTEGER" />
+		<result column="is_product" property="isProduct" jdbcType="INTEGER" />
+		<result column="rfid" property="rfid" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		plan_id, client, plan_no, client_material_no, material_no, product_spec,
+		batch_no,
+		shop_name, material_name, plan_people, plan_date, plan_num, online_date,
+		produced_num,
+		completed_date, process_sort, is_latest, is_new, is_product, rfid
+	</sql>
+
+	<!-- 车间排产未完成记录 -->
+	<sql id="query_shopPlan_where">
+
+		<if test="planNo!=null and planNo!=''">
+			and s.plan_no like '%${planNo}%'
+		</if>
+		<if test="shopName!=null and shopName!=''">
+			and s.shop_name like '%${shopName}%'
+		</if>
+		<if test="batchNo!=null and batchNo!=''">
+			and s.batch_no like '%${batchNo}%'
+		</if>
+		and s.is_new = 1
+		and s.is_product = 0
+	</sql>
+
+	<!-- 车间排产已完成记录 -->
+	<sql id="query_finishshopPlan_where">
+
+		<if test="planNo!=null and planNo!=''">
+			and s.plan_no like '%${planNo}%'
+		</if>
+		<if test="shopName!=null and shopName!=''">
+			and s.shop_name like '%${shopName}%'
+		</if>
+		<if test="batchNo!=null and batchNo!=''">
+			and s.batch_no like '%${batchNo}%'
+		</if>
+		and s.is_new = 1
+		and s.is_product = 1
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from shop_plan
+		where plan_id = #{planId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from shop_plan
+		where plan_id = #{planId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.ssm.po.ShopPlan">
+		insert into shop_plan (plan_id, client, plan_no,
+		client_material_no, material_no, product_spec,
+		batch_no, shop_name, material_name,
+		plan_people, plan_date, plan_num,
+		online_date, produced_num, completed_date,
+		process_sort, is_latest, is_new,
+		is_product, rfid)
+		values (#{planId,jdbcType=INTEGER}, #{client,jdbcType=VARCHAR},
+		#{planNo,jdbcType=VARCHAR},
+		#{clientMaterialNo,jdbcType=VARCHAR}, #{materialNo,jdbcType=VARCHAR}, #{productSpec,jdbcType=VARCHAR},
+		#{batchNo,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR},
+		#{materialName,jdbcType=VARCHAR},
+		#{planPeople,jdbcType=VARCHAR}, #{planDate,jdbcType=VARCHAR}, #{planNum,jdbcType=VARCHAR},
+		#{onlineDate,jdbcType=VARCHAR}, #{producedNum,jdbcType=VARCHAR},
+		#{completedDate,jdbcType=VARCHAR},
+		#{processSort,jdbcType=VARCHAR}, #{isLatest,jdbcType=INTEGER}, #{isNew,jdbcType=INTEGER},
+		#{isProduct,jdbcType=INTEGER}, #{rfid,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.ssm.po.ShopPlan"
+		keyColumn="plan_id" keyProperty="planId" useGeneratedKeys="true">
+		insert into shop_plan
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="planId != null">
+				plan_id,
+			</if>
+			<if test="client != null">
+				client,
+			</if>
+			<if test="planNo != null">
+				plan_no,
+			</if>
+			<if test="clientMaterialNo != null">
+				client_material_no,
+			</if>
+			<if test="materialNo != null">
+				material_no,
+			</if>
+			<if test="productSpec != null">
+				product_spec,
+			</if>
+			<if test="batchNo != null">
+				batch_no,
+			</if>
+			<if test="shopName != null">
+				shop_name,
+			</if>
+			<if test="materialName != null">
+				material_name,
+			</if>
+			<if test="planPeople != null">
+				plan_people,
+			</if>
+			<if test="planDate != null">
+				plan_date,
+			</if>
+			<if test="planNum != null">
+				plan_num,
+			</if>
+			<if test="onlineDate != null">
+				online_date,
+			</if>
+			<if test="producedNum != null">
+				produced_num,
+			</if>
+			<if test="completedDate != null">
+				completed_date,
+			</if>
+			<if test="processSort != null">
+				process_sort,
+			</if>
+			<if test="isLatest != null">
+				is_latest,
+			</if>
+			<if test="isNew != null">
+				is_new,
+			</if>
+			<if test="isProduct != null">
+				is_product,
+			</if>
+			<if test="rfid != null">
+				rfid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="planId != null">
+				#{planId,jdbcType=INTEGER},
+			</if>
+			<if test="client != null">
+				#{client,jdbcType=VARCHAR},
+			</if>
+			<if test="planNo != null">
+				#{planNo,jdbcType=VARCHAR},
+			</if>
+			<if test="clientMaterialNo != null">
+				#{clientMaterialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="materialNo != null">
+				#{materialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="productSpec != null">
+				#{productSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="batchNo != null">
+				#{batchNo,jdbcType=VARCHAR},
+			</if>
+			<if test="shopName != null">
+				#{shopName,jdbcType=VARCHAR},
+			</if>
+			<if test="materialName != null">
+				#{materialName,jdbcType=VARCHAR},
+			</if>
+			<if test="planPeople != null">
+				#{planPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="planDate != null">
+				#{planDate,jdbcType=VARCHAR},
+			</if>
+			<if test="planNum != null">
+				#{planNum,jdbcType=VARCHAR},
+			</if>
+			<if test="onlineDate != null">
+				#{onlineDate,jdbcType=VARCHAR},
+			</if>
+			<if test="producedNum != null">
+				#{producedNum,jdbcType=VARCHAR},
+			</if>
+			<if test="completedDate != null">
+				#{completedDate,jdbcType=VARCHAR},
+			</if>
+			<if test="processSort != null">
+				#{processSort,jdbcType=VARCHAR},
+			</if>
+			<if test="isLatest != null">
+				#{isLatest,jdbcType=INTEGER},
+			</if>
+			<if test="isNew != null">
+				#{isNew,jdbcType=INTEGER},
+			</if>
+			<if test="isProduct != null">
+				#{isProduct,jdbcType=INTEGER},
+			</if>
+			<if test="rfid != null">
+				#{rfid,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.ShopPlan">
+		update shop_plan
+		<set>
+			<if test="client != null">
+				client = #{client,jdbcType=VARCHAR},
+			</if>
+			<if test="planNo != null">
+				plan_no = #{planNo,jdbcType=VARCHAR},
+			</if>
+			<if test="clientMaterialNo != null">
+				client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="materialNo != null">
+				material_no = #{materialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="productSpec != null">
+				product_spec = #{productSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="batchNo != null">
+				batch_no = #{batchNo,jdbcType=VARCHAR},
+			</if>
+			<if test="shopName != null">
+				shop_name = #{shopName,jdbcType=VARCHAR},
+			</if>
+			<if test="materialName != null">
+				material_name = #{materialName,jdbcType=VARCHAR},
+			</if>
+			<if test="planPeople != null">
+				plan_people = #{planPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="planDate != null">
+				plan_date = #{planDate,jdbcType=VARCHAR},
+			</if>
+			<if test="planNum != null">
+				plan_num = #{planNum,jdbcType=VARCHAR},
+			</if>
+			<if test="onlineDate != null">
+				online_date = #{onlineDate,jdbcType=VARCHAR},
+			</if>
+			<if test="producedNum != null">
+				produced_num = #{producedNum,jdbcType=VARCHAR},
+			</if>
+			<if test="completedDate != null">
+				completed_date = #{completedDate,jdbcType=VARCHAR},
+			</if>
+			<if test="processSort != null">
+				process_sort = #{processSort,jdbcType=VARCHAR},
+			</if>
+			<if test="isLatest != null">
+				is_latest = #{isLatest,jdbcType=INTEGER},
+			</if>
+			<if test="isNew != null">
+				is_new = #{isNew,jdbcType=INTEGER},
+			</if>
+			<if test="isProduct != null">
+				is_product = #{isProduct,jdbcType=INTEGER},
+			</if>
+			<if test="rfid != null">
+				rfid = #{rfid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where plan_id = #{planId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.ssm.po.ShopPlan">
+		update shop_plan
+		set client = #{client,jdbcType=VARCHAR},
+		plan_no = #{planNo,jdbcType=VARCHAR},
+		client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+		material_no = #{materialNo,jdbcType=VARCHAR},
+		product_spec = #{productSpec,jdbcType=VARCHAR},
+		batch_no = #{batchNo,jdbcType=VARCHAR},
+		shop_name = #{shopName,jdbcType=VARCHAR},
+		material_name = #{materialName,jdbcType=VARCHAR},
+		plan_people = #{planPeople,jdbcType=VARCHAR},
+		plan_date = #{planDate,jdbcType=VARCHAR},
+		plan_num = #{planNum,jdbcType=VARCHAR},
+		online_date = #{onlineDate,jdbcType=VARCHAR},
+		produced_num = #{producedNum,jdbcType=VARCHAR},
+		completed_date = #{completedDate,jdbcType=VARCHAR},
+		process_sort = #{processSort,jdbcType=VARCHAR},
+		is_latest = #{isLatest,jdbcType=INTEGER},
+		is_new = #{isNew,jdbcType=INTEGER},
+		is_product = #{isProduct,jdbcType=INTEGER},
+		rfid = #{rfid,jdbcType=VARCHAR}
+		where plan_id = #{planId,jdbcType=INTEGER}
+	</update>
+
+
+	<select id="selectAllShopPlan" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from shop_plan
+		and is_new = 1
+	</select>
+
+	<!-- 车间排产记录未完成分页查询查询返回行数totalCount -->
+	<!--COUNT() 函数返回匹配指定条件的行数。 -->
+	<select id="selectShopPlanByParamtotalCount" resultType="int">
+		select count(*) from shop_plan s
+		<where>
+			<include refid="query_shopPlan_where" />
+		</where>
+	</select>
+
+	<!-- 车间排产未完成记录分页查询 ： -->
+	<select id="selectShopPlanByParam" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from shop_plan s
+		<where>
+			<include refid="query_shopPlan_where" />
+		</where>
+		<!-- ORDER BY plan_id DESC -->
+		 ORDER BY RIGHT(s.plan_no,11) DESC
+		limit #{startPos},#{pageSize}
+	</select>
+
+
+	<!-- 车间排产记录已完成分页查询查询返回行数totalCount -->
+	<!--COUNT() 函数返回匹配指定条件的行数。 -->
+	<select id="selectFinishShopPlanByParamtotalCount" resultType="int">
+		select count(*) from shop_plan s
+		<where>
+			<include refid="query_finishshopPlan_where" />
+		</where>
+	</select>
+
+	<!-- 车间排产已完成记录分页查询 ： -->
+	<select id="selectFinishShopPlanByParam" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from shop_plan s
+		<where>
+			<include refid="query_finishshopPlan_where" />
+		</where>
+		<!-- ORDER BY plan_id DESC -->
+		 ORDER BY RIGHT(s.plan_no,11) DESC
+		limit #{startPos},#{pageSize}
+	</select>
+
+	<!-- 车间排产计划未审批变为已审批 -->
+	<update id="updateByKey" parameterType="cn.ssm.po.ShopPlan">
+		update shop_plan
+		set is_product = 1
+		where plan_id = #{0}
+		and is_new = 1
+	</update>
+
+
+	<!-- 根据图号，物料号，批次号查询计划数量 -->
+	<select id="selectShopPlan" resultMap="BaseResultMap">
+		select st.plan_num from shop_plan st
+		WHERE client_material_no = #{0}
+		and material_no = #{1}
+		and batch_no = #{2}
+		and shop_name = #{3}
+		and is_new = 1
+	</select>
+
+	<!--Ajax跟踪单界面-根据批次号查询车间排产表中显示计划数量 -->
+	<select id="selectNumber" resultMap="BaseResultMap">
+		select distinct plan_num from
+		shop_plan
+		where batch_no = #{0}
+		and is_new = 1
+	</select>
+
+	<!--Ajax(二维码制定表)检查该批次号(车间排产表中)是否已经用过 -->
+	<select id="selectPlanNoUpBatchNo" resultType="String">
+		select distinct batch_no from
+		shop_plan
+		where plan_no = #{0}
+		and is_new = 1
+	</select>
+
+
+	<!--Ajax查询批次号 -->
+	<select id="selectPicihao" resultMap="BaseResultMap">
+		select batch_no
+		from shop_plan
+		WHERE material_no = #{0}
+		and is_new = 1
+		and is_product = 0
+	</select>
+
+	<!--查询批次号 -->
+	<select id="selectBatchNoByPlanNo" resultType="String">
+		SELECT DISTINCT
+		batch_no
+		FROM
+		shop_plan
+		WHERE
+		plan_no = #{0}
+		and is_new = 1
+	</select>
+
+	<!--二维码excel导出-该计划单号下的最大二维码数字为批次号做拼接！ -->
+	<select id="selectQRMaxNum" resultType="String">
+		select MAX(RIGHT(batch_no,2)) from shop_plan
+		where plan_no = #{0}
+		and is_new = 1
+	</select>
+
+</mapper>

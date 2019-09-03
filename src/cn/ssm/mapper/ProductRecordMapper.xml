@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.ProductRecordMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.ProductRecord" >
+    <id column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="product_mc" property="productMc" jdbcType="VARCHAR" />
+    <result column="batch_no1" property="batchNo1" jdbcType="VARCHAR" />
+    <result column="batch_no2" property="batchNo2" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="VARCHAR" />
+    <result column="product_num" property="productNum" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="shop1" property="shop1" jdbcType="VARCHAR" />
+    <result column="provider" property="provider" jdbcType="VARCHAR" />
+    <result column="shop2" property="shop2" jdbcType="VARCHAR" />
+    <result column="acceptor" property="acceptor" jdbcType="VARCHAR" />
+    <result column="trans_date" property="transDate" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_return" property="isReturn" jdbcType="INTEGER" />
+    <result column="is_normal" property="isNormal" jdbcType="INTEGER" />
+    <result column="is_recorded" property="isRecorded" jdbcType="INTEGER" />
+    <result column="is_error" property="isError" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    record_id, plan_no, client_material_no, material_no, product_mc, batch_no1, batch_no2, 
+    weight, product_num, unit, shop1, provider, shop2, acceptor, trans_date, remark, 
+    is_return, is_normal, is_recorded, is_error
+  </sql>
+  
+  <!-- 原材料外协入库单据记录sql片段 -->
+     <sql id="query_selectInputMaterialAssociation_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  a.trans_date BETWEEN #{start_date} AND #{end_date} 
+			</if>	
+			and a.is_return=1
+			and a.shop1='外协'
+	</sql> 
+  
+   <!-- 半成品出库记录sql片段 -->
+     <sql id="query_selectInputMiddleRecord_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  a.trans_date BETWEEN #{start_date} AND #{end_date} 
+			</if>	
+			and a.is_return=0
+	</sql> 
+	
+	<!-- 半成品入库记录sql片段 -->
+     <sql id="query_selectOutputMiddleRecord_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  a.trans_date BETWEEN #{start_date} AND #{end_date} 
+			</if>	
+			and a.is_return=1 
+			and (a.batch_no1="" or a.batch_no1 is null)
+	</sql> 
+	
+	 <!-- 成品记录===============sql片段 -->
+     <sql id="query_selectexcelOutputFullRecord_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  a.trans_date BETWEEN #{start_date} AND #{end_date} 
+			</if>	
+			and a.is_return=1  
+			and (a.batch_no2="" or a.batch_no2 is null)
+	</sql> 
+	
+	 <!-- 成品入库excel导出 -->
+     <sql id="query_selectOutputFullRecord_where">
+  	
+			<if test="material_no!=null and material_no!=''">
+				and  a.material_no like '%${material_no}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  a.trans_date BETWEEN #{start_date} AND #{end_date} 
+			</if>	
+			 and a.is_return=1  
+	  		 and (a.batch_no2="" or a.batch_no2 is null)     
+	</sql> 
+	
+	
+	
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.ProductRecord" >
+    insert into product_record (record_id, plan_no, client_material_no, 
+      material_no, product_mc, batch_no1, 
+      batch_no2, weight, product_num, 
+      unit, shop1, provider, 
+      shop2, acceptor, trans_date, 
+      remark, is_return, is_normal, 
+      is_recorded, is_error)
+    values (#{recordId,jdbcType=INTEGER}, #{planNo,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, 
+      #{materialNo,jdbcType=VARCHAR}, #{productMc,jdbcType=VARCHAR}, #{batchNo1,jdbcType=VARCHAR}, 
+      #{batchNo2,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{productNum,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{shop1,jdbcType=VARCHAR}, #{provider,jdbcType=VARCHAR}, 
+      #{shop2,jdbcType=VARCHAR}, #{acceptor,jdbcType=VARCHAR}, #{transDate,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{isReturn,jdbcType=INTEGER}, #{isNormal,jdbcType=INTEGER}, 
+      #{isRecorded,jdbcType=INTEGER}, #{isError,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.ProductRecord" >
+    insert into product_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        record_id,
+      </if>
+      <if test="planNo != null" >
+        plan_no,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="productMc != null" >
+        product_mc,
+      </if>
+      <if test="batchNo1 != null" >
+        batch_no1,
+      </if>
+      <if test="batchNo2 != null" >
+        batch_no2,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="productNum != null" >
+        product_num,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="shop1 != null" >
+        shop1,
+      </if>
+      <if test="provider != null" >
+        provider,
+      </if>
+      <if test="shop2 != null" >
+        shop2,
+      </if>
+      <if test="acceptor != null" >
+        acceptor,
+      </if>
+      <if test="transDate != null" >
+        trans_date,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isReturn != null" >
+        is_return,
+      </if>
+      <if test="isNormal != null" >
+        is_normal,
+      </if>
+      <if test="isRecorded != null" >
+        is_recorded,
+      </if>
+      <if test="isError != null" >
+        is_error,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="planNo != null" >
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productMc != null" >
+        #{productMc,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo1 != null" >
+        #{batchNo1,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo2 != null" >
+        #{batchNo2,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null" >
+        #{productNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="shop1 != null" >
+        #{shop1,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="shop2 != null" >
+        #{shop2,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptor != null" >
+        #{acceptor,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        #{transDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isReturn != null" >
+        #{isReturn,jdbcType=INTEGER},
+      </if>
+      <if test="isNormal != null" >
+        #{isNormal,jdbcType=INTEGER},
+      </if>
+      <if test="isRecorded != null" >
+        #{isRecorded,jdbcType=INTEGER},
+      </if>
+      <if test="isError != null" >
+        #{isError,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.ProductRecord" >
+    update product_record
+    <set >
+      <if test="planNo != null" >
+        plan_no = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productMc != null" >
+        product_mc = #{productMc,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo1 != null" >
+        batch_no1 = #{batchNo1,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo2 != null" >
+        batch_no2 = #{batchNo2,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null" >
+        product_num = #{productNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="shop1 != null" >
+        shop1 = #{shop1,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        provider = #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="shop2 != null" >
+        shop2 = #{shop2,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptor != null" >
+        acceptor = #{acceptor,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        trans_date = #{transDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isReturn != null" >
+        is_return = #{isReturn,jdbcType=INTEGER},
+      </if>
+      <if test="isNormal != null" >
+        is_normal = #{isNormal,jdbcType=INTEGER},
+      </if>
+      <if test="isRecorded != null" >
+        is_recorded = #{isRecorded,jdbcType=INTEGER},
+      </if>
+      <if test="isError != null" >
+        is_error = #{isError,jdbcType=INTEGER},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.ProductRecord" >
+    update product_record
+    set plan_no = #{planNo,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      product_mc = #{productMc,jdbcType=VARCHAR},
+      batch_no1 = #{batchNo1,jdbcType=VARCHAR},
+      batch_no2 = #{batchNo2,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      product_num = #{productNum,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      shop1 = #{shop1,jdbcType=VARCHAR},
+      provider = #{provider,jdbcType=VARCHAR},
+      shop2 = #{shop2,jdbcType=VARCHAR},
+      acceptor = #{acceptor,jdbcType=VARCHAR},
+      trans_date = #{transDate,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_return = #{isReturn,jdbcType=INTEGER},
+      is_normal = #{isNormal,jdbcType=INTEGER},
+      is_recorded = #{isRecorded,jdbcType=INTEGER},
+      is_error = #{isError,jdbcType=INTEGER}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  
+    <!--领半成品查询/ 领半成品记录分页-->
+  <select  id="selectInputMiddleRecord" resultMap="BaseResultMap">
+  select*from 
+  product_record a      
+  <where>
+		<include refid="query_selectInputMiddleRecord_where"/>
+ </where>  
+     <!--  ORDER BY record_id DESC -->
+    ORDER BY a.trans_date DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                             
+  </select>
+  
+  <!--   领半成品记录分页查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectInputMiddleRecordtotalCount" resultType="int">
+  	select  count(*) from   product_record a
+  	<where>
+		<include refid="query_selectInputMiddleRecord_where"/>
+	</where>
+  </select>
+  
+  
+   
+  <!--退半成品查询/ 退半成品记录分页-->
+  <select  id="selectOutputMiddleRecord" resultMap="BaseResultMap">
+  select*from 
+  product_record  a     
+  <where>
+		<include refid="query_selectOutputMiddleRecord_where"/>
+ </where>  
+    <!--   ORDER BY record_id DESC -->
+     ORDER BY a.trans_date DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                             
+  </select>
+  
+   <!--   退半成品记录分页查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectOutputMiddleRecordtotalCount" resultType="int">
+  	select  count(*) from   product_record a
+  	<where>
+		<include refid="query_selectOutputMiddleRecord_where"/>
+	</where>
+  </select>
+   
+  <!--成品查记录==============分页-->
+  <select  id="selectOutputFullRecord" resultMap="BaseResultMap">
+  select*from 
+  product_record  a     
+  <where>
+		<include refid="query_selectOutputFullRecord_where"/>
+ </where>  
+   <!--    ORDER BY record_id DESC -->
+    ORDER BY a.trans_date DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                             
+  </select>
+  
+   <!--成品查记录==============-->
+  <select id="selectOutputFullRecordtotalCount" resultType="int">
+  	select  count(*) from   product_record a
+  	<where>
+		<include refid="query_selectOutputFullRecord_where"/>
+	</where>
+  </select>
+  
+  <!-- 问题是否解决 -->
+  <update id="updateIsProblem" parameterType="cn.ssm.po.ProductRecord">
+  update product_record 
+  set  is_normal=1
+  where record_id=#{0}
+  </update>
+  
+  <!--原材料外协入库记录分页-->
+  <select  id="selectIntputMaterialAssociation" resultMap="BaseResultMap">
+  select*from 
+  product_record a      
+  <where>
+		<include refid="query_selectInputMaterialAssociation_where"/>
+ </where>  
+  <!--   ORDER BY record_id DESC -->
+   ORDER BY a.trans_date DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                             
+  </select>
+  
+  <!--原材料外协入库返回行数 -->
+  <select id="selectIntputMaterialAssociationtotalCount" resultType="int">
+  	select  count(*) from   product_record a
+  	<where>
+		<include refid="query_selectInputMaterialAssociation_where"/>
+	</where>
+  </select>
+ 
+  
+  
+  <!-- 成品记录T+模板excel导出 -->
+   <select  id="selectexcelOutputFullRecord" resultMap="BaseResultMap">
+	  select*from 
+	  product_record  a 
+	  <where>
+		<include refid="query_selectexcelOutputFullRecord_where"/>
+	  </where>                                                                                                                                                                                                                                                       
+  </select>
+  
+  
+<!-- 半成品出库excel导出 -->
+   <select id="selectexcelinputMiddleRecord" resultMap="BaseResultMap">
+	  select*from 
+	  product_record  a 
+	  <where>
+		<include refid="query_selectInputMiddleRecord_where"/>
+	  </where>  
+	</select>
+	  
+	<!-- 半成品入库excel导出 -->
+   <select id="selectexceloutputMiddleRecord" resultMap="BaseResultMap">
+	  select*from 
+	  product_record  a 
+	  <where>
+		<include refid="query_selectOutputMiddleRecord_where"/>
+	  </where>                                                                                                                                                                                                                                                      
+  </select>
+  
+  
+  
+   <!--原材料外协入库excel查询-->
+  <select  id="selectexcelIntputMaterialAssociation" resultMap="BaseResultMap">
+  select*from 
+  product_record a      
+  <where>
+		<include refid="query_selectInputMaterialAssociation_where"/>
+ </where>  
+      ORDER BY record_id DESC                                                                                                                                                                                                                                                           
+  </select>
+</mapper>

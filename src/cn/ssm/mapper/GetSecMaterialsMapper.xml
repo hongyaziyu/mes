@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.GetSecMaterialsMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.GetSecMaterials" >
+    <id column="get_materials_id" property="getMaterialsId" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="acceptor" property="acceptor" jdbcType="VARCHAR" />
+    <result column="provider" property="provider" jdbcType="VARCHAR" />
+    <result column="applyer" property="applyer" jdbcType="VARCHAR" />
+    <result column="apply_data" property="applyData" jdbcType="VARCHAR" />
+    <result column="approver" property="approver" jdbcType="VARCHAR" />
+    <result column="approve_data" property="approveData" jdbcType="VARCHAR" />
+    <result column="is_approve" property="isApprove" jdbcType="INTEGER" />
+    <result column="is_apply" property="isApply" jdbcType="INTEGER" />
+    <result column="is_pushed" property="isPushed" jdbcType="INTEGER" />
+    <result column="is_recorded" property="isRecorded" jdbcType="INTEGER" />
+    <result column="is_return" property="isReturn" jdbcType="INTEGER" />
+  </resultMap>
+  
+   <!-- 新加的内容；创建一个pojo类接受领料记录 -->
+ <resultMap id="BaseResultMap1" type="cn.ssm.vo.InputSec" >
+  <result column="detail_id" property="detailId" jdbcType="INTEGER" />
+  <result column="get_materials_id" property="getMaterialsId" jdbcType="INTEGER" />
+  <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+  <result column="sec_material_name" property="secMaterialName" jdbcType="VARCHAR" />
+  <result column="sec_material_no" property="secMaterialNo" jdbcType="VARCHAR" />
+  <result column="type" property="type" jdbcType="VARCHAR" />
+  <result column="unit" property="unit" jdbcType="VARCHAR" />
+  <result column="remark" property="remark" jdbcType="VARCHAR" />
+  <result column="acceptor" property="acceptor" jdbcType="VARCHAR" />
+  <result column="provider" property="provider" jdbcType="VARCHAR" />
+  <result column="applyer" property="applyer" jdbcType="VARCHAR" />
+  <result column="time" property="time" jdbcType="VARCHAR" />
+  <result column="num" property="num" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    get_materials_id, shop_name, acceptor, provider, applyer, apply_data, approver, approve_data, 
+    is_approve, is_apply, is_pushed, is_recorded, is_return
+  </sql>
+  
+  <!-- 领辅料excel导出T+模板记录sql片段 -->
+     <sql id="query_GetexcelSecMaterial_where">
+  	
+			<if test="shopName!=null and shopName!=''">
+				and  a.shop_name like '%${shopName}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  a.apply_data BETWEEN #{start_date} AND #{end_date}
+			</if>	
+			and b.is_return=0
+			and a.is_approve=1
+			and a.is_apply=1
+			and b.time is not null
+	</sql> 
+	
+  <!-- 领辅料审批记录sql片段 -->
+     <sql id="query_GetSecMaterial_where">
+  	
+			<if test="shopName!=null and shopName!=''">
+				and  a.shop_name like '%${shopName}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  a.apply_data BETWEEN #{start_date} AND #{end_date}
+			</if>	
+			and (a.applyer!=" "and a.applyer is not null)
+	</sql> 
+	
+	<!-- 领辅料记录sql片段 -->
+     <sql id="query_inputSecGetMaterial_where">
+  	
+			<if test="shopName!=null and shopName!=''">
+				and  a.shop_name like '%${shopName}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  b.time BETWEEN #{start_date} AND #{end_date}
+			</if>	
+			and b.is_return=0
+			and a.is_approve=1
+			and a.is_apply=1
+			and b.time is not null
+	</sql> 
+	
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from get_sec_materials
+    where get_materials_id = #{getMaterialsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from get_sec_materials
+    where get_materials_id = #{getMaterialsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.GetSecMaterials" >
+    insert into get_sec_materials (get_materials_id, shop_name, acceptor, 
+      provider, applyer, apply_data, 
+      approver, approve_data, is_approve, 
+      is_apply, is_pushed, is_recorded, 
+      is_return)
+    values (#{getMaterialsId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{acceptor,jdbcType=VARCHAR}, 
+      #{provider,jdbcType=VARCHAR}, #{applyer,jdbcType=VARCHAR}, #{applyData,jdbcType=VARCHAR}, 
+      #{approver,jdbcType=VARCHAR}, #{approveData,jdbcType=VARCHAR}, #{isApprove,jdbcType=INTEGER}, 
+      #{isApply,jdbcType=INTEGER}, #{isPushed,jdbcType=INTEGER}, #{isRecorded,jdbcType=INTEGER}, 
+      #{isReturn,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.GetSecMaterials" >
+    insert into get_sec_materials
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="getMaterialsId != null" >
+        get_materials_id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="acceptor != null" >
+        acceptor,
+      </if>
+      <if test="provider != null" >
+        provider,
+      </if>
+      <if test="applyer != null" >
+        applyer,
+      </if>
+      <if test="applyData != null" >
+        apply_data,
+      </if>
+      <if test="approver != null" >
+        approver,
+      </if>
+      <if test="approveData != null" >
+        approve_data,
+      </if>
+      <if test="isApprove != null" >
+        is_approve,
+      </if>
+      <if test="isApply != null" >
+        is_apply,
+      </if>
+      <if test="isPushed != null" >
+        is_pushed,
+      </if>
+      <if test="isRecorded != null" >
+        is_recorded,
+      </if>
+      <if test="isReturn != null" >
+        is_return,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="getMaterialsId != null" >
+        #{getMaterialsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptor != null" >
+        #{acceptor,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="applyer != null" >
+        #{applyer,jdbcType=VARCHAR},
+      </if>
+      <if test="applyData != null" >
+        #{applyData,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null" >
+        #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approveData != null" >
+        #{approveData,jdbcType=VARCHAR},
+      </if>
+      <if test="isApprove != null" >
+        #{isApprove,jdbcType=INTEGER},
+      </if>
+      <if test="isApply != null" >
+        #{isApply,jdbcType=INTEGER},
+      </if>
+      <if test="isPushed != null" >
+        #{isPushed,jdbcType=INTEGER},
+      </if>
+      <if test="isRecorded != null" >
+        #{isRecorded,jdbcType=INTEGER},
+      </if>
+      <if test="isReturn != null" >
+        #{isReturn,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.GetSecMaterials" >
+    update get_sec_materials
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptor != null" >
+        acceptor = #{acceptor,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        provider = #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="applyer != null" >
+        applyer = #{applyer,jdbcType=VARCHAR},
+      </if>
+      <if test="applyData != null" >
+        apply_data = #{applyData,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null" >
+        approver = #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approveData != null" >
+        approve_data = #{approveData,jdbcType=VARCHAR},
+      </if>
+      <if test="isApprove != null" >
+        is_approve = #{isApprove,jdbcType=INTEGER},
+      </if>
+      <if test="isApply != null" >
+        is_apply = #{isApply,jdbcType=INTEGER},
+      </if>
+      <if test="isPushed != null" >
+        is_pushed = #{isPushed,jdbcType=INTEGER},
+      </if>
+      <if test="isRecorded != null" >
+        is_recorded = #{isRecorded,jdbcType=INTEGER},
+      </if>
+      <if test="isReturn != null" >
+        is_return = #{isReturn,jdbcType=INTEGER},
+      </if>
+    </set>
+    where get_materials_id = #{getMaterialsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.GetSecMaterials" >
+    update get_sec_materials
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      acceptor = #{acceptor,jdbcType=VARCHAR},
+      provider = #{provider,jdbcType=VARCHAR},
+      applyer = #{applyer,jdbcType=VARCHAR},
+      apply_data = #{applyData,jdbcType=VARCHAR},
+      approver = #{approver,jdbcType=VARCHAR},
+      approve_data = #{approveData,jdbcType=VARCHAR},
+      is_approve = #{isApprove,jdbcType=INTEGER},
+      is_apply = #{isApply,jdbcType=INTEGER},
+      is_pushed = #{isPushed,jdbcType=INTEGER},
+      is_recorded = #{isRecorded,jdbcType=INTEGER},
+      is_return = #{isReturn,jdbcType=INTEGER}
+    where get_materials_id = #{getMaterialsId,jdbcType=INTEGER}
+  </update>
+  
+  
+    <!-- 领辅料审批页面分页查询 -->
+  <!--领辅料审批页面:通过物料号，起始时间，截止时间查询-->
+  <select  id="selectGetSecMaterialsByParam" resultMap="BaseResultMap">
+  select*from get_sec_materials a 
+  <!--把where移出用sql片段判断条件空的情况，实现：查询条件不输入显示全部，输入几个条件按几个条件显示  -->
+    <where>
+		<include refid="query_GetSecMaterial_where"/>
+	</where>     
+	ORDER BY get_materials_id DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                                   
+  </select>
+  
+  
+    <!-- 领辅料审批页面查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectGetSecMaterialsByParamtotalCount" resultType="int">
+  	select  count(*) from  get_sec_materials a
+  	<where>
+		<include refid="query_GetSecMaterial_where"/>
+	</where>
+  </select>
+  
+  
+  <!-- 未审批变为已审批  curdate()今天的日期 -->
+  <update id="updateByKey" parameterType="cn.ssm.po.GetSecMaterials" >
+  update get_sec_materials
+  set is_approve = 1,approve_data=curdate(),approver= #{1}
+   where get_materials_id = #{0}
+  </update>
+  
+   <!-- 未审批变为审批不通过  curdate()今天的日期 -->
+  <update id="updatenotByKey" parameterType="cn.ssm.po.GetSecMaterials" >
+  update get_sec_materials
+  set is_approve = 2,approve_data=curdate(),approver= #{1}
+   where get_materials_id = #{0}
+  </update>
+  
+  
+  <!-- 多表查询的前提条件：where查询条件牵扯到两张表时  领辅料记录分页 -->
+  <select  id="selectinputSecGetMaterial" resultMap="BaseResultMap1">
+  select  
+  a.get_materials_id,a.acceptor,a.provider,a.applyer, a.shop_name ,b.get_materials_id, b.time,
+  b.sec_material_name, b.type, b.unit, b.detail_id,b.remark,b.num,b.sec_material_no
+  from 
+  get_sec_materials AS a INNER JOIN get_sec_detail AS b ON
+  a.get_materials_id=b.get_materials_id       
+  <where>
+		<include refid="query_inputSecGetMaterial_where"/>
+ </where>  
+      ORDER BY detail_id DESC
+	limit #{startPos},#{pageSize}                                                                                                                                                                                                                                                             
+  </select>
+  
+   <!-- 领辅料记录分页查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectinputSecGetMaterialtotalCount" resultType="int">
+  	select  count(*) from  
+  	get_sec_materials AS a INNER JOIN get_sec_detail AS b ON
+   a.get_materials_id=b.get_materials_id
+  	<where>
+		<include refid="query_inputSecGetMaterial_where"/>
+	</where>
+  </select>
+  
+  <!--查询领辅料未审批数量  -->
+  <select id="selectSecGetMaterialCount" resultType="int">
+  	select  count(*) from  
+  	get_sec_materials 
+  	where  applyer!=" "and applyer is not null
+	and is_approve='0' 
+  </select>
+  
+  
+    <!-- 领辅料记录分页查询返回行数 （excel导出当日的信息为T+模板）-->
+  <select id="selectexcelinputSecGetMaterial" resultMap="BaseResultMap1">
+   select  
+  a.get_materials_id,a.acceptor,a.provider,a.applyer, a.shop_name ,b.get_materials_id, b.time,
+  b.sec_material_name, b.type, b.unit, b.detail_id,b.remark,b.num,b.sec_material_no
+  from 
+  get_sec_materials AS a INNER JOIN get_sec_detail AS b ON
+  a.get_materials_id=b.get_materials_id  
+ 	<where>
+		<include refid="query_GetexcelSecMaterial_where"/>
+	</where>
+  </select>
+  
+</mapper>

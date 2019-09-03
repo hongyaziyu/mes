@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.MiddleProductDetailMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.MiddleProductDetail" >
+    <id column="detail_id" property="detailId" jdbcType="INTEGER" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="edit_person" property="editPerson" jdbcType="VARCHAR" />
+    <result column="edit_time" property="editTime" jdbcType="VARCHAR" />
+    <result column="old_num" property="oldNum" jdbcType="INTEGER" />
+    <result column="new_num" property="newNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    detail_id, id, edit_person, edit_time, old_num, new_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from middle_product_detail
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from middle_product_detail
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.MiddleProductDetail" >
+    insert into middle_product_detail (detail_id, id, edit_person, 
+      edit_time, old_num, new_num
+      )
+    values (#{detailId,jdbcType=INTEGER}, #{id,jdbcType=INTEGER}, #{editPerson,jdbcType=VARCHAR}, 
+      #{editTime,jdbcType=VARCHAR}, #{oldNum,jdbcType=INTEGER}, #{newNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.MiddleProductDetail" >
+    insert into middle_product_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        detail_id,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="editPerson != null" >
+        edit_person,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="oldNum != null" >
+        old_num,
+      </if>
+      <if test="newNum != null" >
+        new_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        #{detailId,jdbcType=INTEGER},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="editPerson != null" >
+        #{editPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=VARCHAR},
+      </if>
+      <if test="oldNum != null" >
+        #{oldNum,jdbcType=INTEGER},
+      </if>
+      <if test="newNum != null" >
+        #{newNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.MiddleProductDetail" >
+    update middle_product_detail
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="editPerson != null" >
+        edit_person = #{editPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=VARCHAR},
+      </if>
+      <if test="oldNum != null" >
+        old_num = #{oldNum,jdbcType=INTEGER},
+      </if>
+      <if test="newNum != null" >
+        new_num = #{newNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.MiddleProductDetail" >
+    update middle_product_detail
+    set id = #{id,jdbcType=INTEGER},
+      edit_person = #{editPerson,jdbcType=VARCHAR},
+      edit_time = #{editTime,jdbcType=VARCHAR},
+      old_num = #{oldNum,jdbcType=INTEGER},
+      new_num = #{newNum,jdbcType=INTEGER}
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectDetailById" parameterType="INTEGER"  resultMap="BaseResultMap">
+	    SELECT
+		*
+	FROM
+		middle_product_detail
+	WHERE
+		id =  #{0}
+  </select>
+  
+  <delete id="deleteDetailById" parameterType="INTEGER"  >
+		   DELETE
+	FROM
+		middle_product_detail
+	WHERE
+		id =  #{0}
+  </delete> 
+  
+</mapper>

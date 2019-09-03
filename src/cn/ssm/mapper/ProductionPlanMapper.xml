@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.ProductionPlanMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.ProductionPlan" >
+    <id column="plan_id" property="planId" jdbcType="INTEGER" />
+    <result column="client" property="client" jdbcType="VARCHAR" />
+    <result column="order_date" property="orderDate" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+    <result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="plan_num" property="planNum" jdbcType="VARCHAR" />
+    <result column="start_num" property="startNum" jdbcType="VARCHAR" />
+    <result column="unproduct_num" property="unproductNum" jdbcType="VARCHAR" />
+    <result column="product_num" property="productNum" jdbcType="VARCHAR" />
+    <result column="material_num" property="materialNum" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="is_monthly_plan" property="isMonthlyPlan" jdbcType="INTEGER" />
+    <result column="is_new" property="isNew" jdbcType="INTEGER" />
+    <result column="is_product" property="isProduct" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="make_people" property="makePeople" jdbcType="VARCHAR" />
+    <result column="make_time" property="makeTime" jdbcType="VARCHAR" />
+    <result column="rfid" property="rfid" jdbcType="VARCHAR" />
+    <result column="is_latest" property="isLatest" jdbcType="INTEGER" />
+  </resultMap>
+  
+   
+   <resultMap id="BaseResultMap1" type="cn.ssm.vo.WeekPlan" >
+   	<id column="plan_id" property="planId" jdbcType="INTEGER" />
+  	<result column="plan_no" property="planNo" jdbcType="VARCHAR" />
+  	<result column="client" property="client" jdbcType="VARCHAR" />
+  	<result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+  	<result column="plan_num" property="planNum" jdbcType="VARCHAR" />
+  	<result column="order_date" property="orderDate" jdbcType="VARCHAR" />
+  	<result column="send_num" property="sendNum" jdbcType="VARCHAR" />
+  	<result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+  	<result column="qualified_num" property="qualifiedNum" jdbcType="VARCHAR" />
+  	<result column="sort" property="sort" jdbcType="VARCHAR" />
+  	<result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+  	<result column="client_material_no" property="clientMaterialNo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    plan_id, client, order_date, order_no, plan_no, client_material_no, material_no, 
+    product_spec, product_name, plan_num, start_num, unproduct_num, product_num, material_num, 
+    sort, is_monthly_plan, is_new, is_product, remark, make_people, make_time, rfid, 
+    is_latest
+  </sql>
+  
+   <!-- 周计划未完成 -->
+  <sql id="query_productionPlan_where" >
+    
+			<if test="client!=null and client!=''">
+				and  cd.client like '%${client}%'
+			</if>
+			<if test="clientMaterialNo!=null and clientMaterialNo!=''">
+				and  cd.client_material_no like '%${clientMaterialNo}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  cd.make_time BETWEEN #{start_date} AND #{end_date}
+			</if>	
+			and cd.is_product=0
+			and cd.is_new = 1
+			and cd.is_monthly_plan= 0
+  </sql>
+  
+  <!-- 周计划已经完成 -->
+  <sql id="query_finish_productionPlan_where" >
+    
+			<if test="client!=null and client!=''">
+				and  cd.client like '%${client}%'
+			</if>
+			<if test="clientMaterialNo!=null and clientMaterialNo!=''">
+				and  cd.client_material_no like '%${clientMaterialNo}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  cd.make_time BETWEEN #{start_date} AND #{end_date}
+			</if>	
+			and cd.is_product=1
+			and cd.is_new = 1
+			and cd.is_monthly_plan= 0
+  </sql>
+  
+  <!-- 月计划未完成 -->
+  <sql id="query_totalPlan_where">
+    
+			<if test="client!=null and client!=''">
+				and  cd.client like '%${client}%'
+			</if>
+			<if test="clientMaterialNo!=null and clientMaterialNo!=''">
+				and  cd.client_material_no like '%${clientMaterialNo}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  cd.make_time BETWEEN #{start_date} AND #{end_date}
+			</if>
+			and cd.is_product=0
+			and cd.is_new = 1
+			and cd.is_monthly_plan= 1
+  </sql>
+  
+  <!-- 月计划已完成 -->
+   <sql id="query_finish_totalPlan_where">
+    
+			<if test="client!=null and client!=''">
+				and  cd.client like '%${client}%'
+			</if>
+			<if test="clientMaterialNo!=null and clientMaterialNo!=''">
+				and  cd.client_material_no like '%${clientMaterialNo}%'
+			</if>
+			<if test="start_date!=null and start_date!=''">
+				and  cd.make_time BETWEEN #{start_date} AND #{end_date}
+			</if>
+			and cd.is_product=1
+			and cd.is_new = 1
+			and cd.is_monthly_plan= 1
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from production_plan
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from production_plan
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.ProductionPlan" >
+    insert into production_plan (plan_id, client, order_date, 
+      order_no, plan_no, client_material_no, 
+      material_no, product_spec, product_name, 
+      plan_num, start_num, unproduct_num, 
+      product_num, material_num, sort, 
+      is_monthly_plan, is_new, is_product, 
+      remark, make_people, make_time, 
+      rfid, is_latest)
+    values (#{planId,jdbcType=INTEGER}, #{client,jdbcType=VARCHAR}, #{orderDate,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=VARCHAR}, #{planNo,jdbcType=VARCHAR}, #{clientMaterialNo,jdbcType=VARCHAR}, 
+      #{materialNo,jdbcType=VARCHAR}, #{productSpec,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{planNum,jdbcType=VARCHAR}, #{startNum,jdbcType=VARCHAR}, #{unproductNum,jdbcType=VARCHAR}, 
+      #{productNum,jdbcType=VARCHAR}, #{materialNum,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR}, 
+      #{isMonthlyPlan,jdbcType=INTEGER}, #{isNew,jdbcType=INTEGER}, #{isProduct,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{makePeople,jdbcType=VARCHAR}, #{makeTime,jdbcType=VARCHAR}, 
+      #{rfid,jdbcType=VARCHAR}, #{isLatest,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.ProductionPlan"  keyColumn="plan_id" keyProperty="planId" useGeneratedKeys="true">
+    insert into production_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planId != null" >
+        plan_id,
+      </if>
+      <if test="client != null" >
+        client,
+      </if>
+      <if test="orderDate != null" >
+        order_date,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="planNo != null" >
+        plan_no,
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="productSpec != null" >
+        product_spec,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="planNum != null" >
+        plan_num,
+      </if>
+      <if test="startNum != null" >
+        start_num,
+      </if>
+      <if test="unproductNum != null" >
+        unproduct_num,
+      </if>
+      <if test="productNum != null" >
+        product_num,
+      </if>
+      <if test="materialNum != null" >
+        material_num,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="isMonthlyPlan != null" >
+        is_monthly_plan,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
+      <if test="isProduct != null" >
+        is_product,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="makePeople != null" >
+        make_people,
+      </if>
+      <if test="makeTime != null" >
+        make_time,
+      </if>
+      <if test="rfid != null" >
+        rfid,
+      </if>
+      <if test="isLatest != null" >
+        is_latest,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planId != null" >
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="client != null" >
+        #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="planNum != null" >
+        #{planNum,jdbcType=VARCHAR},
+      </if>
+      <if test="startNum != null" >
+        #{startNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unproductNum != null" >
+        #{unproductNum,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null" >
+        #{productNum,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNum != null" >
+        #{materialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="isMonthlyPlan != null" >
+        #{isMonthlyPlan,jdbcType=INTEGER},
+      </if>
+      <if test="isNew != null" >
+        #{isNew,jdbcType=INTEGER},
+      </if>
+      <if test="isProduct != null" >
+        #{isProduct,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="makePeople != null" >
+        #{makePeople,jdbcType=VARCHAR},
+      </if>
+      <if test="makeTime != null" >
+        #{makeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null" >
+        #{rfid,jdbcType=VARCHAR},
+      </if>
+      <if test="isLatest != null" >
+        #{isLatest,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.ProductionPlan" >
+    update production_plan
+    <set >
+      <if test="client != null" >
+        client = #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        order_date = #{orderDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null" >
+        plan_no = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMaterialNo != null" >
+        client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="planNum != null" >
+        plan_num = #{planNum,jdbcType=VARCHAR},
+      </if>
+      <if test="startNum != null" >
+        start_num = #{startNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unproductNum != null" >
+        unproduct_num = #{unproductNum,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null" >
+        product_num = #{productNum,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNum != null" >
+        material_num = #{materialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="isMonthlyPlan != null" >
+        is_monthly_plan = #{isMonthlyPlan,jdbcType=INTEGER},
+      </if>
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=INTEGER},
+      </if>
+      <if test="isProduct != null" >
+        is_product = #{isProduct,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="makePeople != null" >
+        make_people = #{makePeople,jdbcType=VARCHAR},
+      </if>
+      <if test="makeTime != null" >
+        make_time = #{makeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null" >
+        rfid = #{rfid,jdbcType=VARCHAR},
+      </if>
+      <if test="isLatest != null" >
+        is_latest = #{isLatest,jdbcType=INTEGER},
+      </if>
+    </set>
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.ProductionPlan" >
+    update production_plan
+    set client = #{client,jdbcType=VARCHAR},
+      order_date = #{orderDate,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      plan_no = #{planNo,jdbcType=VARCHAR},
+      client_material_no = #{clientMaterialNo,jdbcType=VARCHAR},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      plan_num = #{planNum,jdbcType=VARCHAR},
+      start_num = #{startNum,jdbcType=VARCHAR},
+      unproduct_num = #{unproductNum,jdbcType=VARCHAR},
+      product_num = #{productNum,jdbcType=VARCHAR},
+      material_num = #{materialNum,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      is_monthly_plan = #{isMonthlyPlan,jdbcType=INTEGER},
+      is_new = #{isNew,jdbcType=INTEGER},
+      is_product = #{isProduct,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      make_people = #{makePeople,jdbcType=VARCHAR},
+      make_time = #{makeTime,jdbcType=VARCHAR},
+      rfid = #{rfid,jdbcType=VARCHAR},
+      is_latest = #{isLatest,jdbcType=INTEGER}
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 周计划查询-未完成 -->
+  <select id="selectProductionPlanByParam" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from production_plan cd
+    <where>
+		<include refid="query_productionPlan_where"/>
+	</where>
+	<!-- ORDER BY plan_id DESC -->
+	 ORDER BY RIGHT(plan_no,11) DESC
+	limit #{startPos},#{pageSize}
+  </select>
+  
+   <!-- 周计划查询-已经完成 -->
+  <select id="selectFinishProductionPlanByParam" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from production_plan cd
+    <where>
+		<include refid="query_finish_productionPlan_where"/>
+	</where>
+	<!-- ORDER BY plan_id DESC -->
+	 ORDER BY RIGHT(plan_no,11) DESC
+	limit #{startPos},#{pageSize}
+  </select>
+  
+   <!-- 周计划查询 返回行数-未完成-->
+  <select id="selectProductionPlanCount" resultType="int">
+  	select  count(*) from  production_plan cd
+  	<where>
+		<include refid="query_productionPlan_where"/>
+	</where>
+  </select>
+  
+   <!-- 周计划查询 返回行数-已经完成-->
+  <select id="selectFinishProductionPlanCount" resultType="int">
+  	select  count(*) from  production_plan cd
+  	<where>
+		<include refid="query_finish_productionPlan_where"/>
+	</where>
+  </select>
+  
+  <!-- 月计划查询 -未完成-->
+   <select id="selectTotalPlanByParam" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from production_plan cd
+    <where>
+		<include refid="query_totalPlan_where"/>
+	</where>
+	ORDER BY plan_id DESC
+	limit #{startPos},#{pageSize}
+  </select>
+  
+   <!-- 月计划查询 -已经完成-->
+   <select id="selectFinishTotalPlanByParam" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from production_plan cd
+    <where>
+		<include refid="query_finish_totalPlan_where"/>
+	</where>
+	ORDER BY plan_id DESC
+	limit #{startPos},#{pageSize}
+  </select>
+  
+  
+  <!-- 月计划查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。未完成   -->
+  <select id="selectTotalPlanCount" resultType="int">
+  	select  count(*) from  production_plan cd
+  	<where>
+		<include refid="query_totalPlan_where"/>
+	</where>
+  </select>
+  
+  
+    <!-- 月计划查询返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数-已经完成  -->
+  <select id="selectFinishTotalPlanCount" resultType="int">
+  	select  count(*) from  production_plan cd
+  	<where>
+		<include refid="query_finish_totalPlan_where"/>
+	</where>
+  </select>
+  
+  <!-- 月计划or周计划未审批变为已审批  curdate()今天的日期 -->
+  <update id="updateByKey" parameterType="cn.ssm.po.ProductionPlan" >
+	  update production_plan
+	  set is_product = 1
+	  where plan_id = #{0}
+  </update>
+  
+  
+   <select id="selectZhouPlanByKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from production_plan pp
+    where pp.order_no = #{orderNo,jdbcType=INTEGER}
+    and pp.is_monthly_plan= 0
+  </select>
+  
+  <!-- 计划进度查询 -->
+   <select id="selectProductionPlanByParam1" resultMap="BaseResultMap1"  >
+    select 
+    <include refid="Base_Column_List" />
+    from production_plan
+    where  plan_no = #{planNo,jdbcType=VARCHAR}
+    AND  client_material_no = #{clientMaterialNo,jdbcType=VARCHAR}
+    AND   material_no = #{materialNo,jdbcType=VARCHAR}
+    AND  is_monthly_plan = 0
+  </select> 
+  
+  <!-- 根据批次号,图号，物料号查询周计划的计划单号，产品名称，产品规格所有信息-->
+  <select id="selectJCC" resultMap="BaseResultMap">
+  select distinct st.product_name,st.product_spec
+   from production_plan st
+   WHERE st.plan_id in(SELECT MAX(plan_id) FROM production_plan GROUP BY product_name,product_spec)
+   and client_material_no = #{0}
+   and material_no = #{1}
+   and plan_no = #{2}
+   and is_monthly_plan = 0
+  </select>
+  
+  
+   <!--Ajax查询计划单号-->
+  <select id="selectJihuadanhao" resultMap="BaseResultMap">
+  select plan_no
+   from production_plan
+   WHERE  client_material_no = #{0}
+   and material_no = #{1}
+   and is_monthly_plan = 0
+   and is_product=0
+  </select>
+  
+   <!-- 客户查询显示-->
+  <select id="selectClient" resultMap="BaseResultMap">
+  select client from production_plan  
+  </select>
+  
+
+<!--二维码的excel导出（根据计划单号查询图号，产品名称）-->
+  <select id="selectexcelQR" resultMap="BaseResultMap">
+  select distinct client_material_no,product_name,material_no
+   from production_plan 
+   where plan_no=#{0}
+  </select>
+  
+  
+  <!--周计划-计划单号编码-->
+  <select id="selectPlanNoCode" resultType="String">
+  select MAX(RIGHT(plan_no,3)) from production_plan 
+  where INSTR(plan_no,LEFT(NOW(),7))>0 
+  </select>
+</mapper>

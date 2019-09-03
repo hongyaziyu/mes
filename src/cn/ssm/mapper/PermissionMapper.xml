@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.Permission" >
+    <id column="permission_id" property="permissionId" jdbcType="INTEGER" />
+    <result column="person_id" property="personId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    permission_id, person_id, type, url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.Permission" >
+    insert into permission (permission_id, person_id, type, 
+      url)
+    values (#{permissionId,jdbcType=INTEGER}, #{personId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.Permission" >
+    insert into permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="permissionId != null" >
+        permission_id,
+      </if>
+      <if test="personId != null" >
+        person_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="personId != null" >
+        #{personId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.Permission" >
+    update permission
+    <set >
+      <if test="personId != null" >
+        person_id = #{personId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.Permission" >
+    update permission
+    set person_id = #{personId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectUrlByPerson" resultType="string" parameterType="cn.ssm.po.Person">
+  	select url from permission where person_id=#{personId}
+  </select>
+  
+  <!-- 查询Permission表personId对应中的type-->
+  <select id="selectPermission" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select
+ <include refid="Base_Column_List" />
+ from permission where person_id=#{0}
+  </select>
+  
+   <!-- 删除person_id对应的permisssion表-->
+   <delete id="deleteBypersonId" parameterType="java.lang.Integer" >
+    delete from permission
+    where person_id = #{0}
+  </delete>
+</mapper>

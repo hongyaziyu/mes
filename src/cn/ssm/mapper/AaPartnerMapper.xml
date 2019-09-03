@@ -1,0 +1,1407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.AaPartnerMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.AaPartner" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="partnerAbbName" property="partnerabbname" jdbcType="NVARCHAR" />
+    <result column="shortHand" property="shorthand" jdbcType="NVARCHAR" />
+    <result column="representative" property="representative" jdbcType="NVARCHAR" />
+    <result column="bankAccount" property="bankaccount" jdbcType="NVARCHAR" />
+    <result column="taxRegcode" property="taxregcode" jdbcType="NVARCHAR" />
+    <result column="saleCreditLine" property="salecreditline" jdbcType="DECIMAL" />
+    <result column="saleCreditDays" property="salecreditdays" jdbcType="DECIMAL" />
+    <result column="purchaseCreditDays" property="purchasecreditdays" jdbcType="DECIMAL" />
+    <result column="saleSpaceMonth" property="salespacemonth" jdbcType="INTEGER" />
+    <result column="saleCheckMonth" property="salecheckmonth" jdbcType="INTEGER" />
+    <result column="saleCheckDate" property="salecheckdate" jdbcType="INTEGER" />
+    <result column="purchaseSpaceMonth" property="purchasespacemonth" jdbcType="INTEGER" />
+    <result column="purchaseCheckMonth" property="purchasecheckmonth" jdbcType="INTEGER" />
+    <result column="purchaseCheckDate" property="purchasecheckdate" jdbcType="INTEGER" />
+    <result column="customeraddressphone" property="customeraddressphone" jdbcType="NVARCHAR" />
+    <result column="ARBalance_Abandon" property="arbalanceAbandon" jdbcType="DECIMAL" />
+    <result column="APBalance_Abandon" property="apbalanceAbandon" jdbcType="DECIMAL" />
+    <result column="disabled" property="disabled" jdbcType="TINYINT" />
+    <result column="updatedBy" property="updatedby" jdbcType="NVARCHAR" />
+    <result column="priuserdefnvc1" property="priuserdefnvc1" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm1" property="priuserdefdecm1" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc2" property="priuserdefnvc2" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm2" property="priuserdefdecm2" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc3" property="priuserdefnvc3" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm3" property="priuserdefdecm3" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc4" property="priuserdefnvc4" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm4" property="priuserdefdecm4" jdbcType="DECIMAL" />
+    <result column="priuserdefnvc5" property="priuserdefnvc5" jdbcType="NVARCHAR" />
+    <result column="priuserdefdecm5" property="priuserdefdecm5" jdbcType="DECIMAL" />
+    <result column="isContainTaxOnPurchase" property="iscontaintaxonpurchase" jdbcType="TINYINT" />
+    <result column="HasEverChanged" property="haseverchanged" jdbcType="NVARCHAR" />
+    <result column="codeSettlementPartner" property="codesettlementpartner" jdbcType="NVARCHAR" />
+    <result column="AdvRBalance_Abandon" property="advrbalanceAbandon" jdbcType="DECIMAL" />
+    <result column="AdvPBalance_Abandon" property="advpbalanceAbandon" jdbcType="DECIMAL" />
+    <result column="addressJC" property="addressjc" jdbcType="NVARCHAR" />
+    <result column="ShipmentAddress" property="shipmentaddress" jdbcType="NVARCHAR" />
+    <result column="Contact" property="contact" jdbcType="NVARCHAR" />
+    <result column="MobilePhone" property="mobilephone" jdbcType="NVARCHAR" />
+    <result column="TelephoneNo" property="telephoneno" jdbcType="NVARCHAR" />
+    <result column="Fax" property="fax" jdbcType="NVARCHAR" />
+    <result column="EmailAddr" property="emailaddr" jdbcType="NVARCHAR" />
+    <result column="QqNo" property="qqno" jdbcType="NVARCHAR" />
+    <result column="MsnAddress" property="msnaddress" jdbcType="NVARCHAR" />
+    <result column="UuNo" property="uuno" jdbcType="NVARCHAR" />
+    <result column="creditBalance" property="creditbalance" jdbcType="DECIMAL" />
+    <result column="extendedAccounts" property="extendedaccounts" jdbcType="DECIMAL" />
+    <result column="SellCustomer" property="sellcustomer" jdbcType="TINYINT" />
+    <result column="MadeRecordDate" property="maderecorddate" jdbcType="TIMESTAMP" />
+    <result column="Position" property="position" jdbcType="VARCHAR" />
+    <result column="RunShop" property="runshop" jdbcType="TINYINT" />
+    <result column="CheckAddress" property="checkaddress" jdbcType="NVARCHAR" />
+    <result column="CustomerAddress" property="customeraddress" jdbcType="NVARCHAR" />
+    <result column="Birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="AutoCreateMember" property="autocreatemember" jdbcType="TINYINT" />
+    <result column="idsaledepartment" property="idsaledepartment" jdbcType="INTEGER" />
+    <result column="iddistrict" property="iddistrict" jdbcType="INTEGER" />
+    <result column="idMarketingOrgan" property="idmarketingorgan" jdbcType="INTEGER" />
+    <result column="idPmarketingOrgan" property="idpmarketingorgan" jdbcType="INTEGER" />
+    <result column="idsettlementPartner" property="idsettlementpartner" jdbcType="INTEGER" />
+    <result column="idpartnerclass" property="idpartnerclass" jdbcType="INTEGER" />
+    <result column="idsaleman" property="idsaleman" jdbcType="INTEGER" />
+    <result column="idMemberType" property="idmembertype" jdbcType="INTEGER" />
+    <result column="accbank" property="accbank" jdbcType="INTEGER" />
+    <result column="customerType" property="customertype" jdbcType="INTEGER" />
+    <result column="partnerType" property="partnertype" jdbcType="INTEGER" />
+    <result column="priceGrade" property="pricegrade" jdbcType="INTEGER" />
+    <result column="purchaseSettleStyle" property="purchasesettlestyle" jdbcType="INTEGER" />
+    <result column="saleSettleStyle" property="salesettlestyle" jdbcType="INTEGER" />
+    <result column="taxRate" property="taxrate" jdbcType="INTEGER" />
+    <result column="saleStartDate" property="salestartdate" jdbcType="TIMESTAMP" />
+    <result column="purchaseStartDate" property="purchasestartdate" jdbcType="TIMESTAMP" />
+    <result column="madeDate" property="madedate" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="createdTime" property="createdtime" jdbcType="TIMESTAMP" />
+    <result column="eAccount" property="eaccount" jdbcType="VARCHAR" />
+    <result column="IsModifiedCode" property="ismodifiedcode" jdbcType="TINYINT" />
+    <result column="ElectronicInvoiceReceiveMode" property="electronicinvoicereceivemode" jdbcType="INTEGER" />
+    <result column="ElectronicInvoiceReceiveEMail" property="electronicinvoicereceiveemail" jdbcType="NVARCHAR" />
+    <result column="ElectronicInvoiceReceiveMobilePhone" property="electronicinvoicereceivemobilephone" jdbcType="NVARCHAR" />
+    <result column="DefaultInvoiceTypeOfReceive" property="defaultinvoicetypeofreceive" jdbcType="INTEGER" />
+    <result column="iddefaultSettleStyleOfReceive" property="iddefaultsettlestyleofreceive" jdbcType="INTEGER" />
+    <result column="iddefaultBankAccountOfReceive" property="iddefaultbankaccountofreceive" jdbcType="INTEGER" />
+    <result column="DefaultInvoiceTypeOfPayment" property="defaultinvoicetypeofpayment" jdbcType="INTEGER" />
+    <result column="iddefaultSettleStyleOfPayment" property="iddefaultsettlestyleofpayment" jdbcType="INTEGER" />
+    <result column="iddefaultBankAccountOfPayment" property="iddefaultbankaccountofpayment" jdbcType="INTEGER" />
+    <result column="isAutoCancel" property="isautocancel" jdbcType="TINYINT" />
+    <result column="IsSystem" property="issystem" jdbcType="TINYINT" />
+    <result column="VisitAddress" property="visitaddress" jdbcType="NVARCHAR" />
+    <result column="Coordinate" property="coordinate" jdbcType="NVARCHAR" />
+    <result column="Longitude" property="longitude" jdbcType="NVARCHAR" />
+    <result column="Latitude" property="latitude" jdbcType="NVARCHAR" />
+    <result column="CheckInScope" property="checkinscope" jdbcType="DECIMAL" />
+    <result column="VisitFrequency" property="visitfrequency" jdbcType="DECIMAL" />
+    <result column="IsNeedCheckInPhoto" property="isneedcheckinphoto" jdbcType="TINYINT" />
+    <result column="IsNeedLyHuoPhoto" property="isneedlyhuophoto" jdbcType="TINYINT" />
+    <result column="IsNeedPromotionPhoto" property="isneedpromotionphoto" jdbcType="TINYINT" />
+    <result column="IsNeedCompetitorPhoto" property="isneedcompetitorphoto" jdbcType="TINYINT" />
+    <result column="PrintCount" property="printcount" jdbcType="INTEGER" />
+    <result column="Creater" property="creater" jdbcType="NVARCHAR" />
+    <result column="Changer" property="changer" jdbcType="NVARCHAR" />
+    <result column="Changedate" property="changedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.ssm.po.AaPartner" extends="BaseResultMap" >
+    <result column="ts" property="ts" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, partnerAbbName, shortHand, representative, bankAccount, taxRegcode, 
+    saleCreditLine, saleCreditDays, purchaseCreditDays, saleSpaceMonth, saleCheckMonth, 
+    saleCheckDate, purchaseSpaceMonth, purchaseCheckMonth, purchaseCheckDate, customeraddressphone, 
+    ARBalance_Abandon, APBalance_Abandon, disabled, updatedBy, priuserdefnvc1, priuserdefdecm1, 
+    priuserdefnvc2, priuserdefdecm2, priuserdefnvc3, priuserdefdecm3, priuserdefnvc4, 
+    priuserdefdecm4, priuserdefnvc5, priuserdefdecm5, isContainTaxOnPurchase, HasEverChanged, 
+    codeSettlementPartner, AdvRBalance_Abandon, AdvPBalance_Abandon, addressJC, ShipmentAddress, 
+    Contact, MobilePhone, TelephoneNo, Fax, EmailAddr, QqNo, MsnAddress, UuNo, creditBalance, 
+    extendedAccounts, SellCustomer, MadeRecordDate, Position, RunShop, CheckAddress, 
+    CustomerAddress, Birthday, AutoCreateMember, idsaledepartment, iddistrict, idMarketingOrgan, 
+    idPmarketingOrgan, idsettlementPartner, idpartnerclass, idsaleman, idMemberType, 
+    accbank, customerType, partnerType, priceGrade, purchaseSettleStyle, saleSettleStyle, 
+    taxRate, saleStartDate, purchaseStartDate, madeDate, updated, createdTime, eAccount, 
+    IsModifiedCode, ElectronicInvoiceReceiveMode, ElectronicInvoiceReceiveEMail, ElectronicInvoiceReceiveMobilePhone, 
+    DefaultInvoiceTypeOfReceive, iddefaultSettleStyleOfReceive, iddefaultBankAccountOfReceive, 
+    DefaultInvoiceTypeOfPayment, iddefaultSettleStyleOfPayment, iddefaultBankAccountOfPayment, 
+    isAutoCancel, IsSystem, VisitAddress, Coordinate, Longitude, Latitude, CheckInScope, 
+    VisitFrequency, IsNeedCheckInPhoto, IsNeedLyHuoPhoto, IsNeedPromotionPhoto, IsNeedCompetitorPhoto, 
+    PrintCount, Creater, Changer, Changedate
+  </sql>
+  <sql id="Blob_Column_List" >
+    ts
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from AA_Partner
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from AA_Partner
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.AaPartner" >
+    insert into AA_Partner (id, code, name, 
+      partnerAbbName, shortHand, representative, 
+      bankAccount, taxRegcode, saleCreditLine, 
+      saleCreditDays, purchaseCreditDays, saleSpaceMonth, 
+      saleCheckMonth, saleCheckDate, purchaseSpaceMonth, 
+      purchaseCheckMonth, purchaseCheckDate, 
+      customeraddressphone, ARBalance_Abandon, 
+      APBalance_Abandon, disabled, updatedBy, 
+      priuserdefnvc1, priuserdefdecm1, priuserdefnvc2, 
+      priuserdefdecm2, priuserdefnvc3, priuserdefdecm3, 
+      priuserdefnvc4, priuserdefdecm4, priuserdefnvc5, 
+      priuserdefdecm5, isContainTaxOnPurchase, 
+      HasEverChanged, codeSettlementPartner, 
+      AdvRBalance_Abandon, AdvPBalance_Abandon, 
+      addressJC, ShipmentAddress, Contact, 
+      MobilePhone, TelephoneNo, Fax, 
+      EmailAddr, QqNo, MsnAddress, 
+      UuNo, creditBalance, extendedAccounts, 
+      SellCustomer, MadeRecordDate, Position, 
+      RunShop, CheckAddress, CustomerAddress, 
+      Birthday, AutoCreateMember, idsaledepartment, 
+      iddistrict, idMarketingOrgan, idPmarketingOrgan, 
+      idsettlementPartner, idpartnerclass, idsaleman, 
+      idMemberType, accbank, customerType, 
+      partnerType, priceGrade, purchaseSettleStyle, 
+      saleSettleStyle, taxRate, saleStartDate, 
+      purchaseStartDate, madeDate, updated, 
+      createdTime, eAccount, IsModifiedCode, 
+      ElectronicInvoiceReceiveMode, ElectronicInvoiceReceiveEMail, 
+      ElectronicInvoiceReceiveMobilePhone, DefaultInvoiceTypeOfReceive, 
+      iddefaultSettleStyleOfReceive, iddefaultBankAccountOfReceive, 
+      DefaultInvoiceTypeOfPayment, iddefaultSettleStyleOfPayment, 
+      iddefaultBankAccountOfPayment, isAutoCancel, 
+      IsSystem, VisitAddress, Coordinate, 
+      Longitude, Latitude, CheckInScope, 
+      VisitFrequency, IsNeedCheckInPhoto, IsNeedLyHuoPhoto, 
+      IsNeedPromotionPhoto, IsNeedCompetitorPhoto, 
+      PrintCount, Creater, Changer, 
+      Changedate, ts)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{partnerabbname,jdbcType=NVARCHAR}, #{shorthand,jdbcType=NVARCHAR}, #{representative,jdbcType=NVARCHAR}, 
+      #{bankaccount,jdbcType=NVARCHAR}, #{taxregcode,jdbcType=NVARCHAR}, #{salecreditline,jdbcType=DECIMAL}, 
+      #{salecreditdays,jdbcType=DECIMAL}, #{purchasecreditdays,jdbcType=DECIMAL}, #{salespacemonth,jdbcType=INTEGER}, 
+      #{salecheckmonth,jdbcType=INTEGER}, #{salecheckdate,jdbcType=INTEGER}, #{purchasespacemonth,jdbcType=INTEGER}, 
+      #{purchasecheckmonth,jdbcType=INTEGER}, #{purchasecheckdate,jdbcType=INTEGER}, 
+      #{customeraddressphone,jdbcType=NVARCHAR}, #{arbalanceAbandon,jdbcType=DECIMAL}, 
+      #{apbalanceAbandon,jdbcType=DECIMAL}, #{disabled,jdbcType=TINYINT}, #{updatedby,jdbcType=NVARCHAR}, 
+      #{priuserdefnvc1,jdbcType=NVARCHAR}, #{priuserdefdecm1,jdbcType=DECIMAL}, #{priuserdefnvc2,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm2,jdbcType=DECIMAL}, #{priuserdefnvc3,jdbcType=NVARCHAR}, #{priuserdefdecm3,jdbcType=DECIMAL}, 
+      #{priuserdefnvc4,jdbcType=NVARCHAR}, #{priuserdefdecm4,jdbcType=DECIMAL}, #{priuserdefnvc5,jdbcType=NVARCHAR}, 
+      #{priuserdefdecm5,jdbcType=DECIMAL}, #{iscontaintaxonpurchase,jdbcType=TINYINT}, 
+      #{haseverchanged,jdbcType=NVARCHAR}, #{codesettlementpartner,jdbcType=NVARCHAR}, 
+      #{advrbalanceAbandon,jdbcType=DECIMAL}, #{advpbalanceAbandon,jdbcType=DECIMAL}, 
+      #{addressjc,jdbcType=NVARCHAR}, #{shipmentaddress,jdbcType=NVARCHAR}, #{contact,jdbcType=NVARCHAR}, 
+      #{mobilephone,jdbcType=NVARCHAR}, #{telephoneno,jdbcType=NVARCHAR}, #{fax,jdbcType=NVARCHAR}, 
+      #{emailaddr,jdbcType=NVARCHAR}, #{qqno,jdbcType=NVARCHAR}, #{msnaddress,jdbcType=NVARCHAR}, 
+      #{uuno,jdbcType=NVARCHAR}, #{creditbalance,jdbcType=DECIMAL}, #{extendedaccounts,jdbcType=DECIMAL}, 
+      #{sellcustomer,jdbcType=TINYINT}, #{maderecorddate,jdbcType=TIMESTAMP}, #{position,jdbcType=VARCHAR}, 
+      #{runshop,jdbcType=TINYINT}, #{checkaddress,jdbcType=NVARCHAR}, #{customeraddress,jdbcType=NVARCHAR}, 
+      #{birthday,jdbcType=TIMESTAMP}, #{autocreatemember,jdbcType=TINYINT}, #{idsaledepartment,jdbcType=INTEGER}, 
+      #{iddistrict,jdbcType=INTEGER}, #{idmarketingorgan,jdbcType=INTEGER}, #{idpmarketingorgan,jdbcType=INTEGER}, 
+      #{idsettlementpartner,jdbcType=INTEGER}, #{idpartnerclass,jdbcType=INTEGER}, #{idsaleman,jdbcType=INTEGER}, 
+      #{idmembertype,jdbcType=INTEGER}, #{accbank,jdbcType=INTEGER}, #{customertype,jdbcType=INTEGER}, 
+      #{partnertype,jdbcType=INTEGER}, #{pricegrade,jdbcType=INTEGER}, #{purchasesettlestyle,jdbcType=INTEGER}, 
+      #{salesettlestyle,jdbcType=INTEGER}, #{taxrate,jdbcType=INTEGER}, #{salestartdate,jdbcType=TIMESTAMP}, 
+      #{purchasestartdate,jdbcType=TIMESTAMP}, #{madedate,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{eaccount,jdbcType=VARCHAR}, #{ismodifiedcode,jdbcType=TINYINT}, 
+      #{electronicinvoicereceivemode,jdbcType=INTEGER}, #{electronicinvoicereceiveemail,jdbcType=NVARCHAR}, 
+      #{electronicinvoicereceivemobilephone,jdbcType=NVARCHAR}, #{defaultinvoicetypeofreceive,jdbcType=INTEGER}, 
+      #{iddefaultsettlestyleofreceive,jdbcType=INTEGER}, #{iddefaultbankaccountofreceive,jdbcType=INTEGER}, 
+      #{defaultinvoicetypeofpayment,jdbcType=INTEGER}, #{iddefaultsettlestyleofpayment,jdbcType=INTEGER}, 
+      #{iddefaultbankaccountofpayment,jdbcType=INTEGER}, #{isautocancel,jdbcType=TINYINT}, 
+      #{issystem,jdbcType=TINYINT}, #{visitaddress,jdbcType=NVARCHAR}, #{coordinate,jdbcType=NVARCHAR}, 
+      #{longitude,jdbcType=NVARCHAR}, #{latitude,jdbcType=NVARCHAR}, #{checkinscope,jdbcType=DECIMAL}, 
+      #{visitfrequency,jdbcType=DECIMAL}, #{isneedcheckinphoto,jdbcType=TINYINT}, #{isneedlyhuophoto,jdbcType=TINYINT}, 
+      #{isneedpromotionphoto,jdbcType=TINYINT}, #{isneedcompetitorphoto,jdbcType=TINYINT}, 
+      #{printcount,jdbcType=INTEGER}, #{creater,jdbcType=NVARCHAR}, #{changer,jdbcType=NVARCHAR}, 
+      #{changedate,jdbcType=TIMESTAMP}, #{ts,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.AaPartner" >
+    insert into AA_Partner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="partnerabbname != null" >
+        partnerAbbName,
+      </if>
+      <if test="shorthand != null" >
+        shortHand,
+      </if>
+      <if test="representative != null" >
+        representative,
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount,
+      </if>
+      <if test="taxregcode != null" >
+        taxRegcode,
+      </if>
+      <if test="salecreditline != null" >
+        saleCreditLine,
+      </if>
+      <if test="salecreditdays != null" >
+        saleCreditDays,
+      </if>
+      <if test="purchasecreditdays != null" >
+        purchaseCreditDays,
+      </if>
+      <if test="salespacemonth != null" >
+        saleSpaceMonth,
+      </if>
+      <if test="salecheckmonth != null" >
+        saleCheckMonth,
+      </if>
+      <if test="salecheckdate != null" >
+        saleCheckDate,
+      </if>
+      <if test="purchasespacemonth != null" >
+        purchaseSpaceMonth,
+      </if>
+      <if test="purchasecheckmonth != null" >
+        purchaseCheckMonth,
+      </if>
+      <if test="purchasecheckdate != null" >
+        purchaseCheckDate,
+      </if>
+      <if test="customeraddressphone != null" >
+        customeraddressphone,
+      </if>
+      <if test="arbalanceAbandon != null" >
+        ARBalance_Abandon,
+      </if>
+      <if test="apbalanceAbandon != null" >
+        APBalance_Abandon,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="updatedby != null" >
+        updatedBy,
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        priuserdefnvc1,
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        priuserdefdecm1,
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        priuserdefnvc2,
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        priuserdefdecm2,
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        priuserdefnvc3,
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        priuserdefdecm3,
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        priuserdefnvc4,
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        priuserdefdecm4,
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        priuserdefnvc5,
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        priuserdefdecm5,
+      </if>
+      <if test="iscontaintaxonpurchase != null" >
+        isContainTaxOnPurchase,
+      </if>
+      <if test="haseverchanged != null" >
+        HasEverChanged,
+      </if>
+      <if test="codesettlementpartner != null" >
+        codeSettlementPartner,
+      </if>
+      <if test="advrbalanceAbandon != null" >
+        AdvRBalance_Abandon,
+      </if>
+      <if test="advpbalanceAbandon != null" >
+        AdvPBalance_Abandon,
+      </if>
+      <if test="addressjc != null" >
+        addressJC,
+      </if>
+      <if test="shipmentaddress != null" >
+        ShipmentAddress,
+      </if>
+      <if test="contact != null" >
+        Contact,
+      </if>
+      <if test="mobilephone != null" >
+        MobilePhone,
+      </if>
+      <if test="telephoneno != null" >
+        TelephoneNo,
+      </if>
+      <if test="fax != null" >
+        Fax,
+      </if>
+      <if test="emailaddr != null" >
+        EmailAddr,
+      </if>
+      <if test="qqno != null" >
+        QqNo,
+      </if>
+      <if test="msnaddress != null" >
+        MsnAddress,
+      </if>
+      <if test="uuno != null" >
+        UuNo,
+      </if>
+      <if test="creditbalance != null" >
+        creditBalance,
+      </if>
+      <if test="extendedaccounts != null" >
+        extendedAccounts,
+      </if>
+      <if test="sellcustomer != null" >
+        SellCustomer,
+      </if>
+      <if test="maderecorddate != null" >
+        MadeRecordDate,
+      </if>
+      <if test="position != null" >
+        Position,
+      </if>
+      <if test="runshop != null" >
+        RunShop,
+      </if>
+      <if test="checkaddress != null" >
+        CheckAddress,
+      </if>
+      <if test="customeraddress != null" >
+        CustomerAddress,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+      <if test="autocreatemember != null" >
+        AutoCreateMember,
+      </if>
+      <if test="idsaledepartment != null" >
+        idsaledepartment,
+      </if>
+      <if test="iddistrict != null" >
+        iddistrict,
+      </if>
+      <if test="idmarketingorgan != null" >
+        idMarketingOrgan,
+      </if>
+      <if test="idpmarketingorgan != null" >
+        idPmarketingOrgan,
+      </if>
+      <if test="idsettlementpartner != null" >
+        idsettlementPartner,
+      </if>
+      <if test="idpartnerclass != null" >
+        idpartnerclass,
+      </if>
+      <if test="idsaleman != null" >
+        idsaleman,
+      </if>
+      <if test="idmembertype != null" >
+        idMemberType,
+      </if>
+      <if test="accbank != null" >
+        accbank,
+      </if>
+      <if test="customertype != null" >
+        customerType,
+      </if>
+      <if test="partnertype != null" >
+        partnerType,
+      </if>
+      <if test="pricegrade != null" >
+        priceGrade,
+      </if>
+      <if test="purchasesettlestyle != null" >
+        purchaseSettleStyle,
+      </if>
+      <if test="salesettlestyle != null" >
+        saleSettleStyle,
+      </if>
+      <if test="taxrate != null" >
+        taxRate,
+      </if>
+      <if test="salestartdate != null" >
+        saleStartDate,
+      </if>
+      <if test="purchasestartdate != null" >
+        purchaseStartDate,
+      </if>
+      <if test="madedate != null" >
+        madeDate,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="createdtime != null" >
+        createdTime,
+      </if>
+      <if test="eaccount != null" >
+        eAccount,
+      </if>
+      <if test="ismodifiedcode != null" >
+        IsModifiedCode,
+      </if>
+      <if test="electronicinvoicereceivemode != null" >
+        ElectronicInvoiceReceiveMode,
+      </if>
+      <if test="electronicinvoicereceiveemail != null" >
+        ElectronicInvoiceReceiveEMail,
+      </if>
+      <if test="electronicinvoicereceivemobilephone != null" >
+        ElectronicInvoiceReceiveMobilePhone,
+      </if>
+      <if test="defaultinvoicetypeofreceive != null" >
+        DefaultInvoiceTypeOfReceive,
+      </if>
+      <if test="iddefaultsettlestyleofreceive != null" >
+        iddefaultSettleStyleOfReceive,
+      </if>
+      <if test="iddefaultbankaccountofreceive != null" >
+        iddefaultBankAccountOfReceive,
+      </if>
+      <if test="defaultinvoicetypeofpayment != null" >
+        DefaultInvoiceTypeOfPayment,
+      </if>
+      <if test="iddefaultsettlestyleofpayment != null" >
+        iddefaultSettleStyleOfPayment,
+      </if>
+      <if test="iddefaultbankaccountofpayment != null" >
+        iddefaultBankAccountOfPayment,
+      </if>
+      <if test="isautocancel != null" >
+        isAutoCancel,
+      </if>
+      <if test="issystem != null" >
+        IsSystem,
+      </if>
+      <if test="visitaddress != null" >
+        VisitAddress,
+      </if>
+      <if test="coordinate != null" >
+        Coordinate,
+      </if>
+      <if test="longitude != null" >
+        Longitude,
+      </if>
+      <if test="latitude != null" >
+        Latitude,
+      </if>
+      <if test="checkinscope != null" >
+        CheckInScope,
+      </if>
+      <if test="visitfrequency != null" >
+        VisitFrequency,
+      </if>
+      <if test="isneedcheckinphoto != null" >
+        IsNeedCheckInPhoto,
+      </if>
+      <if test="isneedlyhuophoto != null" >
+        IsNeedLyHuoPhoto,
+      </if>
+      <if test="isneedpromotionphoto != null" >
+        IsNeedPromotionPhoto,
+      </if>
+      <if test="isneedcompetitorphoto != null" >
+        IsNeedCompetitorPhoto,
+      </if>
+      <if test="printcount != null" >
+        PrintCount,
+      </if>
+      <if test="creater != null" >
+        Creater,
+      </if>
+      <if test="changer != null" >
+        Changer,
+      </if>
+      <if test="changedate != null" >
+        Changedate,
+      </if>
+      <if test="ts != null" >
+        ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="partnerabbname != null" >
+        #{partnerabbname,jdbcType=NVARCHAR},
+      </if>
+      <if test="shorthand != null" >
+        #{shorthand,jdbcType=NVARCHAR},
+      </if>
+      <if test="representative != null" >
+        #{representative,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="taxregcode != null" >
+        #{taxregcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="salecreditline != null" >
+        #{salecreditline,jdbcType=DECIMAL},
+      </if>
+      <if test="salecreditdays != null" >
+        #{salecreditdays,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasecreditdays != null" >
+        #{purchasecreditdays,jdbcType=DECIMAL},
+      </if>
+      <if test="salespacemonth != null" >
+        #{salespacemonth,jdbcType=INTEGER},
+      </if>
+      <if test="salecheckmonth != null" >
+        #{salecheckmonth,jdbcType=INTEGER},
+      </if>
+      <if test="salecheckdate != null" >
+        #{salecheckdate,jdbcType=INTEGER},
+      </if>
+      <if test="purchasespacemonth != null" >
+        #{purchasespacemonth,jdbcType=INTEGER},
+      </if>
+      <if test="purchasecheckmonth != null" >
+        #{purchasecheckmonth,jdbcType=INTEGER},
+      </if>
+      <if test="purchasecheckdate != null" >
+        #{purchasecheckdate,jdbcType=INTEGER},
+      </if>
+      <if test="customeraddressphone != null" >
+        #{customeraddressphone,jdbcType=NVARCHAR},
+      </if>
+      <if test="arbalanceAbandon != null" >
+        #{arbalanceAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="apbalanceAbandon != null" >
+        #{apbalanceAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=TINYINT},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        #{priuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        #{priuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        #{priuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        #{priuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        #{priuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        #{priuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        #{priuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        #{priuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        #{priuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        #{priuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="iscontaintaxonpurchase != null" >
+        #{iscontaintaxonpurchase,jdbcType=TINYINT},
+      </if>
+      <if test="haseverchanged != null" >
+        #{haseverchanged,jdbcType=NVARCHAR},
+      </if>
+      <if test="codesettlementpartner != null" >
+        #{codesettlementpartner,jdbcType=NVARCHAR},
+      </if>
+      <if test="advrbalanceAbandon != null" >
+        #{advrbalanceAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="advpbalanceAbandon != null" >
+        #{advpbalanceAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="addressjc != null" >
+        #{addressjc,jdbcType=NVARCHAR},
+      </if>
+      <if test="shipmentaddress != null" >
+        #{shipmentaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=NVARCHAR},
+      </if>
+      <if test="mobilephone != null" >
+        #{mobilephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="telephoneno != null" >
+        #{telephoneno,jdbcType=NVARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=NVARCHAR},
+      </if>
+      <if test="emailaddr != null" >
+        #{emailaddr,jdbcType=NVARCHAR},
+      </if>
+      <if test="qqno != null" >
+        #{qqno,jdbcType=NVARCHAR},
+      </if>
+      <if test="msnaddress != null" >
+        #{msnaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="uuno != null" >
+        #{uuno,jdbcType=NVARCHAR},
+      </if>
+      <if test="creditbalance != null" >
+        #{creditbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="extendedaccounts != null" >
+        #{extendedaccounts,jdbcType=DECIMAL},
+      </if>
+      <if test="sellcustomer != null" >
+        #{sellcustomer,jdbcType=TINYINT},
+      </if>
+      <if test="maderecorddate != null" >
+        #{maderecorddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="runshop != null" >
+        #{runshop,jdbcType=TINYINT},
+      </if>
+      <if test="checkaddress != null" >
+        #{checkaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="customeraddress != null" >
+        #{customeraddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="autocreatemember != null" >
+        #{autocreatemember,jdbcType=TINYINT},
+      </if>
+      <if test="idsaledepartment != null" >
+        #{idsaledepartment,jdbcType=INTEGER},
+      </if>
+      <if test="iddistrict != null" >
+        #{iddistrict,jdbcType=INTEGER},
+      </if>
+      <if test="idmarketingorgan != null" >
+        #{idmarketingorgan,jdbcType=INTEGER},
+      </if>
+      <if test="idpmarketingorgan != null" >
+        #{idpmarketingorgan,jdbcType=INTEGER},
+      </if>
+      <if test="idsettlementpartner != null" >
+        #{idsettlementpartner,jdbcType=INTEGER},
+      </if>
+      <if test="idpartnerclass != null" >
+        #{idpartnerclass,jdbcType=INTEGER},
+      </if>
+      <if test="idsaleman != null" >
+        #{idsaleman,jdbcType=INTEGER},
+      </if>
+      <if test="idmembertype != null" >
+        #{idmembertype,jdbcType=INTEGER},
+      </if>
+      <if test="accbank != null" >
+        #{accbank,jdbcType=INTEGER},
+      </if>
+      <if test="customertype != null" >
+        #{customertype,jdbcType=INTEGER},
+      </if>
+      <if test="partnertype != null" >
+        #{partnertype,jdbcType=INTEGER},
+      </if>
+      <if test="pricegrade != null" >
+        #{pricegrade,jdbcType=INTEGER},
+      </if>
+      <if test="purchasesettlestyle != null" >
+        #{purchasesettlestyle,jdbcType=INTEGER},
+      </if>
+      <if test="salesettlestyle != null" >
+        #{salesettlestyle,jdbcType=INTEGER},
+      </if>
+      <if test="taxrate != null" >
+        #{taxrate,jdbcType=INTEGER},
+      </if>
+      <if test="salestartdate != null" >
+        #{salestartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasestartdate != null" >
+        #{purchasestartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="madedate != null" >
+        #{madedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eaccount != null" >
+        #{eaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="ismodifiedcode != null" >
+        #{ismodifiedcode,jdbcType=TINYINT},
+      </if>
+      <if test="electronicinvoicereceivemode != null" >
+        #{electronicinvoicereceivemode,jdbcType=INTEGER},
+      </if>
+      <if test="electronicinvoicereceiveemail != null" >
+        #{electronicinvoicereceiveemail,jdbcType=NVARCHAR},
+      </if>
+      <if test="electronicinvoicereceivemobilephone != null" >
+        #{electronicinvoicereceivemobilephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultinvoicetypeofreceive != null" >
+        #{defaultinvoicetypeofreceive,jdbcType=INTEGER},
+      </if>
+      <if test="iddefaultsettlestyleofreceive != null" >
+        #{iddefaultsettlestyleofreceive,jdbcType=INTEGER},
+      </if>
+      <if test="iddefaultbankaccountofreceive != null" >
+        #{iddefaultbankaccountofreceive,jdbcType=INTEGER},
+      </if>
+      <if test="defaultinvoicetypeofpayment != null" >
+        #{defaultinvoicetypeofpayment,jdbcType=INTEGER},
+      </if>
+      <if test="iddefaultsettlestyleofpayment != null" >
+        #{iddefaultsettlestyleofpayment,jdbcType=INTEGER},
+      </if>
+      <if test="iddefaultbankaccountofpayment != null" >
+        #{iddefaultbankaccountofpayment,jdbcType=INTEGER},
+      </if>
+      <if test="isautocancel != null" >
+        #{isautocancel,jdbcType=TINYINT},
+      </if>
+      <if test="issystem != null" >
+        #{issystem,jdbcType=TINYINT},
+      </if>
+      <if test="visitaddress != null" >
+        #{visitaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="coordinate != null" >
+        #{coordinate,jdbcType=NVARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=NVARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=NVARCHAR},
+      </if>
+      <if test="checkinscope != null" >
+        #{checkinscope,jdbcType=DECIMAL},
+      </if>
+      <if test="visitfrequency != null" >
+        #{visitfrequency,jdbcType=DECIMAL},
+      </if>
+      <if test="isneedcheckinphoto != null" >
+        #{isneedcheckinphoto,jdbcType=TINYINT},
+      </if>
+      <if test="isneedlyhuophoto != null" >
+        #{isneedlyhuophoto,jdbcType=TINYINT},
+      </if>
+      <if test="isneedpromotionphoto != null" >
+        #{isneedpromotionphoto,jdbcType=TINYINT},
+      </if>
+      <if test="isneedcompetitorphoto != null" >
+        #{isneedcompetitorphoto,jdbcType=TINYINT},
+      </if>
+      <if test="printcount != null" >
+        #{printcount,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=NVARCHAR},
+      </if>
+      <if test="changer != null" >
+        #{changer,jdbcType=NVARCHAR},
+      </if>
+      <if test="changedate != null" >
+        #{changedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.AaPartner" >
+    update AA_Partner
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="partnerabbname != null" >
+        partnerAbbName = #{partnerabbname,jdbcType=NVARCHAR},
+      </if>
+      <if test="shorthand != null" >
+        shortHand = #{shorthand,jdbcType=NVARCHAR},
+      </if>
+      <if test="representative != null" >
+        representative = #{representative,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount = #{bankaccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="taxregcode != null" >
+        taxRegcode = #{taxregcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="salecreditline != null" >
+        saleCreditLine = #{salecreditline,jdbcType=DECIMAL},
+      </if>
+      <if test="salecreditdays != null" >
+        saleCreditDays = #{salecreditdays,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasecreditdays != null" >
+        purchaseCreditDays = #{purchasecreditdays,jdbcType=DECIMAL},
+      </if>
+      <if test="salespacemonth != null" >
+        saleSpaceMonth = #{salespacemonth,jdbcType=INTEGER},
+      </if>
+      <if test="salecheckmonth != null" >
+        saleCheckMonth = #{salecheckmonth,jdbcType=INTEGER},
+      </if>
+      <if test="salecheckdate != null" >
+        saleCheckDate = #{salecheckdate,jdbcType=INTEGER},
+      </if>
+      <if test="purchasespacemonth != null" >
+        purchaseSpaceMonth = #{purchasespacemonth,jdbcType=INTEGER},
+      </if>
+      <if test="purchasecheckmonth != null" >
+        purchaseCheckMonth = #{purchasecheckmonth,jdbcType=INTEGER},
+      </if>
+      <if test="purchasecheckdate != null" >
+        purchaseCheckDate = #{purchasecheckdate,jdbcType=INTEGER},
+      </if>
+      <if test="customeraddressphone != null" >
+        customeraddressphone = #{customeraddressphone,jdbcType=NVARCHAR},
+      </if>
+      <if test="arbalanceAbandon != null" >
+        ARBalance_Abandon = #{arbalanceAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="apbalanceAbandon != null" >
+        APBalance_Abandon = #{apbalanceAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=TINYINT},
+      </if>
+      <if test="updatedby != null" >
+        updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefnvc1 != null" >
+        priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm1 != null" >
+        priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc2 != null" >
+        priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm2 != null" >
+        priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc3 != null" >
+        priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm3 != null" >
+        priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc4 != null" >
+        priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm4 != null" >
+        priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      </if>
+      <if test="priuserdefnvc5 != null" >
+        priuserdefnvc5 = #{priuserdefnvc5,jdbcType=NVARCHAR},
+      </if>
+      <if test="priuserdefdecm5 != null" >
+        priuserdefdecm5 = #{priuserdefdecm5,jdbcType=DECIMAL},
+      </if>
+      <if test="iscontaintaxonpurchase != null" >
+        isContainTaxOnPurchase = #{iscontaintaxonpurchase,jdbcType=TINYINT},
+      </if>
+      <if test="haseverchanged != null" >
+        HasEverChanged = #{haseverchanged,jdbcType=NVARCHAR},
+      </if>
+      <if test="codesettlementpartner != null" >
+        codeSettlementPartner = #{codesettlementpartner,jdbcType=NVARCHAR},
+      </if>
+      <if test="advrbalanceAbandon != null" >
+        AdvRBalance_Abandon = #{advrbalanceAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="advpbalanceAbandon != null" >
+        AdvPBalance_Abandon = #{advpbalanceAbandon,jdbcType=DECIMAL},
+      </if>
+      <if test="addressjc != null" >
+        addressJC = #{addressjc,jdbcType=NVARCHAR},
+      </if>
+      <if test="shipmentaddress != null" >
+        ShipmentAddress = #{shipmentaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="contact != null" >
+        Contact = #{contact,jdbcType=NVARCHAR},
+      </if>
+      <if test="mobilephone != null" >
+        MobilePhone = #{mobilephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="telephoneno != null" >
+        TelephoneNo = #{telephoneno,jdbcType=NVARCHAR},
+      </if>
+      <if test="fax != null" >
+        Fax = #{fax,jdbcType=NVARCHAR},
+      </if>
+      <if test="emailaddr != null" >
+        EmailAddr = #{emailaddr,jdbcType=NVARCHAR},
+      </if>
+      <if test="qqno != null" >
+        QqNo = #{qqno,jdbcType=NVARCHAR},
+      </if>
+      <if test="msnaddress != null" >
+        MsnAddress = #{msnaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="uuno != null" >
+        UuNo = #{uuno,jdbcType=NVARCHAR},
+      </if>
+      <if test="creditbalance != null" >
+        creditBalance = #{creditbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="extendedaccounts != null" >
+        extendedAccounts = #{extendedaccounts,jdbcType=DECIMAL},
+      </if>
+      <if test="sellcustomer != null" >
+        SellCustomer = #{sellcustomer,jdbcType=TINYINT},
+      </if>
+      <if test="maderecorddate != null" >
+        MadeRecordDate = #{maderecorddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null" >
+        Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="runshop != null" >
+        RunShop = #{runshop,jdbcType=TINYINT},
+      </if>
+      <if test="checkaddress != null" >
+        CheckAddress = #{checkaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="customeraddress != null" >
+        CustomerAddress = #{customeraddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="autocreatemember != null" >
+        AutoCreateMember = #{autocreatemember,jdbcType=TINYINT},
+      </if>
+      <if test="idsaledepartment != null" >
+        idsaledepartment = #{idsaledepartment,jdbcType=INTEGER},
+      </if>
+      <if test="iddistrict != null" >
+        iddistrict = #{iddistrict,jdbcType=INTEGER},
+      </if>
+      <if test="idmarketingorgan != null" >
+        idMarketingOrgan = #{idmarketingorgan,jdbcType=INTEGER},
+      </if>
+      <if test="idpmarketingorgan != null" >
+        idPmarketingOrgan = #{idpmarketingorgan,jdbcType=INTEGER},
+      </if>
+      <if test="idsettlementpartner != null" >
+        idsettlementPartner = #{idsettlementpartner,jdbcType=INTEGER},
+      </if>
+      <if test="idpartnerclass != null" >
+        idpartnerclass = #{idpartnerclass,jdbcType=INTEGER},
+      </if>
+      <if test="idsaleman != null" >
+        idsaleman = #{idsaleman,jdbcType=INTEGER},
+      </if>
+      <if test="idmembertype != null" >
+        idMemberType = #{idmembertype,jdbcType=INTEGER},
+      </if>
+      <if test="accbank != null" >
+        accbank = #{accbank,jdbcType=INTEGER},
+      </if>
+      <if test="customertype != null" >
+        customerType = #{customertype,jdbcType=INTEGER},
+      </if>
+      <if test="partnertype != null" >
+        partnerType = #{partnertype,jdbcType=INTEGER},
+      </if>
+      <if test="pricegrade != null" >
+        priceGrade = #{pricegrade,jdbcType=INTEGER},
+      </if>
+      <if test="purchasesettlestyle != null" >
+        purchaseSettleStyle = #{purchasesettlestyle,jdbcType=INTEGER},
+      </if>
+      <if test="salesettlestyle != null" >
+        saleSettleStyle = #{salesettlestyle,jdbcType=INTEGER},
+      </if>
+      <if test="taxrate != null" >
+        taxRate = #{taxrate,jdbcType=INTEGER},
+      </if>
+      <if test="salestartdate != null" >
+        saleStartDate = #{salestartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasestartdate != null" >
+        purchaseStartDate = #{purchasestartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="madedate != null" >
+        madeDate = #{madedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        createdTime = #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eaccount != null" >
+        eAccount = #{eaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="ismodifiedcode != null" >
+        IsModifiedCode = #{ismodifiedcode,jdbcType=TINYINT},
+      </if>
+      <if test="electronicinvoicereceivemode != null" >
+        ElectronicInvoiceReceiveMode = #{electronicinvoicereceivemode,jdbcType=INTEGER},
+      </if>
+      <if test="electronicinvoicereceiveemail != null" >
+        ElectronicInvoiceReceiveEMail = #{electronicinvoicereceiveemail,jdbcType=NVARCHAR},
+      </if>
+      <if test="electronicinvoicereceivemobilephone != null" >
+        ElectronicInvoiceReceiveMobilePhone = #{electronicinvoicereceivemobilephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultinvoicetypeofreceive != null" >
+        DefaultInvoiceTypeOfReceive = #{defaultinvoicetypeofreceive,jdbcType=INTEGER},
+      </if>
+      <if test="iddefaultsettlestyleofreceive != null" >
+        iddefaultSettleStyleOfReceive = #{iddefaultsettlestyleofreceive,jdbcType=INTEGER},
+      </if>
+      <if test="iddefaultbankaccountofreceive != null" >
+        iddefaultBankAccountOfReceive = #{iddefaultbankaccountofreceive,jdbcType=INTEGER},
+      </if>
+      <if test="defaultinvoicetypeofpayment != null" >
+        DefaultInvoiceTypeOfPayment = #{defaultinvoicetypeofpayment,jdbcType=INTEGER},
+      </if>
+      <if test="iddefaultsettlestyleofpayment != null" >
+        iddefaultSettleStyleOfPayment = #{iddefaultsettlestyleofpayment,jdbcType=INTEGER},
+      </if>
+      <if test="iddefaultbankaccountofpayment != null" >
+        iddefaultBankAccountOfPayment = #{iddefaultbankaccountofpayment,jdbcType=INTEGER},
+      </if>
+      <if test="isautocancel != null" >
+        isAutoCancel = #{isautocancel,jdbcType=TINYINT},
+      </if>
+      <if test="issystem != null" >
+        IsSystem = #{issystem,jdbcType=TINYINT},
+      </if>
+      <if test="visitaddress != null" >
+        VisitAddress = #{visitaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="coordinate != null" >
+        Coordinate = #{coordinate,jdbcType=NVARCHAR},
+      </if>
+      <if test="longitude != null" >
+        Longitude = #{longitude,jdbcType=NVARCHAR},
+      </if>
+      <if test="latitude != null" >
+        Latitude = #{latitude,jdbcType=NVARCHAR},
+      </if>
+      <if test="checkinscope != null" >
+        CheckInScope = #{checkinscope,jdbcType=DECIMAL},
+      </if>
+      <if test="visitfrequency != null" >
+        VisitFrequency = #{visitfrequency,jdbcType=DECIMAL},
+      </if>
+      <if test="isneedcheckinphoto != null" >
+        IsNeedCheckInPhoto = #{isneedcheckinphoto,jdbcType=TINYINT},
+      </if>
+      <if test="isneedlyhuophoto != null" >
+        IsNeedLyHuoPhoto = #{isneedlyhuophoto,jdbcType=TINYINT},
+      </if>
+      <if test="isneedpromotionphoto != null" >
+        IsNeedPromotionPhoto = #{isneedpromotionphoto,jdbcType=TINYINT},
+      </if>
+      <if test="isneedcompetitorphoto != null" >
+        IsNeedCompetitorPhoto = #{isneedcompetitorphoto,jdbcType=TINYINT},
+      </if>
+      <if test="printcount != null" >
+        PrintCount = #{printcount,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null" >
+        Creater = #{creater,jdbcType=NVARCHAR},
+      </if>
+      <if test="changer != null" >
+        Changer = #{changer,jdbcType=NVARCHAR},
+      </if>
+      <if test="changedate != null" >
+        Changedate = #{changedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null" >
+        ts = #{ts,jdbcType=BINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.ssm.po.AaPartner" >
+    update AA_Partner
+    set code = #{code,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      partnerAbbName = #{partnerabbname,jdbcType=NVARCHAR},
+      shortHand = #{shorthand,jdbcType=NVARCHAR},
+      representative = #{representative,jdbcType=NVARCHAR},
+      bankAccount = #{bankaccount,jdbcType=NVARCHAR},
+      taxRegcode = #{taxregcode,jdbcType=NVARCHAR},
+      saleCreditLine = #{salecreditline,jdbcType=DECIMAL},
+      saleCreditDays = #{salecreditdays,jdbcType=DECIMAL},
+      purchaseCreditDays = #{purchasecreditdays,jdbcType=DECIMAL},
+      saleSpaceMonth = #{salespacemonth,jdbcType=INTEGER},
+      saleCheckMonth = #{salecheckmonth,jdbcType=INTEGER},
+      saleCheckDate = #{salecheckdate,jdbcType=INTEGER},
+      purchaseSpaceMonth = #{purchasespacemonth,jdbcType=INTEGER},
+      purchaseCheckMonth = #{purchasecheckmonth,jdbcType=INTEGER},
+      purchaseCheckDate = #{purchasecheckdate,jdbcType=INTEGER},
+      customeraddressphone = #{customeraddressphone,jdbcType=NVARCHAR},
+      ARBalance_Abandon = #{arbalanceAbandon,jdbcType=DECIMAL},
+      APBalance_Abandon = #{apbalanceAbandon,jdbcType=DECIMAL},
+      disabled = #{disabled,jdbcType=TINYINT},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      priuserdefnvc5 = #{priuserdefnvc5,jdbcType=NVARCHAR},
+      priuserdefdecm5 = #{priuserdefdecm5,jdbcType=DECIMAL},
+      isContainTaxOnPurchase = #{iscontaintaxonpurchase,jdbcType=TINYINT},
+      HasEverChanged = #{haseverchanged,jdbcType=NVARCHAR},
+      codeSettlementPartner = #{codesettlementpartner,jdbcType=NVARCHAR},
+      AdvRBalance_Abandon = #{advrbalanceAbandon,jdbcType=DECIMAL},
+      AdvPBalance_Abandon = #{advpbalanceAbandon,jdbcType=DECIMAL},
+      addressJC = #{addressjc,jdbcType=NVARCHAR},
+      ShipmentAddress = #{shipmentaddress,jdbcType=NVARCHAR},
+      Contact = #{contact,jdbcType=NVARCHAR},
+      MobilePhone = #{mobilephone,jdbcType=NVARCHAR},
+      TelephoneNo = #{telephoneno,jdbcType=NVARCHAR},
+      Fax = #{fax,jdbcType=NVARCHAR},
+      EmailAddr = #{emailaddr,jdbcType=NVARCHAR},
+      QqNo = #{qqno,jdbcType=NVARCHAR},
+      MsnAddress = #{msnaddress,jdbcType=NVARCHAR},
+      UuNo = #{uuno,jdbcType=NVARCHAR},
+      creditBalance = #{creditbalance,jdbcType=DECIMAL},
+      extendedAccounts = #{extendedaccounts,jdbcType=DECIMAL},
+      SellCustomer = #{sellcustomer,jdbcType=TINYINT},
+      MadeRecordDate = #{maderecorddate,jdbcType=TIMESTAMP},
+      Position = #{position,jdbcType=VARCHAR},
+      RunShop = #{runshop,jdbcType=TINYINT},
+      CheckAddress = #{checkaddress,jdbcType=NVARCHAR},
+      CustomerAddress = #{customeraddress,jdbcType=NVARCHAR},
+      Birthday = #{birthday,jdbcType=TIMESTAMP},
+      AutoCreateMember = #{autocreatemember,jdbcType=TINYINT},
+      idsaledepartment = #{idsaledepartment,jdbcType=INTEGER},
+      iddistrict = #{iddistrict,jdbcType=INTEGER},
+      idMarketingOrgan = #{idmarketingorgan,jdbcType=INTEGER},
+      idPmarketingOrgan = #{idpmarketingorgan,jdbcType=INTEGER},
+      idsettlementPartner = #{idsettlementpartner,jdbcType=INTEGER},
+      idpartnerclass = #{idpartnerclass,jdbcType=INTEGER},
+      idsaleman = #{idsaleman,jdbcType=INTEGER},
+      idMemberType = #{idmembertype,jdbcType=INTEGER},
+      accbank = #{accbank,jdbcType=INTEGER},
+      customerType = #{customertype,jdbcType=INTEGER},
+      partnerType = #{partnertype,jdbcType=INTEGER},
+      priceGrade = #{pricegrade,jdbcType=INTEGER},
+      purchaseSettleStyle = #{purchasesettlestyle,jdbcType=INTEGER},
+      saleSettleStyle = #{salesettlestyle,jdbcType=INTEGER},
+      taxRate = #{taxrate,jdbcType=INTEGER},
+      saleStartDate = #{salestartdate,jdbcType=TIMESTAMP},
+      purchaseStartDate = #{purchasestartdate,jdbcType=TIMESTAMP},
+      madeDate = #{madedate,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      createdTime = #{createdtime,jdbcType=TIMESTAMP},
+      eAccount = #{eaccount,jdbcType=VARCHAR},
+      IsModifiedCode = #{ismodifiedcode,jdbcType=TINYINT},
+      ElectronicInvoiceReceiveMode = #{electronicinvoicereceivemode,jdbcType=INTEGER},
+      ElectronicInvoiceReceiveEMail = #{electronicinvoicereceiveemail,jdbcType=NVARCHAR},
+      ElectronicInvoiceReceiveMobilePhone = #{electronicinvoicereceivemobilephone,jdbcType=NVARCHAR},
+      DefaultInvoiceTypeOfReceive = #{defaultinvoicetypeofreceive,jdbcType=INTEGER},
+      iddefaultSettleStyleOfReceive = #{iddefaultsettlestyleofreceive,jdbcType=INTEGER},
+      iddefaultBankAccountOfReceive = #{iddefaultbankaccountofreceive,jdbcType=INTEGER},
+      DefaultInvoiceTypeOfPayment = #{defaultinvoicetypeofpayment,jdbcType=INTEGER},
+      iddefaultSettleStyleOfPayment = #{iddefaultsettlestyleofpayment,jdbcType=INTEGER},
+      iddefaultBankAccountOfPayment = #{iddefaultbankaccountofpayment,jdbcType=INTEGER},
+      isAutoCancel = #{isautocancel,jdbcType=TINYINT},
+      IsSystem = #{issystem,jdbcType=TINYINT},
+      VisitAddress = #{visitaddress,jdbcType=NVARCHAR},
+      Coordinate = #{coordinate,jdbcType=NVARCHAR},
+      Longitude = #{longitude,jdbcType=NVARCHAR},
+      Latitude = #{latitude,jdbcType=NVARCHAR},
+      CheckInScope = #{checkinscope,jdbcType=DECIMAL},
+      VisitFrequency = #{visitfrequency,jdbcType=DECIMAL},
+      IsNeedCheckInPhoto = #{isneedcheckinphoto,jdbcType=TINYINT},
+      IsNeedLyHuoPhoto = #{isneedlyhuophoto,jdbcType=TINYINT},
+      IsNeedPromotionPhoto = #{isneedpromotionphoto,jdbcType=TINYINT},
+      IsNeedCompetitorPhoto = #{isneedcompetitorphoto,jdbcType=TINYINT},
+      PrintCount = #{printcount,jdbcType=INTEGER},
+      Creater = #{creater,jdbcType=NVARCHAR},
+      Changer = #{changer,jdbcType=NVARCHAR},
+      Changedate = #{changedate,jdbcType=TIMESTAMP},
+      ts = #{ts,jdbcType=BINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.AaPartner" >
+    update AA_Partner
+    set code = #{code,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      partnerAbbName = #{partnerabbname,jdbcType=NVARCHAR},
+      shortHand = #{shorthand,jdbcType=NVARCHAR},
+      representative = #{representative,jdbcType=NVARCHAR},
+      bankAccount = #{bankaccount,jdbcType=NVARCHAR},
+      taxRegcode = #{taxregcode,jdbcType=NVARCHAR},
+      saleCreditLine = #{salecreditline,jdbcType=DECIMAL},
+      saleCreditDays = #{salecreditdays,jdbcType=DECIMAL},
+      purchaseCreditDays = #{purchasecreditdays,jdbcType=DECIMAL},
+      saleSpaceMonth = #{salespacemonth,jdbcType=INTEGER},
+      saleCheckMonth = #{salecheckmonth,jdbcType=INTEGER},
+      saleCheckDate = #{salecheckdate,jdbcType=INTEGER},
+      purchaseSpaceMonth = #{purchasespacemonth,jdbcType=INTEGER},
+      purchaseCheckMonth = #{purchasecheckmonth,jdbcType=INTEGER},
+      purchaseCheckDate = #{purchasecheckdate,jdbcType=INTEGER},
+      customeraddressphone = #{customeraddressphone,jdbcType=NVARCHAR},
+      ARBalance_Abandon = #{arbalanceAbandon,jdbcType=DECIMAL},
+      APBalance_Abandon = #{apbalanceAbandon,jdbcType=DECIMAL},
+      disabled = #{disabled,jdbcType=TINYINT},
+      updatedBy = #{updatedby,jdbcType=NVARCHAR},
+      priuserdefnvc1 = #{priuserdefnvc1,jdbcType=NVARCHAR},
+      priuserdefdecm1 = #{priuserdefdecm1,jdbcType=DECIMAL},
+      priuserdefnvc2 = #{priuserdefnvc2,jdbcType=NVARCHAR},
+      priuserdefdecm2 = #{priuserdefdecm2,jdbcType=DECIMAL},
+      priuserdefnvc3 = #{priuserdefnvc3,jdbcType=NVARCHAR},
+      priuserdefdecm3 = #{priuserdefdecm3,jdbcType=DECIMAL},
+      priuserdefnvc4 = #{priuserdefnvc4,jdbcType=NVARCHAR},
+      priuserdefdecm4 = #{priuserdefdecm4,jdbcType=DECIMAL},
+      priuserdefnvc5 = #{priuserdefnvc5,jdbcType=NVARCHAR},
+      priuserdefdecm5 = #{priuserdefdecm5,jdbcType=DECIMAL},
+      isContainTaxOnPurchase = #{iscontaintaxonpurchase,jdbcType=TINYINT},
+      HasEverChanged = #{haseverchanged,jdbcType=NVARCHAR},
+      codeSettlementPartner = #{codesettlementpartner,jdbcType=NVARCHAR},
+      AdvRBalance_Abandon = #{advrbalanceAbandon,jdbcType=DECIMAL},
+      AdvPBalance_Abandon = #{advpbalanceAbandon,jdbcType=DECIMAL},
+      addressJC = #{addressjc,jdbcType=NVARCHAR},
+      ShipmentAddress = #{shipmentaddress,jdbcType=NVARCHAR},
+      Contact = #{contact,jdbcType=NVARCHAR},
+      MobilePhone = #{mobilephone,jdbcType=NVARCHAR},
+      TelephoneNo = #{telephoneno,jdbcType=NVARCHAR},
+      Fax = #{fax,jdbcType=NVARCHAR},
+      EmailAddr = #{emailaddr,jdbcType=NVARCHAR},
+      QqNo = #{qqno,jdbcType=NVARCHAR},
+      MsnAddress = #{msnaddress,jdbcType=NVARCHAR},
+      UuNo = #{uuno,jdbcType=NVARCHAR},
+      creditBalance = #{creditbalance,jdbcType=DECIMAL},
+      extendedAccounts = #{extendedaccounts,jdbcType=DECIMAL},
+      SellCustomer = #{sellcustomer,jdbcType=TINYINT},
+      MadeRecordDate = #{maderecorddate,jdbcType=TIMESTAMP},
+      Position = #{position,jdbcType=VARCHAR},
+      RunShop = #{runshop,jdbcType=TINYINT},
+      CheckAddress = #{checkaddress,jdbcType=NVARCHAR},
+      CustomerAddress = #{customeraddress,jdbcType=NVARCHAR},
+      Birthday = #{birthday,jdbcType=TIMESTAMP},
+      AutoCreateMember = #{autocreatemember,jdbcType=TINYINT},
+      idsaledepartment = #{idsaledepartment,jdbcType=INTEGER},
+      iddistrict = #{iddistrict,jdbcType=INTEGER},
+      idMarketingOrgan = #{idmarketingorgan,jdbcType=INTEGER},
+      idPmarketingOrgan = #{idpmarketingorgan,jdbcType=INTEGER},
+      idsettlementPartner = #{idsettlementpartner,jdbcType=INTEGER},
+      idpartnerclass = #{idpartnerclass,jdbcType=INTEGER},
+      idsaleman = #{idsaleman,jdbcType=INTEGER},
+      idMemberType = #{idmembertype,jdbcType=INTEGER},
+      accbank = #{accbank,jdbcType=INTEGER},
+      customerType = #{customertype,jdbcType=INTEGER},
+      partnerType = #{partnertype,jdbcType=INTEGER},
+      priceGrade = #{pricegrade,jdbcType=INTEGER},
+      purchaseSettleStyle = #{purchasesettlestyle,jdbcType=INTEGER},
+      saleSettleStyle = #{salesettlestyle,jdbcType=INTEGER},
+      taxRate = #{taxrate,jdbcType=INTEGER},
+      saleStartDate = #{salestartdate,jdbcType=TIMESTAMP},
+      purchaseStartDate = #{purchasestartdate,jdbcType=TIMESTAMP},
+      madeDate = #{madedate,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      createdTime = #{createdtime,jdbcType=TIMESTAMP},
+      eAccount = #{eaccount,jdbcType=VARCHAR},
+      IsModifiedCode = #{ismodifiedcode,jdbcType=TINYINT},
+      ElectronicInvoiceReceiveMode = #{electronicinvoicereceivemode,jdbcType=INTEGER},
+      ElectronicInvoiceReceiveEMail = #{electronicinvoicereceiveemail,jdbcType=NVARCHAR},
+      ElectronicInvoiceReceiveMobilePhone = #{electronicinvoicereceivemobilephone,jdbcType=NVARCHAR},
+      DefaultInvoiceTypeOfReceive = #{defaultinvoicetypeofreceive,jdbcType=INTEGER},
+      iddefaultSettleStyleOfReceive = #{iddefaultsettlestyleofreceive,jdbcType=INTEGER},
+      iddefaultBankAccountOfReceive = #{iddefaultbankaccountofreceive,jdbcType=INTEGER},
+      DefaultInvoiceTypeOfPayment = #{defaultinvoicetypeofpayment,jdbcType=INTEGER},
+      iddefaultSettleStyleOfPayment = #{iddefaultsettlestyleofpayment,jdbcType=INTEGER},
+      iddefaultBankAccountOfPayment = #{iddefaultbankaccountofpayment,jdbcType=INTEGER},
+      isAutoCancel = #{isautocancel,jdbcType=TINYINT},
+      IsSystem = #{issystem,jdbcType=TINYINT},
+      VisitAddress = #{visitaddress,jdbcType=NVARCHAR},
+      Coordinate = #{coordinate,jdbcType=NVARCHAR},
+      Longitude = #{longitude,jdbcType=NVARCHAR},
+      Latitude = #{latitude,jdbcType=NVARCHAR},
+      CheckInScope = #{checkinscope,jdbcType=DECIMAL},
+      VisitFrequency = #{visitfrequency,jdbcType=DECIMAL},
+      IsNeedCheckInPhoto = #{isneedcheckinphoto,jdbcType=TINYINT},
+      IsNeedLyHuoPhoto = #{isneedlyhuophoto,jdbcType=TINYINT},
+      IsNeedPromotionPhoto = #{isneedpromotionphoto,jdbcType=TINYINT},
+      IsNeedCompetitorPhoto = #{isneedcompetitorphoto,jdbcType=TINYINT},
+      PrintCount = #{printcount,jdbcType=INTEGER},
+      Creater = #{creater,jdbcType=NVARCHAR},
+      Changer = #{changer,jdbcType=NVARCHAR},
+      Changedate = #{changedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 1、订单信息中根据idcustomer查询客户名称 -->
+  <select id="selectCustomer" resultType="String" parameterType="INTEGER">
+  select distinct a.code from 
+  AA_Partner a
+  where id = #{0}
+  </select>
+  
+</mapper>

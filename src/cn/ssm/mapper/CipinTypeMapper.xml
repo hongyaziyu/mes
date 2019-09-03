@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.CipinTypeMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.CipinType" >
+    <id column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="cipin_type" property="cipinType" jdbcType="VARCHAR" />
+    <result column="cipin_detail" property="cipinDetail" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 次品查询sql片段 -->
+  <sql id="query_cipin_where">
+  
+            <if test="shopName!=null and shopName!=''">
+				and  a.shop_name like '%${shopName}%'
+			</if>
+			<if test="cipinType!=null and cipinType!=''">
+				and  a.cipin_type like '%${cipinType}%'
+			</if>
+  
+  </sql>
+  
+  <sql id="Base_Column_List" >
+    type_id, shop_name, cipin_type, cipin_detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cipin_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cipin_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.CipinType" >
+    insert into cipin_type (type_id, shop_name, cipin_type, 
+      cipin_detail)
+    values (#{typeId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{cipinType,jdbcType=VARCHAR}, 
+      #{cipinDetail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.CipinType" >
+    insert into cipin_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="cipinType != null" >
+        cipin_type,
+      </if>
+      <if test="cipinDetail != null" >
+        cipin_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinType != null" >
+        #{cipinType,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinDetail != null" >
+        #{cipinDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.CipinType" >
+    update cipin_type
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinType != null" >
+        cipin_type = #{cipinType,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinDetail != null" >
+        cipin_detail = #{cipinDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.CipinType" >
+    update cipin_type
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      cipin_type = #{cipinType,jdbcType=VARCHAR},
+      cipin_detail = #{cipinDetail,jdbcType=VARCHAR}
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- //次品查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectCipinByParamtotalCount" resultType="int">
+  	select   count(distinct a.shop_name,a.cipin_type) from  cipin_type a
+  	<where>
+		<include refid="query_cipin_where"/>
+	</where>
+  </select>
+  
+  
+   <!--添加部分：多条件查询的条件 //次品查询分页 -->
+  <select id="selectCipinByParam" resultMap="BaseResultMap"  >
+    select distinct a.shop_name,a.cipin_type from
+     cipin_type a
+     <where>
+		<include refid="query_cipin_where"/>
+	</where>
+	ORDER BY type_id DESC
+	<!-- limit m,n为从m+1开始取n条记录 -->
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+   <!--删除根据车间名称，不良品类别-->
+  <delete id="deleteByType" parameterType="string" >
+    delete from cipin_type
+    where shop_name = #{0}
+    and cipin_type= #{1}
+  </delete>
+  
+   <!--修改的查询：多条件查询的条件 //次品查询分页 -->
+  <select id="selectCipinByType" resultMap="BaseResultMap"  >
+    select * from
+     cipin_type a
+     <where>
+		<include refid="query_cipin_where"/>
+	</where>
+  </select> 
+</mapper>

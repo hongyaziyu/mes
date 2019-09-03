@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.TransitionCipinMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.TransitionCipin" >
+    <id column="cipin_id" property="cipinId" jdbcType="INTEGER" />
+    <result column="transition_id" property="transitionId" jdbcType="INTEGER" />
+    <result column="cipin_type" property="cipinType" jdbcType="VARCHAR" />
+    <result column="cipin_species" property="cipinSpecies" jdbcType="VARCHAR" />
+    <result column="cipin_num" property="cipinNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cipin_id, transition_id, cipin_type, cipin_species, cipin_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from transition_cipin
+    where cipin_id = #{cipinId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from transition_cipin
+    where cipin_id = #{cipinId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.TransitionCipin" >
+    insert into transition_cipin (cipin_id, transition_id, cipin_type, 
+      cipin_species, cipin_num)
+    values (#{cipinId,jdbcType=INTEGER}, #{transitionId,jdbcType=INTEGER}, #{cipinType,jdbcType=VARCHAR}, 
+      #{cipinSpecies,jdbcType=VARCHAR}, #{cipinNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.TransitionCipin" >
+    insert into transition_cipin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cipinId != null" >
+        cipin_id,
+      </if>
+      <if test="transitionId != null" >
+        transition_id,
+      </if>
+      <if test="cipinType != null" >
+        cipin_type,
+      </if>
+      <if test="cipinSpecies != null" >
+        cipin_species,
+      </if>
+      <if test="cipinNum != null" >
+        cipin_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cipinId != null" >
+        #{cipinId,jdbcType=INTEGER},
+      </if>
+      <if test="transitionId != null" >
+        #{transitionId,jdbcType=INTEGER},
+      </if>
+      <if test="cipinType != null" >
+        #{cipinType,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinSpecies != null" >
+        #{cipinSpecies,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinNum != null" >
+        #{cipinNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.TransitionCipin" >
+    update transition_cipin
+    <set >
+      <if test="transitionId != null" >
+        transition_id = #{transitionId,jdbcType=INTEGER},
+      </if>
+      <if test="cipinType != null" >
+        cipin_type = #{cipinType,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinSpecies != null" >
+        cipin_species = #{cipinSpecies,jdbcType=VARCHAR},
+      </if>
+      <if test="cipinNum != null" >
+        cipin_num = #{cipinNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cipin_id = #{cipinId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.TransitionCipin" >
+    update transition_cipin
+    set transition_id = #{transitionId,jdbcType=INTEGER},
+      cipin_type = #{cipinType,jdbcType=VARCHAR},
+      cipin_species = #{cipinSpecies,jdbcType=VARCHAR},
+      cipin_num = #{cipinNum,jdbcType=VARCHAR}
+    where cipin_id = #{cipinId,jdbcType=INTEGER}
+  </update>
+  
+   
+   <!--工序交接查看详细记录-->
+  <select id="selectProcessTransitionDetail" resultMap="BaseResultMap"  >
+    select * from
+     transition_cipin 
+     where transition_id=#{0}
+  </select>
+  
+  
+  <!--根据外键transitionId删除交接记录副表信息-->
+   <delete id="deleteTransitionCipin" parameterType="java.lang.Integer" >
+    delete from transition_cipin
+    where transition_id=#{0}
+  </delete> 
+  
+  
+</mapper>

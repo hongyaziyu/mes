@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssm.mapper.AssetMapper" >
+  <resultMap id="BaseResultMap" type="cn.ssm.po.Asset" >
+    <id column="asset_id" property="assetId" jdbcType="INTEGER" />
+    <result column="asset_name" property="assetName" jdbcType="VARCHAR" />
+    <result column="asset_no" property="assetNo" jdbcType="VARCHAR" />
+    <result column="asset_type" property="assetType" jdbcType="VARCHAR" />
+    <result column="device_level" property="deviceLevel" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="factory_date" property="factoryDate" jdbcType="VARCHAR" />
+    <result column="purchase_time" property="purchaseTime" jdbcType="VARCHAR" />
+    <result column="active_time" property="activeTime" jdbcType="VARCHAR" />
+    <result column="factory_number" property="factoryNumber" jdbcType="VARCHAR" />
+    <result column="director" property="director" jdbcType="VARCHAR" />
+    <result column="is_common" property="isCommon" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="rfid" property="rfid" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 设备查询sql片段 -->
+  <sql id="query_asset_where">
+  
+            <if test="asset_name!=null and asset_name!=''">
+				and  a.asset_name like '%${asset_name}%'
+			</if>
+			<if test="asset_no!=null and asset_no!=''">
+				and  a.asset_no like '%${asset_no}%'
+			</if>
+  
+  </sql>
+  
+  
+  
+  <sql id="Base_Column_List" >
+    asset_id, asset_name, asset_no, asset_type, device_level, position, manufacturer, 
+    factory_date, purchase_time, active_time, factory_number, director, is_common, remark, 
+    rfid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset
+    where asset_id = #{assetId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from asset
+    where asset_id = #{assetId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.po.Asset" >
+    insert into asset (asset_id, asset_name, asset_no, 
+      asset_type, device_level, position, 
+      manufacturer, factory_date, purchase_time, 
+      active_time, factory_number, director, 
+      is_common, remark, rfid
+      )
+    values (#{assetId,jdbcType=INTEGER}, #{assetName,jdbcType=VARCHAR}, #{assetNo,jdbcType=VARCHAR}, 
+      #{assetType,jdbcType=VARCHAR}, #{deviceLevel,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{factoryDate,jdbcType=VARCHAR}, #{purchaseTime,jdbcType=VARCHAR}, 
+      #{activeTime,jdbcType=VARCHAR}, #{factoryNumber,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, 
+      #{isCommon,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{rfid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.po.Asset" >
+    insert into asset
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="assetId != null" >
+        asset_id,
+      </if>
+      <if test="assetName != null" >
+        asset_name,
+      </if>
+      <if test="assetNo != null" >
+        asset_no,
+      </if>
+      <if test="assetType != null" >
+        asset_type,
+      </if>
+      <if test="deviceLevel != null" >
+        device_level,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="factoryDate != null" >
+        factory_date,
+      </if>
+      <if test="purchaseTime != null" >
+        purchase_time,
+      </if>
+      <if test="activeTime != null" >
+        active_time,
+      </if>
+      <if test="factoryNumber != null" >
+        factory_number,
+      </if>
+      <if test="director != null" >
+        director,
+      </if>
+      <if test="isCommon != null" >
+        is_common,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="rfid != null" >
+        rfid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="assetId != null" >
+        #{assetId,jdbcType=INTEGER},
+      </if>
+      <if test="assetName != null" >
+        #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetNo != null" >
+        #{assetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="assetType != null" >
+        #{assetType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceLevel != null" >
+        #{deviceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryDate != null" >
+        #{factoryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseTime != null" >
+        #{purchaseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activeTime != null" >
+        #{activeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNumber != null" >
+        #{factoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null" >
+        #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="isCommon != null" >
+        #{isCommon,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null" >
+        #{rfid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.po.Asset" >
+    update asset
+    <set >
+      <if test="assetName != null" >
+        asset_name = #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetNo != null" >
+        asset_no = #{assetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="assetType != null" >
+        asset_type = #{assetType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceLevel != null" >
+        device_level = #{deviceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryDate != null" >
+        factory_date = #{factoryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseTime != null" >
+        purchase_time = #{purchaseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activeTime != null" >
+        active_time = #{activeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNumber != null" >
+        factory_number = #{factoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null" >
+        director = #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="isCommon != null" >
+        is_common = #{isCommon,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null" >
+        rfid = #{rfid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where asset_id = #{assetId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.po.Asset" >
+    update asset
+    set asset_name = #{assetName,jdbcType=VARCHAR},
+      asset_no = #{assetNo,jdbcType=VARCHAR},
+      asset_type = #{assetType,jdbcType=VARCHAR},
+      device_level = #{deviceLevel,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      factory_date = #{factoryDate,jdbcType=VARCHAR},
+      purchase_time = #{purchaseTime,jdbcType=VARCHAR},
+      active_time = #{activeTime,jdbcType=VARCHAR},
+      factory_number = #{factoryNumber,jdbcType=VARCHAR},
+      director = #{director,jdbcType=VARCHAR},
+      is_common = #{isCommon,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      rfid = #{rfid,jdbcType=VARCHAR}
+    where asset_id = #{assetId,jdbcType=INTEGER}
+  </update>
+  
+   <!--添加部分：多条件查询的条件 //设备查询分页 -->
+  <select id="selectAssetByParam" resultMap="BaseResultMap"  >
+    select * from
+     asset a
+     <where>
+		<include refid="query_asset_where"/>
+	</where>
+	ORDER BY asset_id DESC
+	<!-- limit m,n为从m+1开始取n条记录 -->
+	limit #{startPos},#{pageSize}
+  </select> 
+  
+  
+  <!--excel导入多条件查询的条件 -->
+  <select id="selectAssetByParam1" resultMap="BaseResultMap">
+    select * from
+     asset 
+     where asset_name = #{0}
+     and asset_no = #{1}
+  </select>
+  
+  <!-- //设备查询分页返回行数 -->
+  <!--COUNT() 函数返回匹配指定条件的行数。  -->
+  <select id="selectAssetByParamtotalCount" resultType="int">
+  	select  count(*) from  asset a
+  	<where>
+		<include refid="query_asset_where"/>
+	</where>
+  </select>
+  
+  
+   <select id="selectAssetNames" resultMap="BaseResultMap">
+  	select asset_no,asset_name,asset_type from asset
+  </select>
+</mapper>

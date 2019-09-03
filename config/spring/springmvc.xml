@@ -1,0 +1,107 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+
+	<!-- 使用spring组件扫描 -->
+	<context:component-scan base-package="cn.ssm.controller" />
+
+	<!-- 静态资源 解析 -->
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/img/" mapping="/img/**" />
+  	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/fonts/" mapping="/fonts/**" />
+	
+	 <mvc:annotation-driven conversion-service="conversionService"> </mvc:annotation-driven> 
+
+
+	
+	<!-- ViewResolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+	<!-- 全局异常处理器 -->
+	<!-- <bean class="cn.ssm.exception.GlobalExceptionResolver"/> -->
+
+	<!-- conversionService -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<!-- 转换器 -->
+		<property name="converters">
+			<list>
+				<bean class="cn.ssm.controller.converter.CustomDateConverter"/>
+			</list>
+		</property>
+	</bean>
+	 
+	
+	
+	<!--拦截器 -->
+ 	 <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/**/css/*"/>
+			<mvc:exclude-mapping path="/**/fonts/*"/>
+			<mvc:exclude-mapping path="/**/img/*"/>
+			<mvc:exclude-mapping path="/**/js/*"/>
+			<mvc:exclude-mapping path="/**/user/*"/>
+			<bean class="cn.ssm.controller.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>  
+	 
+
+  <!--上传文件解释器 -->
+ <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="defaultEncoding" value="utf-8" />
+    <property name="maxUploadSize" value="10485760" />
+    <property name="maxInMemorySize" value="4096" />
+    <property name="resolveLazily" value="true" />
+  </bean> 
+  
+  <!-- 注册自定义作业类 -->
+	<bean id="myJob" class="cn.ssm.kettle.MyJob">	
+	</bean>
+	
+	<!--配置JobDetail -->
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	<!--注入目标对象配置 -->
+		<property name="targetObject" ref="myJob"/>
+		<!--注入目标方法 -->
+		<property name="targetMethod" value="runTrans"/>
+	</bean>
+	
+	<!-- 配置触发器 -->
+	<bean id="myTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<!-- 注入任务详情对象 -->
+		<property name="jobDetail" ref="jobDetail"/>
+		<!-- 注入cron表达式，通过这个表达式指定触发的时间点 -->
+		<property name="cronExpression">
+			<value>0 0 0/1 * * ? 2017-2099</value>
+		</property>
+	</bean>
+	
+	<!-- 配置调度工厂 -->
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<!-- 注入触发器 -->
+		<property name="triggers">
+			<list>
+				<ref bean="myTrigger"/>
+			</list>
+		</property>
+	</bean>
+
+</beans>
